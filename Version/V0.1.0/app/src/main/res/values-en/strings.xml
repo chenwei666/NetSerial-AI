@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">NetSerial AI Terminal</string>
+    <string name="devices">USB Serial Devices</string>
+    <string name="terminal_tab_key">TAB</string>
+</resources>

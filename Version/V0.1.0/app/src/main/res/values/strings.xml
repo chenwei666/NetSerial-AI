@@ -1,0 +1,5 @@
+<resources xmlns:tools="http://schemas.android.com/tools" tools:locale="zh">
+    <string name="app_name">NetSerial AI 运维终端</string>
+    <string name="devices">USB 串口设备</string>
+    <string name="terminal_tab_key">TAB</string>
+</resources>

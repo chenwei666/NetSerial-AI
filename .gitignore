@@ -1,0 +1,26 @@
+# Project-local Android toolchain and build state
+.tools/
+.gradle/
+**/.gradle/
+**/build/
+**/local.properties
+
+# IDE and operating-system state
+.idea/
+*.iml
+.DS_Store
+Thumbs.db
+
+# Local credentials and private configuration
+.env
+.env.*
+!.env.example
+keystore.properties
+*.jks
+*.keystore
+
+# Generated artifacts
+artifacts/
+*.apk
+*.aab
+
