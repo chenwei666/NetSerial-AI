@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/refresh"
+        android:title="@string/menu_refresh" />
+    <item
+        android:id="@+id/baud_rate"
+        android:title="@string/menu_baud_rate" />
+    <item
+        android:id="@+id/ai_settings"
+        android:title="@string/ai_settings_menu" />
+    <item
+        android:id="@+id/remote_terminal"
+        android:title="@string/remote_terminal_menu" />
+    <item
+        android:id="@+id/command_library"
+        android:title="@string/command_library_menu" />
+    <item
+        android:id="@+id/change_task"
+        android:title="@string/change_menu" />
+    <item
+        android:id="@+id/network_tools"
+        android:title="@string/network_tools_menu" />
+    <item
+        android:id="@+id/config_diff"
+        android:title="@string/config_diff_menu" />
+    <item
+        android:id="@+id/app_settings"
+        android:title="@string/app_settings_menu" />
+</menu>

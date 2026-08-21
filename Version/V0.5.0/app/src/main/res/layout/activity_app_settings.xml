@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@color/app_background" android:fillViewport="true">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="vertical" android:padding="20dp">
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="@string/app_settings_title" android:textAppearance="?attr/textAppearanceHeadlineMedium"
+            android:textColor="@color/app_on_surface" android:textStyle="bold" />
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="4dp" android:layout_marginBottom="16dp"
+            android:text="@string/settings_intro" android:textColor="@color/app_on_surface_variant" />
+
+        <com.google.android.material.card.MaterialCardView style="@style/Widget.NetSerial.Card"
+            android:layout_width="match_parent" android:layout_height="wrap_content">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical" android:padding="16dp">
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="@string/settings_appearance_section" android:textAppearance="?attr/textAppearanceTitleMedium" android:textStyle="bold" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:text="@string/settings_language_label" />
+                <Spinner android:id="@+id/settings_language" android:layout_width="match_parent" android:layout_height="48dp" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:text="@string/settings_dark_mode_label" />
+                <Spinner android:id="@+id/settings_appearance" android:layout_width="match_parent" android:layout_height="48dp" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:text="@string/settings_theme_label" />
+                <Spinner android:id="@+id/settings_accent_theme" android:layout_width="match_parent" android:layout_height="48dp" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView style="@style/Widget.NetSerial.Card"
+            android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="12dp">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="16dp">
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/settings_terminal_section" android:textAppearance="?attr/textAppearanceTitleMedium" android:textStyle="bold" />
+                <com.google.android.material.materialswitch.MaterialSwitch android:id="@+id/settings_keep_awake"
+                    android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:text="@string/settings_keep_awake_label" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:text="@string/settings_text_size_label" />
+                <Spinner android:id="@+id/settings_text_size" android:layout_width="match_parent" android:layout_height="48dp" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:text="@string/settings_charset_label" />
+                <Spinner android:id="@+id/settings_charset" android:layout_width="match_parent" android:layout_height="48dp" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView style="@style/Widget.NetSerial.Card"
+            android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="12dp">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="16dp">
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/settings_connection_section" android:textAppearance="?attr/textAppearanceTitleMedium" android:textStyle="bold" />
+                <com.google.android.material.materialswitch.MaterialSwitch android:id="@+id/settings_telnet_enabled"
+                    android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:text="@string/settings_telnet_label" />
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/settings_telnet_detail" android:textColor="@color/app_on_surface_variant" android:textSize="12sp" />
+                <com.google.android.material.textfield.TextInputLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:hint="@string/settings_timeout_hint">
+                    <com.google.android.material.textfield.TextInputEditText android:id="@+id/settings_timeout" android:layout_width="match_parent" android:layout_height="wrap_content" android:importantForAutofill="no" android:inputType="number" android:maxLength="2" />
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:hint="@string/settings_keepalive_hint">
+                    <com.google.android.material.textfield.TextInputEditText android:id="@+id/settings_keepalive" android:layout_width="match_parent" android:layout_height="wrap_content" android:importantForAutofill="no" android:inputType="number" android:maxLength="3" />
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:hint="@string/settings_probe_timeout_hint">
+                    <com.google.android.material.textfield.TextInputEditText android:id="@+id/settings_probe_timeout" android:layout_width="match_parent" android:layout_height="wrap_content" android:importantForAutofill="no" android:inputType="number" android:maxLength="2" />
+                </com.google.android.material.textfield.TextInputLayout>
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:text="@string/settings_security_summary" android:textColor="@color/app_on_surface_variant" android:textSize="12sp" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.button.MaterialButton android:id="@+id/settings_save" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="16dp" android:text="@string/settings_save" />
+        <com.google.android.material.button.MaterialButton android:id="@+id/settings_forget_hosts" style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:text="@string/settings_forget_hosts" />
+    </LinearLayout>
+</ScrollView>
