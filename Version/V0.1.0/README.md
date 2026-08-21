@@ -1,5 +1,7 @@
 # NetSerial AI 运维终端 V0.1.0
 
+[中文](README.md) | [English](README_EN.md)
+
 NetSerial AI 是面向网络运维工程师的 Android USB 串口终端。本版本建立可信源码、离线补全、安全执行和多 AI 供应商的第一条可构建纵向基线。
 
 ## 本版本已经具备
