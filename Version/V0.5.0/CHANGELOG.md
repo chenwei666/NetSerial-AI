@@ -13,6 +13,7 @@
 - 新增 SSH/Telnet、AI、命令库、网络工具、变更任务、设置六个首页快捷入口。
 - 新增内置交换机命令收藏、最近使用、范围筛选和清空最近记录。
 - 新增终端操作期间保持屏幕常亮开关。
+- 新增原创应用图标，以终端提示符、四口交换机和连接节点表达串口、网络运维与智能辅助定位，并生成 Android mdpi 至 xxxhdpi 全套资源。
 
 ### 问题修复
 
@@ -47,6 +48,7 @@
 - `app/src/main/java/de/kai_morich/simple_usb_terminal/{ThemedActivity,AppAppearanceController,DevicesFragment,AppSettingsActivity,CommandLibraryActivity}.java`
 - 所有 Activity 的统一外观基类接入
 - `app/src/main/res/{layout,values,values-en,values-night}`
+- `app/src/main/res/mipmap-*/ic_launcher.png`、`design/app-icon-{master,512}.png`
 - `app/src/test/java/com/chenwei666/netserial/{settings,commands}`
 - `README.md`、`README_EN.md`、`docs/*`、`scripts/build.ps1`
 

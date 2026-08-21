@@ -1,5 +1,7 @@
 # NetSerial AI
 
+<img src="Version/V0.5.0/design/app-icon-512.png" width="144" alt="NetSerial AI 应用图标">
+
 > 为网络运维工程师打造的现代化 Android 交换机终端：USB Console、SSH、受控 Telnet、多厂商命令库、Tab 补全、AI Copilot 与变更安全工作流。
 
 [中文](README.md) | [English](README_EN.md)
@@ -62,7 +64,7 @@ NetSerial AI 面向经常维护 H3C、华为、Cisco、锐捷交换机的网络�
 V0.5.0 APK SHA-256：
 
 ```text
-ca3b337f24a07c981b95a8c8056be64a1078b46279f3f02c8c6db4cb729a76c8
+c16a95034a45adbf3c38a9e24a0211aeb9d4197d52132420e47f4c00ab264cf3
 ```
 
 V0.4.0 与 V0.5.0 使用同一生产证书，可覆盖升级并保留应用数据。

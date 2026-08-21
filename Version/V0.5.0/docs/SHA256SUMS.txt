@@ -1,1 +1,1 @@
-ca3b337f24a07c981b95a8c8056be64a1078b46279f3f02c8c6db4cb729a76c8  NetSerial-AI-v0.5.0-release.apk
+c16a95034a45adbf3c38a9e24a0211aeb9d4197d52132420e47f4c00ab264cf3  NetSerial-AI-v0.5.0-release.apk

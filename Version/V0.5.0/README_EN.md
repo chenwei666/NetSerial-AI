@@ -1,5 +1,7 @@
 # NetSerial AI Operations Terminal V0.5.0
 
+<img src="design/app-icon-512.png" width="144" alt="NetSerial AI app icon">
+
 NetSerial AI is an Android terminal for network engineers. It combines USB Console, SSH, Telnet, multi-vendor command references, Tab/control keys, AI command drafts, change control, configuration comparison, and field network tools.
 
 Developer: chenwei666

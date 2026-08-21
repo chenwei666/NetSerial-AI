@@ -1,5 +1,7 @@
 # NetSerial AI
 
+<img src="Version/V0.5.0/design/app-icon-512.png" width="144" alt="NetSerial AI app icon">
+
 > A modern Android switch terminal for network engineers, combining USB Console, SSH, controlled Telnet, multi-vendor commands, Tab completion, an AI copilot, and a safety-focused change workflow.
 
 [中文](README.md) | [English](README_EN.md)
@@ -60,7 +62,7 @@ Production releases: [GitHub Releases](https://github.com/chenwei666/NetSerial-A
 V0.5.0 APK SHA-256:
 
 ```text
-ca3b337f24a07c981b95a8c8056be64a1078b46279f3f02c8c6db4cb729a76c8
+c16a95034a45adbf3c38a9e24a0211aeb9d4197d52132420e47f4c00ab264cf3
 ```
 
 V0.4.0 and V0.5.0 use the same production certificate, so an in-place upgrade can retain app data.

@@ -1,5 +1,7 @@
 # NetSerial AI 运维终端 V0.5.0
 
+<img src="design/app-icon-512.png" width="144" alt="NetSerial AI 应用图标">
+
 NetSerial AI 是面向网络运维工程师的 Android 移动终端，整合 USB Console、SSH、Telnet、多厂商命令库、Tab/控制键、AI 命令草稿、变更管控、配置对比和现场网络工具。
 
 开发人员：chenwei666

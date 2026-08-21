@@ -8,6 +8,7 @@ V0.5.0 focuses on field usability with a modern Material 3 UI, system-adaptive d
 
 - 跟随系统、浅色、深色 / Follow system, light, or dark mode
 - 海洋蓝、翡翠绿、科技紫、日落橙 / Ocean, Emerald, Violet, and Sunset themes
+- 原创终端与交换机工具图标 / Original terminal-and-switch utility icon
 - 设备与变更状态工作台 / Device and active-change dashboard
 - SSH/Telnet、AI、命令、网络与变更快捷入口 / Quick operations shortcuts
 - 命令收藏与最近使用 / Command favorites and recents
@@ -22,6 +23,6 @@ USB, SSH, Telnet, SFTP, AI, change gates, configuration Diff, and network tools 
 
 下载 `NetSerial-AI-v0.5.0-release.apk` 并核对 SHA-256：
 
-`ca3b337f24a07c981b95a8c8056be64a1078b46279f3f02c8c6db4cb729a76c8`
+`c16a95034a45adbf3c38a9e24a0211aeb9d4197d52132420e47f4c00ab264cf3`
 
 V0.4.0 与 V0.5.0 使用同一生产证书，可以覆盖升级并保留应用数据。生产使用前仍需在授权环境完成真实手机、USB、交换机和 AI 账户验收。

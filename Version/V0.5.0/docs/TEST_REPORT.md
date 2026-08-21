@@ -16,8 +16,9 @@
 | ZIP alignment | 通过 | Build Tools 36.0.0 `zipalign -c -v 4` |
 | APK 签名 | 通过 | V1=true、V2=true、V3=true，1 signer，RSA 4096 |
 | 包元数据 | 通过 | `com.chenwei666.netserial`，versionCode 6，versionName 0.5.0，minSdk 21，targetSdk 36 |
+| 应用图标资源 | 通过 | mdpi/hdpi/xhdpi/xxhdpi/xxxhdpi 分别为 48/72/96/144/192 px，均为 32 位 ARGB PNG；48 px 与 192 px 已完成视觉检查 |
 | 覆盖升级签名链 | 通过 | V0.4.0 与 V0.5.0 证书 SHA-256 相同 |
-| 制品 SHA-256 | 通过 | `ca3b337f24a07c981b95a8c8056be64a1078b46279f3f02c8c6db4cb729a76c8` |
+| 制品 SHA-256 | 通过 | `c16a95034a45adbf3c38a9e24a0211aeb9d4197d52132420e47f4c00ab264cf3` |
 
 ## 新增单元覆盖
 
@@ -36,7 +37,7 @@
 ## 制品
 
 - 文件：`artifacts/V0.5.0/NetSerial-AI-v0.5.0-release.apk`
-- 大小：5,960,744 bytes
+- 大小：6,011,931 bytes
 - 证书：`CN=chenwei666, O=chenwei666, C=CN`
 - 证书 SHA-256：`6f6d2063a155a9d252eecf4a84df31281b02d86beb2f0cd55ea7c80a2063f5bd`
 
