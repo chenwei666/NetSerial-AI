@@ -60,7 +60,7 @@ Production releases: [GitHub Releases](https://github.com/chenwei666/NetSerial-A
 V0.5.0 APK SHA-256:
 
 ```text
-72c77bf8a7f4ee6f5fe38fcc7372818c4e7cfe337c755a2eddac75ac3768e812
+ca3b337f24a07c981b95a8c8056be64a1078b46279f3f02c8c6db4cb729a76c8
 ```
 
 V0.4.0 and V0.5.0 use the same production certificate, so an in-place upgrade can retain app data.

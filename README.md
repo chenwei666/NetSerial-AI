@@ -62,7 +62,7 @@ NetSerial AI 面向经常维护 H3C、华为、Cisco、锐捷交换机的网络�
 V0.5.0 APK SHA-256：
 
 ```text
-72c77bf8a7f4ee6f5fe38fcc7372818c4e7cfe337c755a2eddac75ac3768e812
+ca3b337f24a07c981b95a8c8056be64a1078b46279f3f02c8c6db4cb729a76c8
 ```
 
 V0.4.0 与 V0.5.0 使用同一生产证书，可覆盖升级并保留应用数据。

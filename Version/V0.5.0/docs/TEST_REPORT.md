@@ -17,7 +17,7 @@
 | APK 签名 | 通过 | V1=true、V2=true、V3=true，1 signer，RSA 4096 |
 | 包元数据 | 通过 | `com.chenwei666.netserial`，versionCode 6，versionName 0.5.0，minSdk 21，targetSdk 36 |
 | 覆盖升级签名链 | 通过 | V0.4.0 与 V0.5.0 证书 SHA-256 相同 |
-| 制品 SHA-256 | 通过 | `72c77bf8a7f4ee6f5fe38fcc7372818c4e7cfe337c755a2eddac75ac3768e812` |
+| 制品 SHA-256 | 通过 | `ca3b337f24a07c981b95a8c8056be64a1078b46279f3f02c8c6db4cb729a76c8` |
 
 ## 新增单元覆盖
 
@@ -36,7 +36,7 @@
 ## 制品
 
 - 文件：`artifacts/V0.5.0/NetSerial-AI-v0.5.0-release.apk`
-- 大小：5,960,444 bytes
+- 大小：5,960,744 bytes
 - 证书：`CN=chenwei666, O=chenwei666, C=CN`
 - 证书 SHA-256：`6f6d2063a155a9d252eecf4a84df31281b02d86beb2f0cd55ea7c80a2063f5bd`
 

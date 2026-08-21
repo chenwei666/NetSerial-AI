@@ -154,6 +154,7 @@
     <string name="command_copied">命令已复制，执行前请核对接口、VLAN 和地址</string>
     <string name="command_detail_format">%1$s · %2$s · %3$s</string>
     <string name="vendor_h3c">H3C Comware</string>
+    <string name="vendor_generic">通用</string>
     <string name="vendor_huawei">华为 VRP</string>
     <string name="vendor_cisco">Cisco IOS</string>
     <string name="vendor_ruijie">锐捷 RGOS</string>

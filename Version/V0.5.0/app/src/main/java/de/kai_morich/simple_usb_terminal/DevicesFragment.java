@@ -218,6 +218,7 @@ public class DevicesFragment extends ListFragment {
 
     private String vendorLabel(Vendor vendor) {
         switch (vendor) {
+            case GENERIC: return getString(R.string.vendor_generic);
             case HUAWEI_VRP: return getString(R.string.vendor_huawei);
             case CISCO_IOS: return getString(R.string.vendor_cisco);
             case RUIJIE_RGOS: return getString(R.string.vendor_ruijie);

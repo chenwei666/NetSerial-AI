@@ -154,6 +154,7 @@
     <string name="command_copied">Command copied. Verify interface, VLAN, and address values before execution.</string>
     <string name="command_detail_format">%1$s · %2$s · %3$s</string>
     <string name="vendor_h3c">H3C Comware</string>
+    <string name="vendor_generic">Generic</string>
     <string name="vendor_huawei">Huawei VRP</string>
     <string name="vendor_cisco">Cisco IOS</string>
     <string name="vendor_ruijie">Ruijie RGOS</string>

@@ -22,6 +22,6 @@ USB, SSH, Telnet, SFTP, AI, change gates, configuration Diff, and network tools 
 
 下载 `NetSerial-AI-v0.5.0-release.apk` 并核对 SHA-256：
 
-`72c77bf8a7f4ee6f5fe38fcc7372818c4e7cfe337c755a2eddac75ac3768e812`
+`ca3b337f24a07c981b95a8c8056be64a1078b46279f3f02c8c6db4cb729a76c8`
 
 V0.4.0 与 V0.5.0 使用同一生产证书，可以覆盖升级并保留应用数据。生产使用前仍需在授权环境完成真实手机、USB、交换机和 AI 账户验收。
