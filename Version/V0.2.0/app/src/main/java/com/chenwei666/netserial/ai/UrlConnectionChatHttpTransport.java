@@ -22,6 +22,18 @@ public final class UrlConnectionChatHttpTransport implements ChatHttpTransport {
             HttpExecutionPolicy policy,
             RequestCancellation cancellation
     ) {
+        return post(endpoint, requestBody, credential, CredentialHeaderMode.BEARER,
+                policy, cancellation);
+    }
+
+    public ChatHttpResponse post(
+            URI endpoint,
+            byte[] requestBody,
+            char[] credential,
+            CredentialHeaderMode headerMode,
+            HttpExecutionPolicy policy,
+            RequestCancellation cancellation
+    ) {
         Objects.requireNonNull(endpoint, "endpoint");
         Objects.requireNonNull(requestBody, "requestBody");
         Objects.requireNonNull(credential, "credential");
@@ -30,10 +42,13 @@ public final class UrlConnectionChatHttpTransport implements ChatHttpTransport {
         if (!"https".equalsIgnoreCase(endpoint.getScheme())) {
             throw new IllegalArgumentException("endpoint must use HTTPS");
         }
-        if (credential.length == 0) {
+        Objects.requireNonNull(headerMode, "headerMode");
+        if (credential.length == 0 && headerMode != CredentialHeaderMode.NONE) {
             throw new IllegalArgumentException("credential must not be empty");
         }
-        validateCredential(credential);
+        if (headerMode != CredentialHeaderMode.NONE) {
+            validateCredential(credential);
+        }
         if (cancellation.isCancelled()) {
             throw cancelled();
         }
@@ -51,10 +66,12 @@ public final class UrlConnectionChatHttpTransport implements ChatHttpTransport {
             connection.setRequestProperty("Accept", "application/json");
             connection.setRequestProperty("Content-Type", "application/json; charset=utf-8");
             connection.setRequestProperty("User-Agent", "NetSerial-AI/0.2.0");
-            connection.setRequestProperty(
-                    "Authorization",
-                    "Bearer " + new String(credential)
-            );
+            if (headerMode == CredentialHeaderMode.BEARER) {
+                connection.setRequestProperty("Authorization", "Bearer " + new String(credential));
+            } else if (headerMode == CredentialHeaderMode.ANTHROPIC_X_API_KEY) {
+                connection.setRequestProperty("x-api-key", new String(credential));
+                connection.setRequestProperty("anthropic-version", "2023-06-01");
+            }
 
             try (OutputStream output = connection.getOutputStream()) {
                 output.write(requestBody);

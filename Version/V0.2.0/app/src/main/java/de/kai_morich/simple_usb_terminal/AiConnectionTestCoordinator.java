@@ -5,7 +5,7 @@ import com.chenwei666.netserial.ai.AiProviderError;
 import com.chenwei666.netserial.ai.AiProviderException;
 import com.chenwei666.netserial.ai.AiRequest;
 import com.chenwei666.netserial.ai.CredentialVaultException;
-import com.chenwei666.netserial.ai.OpenAiCompatibleProvider;
+import com.chenwei666.netserial.ai.AiProviderFactory;
 import com.chenwei666.netserial.ai.ProviderCredentialService;
 import com.chenwei666.netserial.ai.ProviderProfile;
 import com.chenwei666.netserial.ai.RequestCancellation;
@@ -67,7 +67,7 @@ final class AiConnectionTestCoordinator implements AutoCloseable {
             RequestCancellation cancellation
     ) {
         try {
-            AiDraftPlan plan = OpenAiCompatibleProvider.create(
+            AiDraftPlan plan = AiProviderFactory.create(
                     profile,
                     credentialService
             ).propose(
@@ -76,8 +76,7 @@ final class AiConnectionTestCoordinator implements AutoCloseable {
                             Vendor.GENERIC,
                             CliMode.USER_VIEW,
                             ""
-                    ),
-                    cancellation
+                    )
             );
             listener.onSuccess(plan.getSteps().size());
         } catch (AiProviderException exception) {
@@ -85,6 +84,8 @@ final class AiConnectionTestCoordinator implements AutoCloseable {
         } catch (CredentialVaultException exception) {
             listener.onCredentialFailure();
         } catch (RuntimeException exception) {
+            listener.onUnexpectedFailure();
+        } catch (Exception exception) {
             listener.onUnexpectedFailure();
         } finally {
             synchronized (this) {

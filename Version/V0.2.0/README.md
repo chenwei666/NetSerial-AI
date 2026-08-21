@@ -1,60 +1,48 @@
-# NetSerial AI 运维终端 V0.2.0（开发中）
+# NetSerial AI 运维终端 V0.2.0
 
 [中文](README.md) | [English](README_EN.md)
 
-NetSerial AI 是面向网络运维工程师的 Android USB 串口终端。V0.2.0 在 V0.1.0 可信基线上增加 App 内 AI 供应商配置、安全凭据保险库和真实供应商适配器；本版本仍在开发中。
+这是面向网络运维现场的 Android USB 串口终端开发版。V0.2.0 已形成“串口输入 → 离线补全/AI 草案 → 本地风险审核 → 人工载入 → 人工发送”的安全闭环。
 
-## 本版本已经具备
+## 快速使用
 
-- FTDI、PL2303、CP210x、CH340/CH341 和 USB CDC 串口设备发现与连接。
-- 波特率选择、文本/HEX 收发、换行选择、控制线和流控。
-- 独立 `TAB` 按钮，向设备原样发送 ASCII `0x09`，不附加回车换行。
-- `CompletionEngine` 离线补全接口，首批包含 H3C 用户视图 `display`、系统视图 `interface`，并隔离 CLI 视图。
-- `ExecutionGuard` 本地风险接口，能够把 `reboot` 识别为 R4，并把 `display ...` 识别为 R1。
-- `AiProviderCatalog`，覆盖 OpenAI、Claude、Gemini、DeepSeek、通义千问、Kimi、OpenAI-compatible 和 Ollama。
-- `SafeAiCopilot`，所有厂商返回的命令都必须重新经过本地风险判断；AI 不能降低本地风险等级。
-- `CredentialVault`，使用 Android Keystore AES-GCM 加密 API Key，配置对象仅保存凭据别名，明文只在受控回调期间短暂可用并在回调后清零。
-- 多厂商凭据按别名隔离，别名同时参与 AES-GCM 认证，复制密文记录也不能串用其他厂商的密钥。
-- `OpenAiCompatibleProvider`，支持可配置 HTTPS Endpoint、Model、Bearer 鉴权和 `/chat/completions` 文本命令规划。
-- AI 请求具备终端上下文脱敏、超时、响应大小限制、取消、禁止鉴权重定向和安全错误分类。
-- App 内双语 AI 设置页，支持最多 32 个厂商配置的新增、修改、删除、活动配置切换和官方默认预设。
-- API Key 输入不会进入配置 JSON、自动填充、系统状态保存、截图或最近任务预览；离开设置页会清空未保存内容。
-- 用户明确确认后可执行最小连接测试；测试不发送真实终端历史，并支持主动取消。
+1. 在设备列表选择 USB 串口和波特率并连接。
+2. 进入终端菜单“设备档案与 AI 记忆”，设置设备名称、厂商、CLI 模式和波特率。
+3. 输入命令时点击离线候选；`TAB` 按钮始终向交换机发送真实 `0x09`。
+4. 在终端菜单“AI 设置”新建供应商配置、输入 API Key 并设为当前配置。Ollama 使用 HTTPS 反向代理时无需 Key。
+5. 点击终端底部“AI”，输入自然语言目标或待检查命令。最近终端输出默认不发送，只有勾选后才会发送脱敏后的最多 12,000 字符。
+6. AI 返回的命令会重新经过本地风险判定。点击非 R4 命令只会载入输入框；再次点击发送按钮才会真正发给设备。
 
-## 当前限制
+## AI 厂商
 
-- 通用兼容 HTTP 适配器和 API Key 设置界面已经完成，但本项目未配置真实厂商密钥，因此尚未执行真实联网验收。
-- AI 密钥存储要求 Android 6.0 或更高版本；Android 5.x 仍可继续使用串口和离线功能，但不会降级为明文保存密钥。
-- 离线命令包目前只有用于验证架构的 H3C 最小集合，华为/Cisco/锐捷命令包尚未导入。
-- 尚未在真实 Android 手机、USB 转串口线和交换机上验收。
-- 终端 UI 仍保留可信上游基线布局；AI 对话面板、完整设备档案和补全候选面板将在后续阶段加入。
+- OpenAI、Google Gemini、DeepSeek、通义千问/Qwen、Kimi 和自定义 OpenAI-compatible 网关使用兼容接口；
+- Claude/Anthropic 使用 Messages 原生协议和 `x-api-key`；
+- Ollama 使用无鉴权的 OpenAI-compatible 协议，但为保持 App 全局禁止明文 HTTP，必须放在 HTTPS 反向代理后；
+- Endpoint 和模型均可修改，不依赖硬编码模型清单。
+
+## 安全与隐私
+
+- Key 使用 Android Keystore AES-GCM 加密，不进入配置 JSON、备份、记忆、终端日志或源码；
+- Android 备份、明文 HTTP、截图和最近任务预览均受限制；
+- 终端上下文经过 ANSI 清洗和凭据脱敏，并且默认不发送；
+- 本地记忆只允许用户显式保存，按设备隔离，默认 180 天过期；疑似 API Key、Token、密码、私钥和 community 字段会被拒绝；
+- AI 永远没有直接串口发送权限；R4 命令在 UI 中被禁用。
 
 ## 构建
 
-项目位于中文路径时，使用已提供的 ASCII 镜像构建脚本：
+中文路径下建议使用现有 ASCII 镜像脚本：
 
 ```powershell
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scripts\build.ps1
 ```
 
-脚本需要：
+默认执行 `testDebugUnitTest`、`lintDebug` 和 `assembleDebug`。JDK 17 位于 `C:\tmp\NetSerial-tools\jdk17`，Android SDK 位于 `C:\tmp\NetSerial-tools\android-sdk`。
 
-- `C:\tmp\NetSerial-tools\jdk17`
-- `C:\tmp\NetSerial-tools\android-sdk`，包含 Platform 36 和 Build Tools 36.0.0
+## 尚需外部验收
 
-默认执行 `testDebugUnitTest`、`lintDebug` 和 `assembleDebug`。镜像目录固定为 `C:\tmp\NetSerial-build`，工作区源码是唯一编辑来源。
+- 未提供真实 API Key，因此未产生任何真实厂商调用或费用；
+- 未连接 Android 真机、FTDI/CP210x/CH340/PL2303 线缆或真实交换机；
+- 当前产物是 Debug APK，不是生产签名 Release；
+- 命令包是常用命令集，具体型号/系统版本仍需以厂商文档和真机回显为准。
 
-## 安全约束
-
-- 本版本不包含任何 API Key、Token、账号或设备密码。
-- App 默认关闭 Android 备份和明文 HTTP。
-- AI 输出只是草案，必须经过 `SafeAiCopilot` 与 `ExecutionGuard`。
-- R4 命令不得自动执行；当前版本实际上不提供任何 AI 自动执行入口。
-
-详见 [docs/SECURITY.md](docs/SECURITY.md) 和 [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)。
-
-## 上游与许可证
-
-USB 串口基础来自 Kai Morich 的 MIT 项目 [SimpleUsbTerminal](https://github.com/kai-morich/SimpleUsbTerminal)，基线提交为 `7710eb7b1b69fb346f3b715960b5a5b5db08beb3`。原版权与 MIT 许可证保留在 [LICENSE.txt](LICENSE.txt)，变更说明见 [UPSTREAM.md](UPSTREAM.md)。
-
-项目开发负责人：chenwei666。
+开发负责人：chenwei666。

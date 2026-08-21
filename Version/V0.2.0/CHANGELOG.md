@@ -1,148 +1,113 @@
 # CHANGELOG
 
-## V0.2.0 - 开发中
+## V0.2.0 - 2026-08-21
 
 - 开发人员：chenwei666
-
-### 当前变更
-
-- 从完整 V0.1.0 源码建立独立版本目录，不覆盖历史版本。
-- versionCode/versionName 更新为 `2` / `0.2.0`。
-- 开始实现 `ProviderProfile` 与 `CredentialVault` 安全 seam。
-- `ProviderProfile` 只保存凭据别名，远程端点强制为绝对 HTTPS 地址。
-- 新增 `SecureCredentialVault`，凭据明文只在受控回调期间可用，成功或异常退出后立即清零临时缓冲区。
-- 新增 `AndroidKeystoreSecretCipher`，使用 Android Keystore AES-GCM 加密厂商 API Key。
-- 新增 `SharedPreferencesCredentialRecordStore`，只持久化格式版本、随机 IV 和密文。
-- 新增 `ProviderCredentialService`，按照 `ProviderProfile.credentialAlias` 隔离不同 AI 厂商凭据。
-- 将凭据别名加入 AES-GCM 附加认证数据，阻止密文记录跨厂商替换。
-- Android 6.0 以下保留原有串口和离线功能，但明确禁用 AI 凭据存储，不进行明文降级。
-- 新增 `OpenAiCompatibleProvider` 与 `OpenAiCompatibleJsonCodec`，支持可配置 Endpoint、Model 和 Chat Completions JSON 命令方案。
-- 新增 `UrlConnectionChatHttpTransport`，提供 HTTPS、Bearer 鉴权、超时、512 KiB 响应限制、取消和禁止重定向。
-- 新增 `TerminalContextSanitizer`，发送前遮蔽潜在凭据行并限制上下文长度。
-- 新增 `AiProviderError` 与 `AiProviderException`，按鉴权、限流、超时、TLS、网络、服务端、响应过大、无效响应和取消分类。
-- Endpoint 新增用户信息、查询参数和片段拒绝规则；鉴权值新增请求头注入防护。
-- 非成功 HTTP 响应正文不进入错误模型，不输出到日志或异常消息。
-- 新增 `INTERNET` 权限和 Gson 2.14.0 JSON 依赖。
-- 新增兼容请求、响应解析、脱敏、错误分类、取消、大小限制和输入攻击测试；当前共 30 项单元测试通过。
-- 新增双语 `AiProviderSettingsActivity`，可从设备列表和终端菜单进入。
-- 新增最多 32 个 AI 配置的新增、编辑、删除和活动配置切换；首次配置自动成为活动配置。
-- 新增 `ProviderProfileManager`、版本化 `ProviderProfilesJsonCodec` 和单文档 SharedPreferences 持久化，配置不包含密钥明文。
-- 新增 OpenAI、Gemini、DeepSeek、通义千问和 Kimi 的官方默认地址/模型；自定义兼容网关仍可完全覆盖地址和模型。
-- 新增用户确认后的最小连接测试、费用提示、后台线程执行、主动取消和本地化错误分类；测试不发送真实终端历史。
-- AI 设置页启用防截屏，API Key 输入禁用自动填充和实例状态保存，并在离开页面时清空。
-- Claude 与 Ollama 可保存配置，但在专用适配器完成前禁止误走通用连接测试。
-- 更换厂商或 API 地址时启用密钥别名重新绑定：必须输入新密钥，配置原子替换后再清理旧密文，防止旧厂商密钥被发送到新地址。
-- 新增配置 JSON、活动配置、未知厂商、密钥别名替换、长度边界和预设目录测试；当前共 41 项单元测试通过。
-
-### 数据库、接口与兼容性
-
-- 暂无数据库变更。
-- V0.1.0 串口、TAB、补全和风险接口保持兼容。
-- 新增 `CredentialVault`、`CredentialOperation`、`ProviderCredentialService`、`SecretCipher` 和 `CredentialRecordStore` 接口。
-- 新增 `ChatHttpTransport` seam，专用厂商适配器可复用安全传输策略而不依赖 UI。
-- 新增 `ProviderProfilePersistence` seam，后续可替换配置存储而不改变 UI 和领域规则。
-- AI 凭据功能要求 Android 6.0 或更高版本，应用整体最低版本仍保持 Android 5.0。
-- 最终升级说明将在本版本完成时补齐。
-
-### 修改文件与影响模块
-
-- 新增/修改 `app/src/main/java/com/chenwei666/netserial/ai/**`：厂商预设、配置状态、JSON 编解码、持久化和管理器。
-- 新增 `AiProviderSettingsActivity`、设置布局和中英文字符串；修改设备/终端菜单和 Manifest。
-- 新增/修改 `app/src/test/java/com/chenwei666/netserial/ai/**`：配置管理、编解码、预设和边界测试。
-- 影响 AI 配置管理与联网测试入口；USB 串口收发、TAB、离线补全和风险接口保持原行为。
-
-### 配置、接口与升级
-
-- 新增应用内 SharedPreferences 文档 `ai_provider_profiles_v1`，仅包含非敏感 Profile 元数据。
-- 无数据库变更，无既有网络接口破坏；新增配置为全新命名空间，不迁移或覆盖 V0.1.0 数据。
-- 从 V0.1.0 升级后可直接打开“AI 设置”创建配置；Android 5.x 可保存非敏感 Profile，但不能保存密钥或联网测试。
-
-### 已知问题与验收状态
-
-- 未使用真实厂商密钥执行联网验收；连接测试代码仅通过假传输和自动化边界测试。
-- 尚无 Android 真机 UI、旋转、后台恢复、Keystore 和 USB 设备联合验收。
-- Claude 原生协议、Ollama 明文本地地址、AI 对话记忆和终端内 AI 面板尚未完成。
-
-## V0.1.0 - 2026-08-21
-
-- 开发人员：chenwei666
+- 版本状态：功能开发检查点；Debug APK，等待真实硬件和真实厂商 API 验收
 
 ### 新增功能
 
-- 从 SimpleUsbTerminal MIT 源码建立可信 USB 串口基础。
-- 增加独立 TAB 控制键，原样发送 ASCII `0x09`。
-- 增加厂商和 CLI 视图感知的离线 `CompletionEngine`。
-- 增加本地 `ExecutionGuard`、R0-R4 风险模型和 AI 风险不可降级规则。
-- 增加多 AI 供应商目录和 `SafeAiCopilot` 统一安全入口。
-- 增加中文默认、英文系统语言资源。
-- 增加根目录和版本目录的中英文双语项目介绍。
-- 增加中文路径下的 ASCII 镜像构建脚本。
+- 新增终端内 AI Copilot，可输入自然语言目标或待检查命令，选择是否附带最近脱敏终端上下文。
+- 新增 OpenAI、Gemini、DeepSeek、Qwen、Kimi、自定义 OpenAI-compatible、Claude/Anthropic Messages 和 Ollama HTTPS 适配器。
+- 新增最多 32 个 AI 配置的创建、编辑、删除、切换、官方预设和显式连接测试。
+- 新增 Android Keystore AES-GCM 凭据保险库；API Key 不进入配置 JSON、备份、日志和记忆。
+- 新增 H3C Comware、Huawei VRP、Cisco IOS、Ruijie RGOS 四厂商、三种 CLI 模式的离线常用命令候选。
+- 新增 ESC、TAB、Ctrl+C、Ctrl+Z、方向键、退格、删除、问号和管道符终端控制键。
+- 新增 200,000 字符受控终端缓冲、ANSI/VT 清洗和敏感信息脱敏。
+- 新增设备名称、厂商、CLI 模式和波特率档案。
+- 新增供应商无关的本地结构化 AI 记忆：设备作用域、来源、可信度、创建/过期时间、删除、最多 500 条。
+- 新增安全 JSON 导入导出，仅包含设备档案与已验证记忆，不包含任何 API Key。
+- 新增脱敏终端会话日志导出，导出前执行 ANSI 清洗和凭据遮蔽。
 
 ### 问题修复
 
-- 规避 Android Gradle Plugin 在中文路径下访问 Build Tools 失败的问题。
-- 防止 TAB 控制键被普通发送逻辑追加 CR/LF。
+- 修复普通发送逻辑会给 TAB 附加 CR/LF 的问题；专用 TAB 始终发送单字节 `0x09`。
+- 修复无限增长的终端 TextView 可能造成长会话内存压力的问题。
+- 修复切换供应商或 Endpoint 时旧凭据可能误发到新目标的风险：必须重新输入密钥并轮换别名。
+- 修复 AI 声明低风险时可能掩盖本地高风险判定的问题；最终风险只能升高不能降低。
+- 修复 API 21-23 不支持 `Collection.removeIf`/`List.sort` 的兼容性问题。
 
 ### 优化内容
 
-- 将补全、安全判断、AI 供应商和终端控制字节拆分为可独立测试的深模块。
-- 关闭 Android 自动备份和明文 HTTP 默认值。
+- AI 输出统一限制为 1-20 条单行结构化命令，禁止控制字符、超长正文和自由文本直接进入串口路径。
+- R1 只读、R2 配置、R3 高风险、R4 极高风险规则扩展到查询、VLAN/接口、AAA/路由/停口和重启/擦除等类别。
+- R4 命令在 Copilot UI 中禁止载入；其他命令也只载入编辑框，发送仍是独立人工动作。
+- 最近终端上下文默认关闭，启用后也只发送 ANSI 清洗、敏感信息脱敏后的最多 12,000 字符。
+- 本地记忆只允许显式写入，默认 180 天过期；疑似密码、Token、API Key、私钥和 community 内容被拒绝。
+- 保留原有 USB 串口、HEX、换行、流控、控制线、后台服务和通知行为。
 
 ### 删除内容
 
-- 无。
+- 无已有业务功能删除。
+- 未加入任何真实 API Key、Token、账号、密码或设备配置。
 
 ### 主要修改文件
 
-- `app/build.gradle`
-- `app/src/main/AndroidManifest.xml`
-- `app/src/main/res/layout/fragment_terminal.xml`
-- `app/src/main/java/de/kai_morich/simple_usb_terminal/TerminalFragment.java`
-- `app/src/main/java/com/chenwei666/netserial/**`
+- `app/src/main/java/com/chenwei666/netserial/ai/**`
+- `app/src/main/java/com/chenwei666/netserial/completion/**`
+- `app/src/main/java/com/chenwei666/netserial/device/**`
+- `app/src/main/java/com/chenwei666/netserial/memory/**`
+- `app/src/main/java/com/chenwei666/netserial/safety/**`
+- `app/src/main/java/com/chenwei666/netserial/terminal/**`
+- `app/src/main/java/de/kai_morich/simple_usb_terminal/{TerminalFragment,AiProviderSettingsActivity,AiCopilotActivity,DeviceMemoryActivity}.java`
+- `app/src/main/res/layout/**`、`values/**`、`values-en/**`、`menu/**`
 - `app/src/test/java/com/chenwei666/netserial/**`
-- `scripts/build.ps1`
 
 ### 影响模块
 
-- USB 串口终端输入区。
-- 离线命令补全。
-- 命令风险评估。
-- AI 供应商扩展 seam。
-- Windows Android 构建流程。
+- USB 串口终端输入、输出和长会话显示。
+- 离线命令补全、设备上下文和本地安全策略。
+- AI 供应商配置、HTTP 传输、结构化响应解析和凭据生命周期。
+- 本地记忆和安全备份。
 
 ### 数据库变更
 
-- 无数据库。
+- 无数据库连接或数据库脚本变更。
+- 新增私有 SharedPreferences 文档：`ai_provider_profiles_v1`、`ai_memory_v1`、`device_profile_v1`；均为版本化/独立命名空间。
 
 ### 接口变更
 
-- 新增 `CompletionEngine.complete`。
-- 新增 `ExecutionGuard.evaluate`。
-- 新增 `AiProvider.propose` 和 `AiCopilot.propose`。
+- 新增 `AiProviderFactory`、`AnthropicProvider`、`OllamaProvider` 和原生凭据头模式。
+- 扩展 `TerminalControlEncoder` 支持完整终端控制键。
+- 扩展 `OfflineCompletionEngine` 支持四厂商常用命令。
+- 新增 `MemoryVault`、`DeviceProfileStore` 和安全备份入口。
+- 现有 USB 串口及公开 AI/补全/安全接口保持兼容。
 
 ### 配置变更
 
-- applicationId 改为 `com.chenwei666.netserial`。
-- versionName 改为 `0.1.0`。
-- Android 备份和明文流量默认关闭。
+- 保持 `applicationId=com.chenwei666.netserial`、`versionName=0.2.0`、`versionCode=2`。
+- 保持 `minSdk=21`、`targetSdk=36`、Android 备份关闭和明文 HTTP 关闭。
+- Android 5.x 可使用串口和离线功能，但 AI Key 存储仍要求 Android 6.0 以上，不进行明文降级。
 
 ### 兼容性说明
 
-- minSdk 仍为 21，compileSdk/targetSdk 为 36。
-- 保留上游已有 USB 串口、流控、HEX 和后台服务行为。
-- 与原 `de.kai_morich.simple_usb_terminal` 安装包使用不同 applicationId，可并存安装。
+- 旧版本没有设备档案或记忆时自动使用 H3C、用户视图、9600 的默认档案。
+- AI 配置、记忆和设备档案相互独立，任一文档损坏不会自动覆盖其他文档。
+- Ollama 仅支持 HTTPS 反向代理；不为局域网模型放开 App 全局明文 HTTP。
 
 ### 升级方式
 
-- V0.1.0 是首次可信基线，无历史数据迁移。
-- 使用 `scripts/build.ps1` 生成 Debug APK 后安装。
+1. 备份旧 APK 和必要的现场记录。
+2. 构建或安装 V0.2.0 Debug APK。
+3. 在“设备档案与 AI 记忆”中设置厂商与 CLI 模式。
+4. 在“AI 设置”中创建并激活供应商配置；Key 必须由用户在本机重新输入。
+5. 先在非生产交换机上验证 TAB、常用命令候选和 AI 只读命令，再进入生产现场。
 
 ### 已知问题
 
-- AI HTTP、Key 管理、记忆和知识库尚未实现。
-- 离线命令包仍是最小验证集。
-- 尚未完成真机、串口线和交换机验收。
+- 尚未在真实 Android 手机、USB 串口芯片和 H3C/华为/Cisco/锐捷交换机上完成矩阵测试。
+- 未提供真实 API Key，未做付费联网验收；厂商可能调整模型名和协议限制。
+- 当前 APK 为 Debug 签名，不能替代正式 Release 签名和上架验证。
+- 命令包是常用离线集合，不是所有型号、版本和特性的完整厂商命令手册。
+- 尚未实现多 USB 会话、SSH、XMODEM、知识库全文索引和自动化脚本执行；这些高复杂度模块仍按完整路线图继续演进。
 
 ### 备注
 
-- 上游基线和许可证详见 `UPSTREAM.md`、`LICENSE.txt`。
+- 完整方案见仓库根目录 `FULL_AI_FEATURE_COMPLETION_PLAN.md`。
+- 上游来源与 MIT 许可见 `UPSTREAM.md` 和 `LICENSE.txt`。
+
+## V0.1.0 - 2026-08-21
+
+- 建立独立应用 ID、可信 USB 串口基线、真实 TAB、最小补全和 R0-R4 安全接口。
+- 增加中英文资源、ASCII 镜像构建脚本和独立 `Version/V0.1.0` 归档。
+- 保留上游 SimpleUsbTerminal MIT 许可和来源记录。

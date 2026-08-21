@@ -26,6 +26,14 @@
             android:exported="false"
             android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
+            android:name=".AiCopilotActivity"
+            android:exported="false"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity
+            android:name=".DeviceMemoryActivity"
+            android:exported="false"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity
             android:name=".MainActivity"
             android:launchMode="singleTask"
             android:windowSoftInputMode="stateHidden|adjustResize"

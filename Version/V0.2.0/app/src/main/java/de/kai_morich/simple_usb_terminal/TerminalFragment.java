@@ -9,6 +9,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.net.Uri;
 import android.content.ServiceConnection;
 import android.hardware.usb.UsbDevice;
 import android.hardware.usb.UsbDeviceConnection;
@@ -19,6 +20,8 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
 import android.text.Editable;
+import android.text.TextWatcher;
+import android.text.TextUtils;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.method.ScrollingMovementMethod;
@@ -30,6 +33,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
@@ -47,14 +53,28 @@ import com.hoho.android.usbserial.util.XonXoffFilter;
 
 import com.chenwei666.netserial.terminal.ControlKey;
 import com.chenwei666.netserial.terminal.TerminalControlEncoder;
+import com.chenwei666.netserial.terminal.TerminalTextBuffer;
+import com.chenwei666.netserial.terminal.AnsiTextSanitizer;
+import com.chenwei666.netserial.terminal.SensitiveTextRedactor;
+import com.chenwei666.netserial.completion.CompletionResult;
+import com.chenwei666.netserial.completion.CompletionRequest;
+import com.chenwei666.netserial.completion.CompletionSuggestion;
+import com.chenwei666.netserial.completion.OfflineCompletionEngine;
+import com.chenwei666.netserial.device.DeviceProfile;
+import com.chenwei666.netserial.device.DeviceProfileStore;
 
 import java.io.IOException;
+import java.io.OutputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.EnumSet;
 
 public class TerminalFragment extends Fragment implements ServiceConnection, SerialListener {
+    private static final int AI_COPILOT_REQUEST = 4101;
+    private static final int EXPORT_SESSION_REQUEST = 4102;
+    private static final int MAX_TERMINAL_VIEW_CHARACTERS = 200_000;
 
     private enum Connected { False, Pending, True }
 
@@ -65,10 +85,14 @@ public class TerminalFragment extends Fragment implements ServiceConnection, Ser
     private SerialService service;
 
     private TextView receiveText;
-    private TextView sendText;
+    private EditText sendText;
     private ImageButton sendBtn;
+    private LinearLayout completionResults;
     private TextUtil.HexWatcher hexWatcher;
     private final TerminalControlEncoder controlEncoder = new TerminalControlEncoder();
+    private final TerminalTextBuffer terminalBuffer = new TerminalTextBuffer(200_000);
+    private final OfflineCompletionEngine completionEngine = OfflineCompletionEngine.createDefault();
+    private DeviceProfile deviceProfile = DeviceProfile.defaults();
 
     private Connected connected = Connected.False;
     private boolean initialStart = true;
@@ -149,6 +173,7 @@ public class TerminalFragment extends Fragment implements ServiceConnection, Ser
     @Override
     public void onResume() {
         super.onResume();
+        deviceProfile = new DeviceProfileStore(requireContext()).load();
         if(initialStart && service != null) {
             initialStart = false;
             getActivity().runOnUiThread(this::connect);
@@ -193,11 +218,32 @@ public class TerminalFragment extends Fragment implements ServiceConnection, Ser
         hexWatcher = new TextUtil.HexWatcher(sendText);
         hexWatcher.enable(hexEnabled);
         sendText.addTextChangedListener(hexWatcher);
+        sendText.addTextChangedListener(new TextWatcher() {
+            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+            @Override public void onTextChanged(CharSequence s, int start, int before, int count) {
+                updateCompletions(s == null ? "" : s.toString());
+            }
+            @Override public void afterTextChanged(Editable s) { }
+        });
         sendText.setHint(hexEnabled ? "HEX mode" : "");
 
         View sendBtn = view.findViewById(R.id.send_btn);
         sendBtn.setOnClickListener(v -> send(sendText.getText().toString()));
         view.findViewById(R.id.tab_btn).setOnClickListener(v -> sendControl(ControlKey.TAB));
+        view.findViewById(R.id.ai_btn).setOnClickListener(v -> openAiCopilot());
+        bindControl(view, R.id.esc_btn, ControlKey.ESCAPE);
+        bindControl(view, R.id.ctrl_c_btn, ControlKey.CTRL_C);
+        bindControl(view, R.id.ctrl_z_btn, ControlKey.CTRL_Z);
+        bindControl(view, R.id.up_btn, ControlKey.ARROW_UP);
+        bindControl(view, R.id.down_btn, ControlKey.ARROW_DOWN);
+        bindControl(view, R.id.left_btn, ControlKey.ARROW_LEFT);
+        bindControl(view, R.id.right_btn, ControlKey.ARROW_RIGHT);
+        bindControl(view, R.id.backspace_btn, ControlKey.BACKSPACE);
+        bindControl(view, R.id.delete_btn, ControlKey.DELETE);
+        bindControl(view, R.id.question_btn, ControlKey.QUESTION_MARK);
+        bindControl(view, R.id.pipe_btn, ControlKey.PIPE);
+        completionResults = view.findViewById(R.id.completion_results);
+        deviceProfile = new DeviceProfileStore(requireContext()).load();
         controlLines.onCreateView(view);
         return view;
     }
@@ -223,6 +269,7 @@ public class TerminalFragment extends Fragment implements ServiceConnection, Ser
         int id = item.getItemId();
         if (id == R.id.clear) {
             receiveText.setText("");
+            terminalBuffer.clear();
             return true;
         } else if (id == R.id.newline) {
             String[] newlineNames = getResources().getStringArray(R.array.newline_names);
@@ -270,6 +317,15 @@ public class TerminalFragment extends Fragment implements ServiceConnection, Ser
             return true;
         } else if (id == R.id.ai_settings) {
             startActivity(new Intent(getActivity(), AiProviderSettingsActivity.class));
+            return true;
+        } else if (id == R.id.device_memory) {
+            startActivity(new Intent(getActivity(), DeviceMemoryActivity.class));
+            return true;
+        } else if (id == R.id.export_session) {
+            Intent export = new Intent(Intent.ACTION_CREATE_DOCUMENT)
+                    .setType("text/plain")
+                    .putExtra(Intent.EXTRA_TITLE, "netserial-redacted-session.txt");
+            startActivityForResult(export, EXPORT_SESSION_REQUEST);
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -369,6 +425,8 @@ public class TerminalFragment extends Fragment implements ServiceConnection, Ser
             SpannableStringBuilder spn = new SpannableStringBuilder(msg + '\n');
             spn.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.colorSendText)), 0, spn.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             receiveText.append(spn);
+            terminalBuffer.append(msg + "\n");
+            trimTerminalView();
             service.write(data);
         } catch (SerialTimeoutException e) { // e.g. writing large data at low baud rate or suspended by flow control
             mainLooper.post(() -> sendAgain(data, e.bytesTransferred));
@@ -443,12 +501,80 @@ public class TerminalFragment extends Fragment implements ServiceConnection, Ser
             }
         }
         receiveText.append(spn);
+        terminalBuffer.append(spn.toString());
+        trimTerminalView();
     }
 
     void status(String str) {
         SpannableStringBuilder spn = new SpannableStringBuilder(str + '\n');
         spn.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.colorStatusText)), 0, spn.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         receiveText.append(spn);
+        terminalBuffer.append(str + "\n");
+        trimTerminalView();
+    }
+
+    private void bindControl(View root, int viewId, ControlKey key) {
+        root.findViewById(viewId).setOnClickListener(view -> sendControl(key));
+    }
+
+    private void updateCompletions(String input) {
+        if (completionResults == null) return;
+        completionResults.removeAllViews();
+        if (hexEnabled || input.trim().isEmpty()) return;
+        CompletionResult result = completionEngine.complete(new CompletionRequest(
+                deviceProfile.getVendor(), deviceProfile.getCliMode(), input, 5));
+        for (CompletionSuggestion suggestion : result.getSuggestions()) {
+            Button button = new Button(requireContext());
+            button.setAllCaps(false);
+            button.setText(suggestion.getInsertion());
+            button.setOnClickListener(view -> {
+                sendText.setText(suggestion.getInsertion());
+                sendText.setSelection(sendText.length());
+            });
+            completionResults.addView(button);
+        }
+    }
+
+    private void openAiCopilot() {
+        Intent intent = new Intent(requireContext(), AiCopilotActivity.class);
+        intent.putExtra(AiCopilotActivity.EXTRA_TERMINAL_CONTEXT, terminalBuffer.tail(12_000));
+        startActivityForResult(intent, AI_COPILOT_REQUEST);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == AI_COPILOT_REQUEST && resultCode == Activity.RESULT_OK && data != null) {
+            String command = data.getStringExtra(AiCopilotActivity.EXTRA_SELECTED_COMMAND);
+            if (command != null) {
+                sendText.setText(command);
+                sendText.setSelection(command.length());
+            }
+        } else if (requestCode == EXPORT_SESSION_REQUEST && resultCode == Activity.RESULT_OK
+                && data != null && data.getData() != null) {
+            exportSession(data.getData());
+        }
+    }
+
+    private void exportSession(Uri uri) {
+        String sanitized = new SensitiveTextRedactor().redact(
+                new AnsiTextSanitizer().sanitize(terminalBuffer.snapshot()));
+        try (OutputStream output = requireContext().getContentResolver().openOutputStream(uri)) {
+            if (output == null) throw new IOException("unable to open export destination");
+            output.write(sanitized.getBytes(StandardCharsets.UTF_8));
+            Toast.makeText(requireContext(), R.string.terminal_export_success, Toast.LENGTH_SHORT).show();
+        } catch (IOException exception) {
+            Toast.makeText(requireContext(), R.string.terminal_export_failed, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void trimTerminalView() {
+        Editable content = receiveText.getEditableText();
+        if (content != null && content.length() > MAX_TERMINAL_VIEW_CHARACTERS) {
+            int overflow = content.length() - MAX_TERMINAL_VIEW_CHARACTERS;
+            int newlineIndex = TextUtils.indexOf(content, '\n', overflow);
+            content.delete(0, newlineIndex >= 0 ? newlineIndex + 1 : overflow);
+        }
     }
 
     void updateSendBtn(SendButtonState state) {

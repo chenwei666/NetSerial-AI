@@ -263,7 +263,7 @@ public final class AiProviderSettingsActivity extends AppCompatActivity {
             return;
         }
         keyInput.setEnabled(true);
-        boolean hasCredential = false;
+        boolean hasCredential = "ollama".equals(profile == null ? null : profile.getProviderId());
         if (existing) {
             try {
                 hasCredential = credentialService.hasCredential(profile);
@@ -287,17 +287,14 @@ public final class AiProviderSettingsActivity extends AppCompatActivity {
         boolean compatible = presetCatalog.require(providerId).isOpenAiCompatible();
         adapterStatus.setText(compatible
                 ? R.string.ai_adapter_compatible
-                : R.string.ai_adapter_native_pending);
-        if (!compatible) {
-            testButton.setEnabled(false);
-        } else {
-            ProviderProfile selected = findProfile(selectedCredentialAlias);
-            if (selected != null && credentialService != null) {
-                try {
-                    testButton.setEnabled(credentialService.hasCredential(selected));
-                } catch (CredentialVaultException exception) {
-                    testButton.setEnabled(false);
-                }
+                : R.string.ai_adapter_native_ready);
+        ProviderProfile selected = findProfile(selectedCredentialAlias);
+        if (selected != null && credentialService != null) {
+            try {
+                testButton.setEnabled("ollama".equals(selected.getProviderId())
+                        || credentialService.hasCredential(selected));
+            } catch (CredentialVaultException exception) {
+                testButton.setEnabled(false);
             }
         }
     }
@@ -499,11 +496,6 @@ public final class AiProviderSettingsActivity extends AppCompatActivity {
             showStatus(R.string.ai_save_before_action);
             return;
         }
-        String providerId = providerIds.get(providerSpinner.getSelectedItemPosition());
-        if (!presetCatalog.require(providerId).isOpenAiCompatible()) {
-            showStatus(R.string.ai_adapter_native_pending);
-            return;
-        }
         new AlertDialog.Builder(this)
                 .setTitle(R.string.ai_test_connection)
                 .setMessage(R.string.ai_test_confirmation)
@@ -516,7 +508,8 @@ public final class AiProviderSettingsActivity extends AppCompatActivity {
         ProviderProfile profile;
         try {
             profile = buildProfile(selectedCredentialAlias);
-            if (credentialService == null || !credentialService.hasCredential(profile)) {
+            if (credentialService == null || (!"ollama".equals(profile.getProviderId())
+                    && !credentialService.hasCredential(profile))) {
                 showStatus(R.string.ai_key_required);
                 return;
             }

@@ -1,64 +1,43 @@
 # V0.2.0 架构
 
-## 深模块与 seam
+## 模块边界
 
-### CompletionEngine
+- `terminal`：控制键字节编码、200,000 字符受控缓冲、ANSI 清洗和敏感内容脱敏。
+- `completion`：以 `CompletionEngine.complete` 为唯一入口，按厂商和 CLI 模式返回离线候选；不依赖 AI 网络。
+- `device`：非敏感设备档案，提供名称、厂商、模式和波特率上下文。
+- `ai`：供应商目录、配置持久化、Keystore 凭据、兼容/原生适配器、结构化计划解析和 Copilot 编排。
+- `safety`：确定性 R0-R4 规则；最终风险取本地判断与 AI 声明中的较高者。
+- `memory`：供应商无关的本地结构化记忆，负责作用域、可信度、过期、密钥拒存、导入和删除。
 
-接口只有 `complete(CompletionRequest)`。厂商、CLI 视图、前缀匹配、限制和排序隐藏在实现中。当前适配器为 `OfflineCompletionEngine`，以后命令包升级不要求 UI 调用方改变。
-
-### ExecutionGuard
-
-接口只有 `evaluate(CommandEvaluationRequest)`。确定性规则给出最低风险，AI 提议风险只能提高最终风险，不能降低。当前实现为 `RuleBasedExecutionGuard`。
-
-### AiProvider 与 AiCopilot
-
-`AiProvider` 是第三方 AI 的真实外部 seam；后续每家厂商提供独立 HTTP 适配器，测试使用内存假适配器。`SafeAiCopilot` 是调用方唯一入口，负责把供应商草案转换为经过本地安全判断的 `CommandPlan`。
-
-### CredentialVault
-
-`CredentialVault` 是所有 AI 厂商共享的凭据入口。`ProviderProfile` 仅保存 `credentialAlias`，`ProviderCredentialService` 通过别名选择密钥。`SecureCredentialVault` 负责受控回调和内存清零，`AndroidKeystoreSecretCipher` 负责 AES-GCM 并把别名作为附加认证数据，`SharedPreferencesCredentialRecordStore` 只持久化版本号、随机 IV 和密文。
-
-Android 6.0 以下设备明确拒绝启用 AI 凭据存储，不允许回退到明文、弱加密或可导出的应用内固定密钥。
-
-### OpenAiCompatibleProvider
-
-`OpenAiCompatibleProvider` 实现通用文本兼容层。它将 `AiRequest` 编码为 `model + messages + stream=false`，通过 `ProviderCredentialService` 在受控回调内取得凭据，再调用 `ChatHttpTransport`。响应只接受最多 20 个单行命令步骤，并转换为不可信 `AiDraftPlan`，随后仍必须经过 `SafeAiCopilot` 与本地 `ExecutionGuard`。
-
-`UrlConnectionChatHttpTransport` 只接受 HTTPS，禁止自动重定向，固定连接/读取超时，限制响应为 512 KiB，支持主动取消，并丢弃非成功响应正文。`TerminalContextSanitizer` 在编码请求前遮蔽可能包含 API Key、密码、Token、团体字或共享密钥的整行内容。
-
-### ProviderProfileManager 与设置 UI
-
-`ProviderProfileManager` 通过 `ProviderProfilePersistence` 深接口管理最多 32 个配置和一个活动配置。`ProviderProfilesJsonCodec` 只序列化厂商 ID、HTTPS 地址、模型和凭据别名；`SharedPreferencesProviderProfilePersistence` 以单文档提交，避免多字段部分写入。损坏文档、重复别名、未知厂商和悬空活动别名均被整体拒绝，不做静默部分恢复。
-
-`AiProviderSettingsActivity` 是独立设置页面，通过 `ProviderProfileManager` 和 `ProviderCredentialService` 协调配置与密钥，不依赖串口连接。菜单可从设备页或终端页进入。`AiConnectionTestCoordinator` 独立管理单线程请求、主动取消和生命周期关闭；连接测试只在用户确认后调用通用兼容适配器，并使用空终端上下文。Claude 原生协议和 Ollama 本地模式不会误走这一测试路径。
-
-### TerminalControlEncoder
-
-把终端控制键转换成原始协议字节。V0.1.0 只开放 TAB，UI 不自行拼接字节或换行。
-
-## 依赖方向
+## 调用关系
 
 ```text
-Android UI / TerminalFragment
-  -> TerminalControlEncoder
-  -> CompletionEngine
-
-AiProviderSettingsActivity
-  -> ProviderProfileManager
-       -> ProviderProfilesJsonCodec
-       -> SharedPreferencesProviderProfilePersistence
-  -> ProviderCredentialService
-       -> CredentialVault
-            -> Android Keystore AES-GCM
-            -> Encrypted SharedPreferences records
-
-Future AI conversation UI
-  -> AiCopilot / SafeAiCopilot
-       -> OpenAiCompatibleProvider
-            -> OpenAiCompatibleJsonCodec
-            -> ChatHttpTransport
-       -> ExecutionGuard
-  -> active ProviderProfile
+TerminalFragment
+  ├─ TerminalControlEncoder -> USB SerialService
+  ├─ OfflineCompletionEngine -> candidate buttons
+  ├─ TerminalTextBuffer -> redacted context
+  ├─ DeviceProfileStore
+  └─ AiCopilotActivity
+       ├─ active ProviderProfile
+       ├─ MemoryVault.recall
+       ├─ AiProviderFactory
+       │    ├─ OpenAiCompatibleProvider
+       │    ├─ AnthropicProvider
+       │    └─ OllamaProvider
+       └─ SafeAiCopilot -> RuleBasedExecutionGuard
+              └─ reviewed command -> input editor only
 ```
 
-串口终端和离线补全不依赖 AI 网络。供应商适配器不能直接访问串口写入接口。
+## 关键设计
+
+`AiProvider` 隔离第三方协议，`AiProviderFactory` 负责选择适配器。兼容供应商使用 `OpenAiCompatibleProvider`，Claude 使用原生 Messages，Ollama 使用无鉴权 HTTPS 路径。传输层禁止重定向、限制超时和响应大小，并把非成功正文丢弃，避免敏感错误内容上浮。
+
+`SafeAiCopilot` 是所有 AI 命令进入 UI 前的必经入口。供应商只能提出草案，不能获得 `SerialService` 或 `UsbSerialPort` 引用。R4 步骤被禁用，其他步骤也只返回到输入框，实际发送仍由用户单独触发。
+
+`CredentialVault` 的 Profile 只保存别名；AES-GCM 把别名作为附加认证数据。切换厂商或 Endpoint 时生成新别名并要求重新输入 Key，防止旧厂商密钥被发送到新目标。Android 6.0 以下拒绝启用 Key 存储，不做明文降级。
+
+`MemoryVault` 是唯一记忆事实源。只有显式用户写入或导入的已验证记录才会保存；调用 AI 时最多召回当前设备的 5 条记录。备份只包含设备档案和记忆，不包含凭据。
+
+## 兼容性与后续 seam
+
+当前实现保持上游 USB 串口、HEX、流控、控制线和后台服务行为。多 USB 会话、SSH、XMODEM、知识库全文索引和有限步骤自动化将通过新的连接、知识和执行适配器加入，不应绕过现有 `ExecutionGuard` 与人工确认边界。

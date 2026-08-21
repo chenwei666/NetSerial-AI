@@ -1,31 +1,33 @@
 # AI 厂商兼容性 / AI Provider Compatibility
 
-## 中文
+## 已实现
 
-V0.2.0 当前实现 OpenAI-compatible Chat Completions 文本兼容核心：可配置 HTTPS 基础地址或完整 `/chat/completions` 地址、模型名称以及凭据别名。请求只使用共同字段 `model`、`messages` 和 `stream=false`，鉴权方式为 Bearer。
+| 类型 | 厂商 | 协议与鉴权 |
+|---|---|---|
+| OpenAI-compatible | OpenAI、Gemini、DeepSeek、Qwen、Kimi、自定义网关 | `POST /chat/completions`，Bearer |
+| Native | Claude / Anthropic | `POST /v1/messages`，`x-api-key` + `anthropic-version` |
+| Local via HTTPS | Ollama | OpenAI-compatible，无鉴权；必须使用 HTTPS 反向代理 |
 
-官方文档确认 DeepSeek、阿里云百炼兼容模式和 Gemini 兼容层均提供这一共同接口：
+所有配置均允许覆盖 HTTPS Endpoint 和模型名。兼容层只使用文本命令规划所需的共同字段，不会把某家厂商的未知参数广播给其他厂商。图片、文件、工具调用、联网搜索和厂商侧会话持久化不在 V0.2.0 范围内。
 
-- OpenAI Chat Completions：https://platform.openai.com/docs/api-reference/chat/create
-- DeepSeek Chat Completions：https://api-docs.deepseek.com/api/create-chat-completion
-- 阿里云百炼 OpenAI 兼容 Chat：https://help.aliyun.com/en/model-studio/qwen-api-via-openai-chat-completions
-- Gemini OpenAI compatibility：https://ai.google.dev/gemini-api/docs/openai
-- Kimi API Overview：https://platform.kimi.ai/docs/api/overview
+安全约束：
 
-兼容层不代表厂商全部能力等价。图片、文件、联网搜索、工具调用、推理参数、原生 Responses API、Claude 原生协议、Ollama 本地无鉴权模式和企业 AI Gateway 自定义 Header 将使用独立能力适配器，不能把未知参数盲目发送给所有厂商。
+- 云端 API Key 只通过 Android Keystore 保险库取得；
+- Ollama 不读取或发送 Key，但 App 仍保持全局明文 HTTP 禁止；
+- 无论使用哪家厂商，模型返回都必须解析为最多 20 条单行命令，再经过本地 `ExecutionGuard`；
+- 本次开发没有配置或调用任何真实 API Key，自动化测试全部使用本地假对象。
 
-设置页为 OpenAI、Gemini、DeepSeek、通义千问和 Kimi 提供当前官方默认地址/模型，并允许用户覆盖。Claude 与 Ollama 配置可预先保存，但在专用适配器完成前不会误用通用连接测试。
+协议参考：
 
-当前开发和测试过程没有配置或调用任何真实 API Key。真实连接测试只能由用户在 App 内自行保存密钥、阅读费用提示并显式确认后触发。
+- [OpenAI Chat Completions](https://platform.openai.com/docs/api-reference/chat/create)
+- [Anthropic Messages](https://docs.anthropic.com/en/api/messages)
+- [Gemini OpenAI compatibility](https://ai.google.dev/gemini-api/docs/openai)
+- [DeepSeek API](https://api-docs.deepseek.com/api/create-chat-completion)
+- [Qwen OpenAI compatibility](https://help.aliyun.com/en/model-studio/qwen-api-via-openai-chat-completions)
+- [Ollama OpenAI compatibility](https://docs.ollama.com/api/openai-compatibility)
 
 ## English
 
-V0.2.0 currently implements the common text subset of OpenAI-compatible Chat Completions: a configurable HTTPS base or full `/chat/completions` endpoint, model name, credential alias, Bearer authentication, and the shared `model`, `messages`, and `stream=false` request fields.
+V0.2.0 supports OpenAI-compatible text chat for OpenAI, Gemini, DeepSeek, Qwen, Kimi, and custom gateways; the native Anthropic Messages protocol; and unauthenticated Ollama through an HTTPS reverse proxy. Endpoints and model names are configurable.
 
-Official documentation confirms this common interface for DeepSeek, Alibaba Cloud Model Studio compatible mode, and Gemini's compatibility layer. The links above are the protocol sources used by this implementation.
-
-The settings screen provides current official defaults for OpenAI, Gemini, DeepSeek, Qwen, and Kimi while allowing overrides. Claude and Ollama profiles can be prepared, but the app will not route their native modes through the common connection test until dedicated adapters are complete.
-
-Compatibility does not imply complete feature parity. Images, files, web search, tools, reasoning options, native Responses APIs, the native Claude protocol, unauthenticated local Ollama, and enterprise gateway headers require dedicated capability adapters. Unknown provider-specific parameters must not be broadcast to every provider.
-
-No real API key was configured or called during development or automated testing. A live test requires the user to save a key in the app, review the cost notice, and explicitly confirm the request.
+Provider compatibility does not imply feature parity. V0.2.0 intentionally excludes image/file input, tools, web search, and provider-side conversation persistence. Every response must decode to at most 20 single-line commands and pass the local `ExecutionGuard`. No real API key was configured or called during development.

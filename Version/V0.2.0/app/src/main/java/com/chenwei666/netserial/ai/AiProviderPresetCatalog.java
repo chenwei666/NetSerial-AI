@@ -13,7 +13,7 @@ public final class AiProviderPresetCatalog {
     public static AiProviderPresetCatalog createDefault() {
         Map<String, AiProviderPreset> presets = new LinkedHashMap<>();
         add(presets, "openai", "https://api.openai.com/v1", "gpt-5-mini", true);
-        add(presets, "anthropic", "https://api.anthropic.com/v1", "", false);
+        add(presets, "anthropic", "https://api.anthropic.com/v1", "claude-sonnet-4-5", false);
         add(
                 presets,
                 "gemini",
@@ -31,7 +31,7 @@ public final class AiProviderPresetCatalog {
         );
         add(presets, "kimi", "https://api.moonshot.cn/v1", "kimi-k2.6", true);
         add(presets, "openai-compatible", "", "", true);
-        add(presets, "ollama", "", "", false);
+        add(presets, "ollama", "https://localhost/v1", "llama3.2", false);
         return new AiProviderPresetCatalog(presets);
     }
 

@@ -1,56 +1,48 @@
-# NetSerial AI Operations Terminal V0.2.0 (In Development)
+# NetSerial AI Operations Terminal V0.2.0
 
 [中文](README.md) | [English](README_EN.md)
 
-NetSerial AI is an Android USB serial terminal for network operations engineers. V0.2.0 builds on the trusted V0.1.0 baseline with in-app AI provider profiles, a secure credential vault, and live provider adapters. This version is still under development.
+This Android USB serial terminal provides a safety-first workflow: serial input → offline completion or AI draft → local risk review → manual load → manual send.
 
-## Included in this version
+## Quick start
 
-- USB discovery and serial connections for FTDI, PL2303, CP210x, CH340/CH341, and USB CDC devices.
-- Baud-rate selection, text/HEX transmission, newline modes, modem control lines, and flow control.
-- A dedicated `TAB` button that sends ASCII `0x09` without appending CR or LF.
-- An offline `CompletionEngine` with initial H3C user-view `display` and system-view `interface` completions, isolated by CLI mode.
-- A local `ExecutionGuard` that classifies `reboot` as R4 and `display ...` as R1.
-- An `AiProviderCatalog` covering OpenAI, Claude/Anthropic, Gemini, DeepSeek, Qwen, Kimi, OpenAI-compatible endpoints, and Ollama.
-- A `SafeAiCopilot` that re-evaluates every provider-generated command locally. AI cannot lower deterministic risk.
-- A `CredentialVault` that encrypts API keys with Android Keystore AES-GCM. Profiles store aliases only, and plaintext is available only during a controlled callback before its buffer is wiped.
-- Credential isolation by provider alias. The alias is authenticated by AES-GCM, so moving an encrypted record cannot substitute another provider's credential.
-- An `OpenAiCompatibleProvider` for configurable HTTPS endpoints, models, Bearer authentication, and `/chat/completions` text command planning.
-- Redaction, timeouts, response-size limits, cancellation, redirect blocking, and safe error classification for AI requests.
-- Chinese default resources and English system-locale resources.
-- A bilingual in-app AI settings screen with create, edit, delete, active-profile selection, official defaults, and up to 32 provider profiles.
-- API-key input is excluded from profile JSON, autofill, instance-state persistence, screenshots, and recent-task previews, and is cleared when leaving the screen.
-- An explicit minimal connection test that sends no real terminal history and can be cancelled.
+1. Select a USB serial port and baud rate from the device list.
+2. Open “Device profile and memory” from the terminal menu and select the device name, vendor, CLI mode, and baud rate.
+3. Tap offline suggestions while typing. The TAB button always sends the real ASCII byte `0x09`.
+4. Open “AI settings”, create a provider profile, save a key, and activate the profile. Ollama behind an HTTPS reverse proxy does not need a key.
+5. Tap “AI” in the terminal, then describe a goal or paste a command. Terminal context is opt-in and is ANSI-cleaned, redacted, and limited to 12,000 characters.
+6. Every returned command is reclassified locally. Tapping a non-R4 command only loads it into the input field; the Send button remains a separate user action.
 
-## Current limitations
+## Providers
 
-- The common compatible HTTP adapter and API-key settings screen are complete, but no real provider key is configured in this project, so live acceptance remains pending.
-- AI credential storage requires Android 6.0 or newer. Android 5.x keeps serial and offline features, but credentials never fall back to plaintext storage.
-- The offline command pack is still a minimal H3C architecture-validation set.
-- The APK has not yet been tested on a physical Android device, USB serial cable, or switch.
-- V0.1.0 is a Debug build and is not a production release package.
+- OpenAI, Gemini, DeepSeek, Qwen, Kimi, and custom OpenAI-compatible gateways use the compatible adapter.
+- Claude/Anthropic uses the native Messages protocol and `x-api-key`.
+- Ollama uses an unauthenticated OpenAI-compatible endpoint behind HTTPS because the app globally blocks cleartext traffic.
+- Endpoints and model names remain user-configurable.
+
+## Security
+
+- Keys are encrypted with Android Keystore AES-GCM and never enter profile JSON, export files, memory, terminal logs, or source control.
+- Android backup and cleartext HTTP are disabled; sensitive screens use secure-window protection.
+- Terminal context is never sent unless explicitly selected.
+- Local memory is explicitly written, device-scoped, expires after 180 days by default, and rejects likely credentials.
+- AI has no direct serial-write capability. R4 commands are disabled in the UI.
 
 ## Build
 
-For projects stored under a Windows path containing non-ASCII characters, run the ASCII mirror build script:
+For a Windows workspace under a non-ASCII path:
 
 ```powershell
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scripts\build.ps1
 ```
 
-The script expects JDK 17 at `C:\tmp\NetSerial-tools\jdk17` and Android SDK Platform 36 at `C:\tmp\NetSerial-tools\android-sdk`. It runs unit tests, Android Lint, and the Debug APK build by default.
+The default pipeline runs `testDebugUnitTest`, `lintDebug`, and `assembleDebug` using JDK 17 and Android SDK 36 from `C:\tmp\NetSerial-tools`.
 
-## Security
+## External acceptance still required
 
-- No real API key, token, account credential, or device password is included.
-- Android backup and cleartext HTTP are disabled by default.
-- AI output is an untrusted draft and must pass `SafeAiCopilot` and `ExecutionGuard`.
-- R4 commands cannot be executed automatically.
-
-See [Security](docs/SECURITY.md), [Architecture](docs/ARCHITECTURE.md), and the [Test report](docs/TEST_REPORT.md).
-
-## Upstream and license
-
-The USB serial baseline comes from Kai Morich's MIT-licensed [SimpleUsbTerminal](https://github.com/kai-morich/SimpleUsbTerminal), commit `7710eb7b1b69fb346f3b715960b5a5b5db08beb3`. The original copyright and MIT license are preserved in [LICENSE.txt](LICENSE.txt), with provenance recorded in [UPSTREAM.md](UPSTREAM.md).
+- No real API key was supplied, so no live provider request or charge was made.
+- No physical Android device, USB serial adapter, or switch was connected.
+- The current artifact is Debug-signed, not a production Release.
+- Command packs contain common commands and still require vendor-document and device-version validation.
 
 Developer: chenwei666.

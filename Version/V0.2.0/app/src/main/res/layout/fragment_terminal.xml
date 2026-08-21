@@ -84,6 +84,42 @@
         android:background="?android:attr/listDivider"
         android:layout_height="2dp" />
 
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button android:id="@+id/esc_btn" android:layout_width="wrap_content" android:layout_height="wrap_content" android:minWidth="48dp" android:text="ESC" />
+            <Button android:id="@+id/ctrl_c_btn" android:layout_width="wrap_content" android:layout_height="wrap_content" android:minWidth="56dp" android:text="Ctrl+C" />
+            <Button android:id="@+id/ctrl_z_btn" android:layout_width="wrap_content" android:layout_height="wrap_content" android:minWidth="56dp" android:text="Ctrl+Z" />
+            <Button android:id="@+id/up_btn" android:layout_width="wrap_content" android:layout_height="wrap_content" android:minWidth="48dp" android:text="↑" />
+            <Button android:id="@+id/down_btn" android:layout_width="wrap_content" android:layout_height="wrap_content" android:minWidth="48dp" android:text="↓" />
+            <Button android:id="@+id/left_btn" android:layout_width="wrap_content" android:layout_height="wrap_content" android:minWidth="48dp" android:text="←" />
+            <Button android:id="@+id/right_btn" android:layout_width="wrap_content" android:layout_height="wrap_content" android:minWidth="48dp" android:text="→" />
+            <Button android:id="@+id/backspace_btn" android:layout_width="wrap_content" android:layout_height="wrap_content" android:minWidth="48dp" android:text="BS" />
+            <Button android:id="@+id/delete_btn" android:layout_width="wrap_content" android:layout_height="wrap_content" android:minWidth="48dp" android:text="DEL" />
+            <Button android:id="@+id/question_btn" android:layout_width="wrap_content" android:layout_height="wrap_content" android:minWidth="48dp" android:text="?" />
+            <Button android:id="@+id/pipe_btn" android:layout_width="wrap_content" android:layout_height="wrap_content" android:minWidth="48dp" android:text="|" />
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:id="@+id/completion_results"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" />
+    </HorizontalScrollView>
+
     <TextView
         android:id="@+id/receive_text"
         android:layout_width="match_parent"
@@ -110,6 +146,13 @@
             android:layout_height="match_parent"
             android:minWidth="56dp"
             android:text="@string/terminal_tab_key" />
+
+        <Button
+            android:id="@+id/ai_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:minWidth="48dp"
+            android:text="@string/ai_copilot_button" />
 
         <EditText
             android:id="@+id/send_text"

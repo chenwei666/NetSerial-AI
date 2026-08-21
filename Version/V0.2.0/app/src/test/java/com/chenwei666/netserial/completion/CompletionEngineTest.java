@@ -48,4 +48,15 @@ public class CompletionEngineTest {
         assertEquals("interface", systemResult.getSuggestions().get(0).getInsertion());
         assertEquals(0, userResult.getSuggestions().size());
     }
+
+    @Test
+    public void supportsAllFourPriorityVendors() {
+        CompletionEngine engine = OfflineCompletionEngine.createDefault();
+        assertFalse(engine.complete(new CompletionRequest(
+                Vendor.HUAWEI_VRP, CliMode.USER_VIEW, "display int", 5)).getSuggestions().isEmpty());
+        assertFalse(engine.complete(new CompletionRequest(
+                Vendor.CISCO_IOS, CliMode.USER_VIEW, "show run", 5)).getSuggestions().isEmpty());
+        assertFalse(engine.complete(new CompletionRequest(
+                Vendor.RUIJIE_RGOS, CliMode.INTERFACE_VIEW, "switchport access", 5)).getSuggestions().isEmpty());
+    }
 }

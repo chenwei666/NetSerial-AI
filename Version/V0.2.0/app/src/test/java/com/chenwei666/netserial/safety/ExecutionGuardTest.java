@@ -43,4 +43,17 @@ public class ExecutionGuardTest {
         assertFalse(decision.isAutomaticExecutionAllowed());
         assertFalse(decision.isTypedConfirmationRequired());
     }
+
+    @Test
+    public void configurationAndManagementCommandsAreRaisedLocally() {
+        ExecutionGuard guard = RuleBasedExecutionGuard.createDefault();
+        GuardDecision vlan = guard.evaluate(new CommandEvaluationRequest(
+                Vendor.HUAWEI_VRP, CliMode.SYSTEM_VIEW, "vlan 116", RiskLevel.R0_INFORMATIONAL));
+        GuardDecision shutdown = guard.evaluate(new CommandEvaluationRequest(
+                Vendor.CISCO_IOS, CliMode.INTERFACE_VIEW, "shutdown", RiskLevel.R0_INFORMATIONAL));
+        assertEquals(RiskLevel.R2_CONFIGURATION, vlan.getEffectiveRisk());
+        assertEquals(RiskLevel.R3_HIGH, shutdown.getEffectiveRisk());
+        assertFalse(vlan.isAutomaticExecutionAllowed());
+        assertFalse(shutdown.isAutomaticExecutionAllowed());
+    }
 }
