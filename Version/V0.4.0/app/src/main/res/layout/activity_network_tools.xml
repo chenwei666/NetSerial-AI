@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical">
+    <androidx.appcompat.widget.Toolbar android:id="@+id/network_tools_toolbar"
+        android:layout_width="match_parent" android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary" android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        android:title="@string/network_tools_title" />
+    <ScrollView android:layout_width="match_parent" android:layout_height="match_parent">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="vertical" android:padding="16dp">
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:text="@string/network_cidr_section" android:textStyle="bold" />
+            <EditText android:id="@+id/network_cidr" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:hint="@string/network_cidr_hint"
+                android:importantForAutofill="no" android:inputType="textUri" android:maxLength="64" android:singleLine="true" />
+            <Button android:id="@+id/network_calculate" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:text="@string/network_calculate" />
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginTop="20dp" android:text="@string/network_probe_section" android:textStyle="bold" />
+            <EditText android:id="@+id/network_target" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:hint="@string/network_target_hint"
+                android:importantForAutofill="no" android:inputType="textUri" android:maxLength="253" android:singleLine="true" />
+            <EditText android:id="@+id/network_port" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:hint="@string/network_port_hint"
+                android:importantForAutofill="no" android:inputType="number" android:maxLength="5"
+                android:singleLine="true" />
+            <LinearLayout style="?android:attr/buttonBarStyle" android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <Button android:id="@+id/network_dns" style="?android:attr/buttonBarButtonStyle" android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:text="@string/network_dns" />
+                <Button android:id="@+id/network_ping" style="?android:attr/buttonBarButtonStyle" android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:text="@string/network_ping" />
+                <Button android:id="@+id/network_trace" style="?android:attr/buttonBarButtonStyle" android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:text="@string/network_trace" />
+                <Button android:id="@+id/network_tcp" style="?android:attr/buttonBarButtonStyle" android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:text="@string/network_tcp" />
+                <Button android:id="@+id/network_mtu" style="?android:attr/buttonBarButtonStyle" android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:text="@string/network_mtu" />
+            </LinearLayout>
+            <EditText android:id="@+id/network_mac" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:hint="@string/network_mac_hint"
+                android:importantForAutofill="no" android:inputType="text" android:maxLength="20" android:singleLine="true" />
+            <Button android:id="@+id/network_mac_lookup" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:text="@string/network_mac_lookup" />
+            <Button android:id="@+id/network_ports" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:text="@string/network_ports" />
+            <EditText android:id="@+id/network_extract_input" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:hint="@string/network_extract_hint"
+                android:importantForAutofill="no" android:inputType="textMultiLine" android:maxLength="20000" android:minLines="3" />
+            <Button android:id="@+id/network_extract" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:text="@string/network_extract" />
+            <TextView android:id="@+id/network_result" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:layout_marginTop="12dp"
+                android:background="#101010" android:fontFamily="monospace" android:minHeight="160dp"
+                android:padding="12dp" android:textColor="#E8E8E8" android:textIsSelectable="true" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

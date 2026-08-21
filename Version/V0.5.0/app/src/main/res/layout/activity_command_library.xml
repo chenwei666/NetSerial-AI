@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical" android:padding="16dp">
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:text="@string/command_library_title" android:textAppearance="?attr/textAppearanceHeadlineMedium"
+        android:textColor="@color/app_on_surface" android:textStyle="bold" />
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="4dp" android:layout_marginBottom="12dp"
+        android:text="@string/command_long_press_hint" android:textColor="@color/app_on_surface_variant" />
+    <com.google.android.material.card.MaterialCardView style="@style/Widget.NetSerial.Card"
+        android:layout_width="match_parent" android:layout_height="wrap_content">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="12dp">
+            <Spinner android:id="@+id/command_vendor" android:layout_width="match_parent" android:layout_height="48dp" />
+            <Spinner android:id="@+id/command_category" android:layout_width="match_parent" android:layout_height="48dp" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="4dp" android:text="@string/command_scope_label" />
+            <Spinner android:id="@+id/command_scope" android:layout_width="match_parent" android:layout_height="48dp" />
+            <com.google.android.material.textfield.TextInputLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="@string/command_search_hint">
+                <com.google.android.material.textfield.TextInputEditText android:id="@+id/command_search" android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:importantForAutofill="no" android:inputType="text" android:maxLength="80" android:singleLine="true" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center_vertical" android:orientation="horizontal">
+        <TextView android:id="@+id/command_count" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:paddingTop="8dp" android:paddingBottom="8dp" />
+        <com.google.android.material.button.MaterialButton android:id="@+id/command_clear_recent" style="@style/Widget.Material3.Button.TextButton"
+            android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/command_clear_recent" />
+    </LinearLayout>
+    <ListView android:id="@+id/command_list" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1"
+        android:background="@color/app_surface_container" android:divider="@color/app_outline" android:dividerHeight="1dp" />
+</LinearLayout>
