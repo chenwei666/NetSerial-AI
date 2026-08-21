@@ -15,19 +15,19 @@ NetSerial AI is built for engineers operating H3C, Huawei, Cisco, and Ruijie swi
 
 ## Release status and version history
 
-- Current stable release: [V0.3.1](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.3.1), the first long-term production-signed build.
-- Latest feature candidate: [V0.5.0](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.5.0), with the modern UI, dark mode, four themes, and the new app icon.
-- V0.2.0 and V0.3.0 are source-only historical checkpoints with no verified APK. V0.4.0 and V0.5.0 include production-signed candidate APKs and still require real-device and switch acceptance.
-- See the complete [version history](VERSION_HISTORY_EN.md). Every immutable source archive remains under [`Version/`](Version/).
+- Current latest stable release: [V0.5.0](https://github.com/chenwei666/NetSerial-AI/releases/latest), with the modern UI, dark mode, four themes, the new icon, and the complete V0.4.0 operations workflow.
+- V0.3.1 was the first long-term production-signed stable release. V0.5.0 uses the same certificate and supports in-place upgrades from V0.3.1 or V0.4.0.
+- V0.2.0 and V0.3.0 are source-only historical checkpoints with no verified APK. V0.4.0 remains a candidate, while V0.5.0 is now the GitHub `Latest` production release.
+- See the complete [version history](VERSION_HISTORY_EN.md) and the repository-level [project changelog](CHANGELOG.md). Every immutable source archive remains under [`Version/`](Version/).
 
 | Version | Status | Milestone |
 |---|---|---|
 | V0.1.0 | Trusted Debug baseline | USB serial, real Tab, offline completion, R0-R4 safety model |
 | V0.2.0 | Historical source checkpoint | Multi-provider AI, encrypted API keys, local memory, four-vendor completion |
 | V0.3.0 | Historical source checkpoint | SSH, controlled Telnet, categorized command library, bilingual settings |
-| V0.3.1 | Stable production release | Production signing, complete release gates, in-place upgrade baseline |
+| V0.3.1 | First stable production release | Production signing, complete release gates, in-place upgrade baseline |
 | V0.4.0 | Release candidate | Change tasks, configuration Diff, network tools, SFTP, jump hosts |
-| V0.5.0 | Latest candidate | Material 3, light/dark modes, four themes, operations dashboard, new icon |
+| V0.5.0 | Latest stable release | Material 3, light/dark modes, four themes, operations dashboard, new icon |
 
 ## V0.5.0 highlights
 
