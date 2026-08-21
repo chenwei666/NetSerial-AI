@@ -4,6 +4,7 @@ gradle = "9.2.1"
 material = "1.13.0" # newer version would need minsdk 23
 usb-serial-for-android = "3.11.0"  # maven jitpack
 junit = "4.13.2"
+gson = "2.14.0"
 #usb-serial-for-android = "3.8.0beta"  # maven local
 
 [libraries]
@@ -12,4 +13,5 @@ gradle = { group = "com.android.tools.build", name = "gradle", version.ref = "gr
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 usb-serial-for-android = { group = "com.github.mik3y", name = "usb-serial-for-android", version.ref = "usb-serial-for-android" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
+gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
 #usb-serial-for-android = { group = "com.github.mik3y", name = "usb-serial-for-android", version.ref = "usb-serial-for-android", changing = true } # maven local

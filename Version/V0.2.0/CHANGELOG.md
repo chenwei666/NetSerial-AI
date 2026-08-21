@@ -16,13 +16,21 @@
 - 新增 `ProviderCredentialService`，按照 `ProviderProfile.credentialAlias` 隔离不同 AI 厂商凭据。
 - 将凭据别名加入 AES-GCM 附加认证数据，阻止密文记录跨厂商替换。
 - Android 6.0 以下保留原有串口和离线功能，但明确禁用 AI 凭据存储，不进行明文降级。
-- 新增凭据保存、回调使用、异常清零、删除、输入校验、多厂商隔离和密文替换防护测试；当前共 16 项单元测试通过。
+- 新增 `OpenAiCompatibleProvider` 与 `OpenAiCompatibleJsonCodec`，支持可配置 Endpoint、Model 和 Chat Completions JSON 命令方案。
+- 新增 `UrlConnectionChatHttpTransport`，提供 HTTPS、Bearer 鉴权、超时、512 KiB 响应限制、取消和禁止重定向。
+- 新增 `TerminalContextSanitizer`，发送前遮蔽潜在凭据行并限制上下文长度。
+- 新增 `AiProviderError` 与 `AiProviderException`，按鉴权、限流、超时、TLS、网络、服务端、响应过大、无效响应和取消分类。
+- Endpoint 新增用户信息、查询参数和片段拒绝规则；鉴权值新增请求头注入防护。
+- 非成功 HTTP 响应正文不进入错误模型，不输出到日志或异常消息。
+- 新增 `INTERNET` 权限和 Gson 2.14.0 JSON 依赖。
+- 新增兼容请求、响应解析、脱敏、错误分类、取消、大小限制和输入攻击测试；当前共 30 项单元测试通过。
 
 ### 数据库、接口与兼容性
 
 - 暂无数据库变更。
 - V0.1.0 串口、TAB、补全和风险接口保持兼容。
 - 新增 `CredentialVault`、`CredentialOperation`、`ProviderCredentialService`、`SecretCipher` 和 `CredentialRecordStore` 接口。
+- 新增 `ChatHttpTransport` seam，专用厂商适配器可复用安全传输策略而不依赖 UI。
 - AI 凭据功能要求 Android 6.0 或更高版本，应用整体最低版本仍保持 Android 5.0。
 - 最终升级说明将在本版本完成时补齐。
 

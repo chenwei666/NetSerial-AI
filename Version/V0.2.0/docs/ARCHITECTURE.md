@@ -20,6 +20,12 @@
 
 Android 6.0 以下设备明确拒绝启用 AI 凭据存储，不允许回退到明文、弱加密或可导出的应用内固定密钥。
 
+### OpenAiCompatibleProvider
+
+`OpenAiCompatibleProvider` 实现通用文本兼容层。它将 `AiRequest` 编码为 `model + messages + stream=false`，通过 `ProviderCredentialService` 在受控回调内取得凭据，再调用 `ChatHttpTransport`。响应只接受最多 20 个单行命令步骤，并转换为不可信 `AiDraftPlan`，随后仍必须经过 `SafeAiCopilot` 与本地 `ExecutionGuard`。
+
+`UrlConnectionChatHttpTransport` 只接受 HTTPS，禁止自动重定向，固定连接/读取超时，限制响应为 512 KiB，支持主动取消，并丢弃非成功响应正文。`TerminalContextSanitizer` 在编码请求前遮蔽可能包含 API Key、密码、Token、团体字或共享密钥的整行内容。
+
 ### TerminalControlEncoder
 
 把终端控制键转换成原始协议字节。V0.1.0 只开放 TAB，UI 不自行拼接字节或换行。
@@ -33,7 +39,9 @@ Android UI / TerminalFragment
 
 Future AI UI
   -> AiCopilot / SafeAiCopilot
-       -> AiProvider adapter
+       -> OpenAiCompatibleProvider
+            -> OpenAiCompatibleJsonCodec
+            -> ChatHttpTransport
        -> ExecutionGuard
   -> ProviderCredentialService
        -> CredentialVault

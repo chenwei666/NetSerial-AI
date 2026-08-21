@@ -22,7 +22,10 @@ public final class ProviderProfile {
         URI parsedEndpoint = URI.create(requireText(endpoint, "endpoint"));
         if (!parsedEndpoint.isAbsolute()
                 || !"https".equalsIgnoreCase(parsedEndpoint.getScheme())
-                || parsedEndpoint.getHost() == null) {
+                || parsedEndpoint.getHost() == null
+                || parsedEndpoint.getUserInfo() != null
+                || parsedEndpoint.getQuery() != null
+                || parsedEndpoint.getFragment() != null) {
             throw new IllegalArgumentException("remote AI endpoint must be an absolute HTTPS URL");
         }
         return new ProviderProfile(

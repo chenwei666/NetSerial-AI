@@ -30,4 +30,24 @@ public class ProviderProfileTest {
                 "credential-compatible-main"
         );
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void remoteProfileRejectsEndpointQuery() {
+        ProviderProfile.remote(
+                "openai-compatible",
+                "https://ai.example.com/v1?credential=unsafe",
+                "network-ops-model",
+                "credential-compatible-main"
+        );
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void remoteProfileRejectsEndpointUserInfo() {
+        ProviderProfile.remote(
+                "openai-compatible",
+                "https://user@ai.example.com/v1",
+                "network-ops-model",
+                "credential-compatible-main"
+        );
+    }
 }
