@@ -2,7 +2,7 @@
 
 ## 支持版本
 
-当前维护 V0.3.x。旧版本仅保留归档，不承诺安全更新。
+当前维护 V0.4.x。旧版本仅保留归档，不承诺安全更新。
 
 ## 报告安全问题
 
@@ -19,4 +19,4 @@
 
 ---
 
-V0.3.x is the currently supported line. Report vulnerabilities privately through GitHub's **Security → Report a vulnerability** flow. Never disclose vulnerability details, credentials, signing material, device configuration, or site information in public issues or logs. AI-generated commands require human review, Telnet remains plaintext, and vendor command references must be verified against the exact device and software release.
+V0.4.x is the currently supported line. Report vulnerabilities privately through GitHub's **Security → Report a vulnerability** flow. Never disclose vulnerability details, credentials, signing material, device configuration, or site information in public issues or logs. AI-generated commands require human review, Telnet remains plaintext, and vendor command references must be verified against the exact device and software release.

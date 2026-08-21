@@ -5,7 +5,7 @@
 [中文](README.md) | [English](README_EN.md)
 
 [![Release](https://img.shields.io/github/v/release/chenwei666/NetSerial-AI?label=release)](https://github.com/chenwei666/NetSerial-AI/releases/latest)
-[![Android](https://img.shields.io/badge/Android-5.0%2B-3DDC84?logo=android&logoColor=white)](Version/V0.3.1/app/build.gradle)
+[![Android](https://img.shields.io/badge/Android-5.0%2B-3DDC84?logo=android&logoColor=white)](Version/V0.4.0/app/build.gradle)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 NetSerial AI 面向经常维护 H3C、华为、Cisco、锐捷交换机的网络运维人员。它保留传统串口终端的直接、可靠，同时增加远程连接、离线命令辅助、可配置 AI 和本地安全门禁。AI 只负责生成、检查和解释命令草稿，最终发送始终由工程师确认。
@@ -15,7 +15,7 @@ NetSerial AI 面向经常维护 H3C、华为、Cisco、锐捷交换机的网络�
 | 能力 | 说明 |
 |---|---|
 | USB Console | 支持 Android OTG 串口、波特率选择、HEX、换行、流控、控制线与后台连接服务。 |
-| SSH | 交互式 Shell、首次主机指纹人工核验、已知主机保存与密钥变化阻断；密码不持久化。 |
+| SSH / SFTP | 密码、键盘交互、会话级私钥、跳板机、Keepalive、SFTP；主机密钥变化阻断，凭据不持久化。 |
 | Telnet | 为旧设备保留的受控兼容模式；默认关闭，每次连接都提示明文风险。 |
 | 真实终端控制 | TAB 发送真实 `0x09`，并提供 ESC、Ctrl+C、Ctrl+Z、方向键、退格、删除和 `?` 快捷键。 |
 | 厂商命令库 | H3C Comware、华为 VRP、Cisco IOS、锐捷 RGOS，覆盖十类常用运维命令。 |
@@ -23,6 +23,8 @@ NetSerial AI 面向经常维护 H3C、华为、Cisco、锐捷交换机的网络�
 | AI Copilot | 用自然语言生成、检查、补全和解释交换机命令，可选择附带脱敏后的终端上下文。 |
 | 设备记忆 | 保存设备角色、厂商、CLI 模式和经确认的运维知识；支持过期时间与安全导入导出。 |
 | 本地风险控制 | R0–R4 命令风险分级；高风险命令二次确认，重启、擦除、升级等命令必须输入 `EXECUTE`。 |
+| 变更与防错 | 变更任务、维护窗口、生产设备保护、管理地址精确匹配、彩色目标条和脱敏证据导出。 |
+| 配置与网络工具 | 保序配置 Diff、回滚草稿、IPv4/IPv6、DNS、Ping、路由跟踪、TCP、MTU、MAC/OUI。 |
 | 中英文界面 | 支持跟随系统、简体中文和 English，并可调整终端字号、字符编码和连接超时。 |
 
 ## AI 接入
@@ -83,13 +85,13 @@ USB、SSH 或受控 Telnet 终端
 
 正式版本：[GitHub Releases](https://github.com/chenwei666/NetSerial-AI/releases/latest)
 
-当前版本：**V0.3.1**  
+当前版本：**V0.4.0**  
 系统要求：**Android 5.0 / API 21 及以上**
 
-V0.3.1 APK SHA-256：
+V0.4.0 APK SHA-256：
 
 ```text
-f4c410c3bf0016ecc5532bcdc27aa3ed109539d352983246a8bfd90c14972c76
+f4036401ee19d0a6ec8e87008a837f4bfbda23abe703d2d6346108efded13262
 ```
 
 如果设备安装过 V0.3.0 Debug APK，由于签名不同，需要先卸载 Debug 版，再安装正式版。V0.3.1 之后的正式版本将使用同一生产证书覆盖升级。
@@ -104,25 +106,25 @@ f4c410c3bf0016ecc5532bcdc27aa3ed109539d352983246a8bfd90c14972c76
 
 详细说明：
 
-- [V0.3.1 中文使用说明](Version/V0.3.1/README.md)
-- [V0.3.1 English guide](Version/V0.3.1/README_EN.md)
-- [远程连接与安全](Version/V0.3.1/docs/REMOTE_CONNECTIONS.md)
-- [AI 厂商兼容说明](Version/V0.3.1/docs/AI_PROVIDER_COMPATIBILITY.md)
-- [架构说明](Version/V0.3.1/docs/ARCHITECTURE.md)
-- [正式发布与签名](Version/V0.3.1/docs/RELEASE.md)
-- [测试报告](Version/V0.3.1/docs/TEST_REPORT.md)
+- [V0.4.0 中文使用说明](Version/V0.4.0/README.md)
+- [V0.4.0 English guide](Version/V0.4.0/README_EN.md)
+- [远程连接与安全](Version/V0.4.0/docs/REMOTE_CONNECTIONS.md)
+- [AI 厂商兼容说明](Version/V0.4.0/docs/AI_PROVIDER_COMPATIBILITY.md)
+- [架构说明](Version/V0.4.0/docs/ARCHITECTURE.md)
+- [正式发布与签名](Version/V0.4.0/docs/RELEASE.md)
+- [测试报告](Version/V0.4.0/docs/TEST_REPORT.md)
 
 ## 构建与验证
 
 需要 JDK 17、Android SDK Platform 36 和 Build Tools 36.0.0。在 Windows PowerShell 中：
 
 ```powershell
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\Version\V0.3.1\scripts\build.ps1
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\Version\V0.4.0\scripts\build.ps1
 ```
 
-V0.3.1 发布门禁结果：
+V0.4.0 发布门禁结果：
 
-- 23 个测试套件、69 项单元测试全部通过。
+- 31 个测试套件、105 项单元测试全部通过。
 - Release Lint：0 Error。
 - APK 通过 ZIP 对齐和 Android V1/V2/V3 签名验证。
 - applicationId：`com.chenwei666.netserial`。
@@ -132,7 +134,8 @@ V0.3.1 发布门禁结果：
 ## 项目边界
 
 - 尚需在更多真实 Android 设备、USB 串口芯片和不同系统版本的交换机上持续完成硬件矩阵验证。
-- SSH 当前支持密码认证；私钥、跳板机、代理和端口转发尚未实现。
+- SSH 已支持私钥、键盘交互、密码跳板机和 SFTP；真实设备兼容矩阵仍需持续验收。
+- Android 厂商可能不提供完整的 Traceroute 或 DF Ping，路径 MTU 结果受系统工具和 ICMP 策略影响。
 - Telnet 是明文协议，应用只能限制其使用条件，不能消除协议本身的风险。
 - 厂商 API、模型名称和配额可能变化，请以服务商当前文档为准。
 
