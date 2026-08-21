@@ -9,9 +9,9 @@
 | V0.1.0 | [Release](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.1.0) · [源码](Version/V0.1.0/) | 历史预发布 | Debug APK | 首个可信 USB 串口与安全补全基线 |
 | V0.2.0 | [Release](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.2.0) · [源码](Version/V0.2.0/) | 历史源码记录 | 无可验证 APK | 多 AI 厂商、加密凭据、本地记忆 |
 | V0.3.0 | [Release](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.3.0) · [源码](Version/V0.3.0/) | 历史源码记录 | 无可验证 APK | SSH、Telnet、分类命令库与多语言设置 |
-| V0.3.1 | [Release](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.3.1) · [源码](Version/V0.3.1/) | 稳定正式版 | 生产签名 APK | 长期生产签名与正式发布门禁 |
+| V0.3.1 | [Release](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.3.1) · [源码](Version/V0.3.1/) | 首个稳定正式版 | 生产签名 APK | 长期生产签名与正式发布门禁 |
 | V0.4.0 | [Release](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.4.0) · [源码](Version/V0.4.0/) | 正式版候选 | 生产签名 APK | 变更管理、配置 Diff、网络工具与增强 SSH |
-| V0.5.0 | [Release](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.5.0) · [源码](Version/V0.5.0/) | 最新正式版候选 | 生产签名 APK | Material 3、主题系统、运维工作台与新图标 |
+| V0.5.0 | [Latest](https://github.com/chenwei666/NetSerial-AI/releases/latest) · [源码](Version/V0.5.0/) | 最新稳定正式版 | 生产签名 APK | Material 3、主题系统、运维工作台与新图标 |
 
 ## V0.1.0 — 可信基线
 
@@ -68,4 +68,4 @@
 - V0.1.0、V0.2.0、V0.3.0 属于 Debug/开发检查点，不能直接覆盖生产签名版本。
 - 从 V0.3.1 开始，V0.3.1、V0.4.0、V0.5.0 使用同一生产证书，可按版本顺序覆盖升级并保留应用私有数据。
 - 安装前必须从对应 Release 下载附件并核对 SHA-256；不要安装来源不明或哈希不一致的 APK。
-- V0.4.0、V0.5.0 当前是候选版，投入生产前仍需在授权手机、USB 串口芯片和目标交换机上完成验收。
+- V0.4.0 保持候选版；V0.5.0 已提升为 GitHub `Latest` 正式版。部署到生产网络前仍建议在授权手机、USB 串口芯片和目标交换机上完成现场验收。

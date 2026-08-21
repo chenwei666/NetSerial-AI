@@ -9,9 +9,9 @@ This document records the complete public evolution, release status, artifact tr
 | V0.1.0 | [Release](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.1.0) · [Source](Version/V0.1.0/) | Historical prerelease | Debug APK | First trusted USB serial and guarded-completion baseline |
 | V0.2.0 | [Release](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.2.0) · [Source](Version/V0.2.0/) | Historical source record | No verified APK | Multi-provider AI, encrypted credentials, local memory |
 | V0.3.0 | [Release](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.3.0) · [Source](Version/V0.3.0/) | Historical source record | No verified APK | SSH, Telnet, categorized commands, bilingual settings |
-| V0.3.1 | [Release](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.3.1) · [Source](Version/V0.3.1/) | Stable production release | Production-signed APK | Long-term signing and formal release gates |
+| V0.3.1 | [Release](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.3.1) · [Source](Version/V0.3.1/) | First stable production release | Production-signed APK | Long-term signing and formal release gates |
 | V0.4.0 | [Release](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.4.0) · [Source](Version/V0.4.0/) | Release candidate | Production-signed APK | Change control, configuration Diff, network tools, enhanced SSH |
-| V0.5.0 | [Release](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.5.0) · [Source](Version/V0.5.0/) | Latest candidate | Production-signed APK | Material 3, themes, operations dashboard, new icon |
+| V0.5.0 | [Latest](https://github.com/chenwei666/NetSerial-AI/releases/latest) · [Source](Version/V0.5.0/) | Latest stable release | Production-signed APK | Material 3, themes, operations dashboard, new icon |
 
 ## V0.1.0 — Trusted baseline
 
@@ -68,4 +68,4 @@ This document records the complete public evolution, release status, artifact tr
 - V0.1.0, V0.2.0, and V0.3.0 are Debug or development checkpoints and cannot directly replace production-signed builds.
 - V0.3.1, V0.4.0, and V0.5.0 share the same production certificate and support sequential in-place upgrades with application-private data retained.
 - Download APKs only from the matching Release and verify SHA-256 before installation.
-- V0.4.0 and V0.5.0 remain candidates until accepted on authorized phones, USB serial chipsets, and target switches.
+- V0.4.0 remains a candidate. V0.5.0 is now the GitHub `Latest` production release; field acceptance on authorized phones, USB serial chipsets, and target switches is still recommended before production-network deployment.
