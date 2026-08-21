@@ -2,30 +2,30 @@
 
 [中文](README.md) | [English](README_EN.md)
 
-当前开发版本：**V0.2.0**；稳定基线：**V0.1.0**。
+当前开发版本：**V0.3.0**；稳定基线：**V0.1.0**。
 
-NetSerial AI 面向需要通过 Console 串口维护 H3C、华为、Cisco、锐捷等交换机的网络运维工程师。它把 USB 串口终端、真实 TAB、离线命令候选、多 AI 厂商接入、本地命令风险检查、设备档案和可控记忆放在一个 Android App 中。
+NetSerial AI 面向经常维护 H3C、华为、Cisco、锐捷交换机的网络运维工程师，把 USB Console、SSH、显式启用的 Telnet、真实 TAB、分类命令库、多 AI 厂商 API、设备记忆和本地命令风险检查整合到一个 Android App。
 
-V0.2.0 已实现：
+## V0.3.0 新增
 
-- OpenAI、Claude/Anthropic、Gemini、DeepSeek、通义千问、Kimi、OpenAI-compatible 和 Ollama HTTPS 代理接入；
-- Android Keystore 加密 API Key，多配置切换和最小连接测试；
-- 终端内 AI 助手：自然语言生成、手写命令检查/补全、脱敏上下文、结构化命令计划；
-- 所有 AI 命令重新经过本地 R0-R4 风险判定，R4 禁止载入，其他命令也只载入输入框、不自动发送；
-- H3C、华为、Cisco、锐捷离线命令候选，以及真实 `TAB` 字节 `0x09`；
-- ESC、Ctrl+C、Ctrl+Z、方向键、退格、删除、`?` 和 `|` 快捷键；
-- 设备名称、厂商、CLI 模式、波特率档案；
-- 供应商无关的本地结构化记忆，支持作用域、过期、删除、安全导入导出，拒绝保存密码、Token 和密钥；
-- 受控终端缓冲、ANSI 清洗和敏感信息脱敏。
-- 脱敏会话日志导出，以及不含凭据的设备档案/记忆备份。
+- SSH 交互式终端：密码只在连接期间存在于内存；首次连接必须人工核对主机密钥指纹；密钥变更时阻止连接。
+- Telnet 交互式终端：默认关闭；启用后每次连接仍显示明文风险确认；建议仅用于隔离的管理网络。
+- 四厂商、十分类常用命令库：设备信息、接口、VLAN、三层接口、路由、生成树、链路聚合、安全、故障排查、保存与备份。
+- USB 和远程终端共用命令草稿、AI 草稿、真实 TAB/ESC/Ctrl+C/方向键快捷键和 R0–R4 本地风险规则。
+- 高风险命令发送前再次确认；重启、擦除、升级等关键命令要求输入 `EXECUTE`。
+- 应用设置：跟随系统/简体中文/English、Telnet 开关、连接超时、终端字号、UTF-8/GBK/ISO-8859-1 编码、SSH 已知主机密钥管理。
+- 继续支持 OpenAI、Claude/Anthropic、Gemini、DeepSeek、通义千问、Kimi、Ollama HTTPS 和自定义 OpenAI-compatible API。
 
-源码与详细说明：
+## 文档和源码
 
-- [V0.2.0 完整源码和使用说明](Version/V0.2.0/README.md)
-- [V0.2.0 测试报告](Version/V0.2.0/docs/TEST_REPORT.md)
+- [V0.3.0 中文使用说明](Version/V0.3.0/README.md)
+- [V0.3.0 English guide](Version/V0.3.0/README_EN.md)
+- [远程连接与安全说明](Version/V0.3.0/docs/REMOTE_CONNECTIONS.md)
+- [架构说明](Version/V0.3.0/docs/ARCHITECTURE.md)
+- [测试报告](Version/V0.3.0/docs/TEST_REPORT.md)
 - [完整功能方案](FULL_AI_FEATURE_COMPLETION_PLAN.md)
 - [原 APK 分析](ANALYSIS_AND_COMPLETION_PLAN.md)
 
-仓库不包含真实 API Key、Token、设备密码或账号信息。当前 Debug APK 已通过自动化测试、Android Lint 和构建，但仍需在真实 Android 手机、USB 转串口线和不同品牌交换机上完成硬件验收。
+仓库不包含真实 API Key、Token、交换机账号、密码或现场配置。自动化测试、Android Lint 和 Debug 构建不能替代真实 Android 手机与真实交换机的硬件验收。
 
 开发负责人：chenwei666。
