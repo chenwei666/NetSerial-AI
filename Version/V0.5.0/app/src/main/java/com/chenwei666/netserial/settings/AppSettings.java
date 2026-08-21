@@ -18,7 +18,7 @@ public final class AppSettings {
     public AppSettings(AppLanguage language, boolean telnetEnabled, int remoteTimeoutMillis,
                        int terminalTextSizeSp, String remoteCharset) {
         this(language, telnetEnabled, remoteTimeoutMillis, terminalTextSizeSp, remoteCharset,
-                30_000, 5_000, AppearanceMode.SYSTEM, AccentTheme.OCEAN, true);
+                30_000, 5_000, AppearanceMode.SYSTEM, AccentTheme.OCEAN, false);
     }
 
     public AppSettings(AppLanguage language, boolean telnetEnabled, int remoteTimeoutMillis,
@@ -26,7 +26,7 @@ public final class AppSettings {
                        int networkProbeTimeoutMillis) {
         this(language, telnetEnabled, remoteTimeoutMillis, terminalTextSizeSp, remoteCharset,
                 sshKeepAliveMillis, networkProbeTimeoutMillis, AppearanceMode.SYSTEM,
-                AccentTheme.OCEAN, true);
+                AccentTheme.OCEAN, false);
     }
 
     public AppSettings(AppLanguage language, boolean telnetEnabled, int remoteTimeoutMillis,
@@ -64,6 +64,11 @@ public final class AppSettings {
     public AppearanceMode getAppearanceMode() { return appearanceMode; }
     public AccentTheme getAccentTheme() { return accentTheme; }
     public boolean isKeepScreenAwake() { return keepScreenAwake; }
+
+    public boolean hasDifferentAppearance(AppSettings other) {
+        Objects.requireNonNull(other, "other");
+        return appearanceMode != other.appearanceMode || accentTheme != other.accentTheme;
+    }
 
     private static void validateCharset(String value) {
         try {

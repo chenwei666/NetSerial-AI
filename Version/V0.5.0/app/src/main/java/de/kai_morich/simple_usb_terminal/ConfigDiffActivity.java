@@ -7,7 +7,6 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.chenwei666.netserial.config.ConfigDiff;
@@ -17,7 +16,6 @@ import com.chenwei666.netserial.config.ConfigSnapshot;
 import com.chenwei666.netserial.config.RollbackDraftGenerator;
 import com.chenwei666.netserial.device.DeviceProfile;
 import com.chenwei666.netserial.device.DeviceProfileStore;
-import com.chenwei666.netserial.settings.AppLocaleController;
 import com.chenwei666.netserial.terminal.AnsiTextSanitizer;
 import com.chenwei666.netserial.terminal.SensitiveTextRedactor;
 

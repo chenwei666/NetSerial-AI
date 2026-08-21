@@ -199,11 +199,13 @@ public class TerminalFragment extends Fragment implements ServiceConnection, Ser
         }
         if(connected == Connected.True)
             controlLines.start();
+        AppAppearanceController.setTerminalSessionActive(requireActivity(), connected == Connected.True);
     }
 
     @Override
     public void onPause() {
         controlLines.stop();
+        AppAppearanceController.setTerminalSessionActive(requireActivity(), false);
         super.onPause();
     }
 
@@ -438,6 +440,7 @@ public class TerminalFragment extends Fragment implements ServiceConnection, Ser
 
     private void disconnect() {
         connected = Connected.False;
+        if (isAdded()) AppAppearanceController.setTerminalSessionActive(requireActivity(), false);
         controlLines.stop();
         service.disconnect();
         updateSendBtn(SendButtonState.Idle);
@@ -736,6 +739,7 @@ public class TerminalFragment extends Fragment implements ServiceConnection, Ser
     public void onSerialConnect() {
         status("connected");
         connected = Connected.True;
+        AppAppearanceController.setTerminalSessionActive(requireActivity(), true);
         controlLines.start();
     }
 

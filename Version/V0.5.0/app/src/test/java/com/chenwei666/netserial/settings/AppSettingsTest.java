@@ -14,6 +14,7 @@ public class AppSettingsTest {
         assertEquals("UTF-8", settings.getRemoteCharset());
         assertEquals(AppearanceMode.SYSTEM, settings.getAppearanceMode());
         assertEquals(AccentTheme.OCEAN, settings.getAccentTheme());
+        assertFalse(settings.isKeepScreenAwake());
     }
 
     @Test
@@ -21,6 +22,17 @@ public class AppSettingsTest {
         assertEquals(AppLanguage.SIMPLIFIED_CHINESE, AppLanguage.fromTag("zh-Hans"));
         assertEquals(AppLanguage.ENGLISH, AppLanguage.fromTag("en-US"));
         assertEquals(AppLanguage.SYSTEM, AppLanguage.fromTag("fr"));
+    }
+
+    @Test
+    public void detectsThemeChangesForBackStackRecreation() {
+        AppSettings current = AppSettings.defaults();
+        AppSettings violet = new AppSettings(current.getLanguage(), current.isTelnetEnabled(),
+                current.getRemoteTimeoutMillis(), current.getTerminalTextSizeSp(), current.getRemoteCharset(),
+                current.getSshKeepAliveMillis(), current.getNetworkProbeTimeoutMillis(),
+                AppearanceMode.SYSTEM, AccentTheme.VIOLET, false);
+        assertFalse(current.hasDifferentAppearance(current));
+        org.junit.Assert.assertTrue(current.hasDifferentAppearance(violet));
     }
 
     @Test(expected = IllegalArgumentException.class)

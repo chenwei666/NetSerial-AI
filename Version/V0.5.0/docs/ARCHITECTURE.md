@@ -2,11 +2,12 @@
 
 ## V0.5.0 外观与工作台增量
 
-- `ThemedActivity` 是所有 Activity 的统一入口，在页面创建前应用 `AppAppearanceController` 与语言设置，创建后应用窗口常亮策略。
+- `ThemedActivity` 是所有 Activity 的统一入口，在页面创建前应用 `AppAppearanceController` 与语言设置；页面恢复时比较外观快照，保证返回栈页面也使用最新主题。
 - `AppSettings`/`AppSettingsStore` 继续作为唯一设置模型，新增 `AppearanceMode`、`AccentTheme` 和 `keepScreenAwake`，旧构造器和旧 SharedPreferences 数据兼容。
 - Material 3 DayNight 提供基础设计令牌；四个主题只覆盖主色/容器色，深色资源通过 `values-night` 自动替换，避免页面级硬编码主题。
 - `DevicesFragment` 仍保持 USB 列表职责，但列表头作为只读运维摘要与导航入口；设备和变更数据仍由各自 Store 提供。
-- `CommandUsageHistory` 是可单元测试的纯 Java 领域对象；`CommandUsageStore` 只负责 Android 持久化，命令库只传入内置 `CommonCommand` 标识。
+- `CommandUsageHistory` 是可单元测试的纯 Java 领域对象；`CommandUsageStore` 只负责 Android 持久化，命令库只传入内置 `CommonCommand` 标识。收藏/最近使用先在副本上变更，持久化成功后才替换界面状态。
+- 屏幕常亮不属于 Activity 全局外观。USB 与远程终端只在页面可见且连接状态为 `CONNECTED` 时申请窗口常亮，暂停或断开立即清除。
 
 ## V0.4.0 基础架构
 

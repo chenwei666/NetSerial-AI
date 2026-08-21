@@ -6,13 +6,27 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.chenwei666.netserial.settings.AppLocaleController;
+import com.chenwei666.netserial.settings.AppSettings;
+import com.chenwei666.netserial.settings.AppSettingsStore;
 
 public abstract class ThemedActivity extends AppCompatActivity {
+    private AppSettings appliedSettings;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        AppAppearanceController.applyBeforeCreate(this);
+        AppSettings settings = AppAppearanceController.applyBeforeCreate(this);
+        appliedSettings = settings;
         AppLocaleController.applyStoredLanguage(this);
         super.onCreate(savedInstanceState);
-        AppAppearanceController.applyWindowPreferences(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        AppSettings current = new AppSettingsStore(this).load();
+        if (appliedSettings.hasDifferentAppearance(current)) {
+            appliedSettings = current;
+            recreate();
+        }
     }
 }

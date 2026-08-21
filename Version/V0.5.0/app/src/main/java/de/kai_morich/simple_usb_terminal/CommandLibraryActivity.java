@@ -18,7 +18,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.chenwei666.netserial.commands.CommandCategory;
 import com.chenwei666.netserial.commands.CommonCommand;
@@ -26,7 +25,6 @@ import com.chenwei666.netserial.commands.CommonCommandCatalog;
 import com.chenwei666.netserial.commands.CommandUsageHistory;
 import com.chenwei666.netserial.commands.CommandUsageStore;
 import com.chenwei666.netserial.device.Vendor;
-import com.chenwei666.netserial.settings.AppLocaleController;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -161,8 +159,9 @@ public class CommandLibraryActivity extends ThemedActivity {
     }
 
     private void choose(CommonCommand command) {
-        usageHistory.recordUse(CommandUsageHistory.idOf(command));
-        persistUsage();
+        CommandUsageHistory updated = copyUsageHistory();
+        updated.recordUse(CommandUsageHistory.idOf(command));
+        boolean recorded = persistUsage(updated);
         if (getIntent().getBooleanExtra(EXTRA_PICK_MODE, false)) {
             setResult(RESULT_OK, new Intent().putExtra(RESULT_COMMAND, command.getCommand()));
             finish();
@@ -171,28 +170,44 @@ public class CommandLibraryActivity extends ThemedActivity {
         ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
         clipboard.setPrimaryClip(ClipData.newPlainText("switch command", command.getCommand()));
         Toast.makeText(this, R.string.command_copied, Toast.LENGTH_SHORT).show();
+        if (recorded) refresh();
     }
 
     private void toggleFavorite(CommonCommand command) {
-        boolean added = usageHistory.toggleFavorite(CommandUsageHistory.idOf(command));
-        persistUsage();
+        CommandUsageHistory updated = copyUsageHistory();
+        boolean added;
+        try {
+            added = updated.toggleFavorite(CommandUsageHistory.idOf(command));
+        } catch (IllegalStateException exception) {
+            Toast.makeText(this, R.string.command_favorite_limit, Toast.LENGTH_LONG).show();
+            return;
+        }
+        if (!persistUsage(updated)) return;
         Toast.makeText(this, added ? R.string.command_favorite_added : R.string.command_favorite_removed,
                 Toast.LENGTH_SHORT).show();
         refresh();
     }
 
     private void clearRecent() {
-        usageHistory.clearRecent();
-        persistUsage();
+        CommandUsageHistory updated = copyUsageHistory();
+        updated.clearRecent();
+        if (!persistUsage(updated)) return;
         Toast.makeText(this, R.string.command_recent_cleared, Toast.LENGTH_SHORT).show();
         refresh();
     }
 
-    private void persistUsage() {
+    private CommandUsageHistory copyUsageHistory() {
+        return new CommandUsageHistory(usageHistory.getFavorites(), usageHistory.getRecent());
+    }
+
+    private boolean persistUsage(CommandUsageHistory updated) {
         try {
-            usageStore.save(usageHistory);
+            usageStore.save(updated);
+            usageHistory = updated;
+            return true;
         } catch (RuntimeException exception) {
             Toast.makeText(this, R.string.command_history_save_failed, Toast.LENGTH_LONG).show();
+            return false;
         }
     }
 

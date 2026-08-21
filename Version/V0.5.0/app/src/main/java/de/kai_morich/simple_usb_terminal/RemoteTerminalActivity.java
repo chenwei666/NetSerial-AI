@@ -17,7 +17,6 @@ import android.widget.Toast;
 import android.widget.CompoundButton;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.chenwei666.netserial.device.DeviceProfile;
 import com.chenwei666.netserial.device.DeviceProfileStore;
@@ -36,7 +35,6 @@ import com.chenwei666.netserial.remote.SshConnectionOptions;
 import com.chenwei666.netserial.remote.SshCredentials;
 import com.chenwei666.netserial.remote.SftpTransferListener;
 import com.chenwei666.netserial.remote.TelnetRemoteConnection;
-import com.chenwei666.netserial.settings.AppLocaleController;
 import com.chenwei666.netserial.settings.AppSettings;
 import com.chenwei666.netserial.settings.AppSettingsStore;
 import com.chenwei666.netserial.safety.CommandEvaluationRequest;
@@ -485,11 +483,18 @@ public class RemoteTerminalActivity extends ThemedActivity implements RemoteConn
     public void onStateChanged(RemoteConnectionState state, String detail) {
         runOnUiThread(() -> {
             renderState(state, stateLabel(state));
+            AppAppearanceController.setTerminalSessionActive(this, state == RemoteConnectionState.CONNECTED);
             DeviceProfile profile = new DeviceProfileStore(this).load();
             new ChangeEvidenceRecorder(this).record(ChangeEventType.CONNECTION,
                     targetLabel(profile), state.name());
             if (state == RemoteConnectionState.DISCONNECTED) flushEvidenceOutput();
         });
+    }
+
+    @Override
+    protected void onPause() {
+        AppAppearanceController.setTerminalSessionActive(this, false);
+        super.onPause();
     }
 
     @Override
@@ -597,6 +602,8 @@ public class RemoteTerminalActivity extends ThemedActivity implements RemoteConn
     @Override
     protected void onResume() {
         super.onResume();
+        AppAppearanceController.setTerminalSessionActive(this,
+                connection != null && connection.getState() == RemoteConnectionState.CONNECTED);
         settings = new AppSettingsStore(this).load();
         if (outputText != null) outputText.setTextSize(settings.getTerminalTextSizeSp());
         renderTargetBanner();

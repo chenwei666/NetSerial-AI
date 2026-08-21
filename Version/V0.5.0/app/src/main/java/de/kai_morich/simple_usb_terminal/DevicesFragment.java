@@ -27,9 +27,10 @@ import com.chenwei666.netserial.change.ChangeTask;
 import com.chenwei666.netserial.change.ChangeTaskStore;
 import com.chenwei666.netserial.device.DeviceProfile;
 import com.chenwei666.netserial.device.DeviceProfileStore;
+import com.chenwei666.netserial.device.DeviceEnvironment;
+import com.chenwei666.netserial.device.Vendor;
 
 import java.util.ArrayList;
-import java.util.Locale;
 
 public class DevicesFragment extends ListFragment {
 
@@ -64,6 +65,11 @@ public class DevicesFragment extends ListFragment {
                     view = getActivity().getLayoutInflater().inflate(R.layout.device_list_item, parent, false);
                 TextView text1 = view.findViewById(R.id.text1);
                 TextView text2 = view.findViewById(R.id.text2);
+                if (item.device == null) {
+                    text1.setText(R.string.usb_no_devices);
+                    text2.setText(R.string.usb_no_devices_hint);
+                    return view;
+                }
                 if(item.driver == null)
                     text1.setText(R.string.usb_no_driver);
                 else if(item.driver.getPorts().size() == 1)
@@ -80,7 +86,7 @@ public class DevicesFragment extends ListFragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         setListAdapter(null);
-        View header = getActivity().getLayoutInflater().inflate(R.layout.device_list_header, null, false);
+        View header = getActivity().getLayoutInflater().inflate(R.layout.device_list_header, getListView(), false);
         getListView().addHeaderView(header, null, false);
         getListView().setDivider(null);
         dashboardProfile = header.findViewById(R.id.dashboard_profile);
@@ -170,12 +176,17 @@ public class DevicesFragment extends ListFragment {
                 listItems.add(new ListItem(device, 0, null));
             }
         }
+        if (listItems.isEmpty()) listItems.add(new ListItem(null, 0, null));
         listAdapter.notifyDataSetChanged();
     }
 
     @Override
     public void onListItemClick(@NonNull ListView l, @NonNull View v, int position, long id) {
         ListItem item = listItems.get(position-1);
+        if (item.device == null) {
+            Toast.makeText(getActivity(), R.string.usb_no_devices, Toast.LENGTH_SHORT).show();
+            return;
+        }
         if(item.driver == null) {
             Toast.makeText(getActivity(), R.string.usb_no_driver, Toast.LENGTH_SHORT).show();
         } else {
@@ -198,10 +209,30 @@ public class DevicesFragment extends ListFragment {
         if (dashboardProfile == null || dashboardChangeStatus == null) return;
         DeviceProfile profile = new DeviceProfileStore(requireContext()).load();
         dashboardProfile.setText(getString(R.string.dashboard_profile_format, profile.getName(),
-                profile.getVendor().name(), profile.getEnvironment().name()));
+                vendorLabel(profile.getVendor()), environmentLabel(profile.getEnvironment()),
+                getString(profile.isProtectedDevice() ? R.string.target_protected : R.string.target_unprotected)));
         ChangeTask task = new ChangeTaskStore(requireContext()).loadActive();
         dashboardChangeStatus.setText(task == null ? getString(R.string.dashboard_no_change)
                 : getString(R.string.dashboard_active_change, task.getTicketNumber(), task.getDeviceName()));
+    }
+
+    private String vendorLabel(Vendor vendor) {
+        switch (vendor) {
+            case HUAWEI_VRP: return getString(R.string.vendor_huawei);
+            case CISCO_IOS: return getString(R.string.vendor_cisco);
+            case RUIJIE_RGOS: return getString(R.string.vendor_ruijie);
+            case H3C_COMWARE:
+            default: return getString(R.string.vendor_h3c);
+        }
+    }
+
+    private String environmentLabel(DeviceEnvironment environment) {
+        switch (environment) {
+            case PRODUCTION: return getString(R.string.environment_production);
+            case TEST: return getString(R.string.environment_test);
+            case LAB:
+            default: return getString(R.string.environment_lab);
+        }
     }
 
 }

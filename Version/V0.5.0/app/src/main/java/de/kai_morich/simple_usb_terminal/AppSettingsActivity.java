@@ -7,11 +7,9 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 
 import com.chenwei666.netserial.settings.AppLanguage;
-import com.chenwei666.netserial.settings.AppLocaleController;
 import com.chenwei666.netserial.settings.AppSettings;
 import com.chenwei666.netserial.settings.AppSettingsStore;
 import com.chenwei666.netserial.settings.AccentTheme;
@@ -80,11 +78,12 @@ public class AppSettingsActivity extends ThemedActivity {
     }
 
     private void save() {
+        AppSettings previous = store.load();
+        AppSettings settings;
         try {
-            AppSettings previous = store.load();
             int seconds = Integer.parseInt(timeoutSeconds.getText().toString().trim());
             String[] sizes = getResources().getStringArray(R.array.terminal_text_size_values);
-            AppSettings settings = new AppSettings(
+            settings = new AppSettings(
                     AppLanguage.values()[languageSpinner.getSelectedItemPosition()],
                     telnetSwitch.isChecked(),
                     seconds * 1000,
@@ -96,18 +95,21 @@ public class AppSettingsActivity extends ThemedActivity {
                     AccentTheme.values()[accentThemeSpinner.getSelectedItemPosition()],
                     keepAwakeSwitch.isChecked()
             );
-            store.save(settings);
-            AppLocaleController.apply(settings.getLanguage());
-            AppAppearanceController.applyNightMode(settings.getAppearanceMode());
-            AppAppearanceController.applyWindowPreferences(this);
-            Toast.makeText(this, R.string.settings_saved, Toast.LENGTH_SHORT).show();
-            if (previous.getLanguage() != settings.getLanguage()
-                    || previous.getAppearanceMode() != settings.getAppearanceMode()
-                    || previous.getAccentTheme() != settings.getAccentTheme()) {
-                getWindow().getDecorView().post(this::recreate);
-            }
-        } catch (RuntimeException exception) {
+        } catch (IllegalArgumentException | IndexOutOfBoundsException exception) {
             Toast.makeText(this, R.string.settings_invalid, Toast.LENGTH_LONG).show();
+            return;
+        }
+        try {
+            store.save(settings);
+        } catch (RuntimeException exception) {
+            Toast.makeText(this, R.string.settings_save_failed, Toast.LENGTH_LONG).show();
+            return;
+        }
+        Toast.makeText(this, R.string.settings_saved, Toast.LENGTH_SHORT).show();
+        try {
+            AppAppearanceController.applySavedSettings(this, previous, settings);
+        } catch (RuntimeException exception) {
+            Toast.makeText(this, R.string.settings_apply_restart, Toast.LENGTH_LONG).show();
         }
     }
 

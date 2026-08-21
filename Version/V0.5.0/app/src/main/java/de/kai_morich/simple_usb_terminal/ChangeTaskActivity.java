@@ -7,7 +7,6 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.chenwei666.netserial.change.ChangeEvidenceFormatter;
@@ -17,7 +16,6 @@ import com.chenwei666.netserial.change.ChangeTaskStatus;
 import com.chenwei666.netserial.change.ChangeTaskStore;
 import com.chenwei666.netserial.device.DeviceProfile;
 import com.chenwei666.netserial.device.DeviceProfileStore;
-import com.chenwei666.netserial.settings.AppLocaleController;
 
 import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;

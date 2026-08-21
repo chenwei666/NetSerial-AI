@@ -12,7 +12,6 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.chenwei666.netserial.device.CliMode;
@@ -24,7 +23,6 @@ import com.chenwei666.netserial.memory.MemoryRecord;
 import com.chenwei666.netserial.memory.MemoryScope;
 import com.chenwei666.netserial.memory.MemoryVault;
 import com.chenwei666.netserial.memory.SharedPreferencesMemoryPersistence;
-import com.chenwei666.netserial.settings.AppLocaleController;
 import com.google.gson.Gson;
 
 import java.io.ByteArrayOutputStream;

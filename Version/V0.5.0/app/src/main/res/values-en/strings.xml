@@ -314,7 +314,10 @@
     <string name="dashboard_title">NetSerial AI Operations Hub</string>
     <string name="dashboard_subtitle">Serial, SSH, Telnet, AI, and change safety for switch operations</string>
     <string name="dashboard_quick_actions">Quick tools</string>
-    <string name="dashboard_profile_format">Current device: %1$s · %2$s · %3$s</string>
+    <string name="dashboard_profile_format">Current device: %1$s · %2$s · %3$s · %4$s</string>
+    <string name="environment_lab">Lab</string>
+    <string name="environment_test">Test</string>
+    <string name="environment_production">Production</string>
     <string name="dashboard_no_change">No active change task</string>
     <string name="dashboard_active_change">Active: %1$s · %2$s</string>
     <string name="ai_copilot_short">AI copilot</string>
@@ -322,6 +325,7 @@
     <string name="change_short">Change task</string>
     <string name="usb_no_driver">No compatible driver</string>
     <string name="usb_no_devices">No USB serial devices detected</string>
+    <string name="usb_no_devices_hint">SSH/Telnet, AI, and network tools remain available above</string>
     <string name="usb_driver_port">%1$s · Port %2$d</string>
     <string name="usb_device_ids">Vendor %1$04X · Product %2$04X</string>
     <string name="command_scope_label">View</string>
@@ -331,4 +335,7 @@
     <string name="command_favorite_removed">Removed from favorites</string>
     <string name="command_recent_cleared">Recent commands cleared</string>
     <string name="command_history_save_failed">Could not save favorites or recent commands</string>
+    <string name="command_favorite_limit">Favorite limit reached</string>
+    <string name="settings_save_failed">Could not save settings; existing settings were preserved</string>
+    <string name="settings_apply_restart">Settings were saved; reopen the app to finish applying the appearance</string>
 </resources>

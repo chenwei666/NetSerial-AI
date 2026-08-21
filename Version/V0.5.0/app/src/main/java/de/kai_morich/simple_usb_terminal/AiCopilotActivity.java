@@ -11,7 +11,6 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.chenwei666.netserial.ai.AiProvider;
@@ -37,7 +36,6 @@ import com.chenwei666.netserial.memory.MemoryVault;
 import com.chenwei666.netserial.memory.SharedPreferencesMemoryPersistence;
 import com.chenwei666.netserial.safety.RiskLevel;
 import com.chenwei666.netserial.safety.RuleBasedExecutionGuard;
-import com.chenwei666.netserial.settings.AppLocaleController;
 import com.chenwei666.netserial.terminal.AnsiTextSanitizer;
 import com.chenwei666.netserial.terminal.SensitiveTextRedactor;
 import com.chenwei666.netserial.change.ChangeTask;

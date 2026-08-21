@@ -14,12 +14,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.StringRes;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import com.chenwei666.netserial.settings.AppLocaleController;
 
 import com.chenwei666.netserial.ai.AiProviderCatalog;
 import com.chenwei666.netserial.ai.AiProviderError;

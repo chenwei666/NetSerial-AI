@@ -5,7 +5,6 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.chenwei666.netserial.network.Ipv4Calculator;
@@ -18,7 +17,6 @@ import com.chenwei666.netserial.network.CommonPortCatalog;
 import com.chenwei666.netserial.network.PortReference;
 import com.chenwei666.netserial.network.NetworkIdentifierExtractor;
 import com.chenwei666.netserial.network.NetworkProbeService;
-import com.chenwei666.netserial.settings.AppLocaleController;
 import com.chenwei666.netserial.settings.AppSettingsStore;
 
 import java.util.concurrent.ExecutorService;

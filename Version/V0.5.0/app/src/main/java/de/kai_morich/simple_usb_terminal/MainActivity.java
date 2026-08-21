@@ -3,13 +3,11 @@ package de.kai_morich.simple_usb_terminal;
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.FragmentManager;
-import com.chenwei666.netserial.settings.AppLocaleController;
 
 public class MainActivity extends ThemedActivity implements FragmentManager.OnBackStackChangedListener {
 

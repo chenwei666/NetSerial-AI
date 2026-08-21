@@ -323,7 +323,10 @@
     <string name="dashboard_title">NetSerial AI 运维工作台</string>
     <string name="dashboard_subtitle">串口、SSH、Telnet、AI 与变更安全，一站式完成交换机运维</string>
     <string name="dashboard_quick_actions">快捷工具</string>
-    <string name="dashboard_profile_format">当前设备：%1$s · %2$s · %3$s</string>
+    <string name="dashboard_profile_format">当前设备：%1$s · %2$s · %3$s · %4$s</string>
+    <string name="environment_lab">实验环境</string>
+    <string name="environment_test">测试环境</string>
+    <string name="environment_production">生产环境</string>
     <string name="dashboard_no_change">当前没有进行中的变更任务</string>
     <string name="dashboard_active_change">进行中：%1$s · %2$s</string>
     <string name="ai_copilot_short">AI 助手</string>
@@ -331,6 +334,7 @@
     <string name="change_short">变更任务</string>
     <string name="usb_no_driver">未找到兼容驱动</string>
     <string name="usb_no_devices">未检测到 USB 串口设备</string>
+    <string name="usb_no_devices_hint">仍可使用上方 SSH/Telnet、AI 与网络工具</string>
     <string name="usb_driver_port">%1$s · 端口 %2$d</string>
     <string name="usb_device_ids">厂商 %1$04X · 产品 %2$04X</string>
     <string name="command_scope_label">查看范围</string>
@@ -340,4 +344,7 @@
     <string name="command_favorite_removed">已移出收藏</string>
     <string name="command_recent_cleared">最近使用记录已清空</string>
     <string name="command_history_save_failed">无法保存收藏或最近使用记录</string>
+    <string name="command_favorite_limit">收藏数量已达到上限</string>
+    <string name="settings_save_failed">设置保存失败，原设置未被覆盖</string>
+    <string name="settings_apply_restart">设置已保存；请重新打开应用使外观完全生效</string>
 </resources>

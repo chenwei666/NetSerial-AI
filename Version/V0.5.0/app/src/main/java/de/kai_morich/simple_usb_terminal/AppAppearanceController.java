@@ -6,6 +6,7 @@ import android.view.WindowManager;
 import androidx.appcompat.app.AppCompatDelegate;
 
 import com.chenwei666.netserial.settings.AccentTheme;
+import com.chenwei666.netserial.settings.AppLocaleController;
 import com.chenwei666.netserial.settings.AppSettings;
 import com.chenwei666.netserial.settings.AppSettingsStore;
 import com.chenwei666.netserial.settings.AppearanceMode;
@@ -14,14 +15,15 @@ public final class AppAppearanceController {
     private AppAppearanceController() {
     }
 
-    public static void applyBeforeCreate(Activity activity) {
+    public static AppSettings applyBeforeCreate(Activity activity) {
         AppSettings settings = new AppSettingsStore(activity).load();
         AppCompatDelegate.setDefaultNightMode(toNightMode(settings.getAppearanceMode()));
         activity.setTheme(toThemeResource(settings.getAccentTheme()));
+        return settings;
     }
 
-    public static void applyWindowPreferences(Activity activity) {
-        boolean keepAwake = new AppSettingsStore(activity).load().isKeepScreenAwake();
+    public static void setTerminalSessionActive(Activity activity, boolean active) {
+        boolean keepAwake = active && new AppSettingsStore(activity).load().isKeepScreenAwake();
         if (keepAwake) {
             activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         } else {
@@ -31,6 +33,16 @@ public final class AppAppearanceController {
 
     public static void applyNightMode(AppearanceMode mode) {
         AppCompatDelegate.setDefaultNightMode(toNightMode(mode));
+    }
+
+    public static void applySavedSettings(Activity activity, AppSettings previous, AppSettings current) {
+        AppLocaleController.apply(current.getLanguage());
+        applyNightMode(current.getAppearanceMode());
+        if (previous.getLanguage() != current.getLanguage()
+                || previous.getAppearanceMode() != current.getAppearanceMode()
+                || previous.getAccentTheme() != current.getAccentTheme()) {
+            activity.getWindow().getDecorView().post(activity::recreate);
+        }
     }
 
     private static int toNightMode(AppearanceMode mode) {

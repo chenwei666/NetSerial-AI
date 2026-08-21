@@ -147,7 +147,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="#101010"
+        android:background="@color/terminal_background"
         android:fillViewport="true">
 
         <TextView
@@ -156,7 +156,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="monospace"
             android:padding="8dp"
-            android:textColor="#E8E8E8"
+            android:textColor="@color/terminal_foreground"
             android:textIsSelectable="true" />
     </ScrollView>
 
