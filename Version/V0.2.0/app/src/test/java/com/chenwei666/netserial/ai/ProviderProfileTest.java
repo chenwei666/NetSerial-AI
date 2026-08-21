@@ -50,4 +50,22 @@ public class ProviderProfileTest {
                 "credential-compatible-main"
         );
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void remoteProfileRejectsOversizedModel() {
+        ProviderProfile.remote(
+                "openai-compatible",
+                "https://ai.example.com/v1",
+                repeat('m', 257),
+                "credential-compatible-main"
+        );
+    }
+
+    private static String repeat(char value, int count) {
+        StringBuilder result = new StringBuilder(count);
+        for (int index = 0; index < count; index++) {
+            result.append(value);
+        }
+        return result.toString();
+    }
 }

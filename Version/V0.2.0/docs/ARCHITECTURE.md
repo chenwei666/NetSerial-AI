@@ -26,6 +26,12 @@ Android 6.0 以下设备明确拒绝启用 AI 凭据存储，不允许回退到�
 
 `UrlConnectionChatHttpTransport` 只接受 HTTPS，禁止自动重定向，固定连接/读取超时，限制响应为 512 KiB，支持主动取消，并丢弃非成功响应正文。`TerminalContextSanitizer` 在编码请求前遮蔽可能包含 API Key、密码、Token、团体字或共享密钥的整行内容。
 
+### ProviderProfileManager 与设置 UI
+
+`ProviderProfileManager` 通过 `ProviderProfilePersistence` 深接口管理最多 32 个配置和一个活动配置。`ProviderProfilesJsonCodec` 只序列化厂商 ID、HTTPS 地址、模型和凭据别名；`SharedPreferencesProviderProfilePersistence` 以单文档提交，避免多字段部分写入。损坏文档、重复别名、未知厂商和悬空活动别名均被整体拒绝，不做静默部分恢复。
+
+`AiProviderSettingsActivity` 是独立设置页面，通过 `ProviderProfileManager` 和 `ProviderCredentialService` 协调配置与密钥，不依赖串口连接。菜单可从设备页或终端页进入。`AiConnectionTestCoordinator` 独立管理单线程请求、主动取消和生命周期关闭；连接测试只在用户确认后调用通用兼容适配器，并使用空终端上下文。Claude 原生协议和 Ollama 本地模式不会误走这一测试路径。
+
 ### TerminalControlEncoder
 
 把终端控制键转换成原始协议字节。V0.1.0 只开放 TAB，UI 不自行拼接字节或换行。
@@ -37,16 +43,22 @@ Android UI / TerminalFragment
   -> TerminalControlEncoder
   -> CompletionEngine
 
-Future AI UI
+AiProviderSettingsActivity
+  -> ProviderProfileManager
+       -> ProviderProfilesJsonCodec
+       -> SharedPreferencesProviderProfilePersistence
+  -> ProviderCredentialService
+       -> CredentialVault
+            -> Android Keystore AES-GCM
+            -> Encrypted SharedPreferences records
+
+Future AI conversation UI
   -> AiCopilot / SafeAiCopilot
        -> OpenAiCompatibleProvider
             -> OpenAiCompatibleJsonCodec
             -> ChatHttpTransport
        -> ExecutionGuard
-  -> ProviderCredentialService
-       -> CredentialVault
-            -> Android Keystore AES-GCM
-            -> Encrypted SharedPreferences records
+  -> active ProviderProfile
 ```
 
 串口终端和离线补全不依赖 AI 网络。供应商适配器不能直接访问串口写入接口。

@@ -18,10 +18,13 @@ NetSerial AI is an Android USB serial terminal for network operations engineers.
 - An `OpenAiCompatibleProvider` for configurable HTTPS endpoints, models, Bearer authentication, and `/chat/completions` text command planning.
 - Redaction, timeouts, response-size limits, cancellation, redirect blocking, and safe error classification for AI requests.
 - Chinese default resources and English system-locale resources.
+- A bilingual in-app AI settings screen with create, edit, delete, active-profile selection, official defaults, and up to 32 provider profiles.
+- API-key input is excluded from profile JSON, autofill, instance-state persistence, screenshots, and recent-task previews, and is cleared when leaving the screen.
+- An explicit minimal connection test that sends no real terminal history and can be cancelled.
 
 ## Current limitations
 
-- The common compatible HTTP adapter is complete, but the API-key settings screen and live provider acceptance tests are not implemented yet.
+- The common compatible HTTP adapter and API-key settings screen are complete, but no real provider key is configured in this project, so live acceptance remains pending.
 - AI credential storage requires Android 6.0 or newer. Android 5.x keeps serial and offline features, but credentials never fall back to plaintext storage.
 - The offline command pack is still a minimal H3C architecture-validation set.
 - The APK has not yet been tested on a physical Android device, USB serial cable, or switch.

@@ -3,6 +3,7 @@ package de.kai_morich.simple_usb_terminal;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.hardware.usb.UsbDevice;
 import android.hardware.usb.UsbManager;
 import android.os.Bundle;
@@ -109,6 +110,9 @@ public class DevicesFragment extends ListFragment {
                 }
             });
             builder.create().show();
+            return true;
+        } else if (id == R.id.ai_settings) {
+            startActivity(new Intent(getActivity(), AiProviderSettingsActivity.class));
             return true;
         } else {
             return super.onOptionsItemSelected(item);

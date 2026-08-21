@@ -30,6 +30,10 @@
         android:checkable="true"
         app:showAsAction="never" />
     <item
+        android:id="@+id/ai_settings"
+        android:title="@string/ai_settings_menu"
+        app:showAsAction="never" />
+    <item
         android:id="@+id/sendBreak"
         android:title="Send BREAK"
         app:showAsAction="never" />
