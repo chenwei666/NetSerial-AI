@@ -2,11 +2,13 @@
 
 [中文](README.md) | [English](README_EN.md)
 
-Current development version: **V0.3.0**. Stable baseline: **V0.1.0**.
+Current production release: **V0.3.1**. Stable baseline: **V0.1.0**.
 
 NetSerial AI is an Android terminal for network engineers who maintain H3C, Huawei, Cisco, and Ruijie switches. It combines USB Console, SSH, explicitly enabled Telnet, real TAB input, a categorized command library, multiple AI-provider APIs, device memory, and local command-risk checks.
 
-## New in V0.3.0
+## V0.3.1 production release
+
+- First production-signed Release APK, using a dedicated RSA-4096 long-term certificate, Android V1/V2/V3 signatures, ZIP alignment, and post-release hash verification.
 
 - Interactive SSH terminal. Passwords remain in memory only; first connections require manual host-key fingerprint verification; changed keys are blocked.
 - Interactive Telnet terminal. Telnet is disabled by default and every connection requires a plaintext-risk confirmation. Use it only on an isolated management network.
@@ -18,14 +20,15 @@ NetSerial AI is an Android terminal for network engineers who maintain H3C, Huaw
 
 ## Documentation and source
 
-- [V0.3.0 Chinese guide](Version/V0.3.0/README.md)
-- [V0.3.0 English guide](Version/V0.3.0/README_EN.md)
-- [Remote connections and security](Version/V0.3.0/docs/REMOTE_CONNECTIONS.md)
-- [Architecture](Version/V0.3.0/docs/ARCHITECTURE.md)
-- [Test report](Version/V0.3.0/docs/TEST_REPORT.md)
+- [V0.3.1 Chinese guide](Version/V0.3.1/README.md)
+- [V0.3.1 English guide](Version/V0.3.1/README_EN.md)
+- [Release and signing guide](Version/V0.3.1/docs/RELEASE.md)
+- [Remote connections and security](Version/V0.3.1/docs/REMOTE_CONNECTIONS.md)
+- [Architecture](Version/V0.3.1/docs/ARCHITECTURE.md)
+- [Test report](Version/V0.3.1/docs/TEST_REPORT.md)
 - [Full feature plan](FULL_AI_FEATURE_COMPLETION_PLAN.md)
 - [Original APK analysis](ANALYSIS_AND_COMPLETION_PLAN.md)
 
-The repository contains no real API keys, tokens, switch accounts, passwords, or site configuration. Automated tests, Android Lint, and a Debug build do not replace acceptance testing on a physical Android device and real switches.
+The repository contains no real API keys, tokens, switch accounts, passwords, production signing material, or site configuration. Automated tests, Android Lint, and a production build do not replace acceptance testing on a physical Android device and real switches.
 
 Developer: chenwei666.
