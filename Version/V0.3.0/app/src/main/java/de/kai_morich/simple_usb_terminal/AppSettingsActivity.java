@@ -1,0 +1,105 @@
+package de.kai_morich.simple_usb_terminal;
+
+import android.app.AlertDialog;
+import android.os.Bundle;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SwitchCompat;
+
+import com.chenwei666.netserial.settings.AppLanguage;
+import com.chenwei666.netserial.settings.AppLocaleController;
+import com.chenwei666.netserial.settings.AppSettings;
+import com.chenwei666.netserial.settings.AppSettingsStore;
+
+import java.io.File;
+
+public class AppSettingsActivity extends AppCompatActivity {
+    private Spinner languageSpinner;
+    private SwitchCompat telnetSwitch;
+    private EditText timeoutSeconds;
+    private Spinner textSizeSpinner;
+    private Spinner charsetSpinner;
+    private AppSettingsStore store;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        AppLocaleController.applyStoredLanguage(this);
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_app_settings);
+        setTitle(R.string.app_settings_title);
+        store = new AppSettingsStore(this);
+        languageSpinner = findViewById(R.id.settings_language);
+        telnetSwitch = findViewById(R.id.settings_telnet_enabled);
+        timeoutSeconds = findViewById(R.id.settings_timeout);
+        textSizeSpinner = findViewById(R.id.settings_text_size);
+        charsetSpinner = findViewById(R.id.settings_charset);
+        bindSpinner(languageSpinner, R.array.app_languages);
+        bindSpinner(textSizeSpinner, R.array.terminal_text_sizes);
+        bindSpinner(charsetSpinner, R.array.remote_charsets);
+        render(store.load());
+        findViewById(R.id.settings_save).setOnClickListener(v -> save());
+        findViewById(R.id.settings_forget_hosts).setOnClickListener(v -> confirmForgetHosts());
+    }
+
+    private void bindSpinner(Spinner spinner, int arrayId) {
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, arrayId, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+    }
+
+    private void render(AppSettings settings) {
+        languageSpinner.setSelection(settings.getLanguage().ordinal());
+        telnetSwitch.setChecked(settings.isTelnetEnabled());
+        timeoutSeconds.setText(String.valueOf(settings.getRemoteTimeoutMillis() / 1000));
+        String[] sizes = getResources().getStringArray(R.array.terminal_text_size_values);
+        textSizeSpinner.setSelection(indexOf(sizes, String.valueOf(settings.getTerminalTextSizeSp())));
+        String[] charsets = getResources().getStringArray(R.array.remote_charsets);
+        charsetSpinner.setSelection(indexOf(charsets, settings.getRemoteCharset()));
+    }
+
+    private void save() {
+        try {
+            int seconds = Integer.parseInt(timeoutSeconds.getText().toString().trim());
+            String[] sizes = getResources().getStringArray(R.array.terminal_text_size_values);
+            AppSettings settings = new AppSettings(
+                    AppLanguage.values()[languageSpinner.getSelectedItemPosition()],
+                    telnetSwitch.isChecked(),
+                    seconds * 1000,
+                    Integer.parseInt(sizes[textSizeSpinner.getSelectedItemPosition()]),
+                    charsetSpinner.getSelectedItem().toString()
+            );
+            store.save(settings);
+            AppLocaleController.apply(settings.getLanguage());
+            Toast.makeText(this, R.string.settings_saved, Toast.LENGTH_SHORT).show();
+        } catch (RuntimeException exception) {
+            Toast.makeText(this, R.string.settings_invalid, Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private void confirmForgetHosts() {
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.settings_forget_hosts)
+                .setMessage(R.string.settings_forget_hosts_warning)
+                .setNegativeButton(android.R.string.cancel, null)
+                .setPositiveButton(R.string.forget, (dialog, which) -> forgetHosts())
+                .show();
+    }
+
+    private void forgetHosts() {
+        File file = new File(getFilesDir(), "ssh_known_hosts");
+        if (!file.exists() || file.delete()) {
+            Toast.makeText(this, R.string.settings_hosts_forgotten, Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, R.string.settings_hosts_forget_failed, Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private static int indexOf(String[] values, String target) {
+        for (int i = 0; i < values.length; i++) if (values[i].equalsIgnoreCase(target)) return i;
+        return 0;
+    }
+}

@@ -1,0 +1,38 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    compileSdkVersion 36
+    defaultConfig {
+        targetSdkVersion 36
+        minSdkVersion 21
+        vectorDrawables.useSupportLibrary true
+
+        applicationId "com.chenwei666.netserial"
+        versionCode 2
+        versionName "0.2.0"
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    buildFeatures {
+        buildConfig true
+    }
+    namespace 'de.kai_morich.simple_usb_terminal'
+}
+
+dependencies {
+    implementation libs.usb.serial.for.android
+    implementation libs.androidx.appcompat
+    implementation libs.material
+    implementation libs.gson
+    testImplementation libs.junit
+}

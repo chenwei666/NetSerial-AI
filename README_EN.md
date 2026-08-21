@@ -1,18 +1,34 @@
-# NetSerial AI Android Network Operations Terminal
+# NetSerial AI Android Switch Operations Terminal
 
 [中文](README.md) | [English](README_EN.md)
 
-Current buildable version: **V0.1.0**.
+Current production release: **V0.3.1**. Stable baseline: **V0.1.0**.
 
-- [V0.1.0 source and version documentation](Version/V0.1.0/README_EN.md)
-- [Full feature completion plan (Chinese)](FULL_AI_FEATURE_COMPLETION_PLAN.md)
-- [Original APK analysis (Chinese)](ANALYSIS_AND_COMPLETION_PLAN.md)
-- [V0.1.0 test report (Chinese)](Version/V0.1.0/docs/TEST_REPORT.md)
+NetSerial AI is an Android terminal for network engineers who maintain H3C, Huawei, Cisco, and Ruijie switches. It combines USB Console, SSH, explicitly enabled Telnet, real TAB input, a categorized command library, multiple AI-provider APIs, device memory, and local command-risk checks.
 
-NetSerial AI is an Android USB serial terminal designed for network operations engineers working with switches and other CLI-driven network equipment. V0.1.0 establishes a trusted USB serial baseline, a native TAB key, offline command completion, deterministic command-risk checks, a pluggable multi-provider AI seam, and a safety layer that prevents AI output from bypassing local policy.
+## V0.3.1 production release
 
-The project is based on the MIT-licensed [SimpleUsbTerminal](https://github.com/kai-morich/SimpleUsbTerminal). It currently supports the existing USB serial features inherited from that baseline, an initial H3C completion pack, R0-R4 local risk classification, and provider definitions for OpenAI, Claude/Anthropic, Gemini, DeepSeek, Qwen, Kimi, OpenAI-compatible endpoints, and Ollama.
+- First production-signed Release APK, using a dedicated RSA-4096 long-term certificate, Android V1/V2/V3 signatures, ZIP alignment, and post-release hash verification.
 
-Live AI HTTP adapters, in-app credential management, structured memory, a full vendor command knowledge base, and real-device acceptance testing are planned for later versions. No real API key, token, account, or device password is included in the repository.
+- Interactive SSH terminal. Passwords remain in memory only; first connections require manual host-key fingerprint verification; changed keys are blocked.
+- Interactive Telnet terminal. Telnet is disabled by default and every connection requires a plaintext-risk confirmation. Use it only on an isolated management network.
+- Ten command categories for four vendors: device information, interfaces, VLAN, Layer 3, routing, spanning tree, link aggregation, security, troubleshooting, and save/backup.
+- USB and remote terminals share command drafts, AI drafts, real TAB/ESC/Ctrl+C/arrow shortcuts, and deterministic R0–R4 risk rules.
+- High-risk commands require confirmation. Restart, erase, and upgrade commands require typing `EXECUTE`.
+- App settings cover system/Chinese/English language, Telnet enablement, timeout, terminal text size, UTF-8/GBK/ISO-8859-1 encoding, and SSH known-host management.
+- Existing OpenAI, Claude/Anthropic, Gemini, DeepSeek, Qwen, Kimi, Ollama-over-HTTPS, and custom OpenAI-compatible APIs remain supported.
+
+## Documentation and source
+
+- [V0.3.1 Chinese guide](Version/V0.3.1/README.md)
+- [V0.3.1 English guide](Version/V0.3.1/README_EN.md)
+- [Release and signing guide](Version/V0.3.1/docs/RELEASE.md)
+- [Remote connections and security](Version/V0.3.1/docs/REMOTE_CONNECTIONS.md)
+- [Architecture](Version/V0.3.1/docs/ARCHITECTURE.md)
+- [Test report](Version/V0.3.1/docs/TEST_REPORT.md)
+- [Full feature plan](FULL_AI_FEATURE_COMPLETION_PLAN.md)
+- [Original APK analysis](ANALYSIS_AND_COMPLETION_PLAN.md)
+
+The repository contains no real API keys, tokens, switch accounts, passwords, production signing material, or site configuration. Automated tests, Android Lint, and a production build do not replace acceptance testing on a physical Android device and real switches.
 
 Developer: chenwei666.

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="12dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="8dp"
+        android:text="@string/command_library_title"
+        android:textSize="22sp"
+        android:textStyle="bold" />
+
+    <Spinner
+        android:id="@+id/command_vendor"
+        android:layout_width="match_parent"
+        android:layout_height="48dp" />
+
+    <Spinner
+        android:id="@+id/command_category"
+        android:layout_width="match_parent"
+        android:layout_height="48dp" />
+
+    <EditText
+        android:id="@+id/command_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/command_search_hint"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        android:maxLength="80"
+        android:singleLine="true" />
+
+    <TextView
+        android:id="@+id/command_count"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp" />
+
+    <ListView
+        android:id="@+id/command_list"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:dividerHeight="1dp" />
+</LinearLayout>

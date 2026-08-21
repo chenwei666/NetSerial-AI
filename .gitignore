@@ -18,9 +18,11 @@ Thumbs.db
 keystore.properties
 *.jks
 *.keystore
+*.p12
+*.dpapi
+release-signing.json
 
 # Generated artifacts
 artifacts/
 *.apk
 *.aab
-

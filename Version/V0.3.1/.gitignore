@@ -1,0 +1,13 @@
+*.iml
+/.gradle/
+/.idea/
+/local.properties
+/app/build/
+/build/
+*.apk
+*.aab
+*.jks
+*.keystore
+*.p12
+*.dpapi
+release-signing.json
