@@ -2,7 +2,7 @@
 
 <img src="Version/V0.5.0/design/app-icon-512.png" width="144" alt="NetSerial AI app icon">
 
-> A modern Android switch terminal for network engineers, combining USB Console, SSH, controlled Telnet, multi-vendor commands, Tab completion, an AI copilot, and a safety-focused change workflow.
+> An Android field terminal for network engineers, bringing USB Console, SSH/SFTP, controlled Telnet, multi-vendor switch commands, AI-assisted command review, and a safety-focused change workflow to one phone.
 
 [中文](README.md) | [English](README_EN.md)
 
@@ -11,7 +11,23 @@
 [![Theme](https://img.shields.io/badge/UI-Material%203-6750A4)](Version/V0.5.0/README_EN.md)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-NetSerial AI is built for engineers operating H3C, Huawei, Cisco, and Ruijie switches. It preserves the direct workflow of a serial terminal while adding remote access, offline command assistance, compatible AI APIs, local memory, change evidence, and deterministic safety gates. AI drafts, checks, and explains; the engineer always controls the final send action.
+NetSerial AI is built for engineers operating H3C, Huawei, Cisco, and Ruijie switches. It works as a dependable USB serial terminal and also reaches remote or legacy equipment through SSH/SFTP and explicitly authorized Telnet. Offline commands, Tab completion, network diagnostics, configuration Diff, change evidence, and an AI copilot with built-in or custom compatible providers share the same guarded workflow. AI drafts, checks, and explains; the engineer always controls the final send action.
+
+## Release status and version history
+
+- Current stable release: [V0.3.1](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.3.1), the first long-term production-signed build.
+- Latest feature candidate: [V0.5.0](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.5.0), with the modern UI, dark mode, four themes, and the new app icon.
+- V0.2.0 and V0.3.0 are source-only historical checkpoints with no verified APK. V0.4.0 and V0.5.0 include production-signed candidate APKs and still require real-device and switch acceptance.
+- See the complete [version history](VERSION_HISTORY_EN.md). Every immutable source archive remains under [`Version/`](Version/).
+
+| Version | Status | Milestone |
+|---|---|---|
+| V0.1.0 | Trusted Debug baseline | USB serial, real Tab, offline completion, R0-R4 safety model |
+| V0.2.0 | Historical source checkpoint | Multi-provider AI, encrypted API keys, local memory, four-vendor completion |
+| V0.3.0 | Historical source checkpoint | SSH, controlled Telnet, categorized command library, bilingual settings |
+| V0.3.1 | Stable production release | Production signing, complete release gates, in-place upgrade baseline |
+| V0.4.0 | Release candidate | Change tasks, configuration Diff, network tools, SFTP, jump hosts |
+| V0.5.0 | Latest candidate | Material 3, light/dark modes, four themes, operations dashboard, new icon |
 
 ## V0.5.0 highlights
 

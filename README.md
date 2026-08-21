@@ -2,7 +2,7 @@
 
 <img src="Version/V0.5.0/design/app-icon-512.png" width="144" alt="NetSerial AI 应用图标">
 
-> 为网络运维工程师打造的现代化 Android 交换机终端：USB Console、SSH、受控 Telnet、多厂商命令库、Tab 补全、AI Copilot 与变更安全工作流。
+> 面向网络运维工程师的 Android 移动终端：把 USB Console、SSH/SFTP、受控 Telnet、多厂商交换机命令、AI 命令审查与变更安全工作流装进一部手机。
 
 [中文](README.md) | [English](README_EN.md)
 
@@ -11,7 +11,23 @@
 [![Theme](https://img.shields.io/badge/UI-Material%203-6750A4)](Version/V0.5.0/README.md)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-NetSerial AI 面向经常维护 H3C、华为、Cisco、锐捷交换机的网络工程师。它保留传统串口终端的直接与可靠，同时整合远程连接、离线命令辅助、任意兼容 AI API、本地记忆、变更留证和确定性的安全门禁。AI 只生成、检查和解释草稿，最终发送始终由工程师确认。
+NetSerial AI 面向经常维护 H3C、华为、Cisco、锐捷交换机的网络工程师。它既能作为可靠的 USB 串口终端，也能通过 SSH/SFTP 或经明确授权的 Telnet 连接旧设备；内置命令库、Tab 补全、网络诊断、配置 Diff、变更留证，以及可接入主流厂商或自定义兼容接口的 AI Copilot。AI 只生成、检查和解释草稿，任何命令最终仍由工程师确认发送。
+
+## 发布状态与版本历史
+
+- 当前稳定正式版：[V0.3.1](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.3.1)，首次启用长期生产签名。
+- 最新功能候选版：[V0.5.0](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.5.0)，包含现代化界面、深色模式、四套主题和全新图标。
+- V0.2.0、V0.3.0 是历史源码检查点，没有发布可验证 APK；V0.4.0、V0.5.0 提供生产证书签名的候选 APK，仍需真实设备和交换机验收。
+- 完整演进、兼容性和下载说明见 [版本历史](VERSION_HISTORY.md)；全部版本源码保存在 [`Version/`](Version/) 中，历史归档不覆盖。
+
+| 版本 | 定位 | 主要里程碑 |
+|---|---|---|
+| V0.1.0 | 可信基线 / Debug | USB 串口、真实 Tab、离线补全、R0-R4 安全模型 |
+| V0.2.0 | 历史源码检查点 | 多 AI 厂商、加密 API Key、本地记忆、四厂商补全 |
+| V0.3.0 | 历史源码检查点 | SSH、受控 Telnet、分类命令库、中英文设置 |
+| V0.3.1 | 稳定正式版 | 生产签名、完整 Release 门禁、后续覆盖升级基线 |
+| V0.4.0 | 候选版 | 变更任务、配置 Diff、网络工具、SFTP、跳板机 |
+| V0.5.0 | 最新候选版 | Material 3、深浅模式、四套主题、运维工作台、新图标 |
 
 ## V0.5.0
 

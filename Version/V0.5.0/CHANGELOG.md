@@ -35,6 +35,7 @@
 - 命令库改为现代卡片筛选区，并在收藏命令前显示星标。
 - 终端收发和状态颜色增加深色模式专用配色。
 - 命令使用记录仅保存内置目录标识，不采集终端输入、账号、密码、Token 或设备配置。
+- 重写 GitHub 中英文项目定位，新增 V0.1.0 至 V0.5.0 的完整版本演进、发布状态、制品可信边界和升级关系说明。
 
 ### 删除内容
 
@@ -51,6 +52,7 @@
 - `app/src/main/res/mipmap-*/ic_launcher.png`、`design/app-icon-{master,512}.png`
 - `app/src/test/java/com/chenwei666/netserial/{settings,commands}`
 - `README.md`、`README_EN.md`、`docs/*`、`scripts/build.ps1`
+- 根目录 `VERSION_HISTORY.md`、`VERSION_HISTORY_EN.md`
 
 ### 影响模块
 
