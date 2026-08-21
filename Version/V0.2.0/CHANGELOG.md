@@ -10,12 +10,21 @@
 - versionCode/versionName 更新为 `2` / `0.2.0`。
 - 开始实现 `ProviderProfile` 与 `CredentialVault` 安全 seam。
 - `ProviderProfile` 只保存凭据别名，远程端点强制为绝对 HTTPS 地址。
+- 新增 `SecureCredentialVault`，凭据明文只在受控回调期间可用，成功或异常退出后立即清零临时缓冲区。
+- 新增 `AndroidKeystoreSecretCipher`，使用 Android Keystore AES-GCM 加密厂商 API Key。
+- 新增 `SharedPreferencesCredentialRecordStore`，只持久化格式版本、随机 IV 和密文。
+- 新增 `ProviderCredentialService`，按照 `ProviderProfile.credentialAlias` 隔离不同 AI 厂商凭据。
+- 将凭据别名加入 AES-GCM 附加认证数据，阻止密文记录跨厂商替换。
+- Android 6.0 以下保留原有串口和离线功能，但明确禁用 AI 凭据存储，不进行明文降级。
+- 新增凭据保存、回调使用、异常清零、删除、输入校验、多厂商隔离和密文替换防护测试；当前共 16 项单元测试通过。
 
 ### 数据库、接口与兼容性
 
 - 暂无数据库变更。
 - V0.1.0 串口、TAB、补全和风险接口保持兼容。
-- 新接口和最终升级说明将在本版本完成时补齐。
+- 新增 `CredentialVault`、`CredentialOperation`、`ProviderCredentialService`、`SecretCipher` 和 `CredentialRecordStore` 接口。
+- AI 凭据功能要求 Android 6.0 或更高版本，应用整体最低版本仍保持 Android 5.0。
+- 最终升级说明将在本版本完成时补齐。
 
 ## V0.1.0 - 2026-08-21
 

@@ -4,10 +4,14 @@
 
 ## 当前开发检查点
 
-- `testDebugUnitTest`：9 项通过，0 失败，0 错误。
+- `testDebugUnitTest`：16 项通过，0 失败，0 错误。
 - 已验证 HTTPS Profile 可保存供应商、模型和凭据别名。
 - 已验证远程 Profile 拒绝明文 HTTP 端点。
-- 完整 Lint、APK 构建和硬件验收仍待本版本完成后执行。
+- 已验证凭据明文只在回调期间可用，并在成功和异常路径结束后清零。
+- 已验证保存记录不包含原始凭据，多厂商凭据按别名隔离且删除互不影响。
+- 已验证空凭据和空别名会被拒绝。
+- 已验证密文记录移动到其他别名后认证失败，不能造成跨厂商凭据替换。
+- 当前开发检查点的 Lint 和 Debug APK 构建已通过；硬件验收仍待本版本完成后执行。
 
 - 日期：2026-08-21
 - 测试人员：chenwei666
@@ -18,7 +22,7 @@
 
 | 门禁 | 结果 |
 |---|---|
-| `testDebugUnitTest` | 7 项通过，0 失败，0 错误 |
+| `testDebugUnitTest` | 16 项通过，0 失败，0 错误 |
 | `lintDebug` | 通过，0 阻断错误 |
 | `assembleDebug` | 通过 |
 | `git diff --check` | 通过 |
@@ -33,15 +37,18 @@
 - TAB 编码严格为单字节 `0x09`，不附加换行。
 - 默认 AI 目录覆盖八种供应商/兼容模式。
 - `SafeAiCopilot` 会重新评估不可信供应商返回的命令。
+- `CredentialVault` 在回调成功和失败后清零明文缓冲区。
+- `ProviderCredentialService` 按 Profile 凭据别名隔离多个 AI 厂商。
+- AES-GCM 附加认证数据阻止密文记录跨别名替换。
 
 ## APK 验证
 
 - applicationId：`com.chenwei666.netserial`
-- versionName/versionCode：`0.1.0` / `1`
+- versionName/versionCode：`0.2.0` / `2`
 - minSdk/targetSdk：`21` / `36`
 - Debug 签名：v1、v2 验证通过
-- SHA-256：`f8129d2c7663ae5f2c762f689a4167ddc0b173996be4db57049cd7c6404d3763`
-- ASCII 构建产物与交付副本：哈希一致
+- 当前开发构建 SHA-256：`53f38ed129324b6a08844262b66e374c54513a62ac1bef20041294924ae72a67`
+- 当前构建产物：`C:\tmp\NetSerial-build\app\build\outputs\apk\debug\app-debug.apk`，尚未作为正式版本发布
 
 ## 未完成的测试
 

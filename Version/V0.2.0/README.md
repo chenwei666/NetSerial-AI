@@ -13,10 +13,13 @@ NetSerial AI 是面向网络运维工程师的 Android USB 串口终端。V0.2.0
 - `ExecutionGuard` 本地风险接口，能够把 `reboot` 识别为 R4，并把 `display ...` 识别为 R1。
 - `AiProviderCatalog`，覆盖 OpenAI、Claude、Gemini、DeepSeek、通义千问、Kimi、OpenAI-compatible 和 Ollama。
 - `SafeAiCopilot`，所有厂商返回的命令都必须重新经过本地风险判断；AI 不能降低本地风险等级。
+- `CredentialVault`，使用 Android Keystore AES-GCM 加密 API Key，配置对象仅保存凭据别名，明文只在受控回调期间短暂可用并在回调后清零。
+- 多厂商凭据按别名隔离，别名同时参与 AES-GCM 认证，复制密文记录也不能串用其他厂商的密钥。
 
 ## 当前限制
 
-- 尚未实现真实 AI HTTP 适配器、API Key 设置界面和 Android Keystore 凭据保存。
+- 尚未实现真实 AI HTTP 适配器和 API Key 设置界面；底层安全凭据仓库已经完成。
+- AI 密钥存储要求 Android 6.0 或更高版本；Android 5.x 仍可继续使用串口和离线功能，但不会降级为明文保存密钥。
 - 离线命令包目前只有用于验证架构的 H3C 最小集合，华为/Cisco/锐捷命令包尚未导入。
 - 尚未在真实 Android 手机、USB 转串口线和交换机上验收。
 - UI 仍保留可信上游基线的简单终端布局，完整设备档案、AI 面板和补全候选面板将在后续版本加入。
