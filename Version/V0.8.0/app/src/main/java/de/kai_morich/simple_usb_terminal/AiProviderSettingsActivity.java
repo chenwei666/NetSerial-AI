@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
@@ -65,6 +66,7 @@ public final class AiProviderSettingsActivity extends ThemedActivity {
     private boolean updatingUi;
     private RequestCancellation modelCancellation;
     private final ModelSyncGuard modelSyncGuard = new ModelSyncGuard();
+    private long connectionTestGeneration;
 
     private Spinner profileSpinner;
     private Spinner providerSpinner;
@@ -108,6 +110,7 @@ public final class AiProviderSettingsActivity extends ThemedActivity {
         configureProviderSpinner();
         configureProfileSpinner();
         bindActions();
+        configureEndpointChangeGuard();
         reloadProfiles(null);
     }
 
@@ -205,9 +208,20 @@ public final class AiProviderSettingsActivity extends ThemedActivity {
         deleteButton.setOnClickListener(view -> confirmDeleteProfile());
         testButton.setOnClickListener(view -> {
             if (connectionTestCoordinator.isRunning()) {
-                connectionTestCoordinator.cancel();
+                cancelConnectionTest(true);
             } else {
                 confirmConnectionTest();
+            }
+        });
+    }
+
+    private void configureEndpointChangeGuard() {
+        endpointInput.addTextChangedListener(new TextWatcher() {
+            @Override public void beforeTextChanged(CharSequence text, int start, int count, int after) { }
+            @Override public void onTextChanged(CharSequence text, int start, int before, int count) { }
+
+            @Override public void afterTextChanged(Editable text) {
+                if (!updatingUi) cancelProfileBoundOperations();
             }
         });
     }
@@ -254,7 +268,7 @@ public final class AiProviderSettingsActivity extends ThemedActivity {
     }
 
     private void renderProfile(ProviderProfile profile) {
-        cancelModelSyncForUiChange();
+        cancelProfileBoundOperations();
         updatingUi = true;
         selectedCredentialAlias = profile == null ? null : profile.getCredentialAlias();
         keyInput.setText("");
@@ -269,11 +283,16 @@ public final class AiProviderSettingsActivity extends ThemedActivity {
         updatingUi = false;
         updateProfileStatus(profile);
         updateAdapterStatus();
-        renderCachedModels(profile == null ? buildProfileSafely("model-preview") : profile);
+        if (profile == null) {
+            modelInput.setAdapter(null);
+            modelCatalogStatus.setText(R.string.ai_models_not_loaded);
+        } else {
+            renderCachedModels(profile);
+        }
     }
 
     private void applyPreset(String providerId) {
-        cancelModelSyncForUiChange();
+        cancelProfileBoundOperations();
         AiProviderPreset preset = presetCatalog.require(providerId);
         endpointInput.setText(preset.getEndpoint());
         modelInput.setText(preset.getModel());
@@ -364,6 +383,7 @@ public final class AiProviderSettingsActivity extends ThemedActivity {
         ProviderProfile existing = findProfile(selectedCredentialAlias);
         ProviderProfile profile = buildProfileSafely(existing == null
                 ? "model-preview" : existing.getCredentialAlias());
+        boolean persistentCache = existing != null;
         if (profile == null) {
             showStatus(R.string.ai_profile_validation_failed);
             return;
@@ -395,12 +415,14 @@ public final class AiProviderSettingsActivity extends ThemedActivity {
                 } else {
                     models = modelCatalogService.fetch(profile, typedCredential, cancellation);
                 }
-                modelCacheStore.save(profile, models, System.currentTimeMillis());
+                if (persistentCache) {
+                    modelCacheStore.save(profile, models, System.currentTimeMillis());
+                }
                 runOnUiThread(() -> finishModelSync(
-                        profile, models, null, cancellation, generation));
+                        profile, models, null, cancellation, generation, persistentCache));
             } catch (RuntimeException exception) {
                 runOnUiThread(() -> finishModelSync(
-                        profile, null, exception, cancellation, generation));
+                        profile, null, exception, cancellation, generation, persistentCache));
             } finally {
                 Arrays.fill(typedCredential, '\0');
             }
@@ -418,7 +440,8 @@ public final class AiProviderSettingsActivity extends ThemedActivity {
     private void finishModelSync(ProviderProfile profile, List<String> models,
                                  RuntimeException failure,
                                  RequestCancellation cancellation,
-                                 long generation) {
+                                 long generation,
+                                 boolean persistentCache) {
         if (isFinishingOrDestroyed() || !modelSyncGuard.isCurrent(generation)
                 || modelCancellation != cancellation) return;
         modelCancellation = null;
@@ -429,7 +452,7 @@ public final class AiProviderSettingsActivity extends ThemedActivity {
             modelInput.showDropDown();
             return;
         }
-        renderCachedModels(profile);
+        if (persistentCache) renderCachedModels(profile);
         if (failure instanceof com.chenwei666.netserial.ai.AiProviderException) {
             showStatus(AiProviderErrorMessageResolver.resolve(
                     ((com.chenwei666.netserial.ai.AiProviderException) failure).getError()));
@@ -459,6 +482,19 @@ public final class AiProviderSettingsActivity extends ThemedActivity {
         modelCancellation = null;
         if (active != null) active.cancel();
         setModelSyncRunning(false);
+    }
+
+    private void cancelProfileBoundOperations() {
+        cancelModelSyncForUiChange();
+        cancelConnectionTest(false);
+    }
+
+    private void cancelConnectionTest(boolean showCancelled) {
+        connectionTestGeneration++;
+        if (!connectionTestCoordinator.isRunning()) return;
+        connectionTestCoordinator.cancel();
+        finishConnectionTest();
+        if (showCancelled) showStatus(R.string.ai_test_cancelled);
     }
 
     private void saveProfile() {
@@ -659,11 +695,16 @@ public final class AiProviderSettingsActivity extends ThemedActivity {
     }
 
     private void startConnectionTest() {
+        ProviderProfile existing = findProfile(selectedCredentialAlias);
         ProviderProfile profile;
         try {
             profile = buildProfile(selectedCredentialAlias);
-            if (credentialService == null || (!"ollama".equals(profile.getProviderId())
-                    && !credentialService.hasCredential(profile))) {
+            if (existing == null || CredentialDestinationPolicy.hasChanged(existing, profile)) {
+                showStatus(R.string.ai_save_before_action);
+                return;
+            }
+            if (!"ollama".equals(profile.getProviderId())
+                    && (credentialService == null || !credentialService.hasCredential(existing))) {
                 showStatus(R.string.ai_key_required);
                 return;
             }
@@ -675,36 +716,37 @@ public final class AiProviderSettingsActivity extends ThemedActivity {
         testProgress.setVisibility(View.VISIBLE);
         testButton.setText(R.string.ai_cancel_test);
         showStatus(R.string.ai_test_running);
+        long generation = ++connectionTestGeneration;
         connectionTestCoordinator.start(
                 profile,
                 credentialService,
                 new AiConnectionTestCoordinator.Listener() {
                     @Override
                     public void onSuccess(int stepCount) {
-                        postTestSuccess(stepCount);
+                        postTestSuccess(stepCount, generation);
                     }
 
                     @Override
                     public void onProviderFailure(AiProviderError error) {
-                        postTestError(AiProviderErrorMessageResolver.resolve(error));
+                        postTestError(AiProviderErrorMessageResolver.resolve(error), generation);
                     }
 
                     @Override
                     public void onCredentialFailure() {
-                        postTestError(R.string.ai_key_status_failed);
+                        postTestError(R.string.ai_key_status_failed, generation);
                     }
 
                     @Override
                     public void onUnexpectedFailure() {
-                        postTestError(R.string.ai_test_error_unknown);
+                        postTestError(R.string.ai_test_error_unknown, generation);
                     }
                 }
         );
     }
 
-    private void postTestSuccess(int stepCount) {
+    private void postTestSuccess(int stepCount, long generation) {
         runOnUiThread(() -> {
-            if (isFinishingOrDestroyed()) {
+            if (isFinishingOrDestroyed() || generation != connectionTestGeneration) {
                 return;
             }
             finishConnectionTest();
@@ -712,9 +754,9 @@ public final class AiProviderSettingsActivity extends ThemedActivity {
         });
     }
 
-    private void postTestError(@StringRes int message) {
+    private void postTestError(@StringRes int message, long generation) {
         runOnUiThread(() -> {
-            if (isFinishingOrDestroyed()) {
+            if (isFinishingOrDestroyed() || generation != connectionTestGeneration) {
                 return;
             }
             finishConnectionTest();
@@ -743,7 +785,7 @@ public final class AiProviderSettingsActivity extends ThemedActivity {
 
     @Override
     protected void onDestroy() {
-        cancelModelSyncForUiChange();
+        cancelProfileBoundOperations();
         modelWorker.shutdownNow();
         connectionTestCoordinator.close();
         super.onDestroy();

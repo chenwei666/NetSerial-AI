@@ -20,11 +20,15 @@ public final class OllamaProvider implements AiProvider {
     }
 
     @Override public AiDraftPlan propose(AiRequest request) {
+        return propose(request, new RequestCancellation());
+    }
+
+    @Override public AiDraftPlan propose(AiRequest request, RequestCancellation cancellation) {
         byte[] body = codec.encodeRequest(profile, request);
         try {
             ChatHttpResponse response = transport.post(ChatEndpointResolver.resolve(profile), body,
                     new char[0], CredentialHeaderMode.NONE, HttpExecutionPolicy.defaults(),
-                    new RequestCancellation());
+                    cancellation);
             if (response.getStatus() < 200 || response.getStatus() >= 300) {
                 throw AiProviderException.fromHttpStatus(response.getStatus());
             }

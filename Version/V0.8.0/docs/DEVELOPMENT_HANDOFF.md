@@ -19,7 +19,7 @@
 ## 发布候选 / Release Candidate
 
 - APK build output: `C:\tmp\NetSerial-v080-build\app\build\outputs\apk\release\app-release.apk`
-- SHA-256: `30d02a77efce1f7924edfcb4143517f9d89814ea13821f184e489e199eb6e87a`
+- SHA-256: `d853750b13919992103f4532a04b816de8947aabcf187c0c1b669d24da329eef`
 - Production certificate SHA-256: `6f6d2063a155a9d252eecf4a84df31281b02d86beb2f0cd55ea7c80a2063f5bd`
 
 签名口令、API Key 和密钥库均未进入源码、文档或 Git 暂存区。

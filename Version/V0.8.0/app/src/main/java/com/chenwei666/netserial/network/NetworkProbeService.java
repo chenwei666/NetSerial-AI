@@ -35,10 +35,11 @@ public final class NetworkProbeService {
         long started = System.nanoTime();
         InetAddress address = InetAddress.getByName(host);
         throwIfInterrupted();
-        try (Socket socket = registerSocket()) {
-            socket.connect(new InetSocketAddress(address, port), boundedTimeout(timeoutMillis));
+        Socket socket = registerSocket();
+        try (Socket managedSocket = socket) {
+            managedSocket.connect(new InetSocketAddress(address, port), boundedTimeout(timeoutMillis));
         } finally {
-            activeSocket.set(null);
+            activeSocket.compareAndSet(socket, null);
         }
         long elapsed = TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - started);
         return String.format(Locale.ROOT, "TCP %s:%d\nstatus=OK\nlatency_ms=%d", host, port, elapsed);
@@ -54,14 +55,15 @@ public final class NetworkProbeService {
             throwIfInterrupted();
             long started = System.nanoTime();
             boolean open = false;
-            try (Socket socket = registerSocket()) {
-                socket.connect(new InetSocketAddress(address, port), perPortTimeout);
+            Socket socket = registerSocket();
+            try (Socket managedSocket = socket) {
+                managedSocket.connect(new InetSocketAddress(address, port), perPortTimeout);
                 open = true;
             } catch (IOException ignored) {
                 throwIfInterrupted();
                 // A refused or timed-out connection is reported as CLOSED/FILTERED.
             } finally {
-                activeSocket.set(null);
+                activeSocket.compareAndSet(socket, null);
             }
             long elapsed = TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - started);
             results.add(new TcpPortProbeResult(port, open, elapsed));

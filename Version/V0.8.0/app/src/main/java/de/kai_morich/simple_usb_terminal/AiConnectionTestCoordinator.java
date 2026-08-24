@@ -41,7 +41,6 @@ final class AiConnectionTestCoordinator implements AutoCloseable {
             Listener listener
     ) {
         Objects.requireNonNull(profile, "profile");
-        Objects.requireNonNull(credentialService, "credentialService");
         Objects.requireNonNull(listener, "listener");
         if (closed) {
             throw new IllegalStateException("connection test coordinator is closed");
@@ -76,7 +75,8 @@ final class AiConnectionTestCoordinator implements AutoCloseable {
                             Vendor.GENERIC,
                             CliMode.USER_VIEW,
                             ""
-                    )
+                    ),
+                    cancellation
             );
             listener.onSuccess(plan.getSteps().size());
         } catch (AiProviderException exception) {

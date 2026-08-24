@@ -38,8 +38,11 @@ public final class AnthropicProvider implements AiProvider {
     }
 
     @Override public AiDraftPlan propose(AiRequest request) {
+        return propose(request, new RequestCancellation());
+    }
+
+    @Override public AiDraftPlan propose(AiRequest request, RequestCancellation cancellation) {
         byte[] body = encode(request);
-        RequestCancellation cancellation = new RequestCancellation();
         try {
             return credentials.withCredential(profile, credential -> {
                 ChatHttpResponse response = transport.post(resolveEndpoint(), body, credential,

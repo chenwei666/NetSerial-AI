@@ -26,7 +26,7 @@ V0.8.0 focuses on a modernized operations workflow: broader AI connectivity, ups
 - Debug and Release Lint passed
 - Debug and production-signed Release builds passed
 - V1/V2/V3 signatures and ZIP alignment verified
-- SHA-256: `30d02a77efce1f7924edfcb4143517f9d89814ea13821f184e489e199eb6e87a`
+- SHA-256: `d853750b13919992103f4532a04b816de8947aabcf187c0c1b669d24da329eef`
 
 ## Compatibility and Notes
 
