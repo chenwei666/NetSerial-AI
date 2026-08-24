@@ -1,8 +1,8 @@
-# NetSerial AI V0.7.0 发布候选 / Release Candidate
+# NetSerial AI V0.7.0 正式版 / Production Release
 
 NetSerial AI V0.7.0 重新整理为主页、连接、终端、工具箱、设置五区工作台，并增加 AI 多厂商失败转移、高级诊断、安全凭据、临时 HTTP/TFTP 与签名运行手册。
 
-> 自动化验证已通过，但实体设备矩阵和生产签名仍是正式发布门禁。本文件不是已发布 Release 的证明。
+> 147 项测试、Release Lint、APK 对齐、包元数据和 V1/V2/V3 生产签名均已验证。实体设备与真实网络矩阵仍需在授权环境验收。
 
 - 自动识别 H3C、Huawei、Cisco 和 Ruijie。
 - 按厂商生成 HTTPS/可选 HTTP Web 开通方案，账号密码仅用于本次发送。
@@ -32,6 +32,8 @@ USB, SSH, Telnet, SFTP, AI, change gates, configuration Diff, and network tools 
 
 ## 安装 / Install
 
-正式发布时应下载 `NetSerial-AI-v0.7.0-release.apk`，并以 Release 页面同时发布的 `SHA256SUMS.txt` 为准。当前仓库仅提供自动化验证用 Debug APK，不提供虚假的正式版哈希。
+下载 `NetSerial-AI-v0.7.0-release.apk` 并核对 SHA-256：
+
+`962e23209f57b24203a917474f90bda44c250c6071178e84a3d9a1b171504b81`
 
 V0.3.1 至 V0.7.0 必须使用同一生产证书，才能覆盖升级并保留应用数据。生产使用前仍需在授权环境完成真实手机、USB、交换机、传输、AI 与 SNMPv3 验收。

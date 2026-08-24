@@ -17,18 +17,18 @@
 - clean 构建命令：`gradlew --no-daemon clean testDebugUnitTest lintDebug assembleDebug`
 - 结果：48 个测试类、147 个测试、0 failure、0 error；Lint 通过；Debug APK 构建通过。
 - 包：`com.chenwei666.netserial`，versionCode 8，versionName 0.7.0，minSdk 21，targetSdk 36。
-- 本地测试包：`Version/V0.7.0/artifacts/NetSerial-AI-v0.7.0-debug.apk`（按仓库规范不提交 Git）。
-- SHA-256：`4ee5de3a4b1f9540ac9e7dceb3fafbf73f124b41524d243a5605f1a81491f2a2`。
+- 正式签名包：`Version/V0.7.0/artifacts/NetSerial-AI-v0.7.0-release.apk`（按仓库规范不提交 Git，只作为 GitHub Release 资产上传）。
+- SHA-256：`962e23209f57b24203a917474f90bda44c250c6071178e84a3d9a1b171504b81`；V1/V2/V3、RSA 4096、ZIP 对齐和历史生产证书指纹均通过。
 
 ## 仍需外部授权环境
 
 - 真实 Android 手机/平板与 USB OTG 芯片。
 - H3C/Huawei/Cisco/Ruijie、SSH/Telnet/SFTP、HTTP/TFTP 和 SNMPv3 Agent。
 - 真实 AI 厂商限流/超时/费用/失败转移。
-- 使用历史生产证书构建 Release APK，并完成覆盖安装与证书链核对。
+- 真机覆盖安装与系统版本兼容矩阵。
 
 ## 下一动作
 
 1. 在实验网络执行 `docs/TEST_REPORT.md` 的现场矩阵。
-2. 现场通过后再由生产签名工作站执行 `scripts/build.ps1 -Release`。
-3. 用户明确授权后再推送分支、创建/合并 PR 或发布 GitHub Release；当前未执行远程发布。
+2. 已完成生产签名构建；发布后重新下载 GitHub 资产并复核哈希、包名、版本和证书。
+3. 发布不代表真实交换机与付费 AI 厂商已完成现场验收。

@@ -9,21 +9,23 @@
 | 检查 | 结果 | 证据 |
 | --- | --- | --- |
 | 单元测试 | 通过 | 48 个测试类，147 个测试，0 failure / 0 error |
-| Android Lint Debug | 通过 | `lintDebug` 成功，无 error |
-| Java/资源/Manifest 编译 | 通过 | `compileDebugJavaWithJavac`、`processDebugResources` 成功 |
-| Debug APK | 通过 | `assembleDebug` 成功，7,689,216 bytes |
+| Android Lint Release | 通过 | `lintRelease` 成功，无 error |
+| Java/资源/Manifest 编译 | 通过 | Debug/Release Java、资源和 Manifest 编译成功 |
+| Release APK | 通过 | `assembleRelease` 成功，6,189,571 bytes |
 | 包元数据 | 通过 | `com.chenwei666.netserial`，versionCode 8，versionName 0.7.0，minSdk 21，targetSdk 36 |
-| APK 签名结构 | 通过 | Debug 证书；v1=true、v2=true，RSA 2048 |
-| SHA-256 | 通过 | `4ee5de3a4b1f9540ac9e7dceb3fafbf73f124b41524d243a5605f1a81491f2a2` |
+| APK 签名结构 | 通过 | 生产证书；v1=true、v2=true、v3=true，RSA 4096 |
+| 生产证书 SHA-256 | 通过 | `6f6d2063a155a9d252eecf4a84df31281b02d86beb2f0cd55ea7c80a2063f5bd`，与历史正式版一致 |
+| ZIP 对齐 | 通过 | `zipalign -c -v 4`：Verification successful |
+| Release SHA-256 | 通过 | `962e23209f57b24203a917474f90bda44c250c6071178e84a3d9a1b171504b81` |
 | 敏感信息模式扫描 | 通过并人工复核 | 未发现真实 API Key、GitHub Token、AWS Key 或私钥；命中项仅为环境变量名、测试用假密码与脱敏测试输入 |
 
 执行命令：
 
 ```powershell
-.\gradlew.bat --no-daemon testDebugUnitTest lintDebug assembleDebug
+.\scripts\build.ps1 -Release -Tasks clean,testDebugUnitTest,lintRelease,assembleRelease
 ```
 
-由于 Android Gradle 在当前中文工作区路径触发 `AccessDenied`，测试使用同内容的纯英文临时镜像 `C:\tmp\NetSerial-v070-validation-20260824`。正式源码仍位于版本目录，未修改历史版本。
+由于 Android Gradle 在当前中文工作区路径触发 `AccessDenied`，正式脚本使用同内容的纯英文临时镜像 `C:\tmp\NetSerial-v060-build`。正式源码仍位于 V0.7.0 目录，未修改历史版本。
 
 ## V0.7.0 新增覆盖
 
@@ -45,10 +47,11 @@
 
 修复后重新执行完整单元测试、Lint 和 APK 构建，结果全部通过。
 
-## 制品说明
+## 正式制品
 
-- 自动化生成的是 Debug 测试包，不是 GitHub 正式发布包，不可冒充生产 Release。
-- 正式 Release 必须由已有生产签名工作站通过 `scripts/build.ps1 -Release` 生成，并再次核对与 V0.6.0 相同的证书 SHA-256。
+- 文件：`NetSerial-AI-v0.7.0-release.apk`
+- 已由仓库外 DPAPI 保护的历史生产证书签名；仓库与构建日志不包含口令或密钥库。
+- 上传 GitHub 后必须重新下载并再次核对 APK SHA-256、包元数据和生产证书指纹。
 
 ## 外部验收未完成
 
@@ -57,8 +60,8 @@
 - H3C/Huawei/Cisco/Ruijie 实机命令输出、Web 开通、LLDP/CDP、SNMPv3 Agent。
 - 真实 AI 厂商的限流、超时、费用、失败转移与数据合规。
 
-这些项目需要用户授权的实体设备和账号，属于正式发布前的现场门禁。
+这些项目需要用户授权的实体设备和账号；本报告不将自动化构建冒充真实设备验证。
 
 ## English summary
 
-All 147 JVM tests, Android Lint, debug compilation, resource/manifest processing, APK assembly, metadata checks, and debug signature verification passed. Hardware, live-network, paid-provider, and production-signing validation remain explicit external release gates.
+All 147 JVM tests, Release Lint, release compilation, APK assembly, alignment, metadata checks, and V1/V2/V3 production-signature verification passed. Hardware, live-network, and paid-provider validation remain explicitly unverified.
