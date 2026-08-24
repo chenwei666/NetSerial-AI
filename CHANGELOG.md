@@ -1,5 +1,29 @@
 # Project Changelog
 
+## 2026-08-25 — V0.8.0 开发候选
+
+- 开发人员：chenwei666
+- 发布状态：V0.8.0 独立源码归档已建立，正式 Release 尚未发布，GitHub Latest 仍为 V0.7.0。
+
+### 修改内容
+
+- 统一现代 Material 3 任务卡片并重做 AI 设置和网络工具箱信息架构。
+- AI 扩展到 18 类入口，新增智谱等厂商以及上游模型动态同步、非秘密缓存和手工回退。
+- 增加受控单目标多端口检查、地址摘要、常用端口和结果复制/分享。
+- 修复 TFTP 关闭竞态，并以 SHA-256 隔离不同 AI 档案的模型缓存作用域。
+
+### 影响与兼容
+
+- 新增模型目录 HTTPS GET 请求和非秘密 SharedPreferences 缓存；数据库、聊天接口和 ProviderProfile 格式不变。
+- versionCode 9，versionName 0.8.0；保持 minSdk 21、targetSdk 36。
+- 不删除旧功能，不修改 Version/V0.7.0 及更早历史目录。
+
+### 验证与已知限制
+
+- 50 个测试类、156 项测试全部通过；Debug/Release Lint 和 APK 构建、ZIP 对齐、V1/V2/V3 生产签名验证通过。
+- 候选 APK SHA-256：`84724cb4f599ef49e9d7eca41009feba7acbfe42196939678ff8a804ca1ae0ff`。
+- 真实设备、交换机和付费 AI 厂商模型目录仍需授权现场验收。
+
 完整功能变更保存在各独立版本目录的 `CHANGELOG.md` 中；本文件记录版本发布后的仓库级元数据和文档调整。
 
 ## 2026-08-24 — V0.6.0 本地正式版候选

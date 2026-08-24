@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/terminal_target_banner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#263238"
+        android:padding="8dp"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:id="@+id/controlLines"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <ToggleButton
+            android:id="@+id/controlLineRts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="48sp"
+            android:textOff="RTS"
+            android:textOn="RTS" />
+
+        <ToggleButton
+            android:id="@+id/controlLineCts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="48sp"
+            android:clickable="false"
+            android:textColor="@android:color/secondary_text_dark"
+            android:textOff="CTS"
+            android:textOn="CTS" />
+
+        <View
+            android:layout_height="match_parent"
+            android:layout_width="6dp" />
+
+        <ToggleButton
+            android:id="@+id/controlLineDtr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="48sp"
+            android:textOff="DTR"
+            android:textOn="DTR" />
+
+        <ToggleButton
+            android:id="@+id/controlLineDsr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:minWidth="48sp"
+            android:textColor="@android:color/secondary_text_dark"
+            android:textOff="DSR"
+            android:textOn="DSR" />
+
+        <View
+            android:layout_height="match_parent"
+            android:layout_width="6dp" />
+
+        <ToggleButton
+            android:id="@+id/controlLineCd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:minWidth="48sp"
+            android:textColor="@android:color/secondary_text_dark"
+            android:textOff="CD"
+            android:textOn="CD" />
+
+        <ToggleButton
+            android:id="@+id/controlLineRi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="48sp"
+            android:clickable="false"
+            android:textColor="@android:color/secondary_text_dark"
+            android:textOff="RI"
+            android:textOn="RI" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:background="?android:attr/listDivider"
+        android:layout_height="2dp" />
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button android:id="@+id/esc_btn" android:layout_width="wrap_content" android:layout_height="wrap_content" android:minWidth="48dp" android:text="ESC" />
+            <Button android:id="@+id/ctrl_c_btn" android:layout_width="wrap_content" android:layout_height="wrap_content" android:minWidth="56dp" android:text="Ctrl+C" />
+            <Button android:id="@+id/ctrl_z_btn" android:layout_width="wrap_content" android:layout_height="wrap_content" android:minWidth="56dp" android:text="Ctrl+Z" />
+            <Button android:id="@+id/up_btn" android:layout_width="wrap_content" android:layout_height="wrap_content" android:minWidth="48dp" android:text="↑" />
+            <Button android:id="@+id/down_btn" android:layout_width="wrap_content" android:layout_height="wrap_content" android:minWidth="48dp" android:text="↓" />
+            <Button android:id="@+id/left_btn" android:layout_width="wrap_content" android:layout_height="wrap_content" android:minWidth="48dp" android:text="←" />
+            <Button android:id="@+id/right_btn" android:layout_width="wrap_content" android:layout_height="wrap_content" android:minWidth="48dp" android:text="→" />
+            <Button android:id="@+id/backspace_btn" android:layout_width="wrap_content" android:layout_height="wrap_content" android:minWidth="48dp" android:text="BS" />
+            <Button android:id="@+id/delete_btn" android:layout_width="wrap_content" android:layout_height="wrap_content" android:minWidth="48dp" android:text="DEL" />
+            <Button android:id="@+id/question_btn" android:layout_width="wrap_content" android:layout_height="wrap_content" android:minWidth="48dp" android:text="?" />
+            <Button android:id="@+id/pipe_btn" android:layout_width="wrap_content" android:layout_height="wrap_content" android:minWidth="48dp" android:text="|" />
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:id="@+id/completion_results"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" />
+    </HorizontalScrollView>
+
+    <TextView
+        android:id="@+id/receive_text"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/terminal_background"
+        android:freezesText="true"
+        android:gravity="bottom"
+        android:scrollbars="vertical"
+        android:textColor="@color/terminal_foreground"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+    <View
+        android:layout_width="match_parent"
+        android:background="?android:attr/listDivider"
+        android:layout_height="2dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/tab_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:minWidth="56dp"
+            android:text="@string/terminal_tab_key" />
+
+        <Button
+            android:id="@+id/ai_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:minWidth="48dp"
+            android:text="@string/ai_copilot_button" />
+
+        <EditText
+            android:id="@+id/send_text"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:inputType="text|textNoSuggestions"
+            android:singleLine="true" />
+
+        <ImageButton
+            android:id="@+id/send_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_send_white_24dp" />
+    </LinearLayout>
+
+</LinearLayout>

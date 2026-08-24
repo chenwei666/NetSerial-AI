@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="baud_rates">
+        <item>2400</item>
+        <item>9600</item>
+        <item>19200</item>
+        <item>57600</item>
+        <item>115200</item>
+    </string-array>
+    <string-array name="newline_names">
+        <item>CR+LF</item>
+        <item>LF</item>
+        <item>&lt;none&gt;</item>
+    </string-array>
+    <string-array name="newline_values">
+        <item>\u000d\u000a</item>
+        <item>\u000a</item>
+        <item></item>
+    </string-array>
+    <string-array name="app_languages">
+        <item>跟随系统 / System</item>
+        <item>简体中文</item>
+        <item>English</item>
+    </string-array>
+    <string-array name="terminal_text_sizes">
+        <item>小 / Small</item>
+        <item>标准 / Standard</item>
+        <item>大 / Large</item>
+        <item>特大 / Extra large</item>
+    </string-array>
+    <string-array name="terminal_text_size_values">
+        <item>12</item>
+        <item>14</item>
+        <item>18</item>
+        <item>22</item>
+    </string-array>
+    <string-array name="remote_charsets">
+        <item>UTF-8</item>
+        <item>GBK</item>
+        <item>ISO-8859-1</item>
+    </string-array>
+    <string-array name="appearance_modes">
+        <item>跟随系统</item><item>浅色模式</item><item>深色模式</item>
+    </string-array>
+    <string-array name="accent_themes">
+        <item>海洋蓝</item><item>翡翠绿</item><item>科技紫</item><item>日落橙</item>
+    </string-array>
+    <string-array name="command_scopes"><item>全部命令</item><item>我的收藏</item><item>最近使用</item></string-array>
+</resources>

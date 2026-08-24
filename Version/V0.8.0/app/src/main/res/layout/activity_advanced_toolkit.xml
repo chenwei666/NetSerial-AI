@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="match_parent" android:fillViewport="true">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="vertical" android:padding="20dp">
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="@string/advanced_toolkit_title" android:textAppearance="?attr/textAppearanceHeadlineMedium"
+            android:textStyle="bold" />
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="4dp" android:layout_marginBottom="16dp"
+            android:text="@string/advanced_toolkit_intro" android:textColor="@color/app_on_surface_variant" />
+
+        <com.google.android.material.card.MaterialCardView style="@style/Widget.NetSerial.Card"
+            android:layout_width="match_parent" android:layout_height="wrap_content">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical" android:padding="16dp">
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="@string/advanced_credential_title" android:textAppearance="?attr/textAppearanceTitleMedium" android:textStyle="bold" />
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="@string/advanced_credential_intro" android:textColor="@color/app_on_surface_variant" />
+                <EditText android:id="@+id/advanced_credential_alias" android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:layout_marginTop="8dp" android:hint="@string/advanced_credential_alias"
+                    android:importantForAutofill="no" android:inputType="text" android:maxLength="100" android:singleLine="true" />
+                <EditText android:id="@+id/advanced_credential_secret" android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:hint="@string/advanced_credential_secret"
+                    android:importantForAutofill="no" android:inputType="textPassword" android:maxLength="4096"
+                    android:saveEnabled="false" android:singleLine="true" />
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
+                    <Button android:id="@+id/advanced_credential_check" android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:text="@string/advanced_credential_check" />
+                    <Button android:id="@+id/advanced_credential_save" android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:text="@string/advanced_credential_save" />
+                    <Button android:id="@+id/advanced_credential_delete" android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:text="@string/advanced_credential_delete" />
+                </LinearLayout>
+                <TextView android:id="@+id/advanced_credential_status" android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:text="@string/advanced_ready" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView style="@style/Widget.NetSerial.Card"
+            android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="12dp">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical" android:padding="16dp">
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="@string/advanced_transfer_title" android:textAppearance="?attr/textAppearanceTitleMedium" android:textStyle="bold" />
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="@string/advanced_transfer_intro" android:textColor="@color/app_on_surface_variant" />
+                <Button android:id="@+id/advanced_transfer_pick" android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp" android:text="@string/advanced_transfer_pick" />
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
+                    <Button android:id="@+id/advanced_transfer_start" android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:text="@string/advanced_transfer_start" />
+                    <Button android:id="@+id/advanced_transfer_stop" android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:text="@string/advanced_transfer_stop" />
+                </LinearLayout>
+                <TextView android:id="@+id/advanced_transfer_status" android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="@string/advanced_ready" android:textIsSelectable="true" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView style="@style/Widget.NetSerial.Card"
+            android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="12dp">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical" android:padding="16dp">
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="@string/advanced_runbook_title" android:textAppearance="?attr/textAppearanceTitleMedium" android:textStyle="bold" />
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="@string/advanced_runbook_intro" android:textColor="@color/app_on_surface_variant" />
+                <Button android:id="@+id/advanced_runbook_pick" android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp" android:text="@string/advanced_runbook_pick" />
+                <EditText android:id="@+id/advanced_runbook_signature" android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:hint="@string/advanced_runbook_signature" android:importantForAutofill="no" android:inputType="textMultiLine"
+                    android:maxLength="8192" android:minLines="2" />
+                <EditText android:id="@+id/advanced_runbook_public_key" android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:hint="@string/advanced_runbook_public_key" android:importantForAutofill="no" android:inputType="textMultiLine"
+                    android:maxLength="16384" android:minLines="4" />
+                <Button android:id="@+id/advanced_runbook_verify" android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="@string/advanced_runbook_verify" />
+                <TextView android:id="@+id/advanced_runbook_status" android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp" android:text="@string/advanced_ready" android:textIsSelectable="true" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
+</ScrollView>
