@@ -1,0 +1,1 @@
+4ee5de3a4b1f9540ac9e7dceb3fafbf73f124b41524d243a5605f1a81491f2a2  artifacts/NetSerial-AI-v0.7.0-debug.apk
