@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="8dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="4dp"
+        android:text="@string/remote_terminal_title"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/remote_target_banner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#263238"
+        android:padding="8dp"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Spinner
+            android:id="@+id/remote_protocol"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1" />
+
+        <EditText
+            android:id="@+id/remote_host"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:hint="@string/remote_host_hint"
+            android:importantForAutofill="no"
+            android:inputType="textUri"
+            android:maxLength="253"
+            android:singleLine="true" />
+
+        <EditText
+            android:id="@+id/remote_port"
+            android:layout_width="72dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/remote_port_hint"
+            android:importantForAutofill="no"
+            android:inputType="number"
+            android:maxLength="5"
+            android:singleLine="true" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/remote_username"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/remote_username_hint"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:maxLength="128"
+            android:singleLine="true" />
+
+        <EditText
+            android:id="@+id/remote_password"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/remote_password_hint"
+            android:importantForAutofill="noExcludeDescendants"
+            android:inputType="textPassword"
+            android:maxLength="256"
+            android:saveEnabled="false"
+            android:singleLine="true" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/remote_ssh_options"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <Spinner
+            android:id="@+id/remote_auth_mode"
+            android:layout_width="match_parent"
+            android:layout_height="48dp" />
+        <Button
+            android:id="@+id/remote_private_key"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/ssh_choose_private_key" />
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/remote_jump_enabled"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/ssh_jump_enabled" />
+        <LinearLayout
+            android:id="@+id/remote_jump_fields"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="gone">
+            <EditText android:id="@+id/remote_jump_host" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="2" android:hint="@string/ssh_jump_host" android:importantForAutofill="no" android:inputType="textUri" android:maxLength="253" android:singleLine="true" />
+            <EditText android:id="@+id/remote_jump_port" android:layout_width="72dp" android:layout_height="wrap_content" android:hint="@string/remote_port_hint" android:importantForAutofill="no" android:inputType="number" android:maxLength="5" android:singleLine="true" android:text="@string/remote_default_ssh_port" />
+            <EditText android:id="@+id/remote_jump_user" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="2" android:hint="@string/ssh_jump_user" android:importantForAutofill="no" android:inputType="text" android:maxLength="128" android:singleLine="true" />
+            <EditText android:id="@+id/remote_jump_password" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="2" android:hint="@string/ssh_jump_password" android:importantForAutofill="noExcludeDescendants" android:inputType="textPassword" android:maxLength="256" android:saveEnabled="false" android:singleLine="true" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/remote_connect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/remote_connect" />
+
+        <TextView
+            android:id="@+id/remote_status"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/remote_clear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/clear" />
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/remote_output_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/terminal_background"
+        android:fillViewport="true">
+
+        <TextView
+            android:id="@+id/remote_output"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="monospace"
+            android:padding="8dp"
+            android:textColor="@color/terminal_foreground"
+            android:textIsSelectable="true" />
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <EditText android:id="@+id/remote_sftp_path" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:hint="@string/sftp_remote_path" android:importantForAutofill="no" android:inputType="text" android:maxLength="1024" android:singleLine="true" />
+        <Button android:id="@+id/remote_sftp_download" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/sftp_download" />
+        <Button android:id="@+id/remote_sftp_upload" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/sftp_upload" />
+        <Button android:id="@+id/remote_config_diff" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/config_compare_short" />
+    </LinearLayout>
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <Button android:id="@+id/remote_tab" style="?android:attr/buttonBarButtonStyle" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/key_tab" />
+            <Button android:id="@+id/remote_esc" style="?android:attr/buttonBarButtonStyle" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/key_esc" />
+            <Button android:id="@+id/remote_ctrl_c" style="?android:attr/buttonBarButtonStyle" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/key_ctrl_c" />
+            <Button android:id="@+id/remote_up" style="?android:attr/buttonBarButtonStyle" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/key_up" />
+            <Button android:id="@+id/remote_down" style="?android:attr/buttonBarButtonStyle" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/key_down" />
+            <Button android:id="@+id/remote_question" style="?android:attr/buttonBarButtonStyle" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/key_question" />
+            <Button android:id="@+id/remote_commands" style="?android:attr/buttonBarButtonStyle" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/command_library_short" />
+            <Button android:id="@+id/remote_ai" style="?android:attr/buttonBarButtonStyle" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/key_ai" />
+            <Button android:id="@+id/remote_ai_diagnose" style="?android:attr/buttonBarButtonStyle" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/ai_diagnose_short" />
+            <Button android:id="@+id/remote_web_access" style="?android:attr/buttonBarButtonStyle" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/web_access_menu" />
+            <Button android:id="@+id/remote_operations" style="?android:attr/buttonBarButtonStyle" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/operations_title" />
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <EditText
+            android:id="@+id/remote_command"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/remote_command_hint"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:maxLines="3" />
+        <Button
+            android:id="@+id/remote_send"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:text="@string/send" />
+    </LinearLayout>
+</LinearLayout>

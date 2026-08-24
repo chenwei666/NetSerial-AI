@@ -1,7 +1,7 @@
 # NetSerial AI
 
 <p align="center">
-  <img src="Version/V0.5.0/design/app-icon-512.png" width="128" alt="NetSerial AI app icon">
+  <img src="Version/V0.6.0/design/app-icon-512.png" width="128" alt="NetSerial AI app icon">
 </p>
 
 <p align="center">
@@ -30,6 +30,8 @@ NetSerial AI 面向需要在机房、弱电间和现场快速处理网络设备�
 
 > **安全原则：AI 只生成、检查和解释命令，绝不自动执行。最终发送权始终属于工程师。**
 
+> **开发版状态：V0.6.0 已在独立版本目录完成源码、自动化门禁与生产签名候选 APK；GitHub Latest 在正式发布前仍指向 V0.5.0。**
+
 ## 为什么选择 NetSerial AI？
 
 - **真正面向网络工程师**：不是普通聊天机器人，而是串口、远程终端、命令库和变更工作流的一体化工具。
@@ -51,6 +53,7 @@ NetSerial AI 面向需要在机房、弱电间和现场快速处理网络设备�
 | AI Copilot | 命令生成、补全、解释和风险审查 |
 | 变更安全 | 配置 Diff、回滚草稿、目标校验、风险分级与人工确认 |
 | 网络诊断 | IPv4/IPv6、DNS、Ping、Traceroute、TCP、MTU、MAC/OUI |
+| V0.6 运维增强 | 厂商自动识别、Web HTTPS 向导、更新检测、AI 故障诊断、多会话、快照、只读剧本、合规初筛与 XMODEM |
 
 ## 3 分钟开始使用
 
@@ -88,17 +91,17 @@ AI、收藏命令和命令库均不会自动执行命令。Telnet 无法提供�
 
 ## 已支持与计划
 
-当前已包含 USB Console、SSH/SFTP、受控 Telnet、多厂商命令、AI Copilot、配置 Diff、网络工具、Material 3、深色模式和中英文界面。
+当前 V0.6.0 源码候选已包含 USB Console、SSH/SFTP、受控 Telnet、多厂商命令、AI Copilot、厂商自动识别、Web HTTPS 向导、配置快照/合规初筛、XMODEM、Material 3、深色模式和中英文界面。
 
 接下来的重点包括：真实设备兼容矩阵、更多厂商命令、可复现演示、截图与使用视频。详见 [ROADMAP.md](ROADMAP.md)。
 
 ## 文档
 
-- [V0.5.0 中文使用说明](Version/V0.5.0/README.md)
+- [V0.6.0 中文使用说明](Version/V0.6.0/README.md)
 - [English README](README_EN.md)
-- [架构说明](Version/V0.5.0/docs/ARCHITECTURE.md)
-- [安全边界](Version/V0.5.0/docs/SECURITY.md)
-- [测试报告](Version/V0.5.0/docs/TEST_REPORT.md)
+- [架构说明](Version/V0.6.0/docs/ARCHITECTURE.md)
+- [安全边界](Version/V0.6.0/docs/SECURITY.md)
+- [测试报告](Version/V0.6.0/docs/TEST_REPORT.md)
 - [版本历史](VERSION_HISTORY.md)
 - [贡献指南](CONTRIBUTING.md)
 - [安全问题报告](SECURITY.md)
@@ -106,10 +109,10 @@ AI、收藏命令和命令库均不会自动执行命令。Telnet 无法提供�
 ## 从源码构建
 
 ```powershell
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\Version\V0.5.0\scripts\build.ps1
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\Version\V0.6.0\scripts\build.ps1
 ```
 
-当前最新源码位于 `Version/V0.5.0`，历史版本保留在 `Version/V*`。生产签名材料不会进入仓库。
+当前最新源码位于 `Version/V0.6.0`，GitHub Latest 正式版在发布前仍为 V0.5.0；历史版本保留在 `Version/V*`。生产签名材料不会进入仓库。
 
 ## 参与项目
 
