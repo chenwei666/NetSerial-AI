@@ -11,7 +11,7 @@ V0.8.0 提供 18 个厂商/接入类型入口。预设用于减少配置工作�
 | `gemini` | Google Gemini | OpenAI-compatible, Bearer | OpenAI-compatible `data[].id` |
 | `deepseek` | DeepSeek | OpenAI-compatible, Bearer | OpenAI-compatible `data[].id` |
 | `zhipu` | 智谱 GLM / Zhipu | OpenAI-compatible, Bearer | OpenAI-compatible `data[].id` |
-| `qwen` | 通义千问 / Alibaba Cloud | OpenAI-compatible, Bearer | OpenAI-compatible `data[].id` |
+| `qwen` | 通义千问 / Alibaba Cloud | OpenAI-compatible, Bearer | DashScope `/api/v1/models`, `output.models[].model` |
 | `doubao` | 豆包 / Volcano Ark | OpenAI-compatible, Bearer | OpenAI-compatible `data[].id` |
 | `hunyuan` | 腾讯混元 / TokenHub | OpenAI-compatible, Bearer | OpenAI-compatible `data[].id` |
 | `baidu` | 百度千帆 / Qianfan | OpenAI-compatible, Bearer | OpenAI-compatible `data[].id` |

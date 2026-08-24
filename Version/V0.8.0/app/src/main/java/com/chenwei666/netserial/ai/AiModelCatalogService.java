@@ -27,7 +27,10 @@ public final class AiModelCatalogService {
                 ? CredentialHeaderMode.ANTHROPIC_X_API_KEY
                 : CredentialHeaderMode.BEARER;
         ModelCatalogFormat format = "ollama".equals(providerId)
-                ? ModelCatalogFormat.OLLAMA : ModelCatalogFormat.OPENAI;
+                ? ModelCatalogFormat.OLLAMA
+                : "qwen".equals(providerId)
+                ? ModelCatalogFormat.QWEN
+                : ModelCatalogFormat.OPENAI;
         ChatHttpResponse response = transport.get(
                 ModelCatalogEndpointResolver.resolve(profile), credential, headerMode,
                 HttpExecutionPolicy.defaults(), cancellation);

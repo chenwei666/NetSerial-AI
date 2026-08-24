@@ -54,9 +54,10 @@ public final class AiModelCacheStore {
         }
     }
 
-    private static String key(ProviderProfile profile) {
+    static String key(ProviderProfile profile) {
         ProviderProfile value = Objects.requireNonNull(profile, "profile");
-        String scope = value.getProviderId() + "\n" + value.getEndpoint();
+        String scope = value.getProviderId() + "\n" + value.getEndpoint()
+                + "\n" + value.getCredentialAlias();
         try {
             byte[] digest = MessageDigest.getInstance("SHA-256")
                     .digest(scope.getBytes(StandardCharsets.UTF_8));

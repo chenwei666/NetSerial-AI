@@ -257,7 +257,7 @@ public final class AdvancedToolkitActivity extends ThemedActivity {
 
     private synchronized void stopServers() {
         if (httpServer != null) httpServer.close();
-        if (tftpServer != null) tftpServer.close();
+        if (tftpServer != null) tftpServer.requestStop();
         httpServer = null;
         tftpServer = null;
     }

@@ -5,7 +5,7 @@
 - 分支 / Branch: `codex/feature/v0.8.0`
 - 基线 / Base: `origin/main` (V0.7.0)
 - 状态 / Status: 功能开发与本地发布门禁完成，等待代码审查、推送和 PR/发布。
-- Release gate: 50 test classes, 156 tests, Debug/Release Lint and builds all passed.
+- Release gate: 50 test classes, 163 tests, Debug/Release Lint and builds all passed.
 
 ## 已完成范围 / Completed Scope
 
@@ -19,7 +19,7 @@
 ## 发布候选 / Release Candidate
 
 - APK build output: `C:\tmp\NetSerial-v080-build\app\build\outputs\apk\release\app-release.apk`
-- SHA-256: `84724cb4f599ef49e9d7eca41009feba7acbfe42196939678ff8a804ca1ae0ff`
+- SHA-256: `30d02a77efce1f7924edfcb4143517f9d89814ea13821f184e489e199eb6e87a`
 - Production certificate SHA-256: `6f6d2063a155a9d252eecf4a84df31281b02d86beb2f0cd55ea7c80a2063f5bd`
 
 签名口令、API Key 和密钥库均未进入源码、文档或 Git 暂存区。

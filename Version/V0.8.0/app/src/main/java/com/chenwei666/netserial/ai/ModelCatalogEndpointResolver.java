@@ -14,6 +14,8 @@ public final class ModelCatalogEndpointResolver {
         String path = base.getPath();
         if ("ollama".equals(profile.getProviderId())) {
             path = OLLAMA_TAGS_PATH;
+        } else if ("qwen".equals(profile.getProviderId())) {
+            path = "/api/v1/models";
         } else if (path == null || path.isEmpty() || "/".equals(path)) {
             path = MODELS_PATH;
         } else if (!path.endsWith(MODELS_PATH)) {

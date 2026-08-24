@@ -23,6 +23,10 @@ import com.chenwei666.netserial.network.PortReference;
 import com.chenwei666.netserial.network.PortBatchParser;
 import com.chenwei666.netserial.network.NetworkIdentifierExtractor;
 import com.chenwei666.netserial.network.NetworkProbeService;
+import com.chenwei666.netserial.network.AddressProbeEntry;
+import com.chenwei666.netserial.network.AddressProbeResult;
+import com.chenwei666.netserial.network.TcpBatchProbeResult;
+import com.chenwei666.netserial.network.TcpPortProbeResult;
 import com.chenwei666.netserial.settings.AppSettingsStore;
 
 import java.util.concurrent.ExecutorService;
@@ -63,7 +67,8 @@ public final class NetworkToolsActivity extends ThemedActivity {
         findViewById(R.id.network_tcp).setOnClickListener(view -> runTcp());
         findViewById(R.id.network_mtu).setOnClickListener(view -> run(() -> probes.pathMtu(target.getText().toString(), timeoutMillis)));
         findViewById(R.id.network_address_summary).setOnClickListener(view ->
-                run(() -> probes.addressSummary(target.getText().toString())));
+                run(() -> formatAddressResult(
+                        probes.addressSummary(target.getText().toString()))));
         findViewById(R.id.network_common_ports_fill).setOnClickListener(view ->
                 port.setText("22,23,53,80,443,830"));
         findViewById(R.id.network_mac_lookup).setOnClickListener(view -> lookupMac());
@@ -81,8 +86,41 @@ public final class NetworkToolsActivity extends ThemedActivity {
             if (new PortBatchParser().parse(ports).size() == 1) {
                 return probes.tcp(target.getText().toString(), ports, timeoutMillis);
             }
-            return probes.tcpBatch(target.getText().toString(), ports, timeoutMillis);
+            return formatTcpBatchResult(
+                    probes.tcpBatch(target.getText().toString(), ports, timeoutMillis));
         });
+    }
+
+    private String formatTcpBatchResult(TcpBatchProbeResult report) {
+        StringBuilder output = new StringBuilder(getString(
+                R.string.network_batch_result_header,
+                report.getHost(), report.getPorts().size(), report.getTimeoutMillis()));
+        for (TcpPortProbeResult item : report.getPorts()) {
+            output.append('\n').append(getString(R.string.network_batch_result_line,
+                    item.getPort(), getString(item.isOpen()
+                            ? R.string.network_port_open
+                            : R.string.network_port_closed_filtered),
+                    item.getLatencyMillis()));
+        }
+        return output.toString();
+    }
+
+    private String formatAddressResult(AddressProbeResult report) {
+        StringBuilder output = new StringBuilder(getString(
+                R.string.network_address_result_header, report.getHost()));
+        for (AddressProbeEntry item : report.getAddresses()) {
+            output.append('\n').append(item.getAddress()).append("  ").append(item.getFamily());
+            appendAddressFlag(output, item.isLoopback(), R.string.network_address_loopback);
+            appendAddressFlag(output, item.isLinkLocal(), R.string.network_address_link_local);
+            appendAddressFlag(output, item.isPrivateAddress(), R.string.network_address_private);
+            appendAddressFlag(output, item.isMulticast(), R.string.network_address_multicast);
+            appendAddressFlag(output, item.isAnyLocal(), R.string.network_address_any_local);
+        }
+        return output.toString();
+    }
+
+    private void appendAddressFlag(StringBuilder output, boolean present, int label) {
+        if (present) output.append("  ").append(getString(label));
     }
 
     private void copyResult() {
@@ -166,6 +204,7 @@ public final class NetworkToolsActivity extends ThemedActivity {
 
     @Override protected void onDestroy() {
         worker.shutdownNow();
+        probes.cancelActiveProbe();
         super.onDestroy();
     }
 

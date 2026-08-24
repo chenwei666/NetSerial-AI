@@ -14,7 +14,7 @@ The V0.8.0 release candidate passed automated unit tests, Debug/Release lint, De
 
 | 检查项 / Check | 结果 / Result |
 | --- | --- |
-| JVM unit tests | 50 classes, 156 tests, 0 failures, 0 errors, 0 skipped |
+| JVM unit tests | 50 classes, 163 tests, 0 failures, 0 errors, 0 skipped |
 | Debug Lint | Passed |
 | Release Lint | Passed |
 | Debug APK build | Passed |
@@ -26,7 +26,7 @@ The V0.8.0 release candidate passed automated unit tests, Debug/Release lint, De
 
 - 18 个 AI 厂商预设、默认端点、认证方式及模型目录格式。
 - OpenAI-compatible、Anthropic 与 Ollama 上游模型列表解析。
-- 模型列表端点推导、缓存回退与手动模型兼容逻辑。
+- 模型列表端点推导、Qwen 专用目录格式、缓存作用域隔离与异步回调代次失效逻辑。
 - 批量端口表达式的单端口、列表、范围、去重、非法输入与上限边界。
 - TFTP 临时服务器连续 10 次真实 UDP 传输/关闭回归测试。
 
@@ -37,8 +37,8 @@ The V0.8.0 release candidate passed automated unit tests, Debug/Release lint, De
 ## APK 验证 / APK Verification
 
 - 文件 / File: `NetSerial-AI-v0.8.0-release.apk`
-- 大小 / Size: 6,215,064 bytes
-- SHA-256: `84724cb4f599ef49e9d7eca41009feba7acbfe42196939678ff8a804ca1ae0ff`
+- 大小 / Size: 6,222,091 bytes
+- SHA-256: `30d02a77efce1f7924edfcb4143517f9d89814ea13821f184e489e199eb6e87a`
 - 签名算法 / Signature: RSA 4096, SHA256withRSA
 - 证书 SHA-256 / Certificate SHA-256: `6f6d2063a155a9d252eecf4a84df31281b02d86beb2f0cd55ea7c80a2063f5bd`
 

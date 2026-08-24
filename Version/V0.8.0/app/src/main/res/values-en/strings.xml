@@ -547,6 +547,16 @@
     <string name="network_address_summary">Address</string>
     <string name="network_ports_hint">TCP ports or ranges, e.g. 22,80,443,8000-8003 (max 16)</string>
     <string name="network_common_ports_fill">Use common ops ports</string>
+    <string name="network_batch_result_header">TCP %1$s\nPorts=%2$d per-port timeout=%3$dms</string>
+    <string name="network_batch_result_line">%1$d  %2$s  %3$dms</string>
+    <string name="network_port_open">OPEN</string>
+    <string name="network_port_closed_filtered">CLOSED/FILTERED</string>
+    <string name="network_address_result_header">Target %1$s</string>
+    <string name="network_address_loopback">LOOPBACK</string>
+    <string name="network_address_link_local">LINK LOCAL</string>
+    <string name="network_address_private">PRIVATE</string>
+    <string name="network_address_multicast">MULTICAST</string>
+    <string name="network_address_any_local">ANY LOCAL</string>
     <string name="network_tcp_check">Check TCP ports</string>
     <string name="network_result_title">Diagnostic result</string>
     <string name="network_copy_result">Copy</string>

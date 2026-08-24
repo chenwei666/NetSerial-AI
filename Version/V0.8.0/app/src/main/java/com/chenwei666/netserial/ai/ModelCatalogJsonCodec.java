@@ -20,13 +20,16 @@ public final class ModelCatalogJsonCodec {
         try {
             JsonObject root = JsonParser.parseString(
                     new String(body, StandardCharsets.UTF_8)).getAsJsonObject();
-            JsonArray entries = requiredArray(root,
+            JsonArray entries = format == ModelCatalogFormat.QWEN
+                    ? requiredArray(requiredObject(root, "output"), "models")
+                    : requiredArray(root,
                     format == ModelCatalogFormat.OLLAMA ? "models" : "data");
             Set<String> models = new LinkedHashSet<>();
             for (JsonElement entry : entries) {
                 if (!entry.isJsonObject()) continue;
                 JsonObject object = entry.getAsJsonObject();
-                String field = format == ModelCatalogFormat.OLLAMA ? "name" : "id";
+                String field = format == ModelCatalogFormat.OLLAMA ? "name"
+                        : format == ModelCatalogFormat.QWEN ? "model" : "id";
                 JsonElement value = object.get(field);
                 if (value == null || !value.isJsonPrimitive()) continue;
                 String model = value.getAsString().trim();
@@ -49,6 +52,12 @@ public final class ModelCatalogJsonCodec {
         JsonElement value = root.get(name);
         if (value == null || !value.isJsonArray()) throw invalidResponse();
         return value.getAsJsonArray();
+    }
+
+    private static JsonObject requiredObject(JsonObject root, String name) {
+        JsonElement value = root.get(name);
+        if (value == null || !value.isJsonObject()) throw invalidResponse();
+        return value.getAsJsonObject();
     }
 
     private static AiProviderException invalidResponse() {

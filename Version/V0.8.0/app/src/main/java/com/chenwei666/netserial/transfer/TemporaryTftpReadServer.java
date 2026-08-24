@@ -144,13 +144,20 @@ public final class TemporaryTftpReadServer implements AutoCloseable {
                 && (ack[offset + 3] & 0xff) == (block & 0xff);
     }
 
-    @Override public void close() {
-        Thread running;
+    /** Requests shutdown without waiting; safe for Android lifecycle/main-thread callers. */
+    public void requestStop() {
         synchronized (this) {
             closed = true;
             if (listener != null) listener.close();
             if (activeTransferSocket != null) activeTransferSocket.close();
             executor.shutdownNow();
+        }
+    }
+
+    @Override public void close() {
+        Thread running;
+        requestStop();
+        synchronized (this) {
             running = workerThread;
         }
         if (Thread.currentThread() == running) return;

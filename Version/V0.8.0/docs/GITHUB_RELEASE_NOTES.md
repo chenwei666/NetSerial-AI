@@ -22,11 +22,11 @@ V0.8.0 focuses on a modernized operations workflow: broader AI connectivity, ups
 
 ## Verification
 
-- 50 test classes / 156 tests / 0 failures
+- 50 test classes / 163 tests / 0 failures
 - Debug and Release Lint passed
 - Debug and production-signed Release builds passed
 - V1/V2/V3 signatures and ZIP alignment verified
-- SHA-256: `84724cb4f599ef49e9d7eca41009feba7acbfe42196939678ff8a804ca1ae0ff`
+- SHA-256: `30d02a77efce1f7924edfcb4143517f9d89814ea13821f184e489e199eb6e87a`
 
 ## Compatibility and Notes
 

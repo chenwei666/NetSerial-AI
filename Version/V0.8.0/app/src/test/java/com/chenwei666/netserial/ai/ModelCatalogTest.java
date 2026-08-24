@@ -1,6 +1,7 @@
 package com.chenwei666.netserial.ai;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
@@ -39,6 +40,42 @@ public class ModelCatalogTest {
         assertEquals(Arrays.asList("llama3.2:latest", "qwen3:8b"), models);
     }
 
+    @Test public void resolvesAndParsesQwenModelCatalog() {
+        ProviderProfile profile = ProviderProfile.remote(
+                "qwen", "https://dashscope.aliyuncs.com/compatible-mode/v1",
+                "qwen-plus", "qwen-key");
+        String json = "{\"output\":{\"models\":[{\"model\":\"qwen-plus\"},"
+                + "{\"model\":\"qwen-max\"}]}}";
+
+        assertEquals("https://dashscope.aliyuncs.com/api/v1/models",
+                ModelCatalogEndpointResolver.resolve(profile).toString());
+        assertEquals(Arrays.asList("qwen-max", "qwen-plus"),
+                new ModelCatalogJsonCodec().decode(
+                        json.getBytes(StandardCharsets.UTF_8), ModelCatalogFormat.QWEN));
+    }
+
+    @Test public void invalidatedModelSyncCannotUpdateUi() {
+        ModelSyncGuard guard = new ModelSyncGuard();
+        long firstRequest = guard.begin();
+        guard.invalidate();
+        long secondRequest = guard.begin();
+
+        assertTrue(!guard.isCurrent(firstRequest));
+        assertTrue(guard.isCurrent(secondRequest));
+    }
+
+    @Test public void detectsCredentialDestinationChangesBeforeModelRefresh() {
+        ProviderProfile existing = ProviderProfile.remote(
+                "openai", "https://api.openai.com/v1", "model-a", "profile-a");
+        ProviderProfile changedHost = ProviderProfile.remote(
+                "openai", "https://untrusted.example/v1", "model-a", "profile-a");
+        ProviderProfile modelOnly = ProviderProfile.remote(
+                "openai", "https://api.openai.com/v1", "model-b", "profile-a");
+
+        assertTrue(CredentialDestinationPolicy.hasChanged(existing, changedHost));
+        assertTrue(!CredentialDestinationPolicy.hasChanged(existing, modelOnly));
+    }
+
     @Test public void serviceUsesAnthropicHeaderAndParsesCatalog() {
         RecordingTransport transport = new RecordingTransport();
         AiModelCatalogService service = new AiModelCatalogService(
@@ -58,6 +95,15 @@ public class ModelCatalogTest {
     public void rejectsCatalogWithoutModels() {
         new ModelCatalogJsonCodec().decode("{\"data\":[]}".getBytes(StandardCharsets.UTF_8),
                 ModelCatalogFormat.OPENAI);
+    }
+
+    @Test public void isolatesModelCacheByCredentialAlias() {
+        ProviderProfile first = ProviderProfile.remote(
+                "openai-compatible", "https://gateway.example/v1", "model-a", "account-a");
+        ProviderProfile second = ProviderProfile.remote(
+                "openai-compatible", "https://gateway.example/v1", "model-b", "account-b");
+
+        assertNotEquals(AiModelCacheStore.key(first), AiModelCacheStore.key(second));
     }
 
     private static final class RecordingTransport implements ModelCatalogHttpTransport {

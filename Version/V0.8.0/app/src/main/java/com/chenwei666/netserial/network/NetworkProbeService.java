@@ -3,6 +3,7 @@ package com.chenwei666.netserial.network;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.InetAddress;
+import java.net.Inet4Address;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.io.IOException;
@@ -11,10 +12,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicReference;
 
 public final class NetworkProbeService {
     private static final int MAX_OUTPUT_LINES = 80;
     private final NetworkTargetValidator validator = new NetworkTargetValidator();
+    private final AtomicReference<Socket> activeSocket = new AtomicReference<>();
 
     public String dns(String target) throws Exception {
         String host = validator.validate(target);
@@ -30,50 +33,86 @@ public final class NetworkProbeService {
         String host = validator.validate(target);
         int port = validator.validatePort(portText);
         long started = System.nanoTime();
-        try (Socket socket = new Socket()) {
-            socket.connect(new InetSocketAddress(host, port), boundedTimeout(timeoutMillis));
+        InetAddress address = InetAddress.getByName(host);
+        throwIfInterrupted();
+        try (Socket socket = registerSocket()) {
+            socket.connect(new InetSocketAddress(address, port), boundedTimeout(timeoutMillis));
+        } finally {
+            activeSocket.set(null);
         }
         long elapsed = TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - started);
         return String.format(Locale.ROOT, "TCP %s:%d\nstatus=OK\nlatency_ms=%d", host, port, elapsed);
     }
 
-    public String tcpBatch(String target, String portText, int timeoutMillis) throws Exception {
+    public TcpBatchProbeResult tcpBatch(String target, String portText, int timeoutMillis) throws Exception {
         String host = validator.validate(target);
         List<Integer> ports = new PortBatchParser().parse(portText);
+        InetAddress address = InetAddress.getByName(host);
         int perPortTimeout = Math.min(boundedTimeout(timeoutMillis), 1_500);
-        StringBuilder result = new StringBuilder("TCP ").append(host)
-                .append("\nports=").append(ports.size())
-                .append(" timeout_ms=").append(perPortTimeout).append('\n');
+        List<TcpPortProbeResult> results = new ArrayList<>();
         for (int port : ports) {
+            throwIfInterrupted();
             long started = System.nanoTime();
             boolean open = false;
-            try (Socket socket = new Socket()) {
-                socket.connect(new InetSocketAddress(host, port), perPortTimeout);
+            try (Socket socket = registerSocket()) {
+                socket.connect(new InetSocketAddress(address, port), perPortTimeout);
                 open = true;
             } catch (IOException ignored) {
+                throwIfInterrupted();
                 // A refused or timed-out connection is reported as CLOSED/FILTERED.
+            } finally {
+                activeSocket.set(null);
             }
             long elapsed = TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - started);
-            result.append(port).append("  ")
-                    .append(open ? "OPEN" : "CLOSED/FILTERED")
-                    .append("  ").append(elapsed).append("ms\n");
+            results.add(new TcpPortProbeResult(port, open, elapsed));
         }
-        return result.toString().trim();
+        return new TcpBatchProbeResult(host, perPortTimeout, results);
     }
 
-    public String addressSummary(String target) throws Exception {
-        String host = validator.validate(target);
-        StringBuilder result = new StringBuilder("TARGET ").append(host);
-        for (InetAddress address : InetAddress.getAllByName(host)) {
-            result.append('\n').append(address.getHostAddress())
-                    .append("  ").append(address.getClass().getSimpleName())
-                    .append(address.isLoopbackAddress() ? " LOOPBACK" : "")
-                    .append(address.isLinkLocalAddress() ? " LINK_LOCAL" : "")
-                    .append(address.isSiteLocalAddress() ? " PRIVATE" : "")
-                    .append(address.isMulticastAddress() ? " MULTICAST" : "")
-                    .append(address.isAnyLocalAddress() ? " ANY_LOCAL" : "");
+    /** Cancels a currently blocking TCP connect. The worker interruption stops any remaining batch. */
+    public void cancelActiveProbe() {
+        Socket socket = activeSocket.getAndSet(null);
+        if (socket == null) return;
+        try {
+            socket.close();
+        } catch (IOException ignored) {
         }
-        return result.toString();
+    }
+
+    private Socket registerSocket() throws InterruptedException {
+        throwIfInterrupted();
+        Socket socket = new Socket();
+        if (!activeSocket.compareAndSet(null, socket)) {
+            try {
+                socket.close();
+            } catch (IOException ignored) {
+            }
+            throw new IllegalStateException("another TCP probe is already active");
+        }
+        if (Thread.currentThread().isInterrupted()) {
+            cancelActiveProbe();
+            throw new InterruptedException("network probe was cancelled");
+        }
+        return socket;
+    }
+
+    private static void throwIfInterrupted() throws InterruptedException {
+        if (Thread.currentThread().isInterrupted()) {
+            throw new InterruptedException("network probe was cancelled");
+        }
+    }
+
+    public AddressProbeResult addressSummary(String target) throws Exception {
+        String host = validator.validate(target);
+        List<AddressProbeEntry> results = new ArrayList<>();
+        for (InetAddress address : InetAddress.getAllByName(host)) {
+            results.add(new AddressProbeEntry(
+                    address.getHostAddress(), address instanceof Inet4Address ? "IPv4" : "IPv6",
+                    address.isLoopbackAddress(), address.isLinkLocalAddress(),
+                    address.isSiteLocalAddress(), address.isMulticastAddress(),
+                    address.isAnyLocalAddress()));
+        }
+        return new AddressProbeResult(host, results);
     }
 
     public String ping(String target, int timeoutMillis) throws Exception {

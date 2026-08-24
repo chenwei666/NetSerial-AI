@@ -29,6 +29,7 @@ import com.chenwei666.netserial.ai.AiProviderPresetCatalog;
 import com.chenwei666.netserial.ai.CredentialVault;
 import com.chenwei666.netserial.ai.CredentialVaultException;
 import com.chenwei666.netserial.ai.CredentialVaultFactory;
+import com.chenwei666.netserial.ai.CredentialDestinationPolicy;
 import com.chenwei666.netserial.ai.CachedAiModels;
 import com.chenwei666.netserial.ai.ProviderCredentialService;
 import com.chenwei666.netserial.ai.ProviderProfile;
@@ -36,6 +37,7 @@ import com.chenwei666.netserial.ai.ProviderProfileManager;
 import com.chenwei666.netserial.ai.ProviderProfileStoreException;
 import com.chenwei666.netserial.ai.ProviderProfilesState;
 import com.chenwei666.netserial.ai.RequestCancellation;
+import com.chenwei666.netserial.ai.ModelSyncGuard;
 import com.chenwei666.netserial.ai.SharedPreferencesProviderProfilePersistence;
 
 import java.util.ArrayList;
@@ -62,6 +64,7 @@ public final class AiProviderSettingsActivity extends ThemedActivity {
     private String selectedCredentialAlias;
     private boolean updatingUi;
     private RequestCancellation modelCancellation;
+    private final ModelSyncGuard modelSyncGuard = new ModelSyncGuard();
 
     private Spinner profileSpinner;
     private Spinner providerSpinner;
@@ -251,6 +254,7 @@ public final class AiProviderSettingsActivity extends ThemedActivity {
     }
 
     private void renderProfile(ProviderProfile profile) {
+        cancelModelSyncForUiChange();
         updatingUi = true;
         selectedCredentialAlias = profile == null ? null : profile.getCredentialAlias();
         keyInput.setText("");
@@ -269,6 +273,7 @@ public final class AiProviderSettingsActivity extends ThemedActivity {
     }
 
     private void applyPreset(String providerId) {
+        cancelModelSyncForUiChange();
         AiProviderPreset preset = presetCatalog.require(providerId);
         endpointInput.setText(preset.getEndpoint());
         modelInput.setText(preset.getModel());
@@ -365,6 +370,12 @@ public final class AiProviderSettingsActivity extends ThemedActivity {
         }
         char[] typedCredential = copyCredential();
         boolean noKeyRequired = "ollama".equals(profile.getProviderId());
+        if (!noKeyRequired && typedCredential.length == 0 && existing != null
+                && CredentialDestinationPolicy.hasChanged(existing, profile)) {
+            Arrays.fill(typedCredential, '\0');
+            showStatus(R.string.ai_key_required_for_models);
+            return;
+        }
         if (!noKeyRequired && typedCredential.length == 0
                 && (existing == null || credentialService == null || !hasCredentialSafely(existing))) {
             Arrays.fill(typedCredential, '\0');
@@ -372,6 +383,7 @@ public final class AiProviderSettingsActivity extends ThemedActivity {
             return;
         }
         RequestCancellation cancellation = new RequestCancellation();
+        long generation = modelSyncGuard.begin();
         modelCancellation = cancellation;
         setModelSyncRunning(true);
         modelWorker.execute(() -> {
@@ -384,9 +396,11 @@ public final class AiProviderSettingsActivity extends ThemedActivity {
                     models = modelCatalogService.fetch(profile, typedCredential, cancellation);
                 }
                 modelCacheStore.save(profile, models, System.currentTimeMillis());
-                runOnUiThread(() -> finishModelSync(profile, models, null));
+                runOnUiThread(() -> finishModelSync(
+                        profile, models, null, cancellation, generation));
             } catch (RuntimeException exception) {
-                runOnUiThread(() -> finishModelSync(profile, null, exception));
+                runOnUiThread(() -> finishModelSync(
+                        profile, null, exception, cancellation, generation));
             } finally {
                 Arrays.fill(typedCredential, '\0');
             }
@@ -402,8 +416,11 @@ public final class AiProviderSettingsActivity extends ThemedActivity {
     }
 
     private void finishModelSync(ProviderProfile profile, List<String> models,
-                                 RuntimeException failure) {
-        if (isFinishingOrDestroyed()) return;
+                                 RuntimeException failure,
+                                 RequestCancellation cancellation,
+                                 long generation) {
+        if (isFinishingOrDestroyed() || !modelSyncGuard.isCurrent(generation)
+                || modelCancellation != cancellation) return;
         modelCancellation = null;
         setModelSyncRunning(false);
         if (failure == null && models != null) {
@@ -436,6 +453,14 @@ public final class AiProviderSettingsActivity extends ThemedActivity {
                 : R.string.ai_models_not_loaded);
     }
 
+    private void cancelModelSyncForUiChange() {
+        modelSyncGuard.invalidate();
+        RequestCancellation active = modelCancellation;
+        modelCancellation = null;
+        if (active != null) active.cancel();
+        setModelSyncRunning(false);
+    }
+
     private void saveProfile() {
         ProviderProfile existing = findProfile(selectedCredentialAlias);
         String alias = existing == null ? newCredentialAlias() : existing.getCredentialAlias();
@@ -454,7 +479,7 @@ public final class AiProviderSettingsActivity extends ThemedActivity {
                 return;
             }
             if (existing != null
-                    && credentialDestinationChanged(existing, profile)) {
+                    && CredentialDestinationPolicy.hasChanged(existing, profile)) {
                 boolean existingHasCredential;
                 try {
                     existingHasCredential = hasCredential(existing);
@@ -534,14 +559,6 @@ public final class AiProviderSettingsActivity extends ThemedActivity {
 
     private boolean hasCredential(ProviderProfile profile) {
         return credentialService != null && credentialService.hasCredential(profile);
-    }
-
-    private static boolean credentialDestinationChanged(
-            ProviderProfile existing,
-            ProviderProfile replacement
-    ) {
-        return !existing.getProviderId().equals(replacement.getProviderId())
-                || !existing.getEndpoint().equals(replacement.getEndpoint());
     }
 
     private static String newCredentialAlias() {
@@ -726,7 +743,7 @@ public final class AiProviderSettingsActivity extends ThemedActivity {
 
     @Override
     protected void onDestroy() {
-        if (modelCancellation != null) modelCancellation.cancel();
+        cancelModelSyncForUiChange();
         modelWorker.shutdownNow();
         connectionTestCoordinator.close();
         super.onDestroy();

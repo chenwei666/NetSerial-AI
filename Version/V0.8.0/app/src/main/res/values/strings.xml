@@ -556,6 +556,16 @@
     <string name="network_address_summary">地址摘要</string>
     <string name="network_ports_hint">TCP 端口或范围，例如 22,80,443,8000-8003（最多 16 个）</string>
     <string name="network_common_ports_fill">填入运维常用端口</string>
+    <string name="network_batch_result_header">TCP %1$s\n端口数=%2$d 单端口超时=%3$d毫秒</string>
+    <string name="network_batch_result_line">%1$d  %2$s  %3$d毫秒</string>
+    <string name="network_port_open">开放</string>
+    <string name="network_port_closed_filtered">关闭/已过滤</string>
+    <string name="network_address_result_header">目标 %1$s</string>
+    <string name="network_address_loopback">回环</string>
+    <string name="network_address_link_local">链路本地</string>
+    <string name="network_address_private">私有地址</string>
+    <string name="network_address_multicast">组播</string>
+    <string name="network_address_any_local">任意本地</string>
     <string name="network_tcp_check">检查 TCP 端口</string>
     <string name="network_result_title">诊断结果</string>
     <string name="network_copy_result">复制</string>
