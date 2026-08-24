@@ -12,6 +12,7 @@
 | V0.3.1 | [Release](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.3.1) · [源码](Version/V0.3.1/) | 首个稳定正式版 | 生产签名 APK | 长期生产签名与正式发布门禁 |
 | V0.4.0 | [Release](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.4.0) · [源码](Version/V0.4.0/) | 正式版候选 | 生产签名 APK | 变更管理、配置 Diff、网络工具与增强 SSH |
 | V0.5.0 | [Latest](https://github.com/chenwei666/NetSerial-AI/releases/latest) · [源码](Version/V0.5.0/) | 最新稳定正式版 | 生产签名 APK | Material 3、主题系统、运维工作台与新图标 |
+| V0.6.0 | [源码](Version/V0.6.0/) | 本地正式版候选，尚未发布 | 生产签名候选 APK | 厂商识别、Web 向导、更新检测、AI 诊断、运维中心、多会话、快照与 XMODEM |
 
 ## V0.1.0 — 可信基线
 
@@ -63,9 +64,18 @@
 - 使用生产证书签名；109 项单元测试、Release Lint、V1/V2/V3 签名和 ZIP 对齐通过，真实设备矩阵仍待验收。
 - APK SHA-256：`c16a95034a45adbf3c38a9e24a0211aeb9d4197d52132420e47f4c00ab264cf3`。
 
+## V0.6.0 — 智能运维增强
+
+- 增加四厂商自动识别与自动选择命令页面。
+- 增加 HTTPS 优先的 Web 开通向导、GitHub Latest 更新检测与 AI 一键故障诊断。
+- 增加只读剧本、LLDP/CDP 发现、合规初筛、金丝雀批次计划、多会话和配置快照。
+- 增加 Tab 补全 2.0、自定义命令包和 USB XMODEM-128 发送。
+- 125 项单元测试、Debug/Release Lint、Debug/Release 构建、ZIP 对齐和 V1/V2/V3 签名通过。
+- APK SHA-256：`1468f7dab82c4caa3ed0729cecbdb66754b1d2bfc38f1627dc5e7778e87687ec`。该候选尚未发布为 GitHub Latest。
+
 ## 安装与升级关系
 
 - V0.1.0、V0.2.0、V0.3.0 属于 Debug/开发检查点，不能直接覆盖生产签名版本。
-- 从 V0.3.1 开始，V0.3.1、V0.4.0、V0.5.0 使用同一生产证书，可按版本顺序覆盖升级并保留应用私有数据。
+- 从 V0.3.1 开始，V0.3.1、V0.4.0、V0.5.0、V0.6.0 使用同一生产证书，可按版本顺序覆盖升级并保留应用私有数据。
 - 安装前必须从对应 Release 下载附件并核对 SHA-256；不要安装来源不明或哈希不一致的 APK。
 - V0.4.0 保持候选版；V0.5.0 已提升为 GitHub `Latest` 正式版。部署到生产网络前仍建议在授权手机、USB 串口芯片和目标交换机上完成现场验收。

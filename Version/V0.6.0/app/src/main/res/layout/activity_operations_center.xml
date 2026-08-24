@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="vertical" android:padding="16dp">
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="@string/operations_intro" />
+        <Spinner android:id="@+id/operations_vendor" android:layout_width="match_parent" android:layout_height="48dp" />
+        <EditText android:id="@+id/operations_input" android:layout_width="match_parent" android:layout_height="180dp"
+            android:gravity="top|start" android:hint="@string/operations_input_hint" android:inputType="textMultiLine"
+            android:fontFamily="monospace" android:maxLength="500000" />
+        <com.google.android.material.button.MaterialButton android:id="@+id/operations_identify"
+            android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/operations_identify" />
+        <Spinner android:id="@+id/operations_playbook" android:layout_width="match_parent" android:layout_height="48dp" />
+        <EditText android:id="@+id/operations_parameter" android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:hint="@string/operations_parameter" android:maxLength="48" android:singleLine="true" />
+        <com.google.android.material.button.MaterialButton android:id="@+id/operations_generate"
+            android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/operations_generate" />
+        <com.google.android.material.button.MaterialButton android:id="@+id/operations_compliance" style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/operations_compliance" />
+        <EditText android:id="@+id/operations_targets" android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:hint="@string/operations_targets" android:inputType="textMultiLine" android:maxLength="8000" />
+        <com.google.android.material.button.MaterialButton android:id="@+id/operations_batch" style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/operations_batch" />
+        <com.google.android.material.button.MaterialButton android:id="@+id/operations_use"
+            android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/operations_use" />
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
+            <com.google.android.material.button.MaterialButton android:id="@+id/operations_sessions" style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="@string/sessions_menu" />
+            <Space android:layout_width="8dp" android:layout_height="1dp" />
+            <com.google.android.material.button.MaterialButton android:id="@+id/operations_snapshots" style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="@string/snapshot_menu" />
+        </LinearLayout>
+        <TextView android:id="@+id/operations_output" android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="12dp" android:padding="12dp" android:textIsSelectable="true" android:fontFamily="monospace" />
+    </LinearLayout>
+</ScrollView>

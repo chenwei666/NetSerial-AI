@@ -2,6 +2,30 @@
 
 完整功能变更保存在各独立版本目录的 `CHANGELOG.md` 中；本文件记录版本发布后的仓库级元数据和文档调整。
 
+## 2026-08-24 — V0.6.0 本地正式版候选
+
+- 开发人员：chenwei666
+- 发布状态：完整源码与生产签名候选 APK 已在 `Version/V0.6.0` 归档；尚未推送、创建 GitHub Release 或修改 `Latest`。
+
+### 修改内容
+
+- 新增四厂商识别、HTTPS 优先 Web 开通向导、GitHub 更新检测和 AI 一键故障诊断。
+- 新增运维中心、只读剧本、LLDP/CDP 发现、配置合规初筛、金丝雀批次规划、多会话和配置快照。
+- 新增 Tab 补全 2.0、自定义命令包和 USB XMODEM-128 文件发送。
+- 根目录中英文介绍和版本历史增加 V0.6.0 候选状态，同时明确 GitHub Latest 仍为 V0.5.0。
+
+### 验证
+
+- 125 项单元测试、Debug/Release Lint、Debug/Release APK 构建、ZIP 对齐通过。
+- APK 包名 `com.chenwei666.netserial`，versionCode 7，versionName 0.6.0，minSdk 21，targetSdk 36。
+- V1/V2/V3 签名通过；证书与既有生产升级链一致。
+- APK SHA-256：`1468f7dab82c4caa3ed0729cecbdb66754b1d2bfc38f1627dc5e7778e87687ec`。
+
+### 已知限制
+
+- 尚未完成真实 Android、USB、四厂商交换机、AI 账号和 XMODEM 接收端现场验收。
+- 本记录不代表已发布 GitHub Release；远程发布需要用户另行明确授权。
+
 ## 2026-08-21 — V0.5.0 Latest 正式版
 
 - 开发人员：chenwei666

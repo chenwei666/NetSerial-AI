@@ -12,6 +12,7 @@ This document records the complete public evolution, release status, artifact tr
 | V0.3.1 | [Release](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.3.1) · [Source](Version/V0.3.1/) | First stable production release | Production-signed APK | Long-term signing and formal release gates |
 | V0.4.0 | [Release](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.4.0) · [Source](Version/V0.4.0/) | Release candidate | Production-signed APK | Change control, configuration Diff, network tools, enhanced SSH |
 | V0.5.0 | [Latest](https://github.com/chenwei666/NetSerial-AI/releases/latest) · [Source](Version/V0.5.0/) | Latest stable release | Production-signed APK | Material 3, themes, operations dashboard, new icon |
+| V0.6.0 | [Source](Version/V0.6.0/) | Local release candidate, not published | Production-signed candidate APK | Vendor detection, Web wizard, update checks, AI diagnosis, operations center, sessions, snapshots, XMODEM |
 
 ## V0.1.0 — Trusted baseline
 
@@ -63,9 +64,18 @@ This document records the complete public evolution, release status, artifact tr
 - Production-signed; 109 unit tests, Release Lint, V1/V2/V3 signing, and ZIP alignment passed. The real-device matrix remains pending.
 - APK SHA-256: `c16a95034a45adbf3c38a9e24a0211aeb9d4197d52132420e47f4c00ab264cf3`.
 
+## V0.6.0 — Intelligent operations expansion
+
+- Added four-vendor identification and automatic command-page selection.
+- Added an HTTPS-first Web access wizard, GitHub Latest checks, and one-tap AI diagnosis.
+- Added read-only playbooks, LLDP/CDP discovery, compliance triage, canary batch planning, multi-session profiles, and configuration snapshots.
+- Added Tab completion 2.0, custom command packs, and USB XMODEM-128 send.
+- Passed 125 unit tests, Debug/Release Lint, Debug/Release builds, ZIP alignment, and V1/V2/V3 signature verification.
+- APK SHA-256: `1468f7dab82c4caa3ed0729cecbdb66754b1d2bfc38f1627dc5e7778e87687ec`. This candidate is not yet GitHub Latest.
+
 ## Installation and upgrade path
 
 - V0.1.0, V0.2.0, and V0.3.0 are Debug or development checkpoints and cannot directly replace production-signed builds.
-- V0.3.1, V0.4.0, and V0.5.0 share the same production certificate and support sequential in-place upgrades with application-private data retained.
+- V0.3.1, V0.4.0, V0.5.0, and V0.6.0 share the same production certificate and support sequential in-place upgrades with application-private data retained.
 - Download APKs only from the matching Release and verify SHA-256 before installation.
 - V0.4.0 remains a candidate. V0.5.0 is now the GitHub `Latest` production release; field acceptance on authorized phones, USB serial chipsets, and target switches is still recommended before production-network deployment.
