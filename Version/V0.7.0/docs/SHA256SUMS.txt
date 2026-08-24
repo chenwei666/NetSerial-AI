@@ -1,0 +1,1 @@
+962e23209f57b24203a917474f90bda44c250c6071178e84a3d9a1b171504b81  artifacts/NetSerial-AI-v0.7.0-release.apk
