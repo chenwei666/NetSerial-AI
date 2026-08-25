@@ -32,7 +32,7 @@ NetSerial AI 面向需要在机房、弱电间和现场快速处理网络设备�
 
 > **正式版状态：V0.9.0 已通过自动化门禁、合并到 `main` 并发布为 GitHub Latest；真实手机、交换机和自有 AI 账号兼容性仍需在授权环境现场验收。**
 
-> **开发候选：V0.9.1 已实现连接后从运维中心一键读取当前 USB/SSH/Telnet 会话并自动识别厂商；尚未推送、合并或发布，Latest 仍指向 V0.9.0。**
+> **开发候选：V0.9.1 已通过 [PR #11](https://github.com/chenwei666/NetSerial-AI/pull/11) 合并到 `main`，实现运维中心一键读取当前 USB/SSH/Telnet 会话并自动识别厂商；尚未创建 V0.9.1 Release，Latest 仍指向 V0.9.0。**
 
 ## 为什么选择 NetSerial AI？
 

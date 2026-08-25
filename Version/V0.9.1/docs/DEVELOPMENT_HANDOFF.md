@@ -3,7 +3,9 @@
 - 分支 / Branch: `codex/feature/v0.9.1-live-session-read`
 - 版本 / Version: `0.9.1` (`versionCode 11`)
 - 开发人员 / Developer: chenwei666
-- 状态 / Status: 本地功能、测试、Lint 和生产签名候选 APK 已完成；尚未推送、创建 PR、合并或发布。
+- 合并提交 / Merge commit: `a8191fefe0a7daad304fc42b16a9f33d974c9507`
+- Pull Request: `https://github.com/chenwei666/NetSerial-AI/pull/11`
+- 状态 / Status: 功能分支已推送且 PR #11 已合并到 `main`；尚未创建 V0.9.1 GitHub Release。
 
 ## 已完成
 
@@ -32,5 +34,5 @@ APK 和 `artifacts/` 按仓库规则不进入 Git。若用户后续授权发布�
 ## 后续步骤
 
 1. 在授权真实 Android、USB 适配器和四厂商交换机上执行现场验收。
-2. 用户明确要求后再推送分支、创建 PR、合并和发布 V0.9.1。
+2. 用户明确要求发布后，再创建 V0.9.1 GitHub Release 并决定是否更新 Latest。
 3. 发布后校验 GitHub Latest、远程 APK 大小、SHA-256 和证书指纹。

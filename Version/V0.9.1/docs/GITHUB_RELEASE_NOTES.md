@@ -22,4 +22,4 @@ The snapshot stays in process memory, disappears on process exit, and contains n
 - ZIP alignment and V1/V2/V3 signatures: verified
 - APK SHA-256: `fb105b2e9a4973b3e329defdfb8d5d0aaba70ed499aebe596b4b14e36e1c4780`
 
-Physical Android devices, USB adapters, SSH/Telnet servers, and target switch firmware still require authorized field acceptance. This candidate has not yet been pushed, merged, or published.
+Physical Android devices, USB adapters, SSH/Telnet servers, and target switch firmware still require authorized field acceptance. PR #11 is merged into `main`; this candidate has not yet been published as a V0.9.1 GitHub Release.
