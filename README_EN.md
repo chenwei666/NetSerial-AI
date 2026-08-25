@@ -13,13 +13,13 @@
 
 NetSerial AI is built for engineers operating H3C, Huawei, Cisco, and Ruijie switches. It works as a dependable USB serial terminal and also reaches remote or legacy equipment through SSH/SFTP and explicitly authorized Telnet. Offline commands, Tab completion, network diagnostics, configuration Diff, change evidence, and an AI copilot with built-in or custom compatible providers share the same guarded workflow. AI drafts, checks, and explains; the engineer always controls the final send action.
 
-> Development status: V0.9.0 has a standalone source archive and a locally verified production-signed candidate. It has not been pushed or published, and GitHub Latest remains V0.7.0.
+> Release status: V0.9.0 passed the automated release gates, was merged into `main`, and is now GitHub Latest. Compatibility on physical phones, switches, and owned AI accounts still requires authorized field acceptance.
 
 ## Release status and version history
 
-- Current latest stable release: [V0.7.0](https://github.com/chenwei666/NetSerial-AI/releases/latest), with five-area navigation, AI failover, advanced diagnostics, secure transfers, and guarded automation foundations.
+- Current latest stable release: [V0.9.0](https://github.com/chenwei666/NetSerial-AI/releases/latest), with full in-app AI chat, 18 provider entries, encrypted history, incident evidence, guided runbooks, configuration drift, and guarded change closure.
 - V0.3.1 was the first long-term production-signed stable release. V0.5.0 uses the same certificate and supports in-place upgrades from V0.3.1 or V0.4.0.
-- V0.2.0 and V0.3.0 are source-only historical checkpoints with no verified APK. V0.4.0 remains a candidate, while V0.5.0 is now the GitHub `Latest` production release.
+- V0.2.0 and V0.3.0 are source-only historical checkpoints with no verified APK. V0.4.0 remains a historical candidate; V0.5.0, V0.6.0, and V0.7.0 are historical stable releases.
 - See the complete [version history](VERSION_HISTORY_EN.md) and the repository-level [project changelog](CHANGELOG.md). Every immutable source archive remains under [`Version/`](Version/).
 
 | Version | Status | Milestone |
@@ -29,11 +29,11 @@ NetSerial AI is built for engineers operating H3C, Huawei, Cisco, and Ruijie swi
 | V0.3.0 | Historical source checkpoint | SSH, controlled Telnet, categorized command library, bilingual settings |
 | V0.3.1 | First stable production release | Production signing, complete release gates, in-place upgrade baseline |
 | V0.4.0 | Release candidate | Change tasks, configuration Diff, network tools, SFTP, jump hosts |
-| V0.5.0 | Latest stable release | Material 3, light/dark modes, four themes, operations dashboard, new icon |
+| V0.5.0 | Historical stable release | Material 3, light/dark modes, four themes, operations dashboard, new icon |
 | V0.6.0 | Local release candidate | Vendor detection, Web wizard, update checks, AI diagnosis, operations center, multi-session, snapshots, completion 2.0, XMODEM |
-| V0.7.0 | Latest stable release | Five-area navigation, AI failover, diagnostics, secure transfer, signed runbooks, guarded batch |
+| V0.7.0 | Historical stable release | Five-area navigation, AI failover, diagnostics, secure transfer, signed runbooks, guarded batch |
 | V0.8.0 | Development candidate | Modern task cards, 18 AI entries, upstream model catalogs, direct network toolbox |
-| V0.9.0 | Development candidate | Full in-app AI chat, encrypted history, incident evidence, guided runbooks, drift and change closure |
+| V0.9.0 | Latest stable release | Full in-app AI chat, encrypted history, incident evidence, guided runbooks, drift and change closure |
 
 ## V0.5.0 highlights
 

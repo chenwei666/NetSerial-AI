@@ -1,4 +1,4 @@
-# NetSerial AI V0.9.0 Release Candidate
+# NetSerial AI V0.9.0 Production Release / 正式版
 
 V0.9.0 turns NetSerial AI into a complete in-app network operations assistant while preserving the rule that AI never sends device commands automatically.
 
