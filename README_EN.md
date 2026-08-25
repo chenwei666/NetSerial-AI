@@ -15,7 +15,7 @@ NetSerial AI is built for engineers operating H3C, Huawei, Cisco, and Ruijie swi
 
 > Release status: V0.9.0 passed the automated release gates, was merged into `main`, and is now GitHub Latest. Compatibility on physical phones, switches, and owned AI accounts still requires authorized field acceptance.
 
-> Development candidate: V0.9.1 adds one-tap reading of the current USB/SSH/Telnet session from Operations Center with automatic vendor identification. It has not been pushed, merged, or released; Latest remains V0.9.0.
+> Development candidate: V0.9.1 was merged into `main` through [PR #11](https://github.com/chenwei666/NetSerial-AI/pull/11). It adds one-tap reading of the current USB/SSH/Telnet session with automatic vendor identification. A V0.9.1 Release has not been created, so Latest remains V0.9.0.
 
 ## Release status and version history
 
@@ -36,7 +36,7 @@ NetSerial AI is built for engineers operating H3C, Huawei, Cisco, and Ruijie swi
 | V0.7.0 | Historical stable release | Five-area navigation, AI failover, diagnostics, secure transfer, signed runbooks, guarded batch |
 | V0.8.0 | Development candidate | Modern task cards, 18 AI entries, upstream model catalogs, direct network toolbox |
 | V0.9.0 | Latest stable release | Full in-app AI chat, encrypted history, incident evidence, guided runbooks, drift and change closure |
-| V0.9.1 | Development candidate | One-tap active terminal read, redacted in-memory snapshot, and automatic vendor selection |
+| V0.9.1 | Merged development candidate | One-tap active terminal read, redacted in-memory snapshot, and automatic vendor selection |
 
 ## V0.5.0 highlights
 

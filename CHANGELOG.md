@@ -3,7 +3,7 @@
 ## 2026-08-25 — V0.9.1 一键读取开发候选
 
 - 开发人员：chenwei666
-- 发布状态：独立完整源码归档与生产签名候选 APK 已生成；尚未推送、合并或发布，GitHub Latest 仍为 V0.9.0。
+- 发布状态：PR [#11](https://github.com/chenwei666/NetSerial-AI/pull/11) 已合并到 `main`（`a8191fe`）；尚未创建 V0.9.1 Release，GitHub Latest 仍为 V0.9.0。
 - 运维中心可一键读取当前已连接 USB、SSH 或 Telnet 会话的最近输出，自动填充并识别 H3C、Huawei、Cisco 或 Ruijie。
 - 新增有界、仅内存、脱敏的活动终端会话桥接；断开会话不可读，清屏同步清除，不新增隐藏连接或自动命令执行通道。
 - 增加中英文状态与异常提示；versionCode 11、versionName 0.9.1，数据库、外部 API 和配置格式不变。
