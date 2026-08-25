@@ -13,9 +13,9 @@
 | V0.4.0 | [Release](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.4.0) · [源码](Version/V0.4.0/) | 正式版候选 | 生产签名 APK | 变更管理、配置 Diff、网络工具与增强 SSH |
 | V0.5.0 | [Release](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.5.0) · [源码](Version/V0.5.0/) | 历史稳定版 | 生产签名 APK | Material 3、主题系统、运维工作台与新图标 |
 | V0.6.0 | [Release](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.6.0) · [源码](Version/V0.6.0/) | 历史稳定版 | 生产签名 APK | 厂商识别、Web 向导、更新检测、AI 诊断、运维中心、多会话、快照与 XMODEM |
-| V0.7.0 | [Latest](https://github.com/chenwei666/NetSerial-AI/releases/latest) · [源码](Version/V0.7.0/) | 最新稳定正式版 | 生产签名 APK | 五区导航、AI 故障转移、高级诊断、安全传输、签名剧本与受控批次 |
+| V0.7.0 | [Release](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.7.0) · [源码](Version/V0.7.0/) | 历史稳定版 | 生产签名 APK | 五区导航、AI 故障转移、高级诊断、安全传输、签名剧本与受控批次 |
 | V0.8.0 | [源码](Version/V0.8.0/) | 开发候选，尚未发布 | 尚无正式 APK | 现代任务卡片、18 类 AI、上游模型目录与直达网络工具 |
-| V0.9.0 | [源码](Version/V0.9.0/) | 开发候选，尚未发布 | 尚无正式 APK | 完整 AI 对话、加密历史、故障取证、运行手册、漂移与变更闭环 |
+| V0.9.0 | [Latest](https://github.com/chenwei666/NetSerial-AI/releases/latest) · [源码](Version/V0.9.0/) | 最新稳定正式版 | 生产签名 APK | 完整 AI 对话、加密历史、故障取证、运行手册、漂移与变更闭环 |
 
 ## V0.1.0 — 可信基线
 
@@ -98,11 +98,11 @@
 - 继续使用 18 类厂商、上游模型目录、活动档案优先和故障转移，不新增重复的凭据或网络实现。
 - 新增一键故障取证、结构化只读运行手册、配置漂移分级、安全巡检和变更证据完整性门禁。
 - AI 回复只允许从显式围栏提取网络 CLI 白名单命令，仍须本地分级和人工装载；R4 保持阻断。
-- versionCode 10、versionName 0.9.0；正式发布和现场验收尚未完成。
+- versionCode 10、versionName 0.9.0；已发布为 GitHub Latest，APK SHA-256 为 `b4c4040cfc2f1895404dd0c9b6f8024f3824f4a1baf161621e132e504ee29697`，现场验收仍需在授权环境完成。
 
 ## 安装与升级关系
 
 - V0.1.0、V0.2.0、V0.3.0 属于 Debug/开发检查点，不能直接覆盖生产签名版本。
-- 从 V0.3.1 开始，所有正式版本使用同一生产证书；V0.8.0/V0.9.0 正式发布时也必须使用该证书，才能覆盖升级并保留应用私有数据。
+- 从 V0.3.1 开始，所有正式版本使用同一生产证书；V0.9.0 已沿用该证书，可覆盖升级并保留应用私有数据。
 - 安装前必须从对应 Release 下载附件并核对 SHA-256；不要安装来源不明或哈希不一致的 APK。
-- V0.7.0 是当前 GitHub `Latest` 正式版。V0.8.0/V0.9.0 尚未发布；部署到生产网络前仍须在授权手机、USB 串口芯片、目标交换机和自有 AI 账号上完成现场验收。
+- V0.9.0 是当前 GitHub `Latest` 正式版；V0.8.0 保留为未单独发布的源码检查点。部署到生产网络前仍须在授权手机、USB 串口芯片、目标交换机和自有 AI 账号上完成现场验收。

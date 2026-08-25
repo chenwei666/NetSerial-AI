@@ -1,9 +1,9 @@
 # Project Changelog
 
-## 2026-08-25 — V0.9.0 开发候选
+## 2026-08-25 — V0.9.0 正式发布
 
 - 开发人员：chenwei666
-- 发布状态：独立源码归档和本地生产签名候选已完成；尚未推送、合并或发布，GitHub Latest 仍为 V0.7.0。
+- 发布状态：PR [#9](https://github.com/chenwei666/NetSerial-AI/pull/9) 已合并到 `main`；[V0.9.0](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.9.0) 已作为非预发布正式版发布并设为 GitHub Latest。
 
 ### 新增与优化
 
@@ -26,7 +26,7 @@
 
 - 对话上下文执行长度限制、ANSI 清理、敏感字段脱敏和提示注入隔离；取消不会触发厂商切换。
 - 59 个测试类、181 项测试全部通过；Debug/Release Lint、Debug/Release 构建、ZIP 对齐、V1/V2/V3 签名与 APK 元数据检查通过。
-- 候选 APK SHA-256：`b4c4040cfc2f1895404dd0c9b6f8024f3824f4a1baf161621e132e504ee29697`。
+- 正式 APK SHA-256：`b4c4040cfc2f1895404dd0c9b6f8024f3824f4a1baf161621e132e504ee29697`；GitHub 远程资产摘要复核一致。
 - 未在真实 Android、USB、交换机或付费 AI 账号上执行未经授权的调用；各厂商账号/区域兼容性仍需现场验收。
 - NETCONF/RESTCONF、gNMI、Syslog/SNMP Trap 和主动多设备拓扑采集保留到后续版本，不标记为已实现。
 

@@ -1,9 +1,9 @@
 # V0.9.0 开发交接 / Development Handoff
 
-- 分支 / Branch: `codex/feature/v0.9.0`
+- 合并提交 / Merge commit: `2efa1e389e0e0bc92f7786ffcbfdf67490474d5d`
 - 版本 / Version: `0.9.0` (`versionCode 10`)
 - 开发人员 / Developer: chenwei666
-- 状态 / Status: 本地生产签名候选已通过自动化门禁；尚未提交、推送、创建 PR、合并或发布 GitHub Release。
+- 状态 / Status: PR #9 已合并，V0.9.0 已发布为非预发布 GitHub Latest；远程资产大小和 SHA-256 已复核。
 
 ## 已完成
 
@@ -16,16 +16,18 @@
 
 - 隔离构建目录：`C:\tmp\NetSerial-v090-final-build`
 - Release 构建输出：`C:\tmp\NetSerial-v090-final-build\app\build\outputs\apk\release\app-release.apk`
-- 本地候选副本：`Version/V0.9.0/artifacts/NetSerial-AI-v0.9.0-release.apk`
+- 本地正式副本：`Version/V0.9.0/artifacts/NetSerial-AI-v0.9.0-release.apk`
 - SHA-256：`b4c4040cfc2f1895404dd0c9b6f8024f3824f4a1baf161621e132e504ee29697`
 - 证书 SHA-256：`6f6d2063a155a9d252eecf4a84df31281b02d86beb2f0cd55ea7c80a2063f5bd`
 
 APK 和 `artifacts/` 按仓库规则不进入 Git。发布时从已验证的本地文件上传，并在上传后重新下载核对哈希。
 
-## 后续操作
+## 发布结果
 
-1. 执行源码敏感信息扫描和最终 `git diff --check`。
-2. 提交 `Version/V0.9.0` 及根目录文档，确保不包含 `graphify-out/` 或 APK。
+1. Pull Request：`https://github.com/chenwei666/NetSerial-AI/pull/9`
+2. Release：`https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.9.0`
+3. Latest API、标签提交、APK 大小与 SHA-256 均已完成发布后校验。
+4. 仍需在授权真实手机、USB 芯片、交换机和自有 AI 账号上执行现场验收。
 3. 推送分支并创建 PR；等待用户明确允许后合并。
 4. 在授权 Android、四厂商交换机和自有 AI 账号上执行现场验收。
 5. 只有在合并与发布均获授权后创建 `v0.9.0` GitHub Release，并决定是否设为 `Latest`。
