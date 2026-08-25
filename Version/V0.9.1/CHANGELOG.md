@@ -3,7 +3,7 @@
 ## V0.9.1 - 2026-08-25
 
 - 开发人员：chenwei666
-- 发布状态：PR #11 已合并到 `main`（`a8191fe`）；尚未创建 V0.9.1 Release，GitHub Latest 仍为 V0.9.0。
+- 发布状态：PR #11 与发布文档 PR #12 已合并到 `main`；[V0.9.1](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.9.1) 已作为非预发布正式版发布并设为 GitHub Latest。
 
 ### 新增功能
 
@@ -43,9 +43,9 @@
 - 读取仅针对已有连接和已接收输出；不会自动打开第二条连接，也不会静默发送 `show/display version` 或其他命令。
 - 终端文本进入共享快照前执行 ANSI 清理和敏感字段脱敏；快照有界、仅内存、断开后不可读取。
 - 60 个测试类、186 项测试全部通过；Release Lint 0 Error、140 Warning；Release APK、ZIP 对齐和 V1/V2/V3 签名验证通过。
-- APK SHA-256：`fb105b2e9a4973b3e329defdfb8d5d0aaba70ed499aebe596b4b14e36e1c4780`。
+- 正式 APK 大小：`6,273,048 bytes`；SHA-256：`8890591333b84658539bff9ba80a2367a85ca50825578c065d4d4c1e6884e646`；GitHub 远程资产摘要与重新下载校验一致。
 - 真实手机上的 USB/SSH/Telnet 页面切换、进程回收和四厂商实机识别仍需授权现场验收。
-- 升级方式：安装同签名 APK 后连接设备，在终端产生只读输出，再进入运维中心点击一键读取；正式发布前仍需用户授权创建 V0.9.1 Release。
+- 升级方式：从 V0.9.1 Release 下载并核对 SHA-256，安装同签名 APK 后连接设备，在终端产生只读输出，再进入运维中心点击一键读取。
 
 ## V0.9.0 - 2026-08-25
 

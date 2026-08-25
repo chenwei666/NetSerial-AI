@@ -6,6 +6,10 @@ NetSerial AI 是面向网络运维工程师的 Android 移动终端，整合 USB
 
 开发人员：chenwei666
 
+正式发布：[GitHub Release V0.9.1](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.9.1)（GitHub Latest）
+
+正式 APK SHA-256：`8890591333b84658539bff9ba80a2367a85ca50825578c065d4d4c1e6884e646`
+
 ## V0.9.1 重点更新
 
 - 连接 USB、SSH 或 Telnet 后，运维中心会显示当前活动终端，并可“一键读取当前设备并识别”。

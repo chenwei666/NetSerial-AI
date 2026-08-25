@@ -15,8 +15,8 @@ This document records the complete public evolution, release status, artifact tr
 | V0.6.0 | [Release](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.6.0) · [Source](Version/V0.6.0/) | Historical stable release | Production-signed APK | Vendor detection, Web wizard, update checks, AI diagnosis, operations center, sessions, snapshots, XMODEM |
 | V0.7.0 | [Release](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.7.0) · [Source](Version/V0.7.0/) | Historical stable release | Production-signed APK | Five-area navigation, AI failover, diagnostics, secure transfer, signed runbooks, guarded batch |
 | V0.8.0 | [Source](Version/V0.8.0/) | Development candidate, not published | No formal APK | Modern task cards, 18 AI entries, upstream model catalogs, direct network toolbox |
-| V0.9.0 | [Latest](https://github.com/chenwei666/NetSerial-AI/releases/latest) · [Source](Version/V0.9.0/) | Latest stable release | Production-signed APK | Full AI chat, encrypted history, incident evidence, guided runbooks, drift and change closure |
-| V0.9.1 | [PR #11](https://github.com/chenwei666/NetSerial-AI/pull/11) · [Source](Version/V0.9.1/) | Merged development candidate, not released | Local production-signed candidate APK | One-tap active terminal read, redacted memory snapshot, and automatic vendor selection |
+| V0.9.0 | [Release](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.9.0) · [Source](Version/V0.9.0/) | Historical stable release | Production-signed APK | Full AI chat, encrypted history, incident evidence, guided runbooks, drift and change closure |
+| V0.9.1 | [Latest](https://github.com/chenwei666/NetSerial-AI/releases/latest) · [Source](Version/V0.9.1/) | Latest stable release | Production-signed APK | One-tap active terminal read, redacted memory snapshot, and automatic vendor selection |
 
 ## V0.9.1 — One-tap current device reading
 
@@ -24,7 +24,7 @@ This document records the complete public evolution, release status, artifact tr
 - One tap reads the most recently active session, fills the analysis input, identifies H3C/Huawei/Cisco/Ruijie, and selects its vendor context.
 - At most four sessions and 100,000 characters per session are kept in process memory after ANSI cleanup and sensitive-field redaction.
 - The bridge never opens a hidden connection, silently sends an identification command, or bypasses terminal target and risk gates.
-- 60 test classes, 186 tests, Release Lint, build, alignment, and signing gates passed. PR #11 is merged; GitHub Latest remains V0.9.0.
+- 60 test classes, 186 tests, Release Lint, build, alignment, and signing gates passed. V0.9.1 is GitHub Latest with formal APK SHA-256 `8890591333b84658539bff9ba80a2367a85ca50825578c065d4d4c1e6884e646`.
 
 ## V0.1.0 — Trusted baseline
 
@@ -112,6 +112,6 @@ This document records the complete public evolution, release status, artifact tr
 ## Installation and upgrade path
 
 - V0.1.0, V0.2.0, and V0.3.0 are Debug or development checkpoints and cannot directly replace production-signed builds.
-- Every formal release from V0.3.1 uses the same production certificate. V0.9.0 preserves that certificate for in-place upgrades and application-private data.
+- Every formal release from V0.3.1 uses the same production certificate. V0.9.1 preserves that certificate for in-place upgrades and application-private data.
 - Download APKs only from the matching Release and verify SHA-256 before installation.
-- V0.9.0 is the current GitHub `Latest` production release. V0.8.0 remains an unpublished source checkpoint; field acceptance on authorized phones, USB serial chipsets, target switches, and owned AI accounts remains required before production deployment.
+- V0.9.1 is the current GitHub `Latest` production release. V0.8.0 remains an unpublished source checkpoint; field acceptance on authorized phones, USB serial chipsets, target switches, and owned AI accounts remains required before production deployment.

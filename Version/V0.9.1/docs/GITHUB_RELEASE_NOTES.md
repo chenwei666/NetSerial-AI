@@ -1,4 +1,4 @@
-# NetSerial AI V0.9.1 Candidate / 候选版
+# NetSerial AI V0.9.1 / 正式版
 
 V0.9.1 lets Operations Center read the currently connected USB, SSH, or Telnet terminal with one tap and automatically select the detected switch vendor.
 
@@ -20,6 +20,7 @@ The snapshot stays in process memory, disappears on process exit, and contains n
 - Release Lint: passed, 0 errors / 140 warnings
 - Production-signed Release APK: built successfully
 - ZIP alignment and V1/V2/V3 signatures: verified
-- APK SHA-256: `fb105b2e9a4973b3e329defdfb8d5d0aaba70ed499aebe596b4b14e36e1c4780`
+- APK size: `6,273,048 bytes`
+- APK SHA-256: `8890591333b84658539bff9ba80a2367a85ca50825578c065d4d4c1e6884e646`
 
-Physical Android devices, USB adapters, SSH/Telnet servers, and target switch firmware still require authorized field acceptance. PR #11 is merged into `main`; this candidate has not yet been published as a V0.9.1 GitHub Release.
+Physical Android devices, USB adapters, SSH/Telnet servers, and target switch firmware still require authorized field acceptance. V0.9.1 is published as the GitHub Latest production release, and the remote APK size and SHA-256 were verified after download.
