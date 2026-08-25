@@ -11,8 +11,11 @@ This document records the complete public evolution, release status, artifact tr
 | V0.3.0 | [Release](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.3.0) · [Source](Version/V0.3.0/) | Historical source record | No verified APK | SSH, Telnet, categorized commands, bilingual settings |
 | V0.3.1 | [Release](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.3.1) · [Source](Version/V0.3.1/) | First stable production release | Production-signed APK | Long-term signing and formal release gates |
 | V0.4.0 | [Release](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.4.0) · [Source](Version/V0.4.0/) | Release candidate | Production-signed APK | Change control, configuration Diff, network tools, enhanced SSH |
-| V0.5.0 | [Latest](https://github.com/chenwei666/NetSerial-AI/releases/latest) · [Source](Version/V0.5.0/) | Latest stable release | Production-signed APK | Material 3, themes, operations dashboard, new icon |
-| V0.6.0 | [Source](Version/V0.6.0/) | Local release candidate, not published | Production-signed candidate APK | Vendor detection, Web wizard, update checks, AI diagnosis, operations center, sessions, snapshots, XMODEM |
+| V0.5.0 | [Release](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.5.0) · [Source](Version/V0.5.0/) | Historical stable release | Production-signed APK | Material 3, themes, operations dashboard, new icon |
+| V0.6.0 | [Release](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.6.0) · [Source](Version/V0.6.0/) | Historical stable release | Production-signed APK | Vendor detection, Web wizard, update checks, AI diagnosis, operations center, sessions, snapshots, XMODEM |
+| V0.7.0 | [Latest](https://github.com/chenwei666/NetSerial-AI/releases/latest) · [Source](Version/V0.7.0/) | Latest stable release | Production-signed APK | Five-area navigation, AI failover, diagnostics, secure transfer, signed runbooks, guarded batch |
+| V0.8.0 | [Source](Version/V0.8.0/) | Development candidate, not published | No formal APK | Modern task cards, 18 AI entries, upstream model catalogs, direct network toolbox |
+| V0.9.0 | [Source](Version/V0.9.0/) | Development candidate, not published | No formal APK | Full AI chat, encrypted history, incident evidence, guided runbooks, drift and change closure |
 
 ## V0.1.0 — Trusted baseline
 
@@ -73,9 +76,33 @@ This document records the complete public evolution, release status, artifact tr
 - Passed 125 unit tests, Debug/Release Lint, Debug/Release builds, ZIP alignment, and V1/V2/V3 signature verification.
 - APK SHA-256: `1468f7dab82c4caa3ed0729cecbdb66754b1d2bfc38f1627dc5e7778e87687ec`. This candidate is not yet GitHub Latest.
 
+## V0.7.0 — Guarded operations workspace
+
+- Introduced five-area navigation, global search, favorites, and recents.
+- Added AI failover, advanced diagnostics, configuration backup, topology parsing, and bounded SNMPv3 planning.
+- Added Keystore device aliases, temporary HTTP/TFTP, signed runbooks, and guarded batch foundations.
+- Passed 147 tests, Release Lint, V1/V2/V3 signing, and ZIP alignment.
+- APK SHA-256: 962e23209f57b24203a917474f90bda44c250c6071178e84a3d9a1b171504b81.
+
+## V0.8.0 — AI catalogs and direct tools
+
+- Expands AI coverage to 18 entries, including Zhipu and other Chinese/global providers.
+- Adds upstream model sync, caching, searchable selection, and manual fallback.
+- Unifies modern task cards and redesigns AI Settings and Network Toolbox.
+- Adds bounded multi-port checks, address summaries, and copy/share actions.
+- This is a source development candidate; a formal signed APK and field acceptance are pending.
+
+## V0.9.0 — AI chat and field operations closure
+
+- The single-turn command copilot becomes an in-app multi-turn assistant with encrypted history, selection, rename, cancellation, retry, copy, and redacted sharing.
+- All 18 providers, upstream model catalogs, active-profile ordering, and failover remain shared rather than duplicated.
+- One-tap incident evidence, guided read-only runbooks, drift severity, security review, and change-evidence completeness gates are added.
+- Only allow-listed network CLI lines in explicit fenced blocks can be loaded after deterministic local risk classification; R4 remains blocked.
+- versionCode 10 and versionName 0.9.0; formal release and field acceptance are still pending.
+
 ## Installation and upgrade path
 
 - V0.1.0, V0.2.0, and V0.3.0 are Debug or development checkpoints and cannot directly replace production-signed builds.
-- V0.3.1, V0.4.0, V0.5.0, and V0.6.0 share the same production certificate and support sequential in-place upgrades with application-private data retained.
+- Every formal release from V0.3.1 uses the same production certificate. V0.8.0/V0.9.0 must also use it when published to preserve in-place upgrades and application-private data.
 - Download APKs only from the matching Release and verify SHA-256 before installation.
-- V0.4.0 remains a candidate. V0.5.0 is now the GitHub `Latest` production release; field acceptance on authorized phones, USB serial chipsets, and target switches is still recommended before production-network deployment.
+- V0.7.0 is the current GitHub `Latest` production release. V0.8.0/V0.9.0 are not yet published; field acceptance on authorized phones, USB serial chipsets, target switches, and owned AI accounts remains required before production deployment.

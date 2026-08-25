@@ -1,6 +1,6 @@
 # NetSerial AI
 
-<img src="Version/V0.6.0/design/app-icon-512.png" width="144" alt="NetSerial AI app icon">
+<img src="Version/V0.9.0/design/app-icon-512.png" width="144" alt="NetSerial AI app icon">
 
 > An Android field terminal for network engineers, bringing USB Console, SSH/SFTP, controlled Telnet, multi-vendor switch commands, AI-assisted command review, and a safety-focused change workflow to one phone.
 
@@ -13,11 +13,11 @@
 
 NetSerial AI is built for engineers operating H3C, Huawei, Cisco, and Ruijie switches. It works as a dependable USB serial terminal and also reaches remote or legacy equipment through SSH/SFTP and explicitly authorized Telnet. Offline commands, Tab completion, network diagnostics, configuration Diff, change evidence, and an AI copilot with built-in or custom compatible providers share the same guarded workflow. AI drafts, checks, and explains; the engineer always controls the final send action.
 
-> Development status: V0.6.0 has a standalone source archive, passed automated gates, and has a production-signed candidate APK. GitHub Latest remains V0.5.0 until V0.6.0 is explicitly published.
+> Development status: V0.9.0 has a standalone source archive and a locally verified production-signed candidate. It has not been pushed or published, and GitHub Latest remains V0.7.0.
 
 ## Release status and version history
 
-- Current latest stable release: [V0.5.0](https://github.com/chenwei666/NetSerial-AI/releases/latest), with the modern UI, dark mode, four themes, the new icon, and the complete V0.4.0 operations workflow.
+- Current latest stable release: [V0.7.0](https://github.com/chenwei666/NetSerial-AI/releases/latest), with five-area navigation, AI failover, advanced diagnostics, secure transfers, and guarded automation foundations.
 - V0.3.1 was the first long-term production-signed stable release. V0.5.0 uses the same certificate and supports in-place upgrades from V0.3.1 or V0.4.0.
 - V0.2.0 and V0.3.0 are source-only historical checkpoints with no verified APK. V0.4.0 remains a candidate, while V0.5.0 is now the GitHub `Latest` production release.
 - See the complete [version history](VERSION_HISTORY_EN.md) and the repository-level [project changelog](CHANGELOG.md). Every immutable source archive remains under [`Version/`](Version/).
@@ -31,6 +31,9 @@ NetSerial AI is built for engineers operating H3C, Huawei, Cisco, and Ruijie swi
 | V0.4.0 | Release candidate | Change tasks, configuration Diff, network tools, SFTP, jump hosts |
 | V0.5.0 | Latest stable release | Material 3, light/dark modes, four themes, operations dashboard, new icon |
 | V0.6.0 | Local release candidate | Vendor detection, Web wizard, update checks, AI diagnosis, operations center, multi-session, snapshots, completion 2.0, XMODEM |
+| V0.7.0 | Latest stable release | Five-area navigation, AI failover, diagnostics, secure transfer, signed runbooks, guarded batch |
+| V0.8.0 | Development candidate | Modern task cards, 18 AI entries, upstream model catalogs, direct network toolbox |
+| V0.9.0 | Development candidate | Full in-app AI chat, encrypted history, incident evidence, guided runbooks, drift and change closure |
 
 ## V0.5.0 highlights
 
@@ -51,16 +54,16 @@ NetSerial AI is built for engineers operating H3C, Huawei, Cisco, and Ruijie swi
 | Terminal keys | TAB sends the real `0x09` byte, with ESC, Ctrl+C, arrows, delete, and `?`. |
 | Vendor commands | Ten categories for H3C Comware, Huawei VRP, Cisco IOS, and Ruijie RGOS. |
 | Favorites/recents | Long-press built-in commands to favorite and filter by All, Favorites, or Recent. |
-| AI Copilot | Built-in providers or custom OpenAI-compatible HTTPS APIs for generation, completion, review, and explanation. |
+| AI operations assistant | Eighteen provider entries, multi-turn chat, encrypted history, device memory, cancel/retry/share, and guarded command loading. |
 | AI memory | Device-scoped, confirmed, non-sensitive operations knowledge with expiry and import/export. |
 | Change safety | Maintenance windows, production protection, exact target matching, R3/R4 gates, and redacted evidence. |
-| Operations tools | Config Diff, rollback drafts, IPv4/IPv6, DNS, Ping, Traceroute, TCP, MTU, and MAC/OUI. |
+| Operations tools | Config Diff, rollback drafts, IPv4/IPv6, DNS, Ping, Traceroute, bounded multi-port TCP, MTU, address summaries, and MAC/OUI. |
 | Appearance/language | System/light/dark, four themes, Simplified Chinese/English, font size, and charset settings. |
 | V0.6 operations | Vendor detection, secure Web drafts, GitHub update checks, AI diagnosis, read-only playbooks, compliance triage, sessions, snapshots, and XMODEM. |
 
 ## AI providers
 
-Presets cover OpenAI, Anthropic, Gemini, DeepSeek, Qwen, Kimi, and HTTPS Ollama. Custom OpenAI-compatible endpoints, models, and API keys are supported. Credentials use Android Keystore and AES-GCM protection and are excluded from source, exports, terminal records, and device memory.
+Presets cover 18 provider types including Zhipu GLM, Qwen, Doubao, Tencent TokenHub, Baidu Qianfan, Kimi, MiniMax, SiliconFlow, Groq, Mistral, xAI, OpenRouter, and HTTPS Ollama. Upstream model catalogs, cached filtering, manual fallback, and custom compatible APIs are supported. Credentials use Android Keystore and AES-GCM protection and are excluded from source, model caches, exports, terminal records, and device memory.
 
 ## Safety workflow
 
@@ -79,27 +82,27 @@ AI and command-library entries never auto-execute. Telnet should only be used te
 
 Production releases: [GitHub Releases](https://github.com/chenwei666/NetSerial-AI/releases/latest)
 
-V0.5.0 APK SHA-256:
+V0.7.0 APK SHA-256:
 
 ```text
-c16a95034a45adbf3c38a9e24a0211aeb9d4197d52132420e47f4c00ab264cf3
+962e23209f57b24203a917474f90bda44c250c6071178e84a3d9a1b171504b81
 ```
 
 V0.4.0 and V0.5.0 use the same production certificate, so an in-place upgrade can retain app data.
 
 ## Documentation
 
-- [V0.6.0 Chinese guide](Version/V0.6.0/README.md)
-- [V0.6.0 English guide](Version/V0.6.0/README_EN.md)
-- [Architecture](Version/V0.6.0/docs/ARCHITECTURE.md)
-- [Security boundaries](Version/V0.6.0/docs/SECURITY.md)
-- [Test report](Version/V0.6.0/docs/TEST_REPORT.md)
-- [Release and signing](Version/V0.6.0/docs/RELEASE.md)
+- [V0.9.0 Chinese guide](Version/V0.9.0/README.md)
+- [V0.9.0 English guide](Version/V0.9.0/README_EN.md)
+- [Architecture](Version/V0.9.0/docs/ARCHITECTURE.md)
+- [Security boundaries](Version/V0.9.0/docs/SECURITY.md)
+- [Test report](Version/V0.9.0/docs/TEST_REPORT.md)
+- [Release and signing](Version/V0.9.0/docs/RELEASE.md)
 
 ## Build
 
 ```powershell
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\Version\V0.6.0\scripts\build.ps1
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\Version\V0.9.0\scripts\build.ps1
 ```
 
 Complete sources are archived independently under `Version/V*`. Production signing material is never stored in the repository.

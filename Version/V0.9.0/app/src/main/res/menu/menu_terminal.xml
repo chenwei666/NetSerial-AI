@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/clear"
+        android:icon="@drawable/ic_delete_white_24dp"
+        android:title="@string/menu_clear"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/ai_diagnose"
+        android:icon="@drawable/ic_nav_toolbox"
+        android:title="@string/ai_diagnose"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/command_library"
+        android:title="@string/command_library_menu"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/web_access"
+        android:title="@string/web_access_menu"
+        app:showAsAction="never" />
+    <item android:id="@+id/terminal_session_group" android:title="@string/terminal_session_actions" app:showAsAction="never">
+        <menu>
+            <item android:id="@+id/device_memory" android:title="@string/terminal_profile_menu" />
+            <item android:id="@+id/export_session" android:title="@string/terminal_export_session" />
+            <item android:id="@+id/xmodem_send" android:title="@string/xmodem_send" />
+        </menu>
+    </item>
+    <item android:id="@+id/terminal_settings_group" android:title="@string/terminal_settings_group" app:showAsAction="never">
+        <menu>
+            <item android:id="@+id/newline" android:title="@string/menu_newline" />
+            <item android:id="@+id/hex" android:title="@string/menu_hex" android:checkable="true" />
+            <item android:id="@+id/controlLines" android:title="@string/menu_control_lines" android:checkable="true" />
+            <item android:id="@+id/flowControl" android:title="@string/menu_flow_control" />
+            <item android:id="@+id/backgroundNotification" android:title="@string/menu_background_notification" android:checkable="true" />
+            <item android:id="@+id/sendBreak" android:title="@string/menu_send_break" />
+        </menu>
+    </item>
+</menu>

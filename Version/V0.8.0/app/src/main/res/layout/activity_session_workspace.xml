@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical" android:padding="16dp">
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:text="@string/sessions_title" android:textAppearance="?attr/textAppearanceHeadlineMedium" android:textStyle="bold" />
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:text="@string/sessions_note" android:layout_marginBottom="8dp" />
+    <EditText android:id="@+id/session_label" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="@string/sessions_label" android:maxLength="64" android:singleLine="true" />
+    <Spinner android:id="@+id/session_protocol" android:layout_width="match_parent" android:layout_height="48dp" />
+    <EditText android:id="@+id/session_host" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="@string/remote_host_hint" android:inputType="textUri" android:maxLength="253" android:singleLine="true" />
+    <EditText android:id="@+id/session_port" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="@string/remote_port_hint" android:inputType="number" android:maxLength="5" android:singleLine="true" />
+    <EditText android:id="@+id/session_username" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="@string/remote_username_hint" android:maxLength="128" android:singleLine="true" />
+    <com.google.android.material.button.MaterialButton android:id="@+id/session_add" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/sessions_add" />
+    <ListView android:id="@+id/session_list" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" />
+</LinearLayout>
