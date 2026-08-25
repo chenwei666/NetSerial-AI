@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical" android:padding="16dp">
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:text="@string/snapshot_title" android:textAppearance="?attr/textAppearanceHeadlineMedium" android:textStyle="bold" />
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/snapshot_note" />
+    <EditText android:id="@+id/snapshot_label" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="@string/snapshot_label" android:maxLength="128" android:singleLine="true" />
+    <EditText android:id="@+id/snapshot_content" android:layout_width="match_parent" android:layout_height="160dp" android:gravity="top|start" android:hint="@string/snapshot_content" android:inputType="textMultiLine" android:maxLength="500000" android:fontFamily="monospace" />
+    <com.google.android.material.button.MaterialButton android:id="@+id/snapshot_save" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/snapshot_save" />
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/snapshot_tap_compare" android:paddingTop="8dp" />
+    <ListView android:id="@+id/snapshot_list" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" />
+</LinearLayout>

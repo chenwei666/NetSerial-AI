@@ -1,0 +1,68 @@
+plugins {
+    id 'com.android.application'
+}
+
+def releaseStoreFile = System.getenv('NETSERIAL_RELEASE_STORE_FILE')
+def releaseStorePassword = System.getenv('NETSERIAL_RELEASE_STORE_PASSWORD')
+def releaseKeyAlias = System.getenv('NETSERIAL_RELEASE_KEY_ALIAS')
+def releaseKeyPassword = System.getenv('NETSERIAL_RELEASE_KEY_PASSWORD')
+def releaseSigningComplete = [releaseStoreFile, releaseStorePassword, releaseKeyAlias, releaseKeyPassword]
+        .every { it != null && !it.trim().isEmpty() }
+def releaseRequested = gradle.startParameter.taskNames.any { it.toLowerCase().contains('release') }
+
+if (releaseRequested && !releaseSigningComplete) {
+    throw new GradleException('Release tasks require all NETSERIAL_RELEASE signing environment variables')
+}
+
+android {
+    compileSdkVersion 36
+    defaultConfig {
+        targetSdkVersion 36
+        minSdkVersion 21
+        vectorDrawables.useSupportLibrary true
+
+        applicationId "com.chenwei666.netserial"
+        versionCode 10
+        versionName "0.9.0"
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    signingConfigs {
+        if (releaseSigningComplete) {
+            release {
+                storeFile file(releaseStoreFile)
+                storePassword releaseStorePassword
+                keyAlias releaseKeyAlias
+                keyPassword releaseKeyPassword
+                enableV1Signing true
+                enableV2Signing true
+                enableV3Signing true
+            }
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            if (releaseSigningComplete) {
+                signingConfig signingConfigs.release
+            }
+        }
+    }
+    buildFeatures {
+        buildConfig true
+    }
+    namespace 'de.kai_morich.simple_usb_terminal'
+}
+
+dependencies {
+    implementation libs.usb.serial.for.android
+    implementation libs.androidx.appcompat
+    implementation libs.material
+    implementation libs.gson
+    implementation libs.jsch
+    testImplementation libs.junit
+}

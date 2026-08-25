@@ -1,7 +1,7 @@
 # NetSerial AI
 
 <p align="center">
-  <img src="Version/V0.8.0/design/app-icon-512.png" width="128" alt="NetSerial AI app icon">
+  <img src="Version/V0.9.0/design/app-icon-512.png" width="128" alt="NetSerial AI app icon">
 </p>
 
 <p align="center">
@@ -30,7 +30,7 @@ NetSerial AI 面向需要在机房、弱电间和现场快速处理网络设备�
 
 > **安全原则：AI 只生成、检查和解释命令，绝不自动执行。最终发送权始终属于工程师。**
 
-> **开发版状态：V0.8.0 已建立独立源码归档并通过首轮 Debug 门禁；GitHub Latest 当前为 V0.7.0。**
+> **开发版状态：V0.9.0 独立源码归档与本地生产签名候选已通过自动化门禁；尚未推送或发布，GitHub Latest 当前仍为 V0.7.0。**
 
 ## 为什么选择 NetSerial AI？
 
@@ -50,10 +50,11 @@ NetSerial AI 面向需要在机房、弱电间和现场快速处理网络设备�
 | 旧设备兼容 | 默认关闭的受控 Telnet，每次连接均提示明文风险 |
 | 命令输入 | 真实 TAB、ESC、Ctrl+C、方向键、删除、问号补全 |
 | 多厂商运维 | H3C、华为、Cisco、锐捷命令库、收藏与最近使用 |
-| AI Copilot | 命令生成、补全、解释和风险审查 |
+| AI 运维助手 | 18 类厂商、多轮对话、加密历史、设备记忆、停止/重试/分享和安全命令装载 |
 | 变更安全 | 配置 Diff、回滚草稿、目标校验、风险分级与人工确认 |
 | 网络诊断 | IPv4/IPv6、DNS、Ping、Traceroute、受控多端口 TCP、MTU、地址摘要、MAC/OUI |
 | V0.8 AI 与界面 | 18 类 AI 入口、智谱等国内厂商、上游模型同步、现代任务卡片和直达网络工具 |
+| V0.9 运维闭环 | 一键故障取证、结构化运行手册、配置漂移、安全巡检和变更证据门禁 |
 
 ## 3 分钟开始使用
 
@@ -91,17 +92,17 @@ AI、收藏命令和命令库均不会自动执行命令。Telnet 无法提供�
 
 ## 已支持与计划
 
-当前 V0.8.0 源码候选在 V0.7.0 全功能基础上增加现代任务卡片、18 类 AI 入口、上游模型目录同步和直达式网络工具箱。
+当前 V0.9.0 源码候选在 V0.8.0 全功能基础上增加完整应用内 AI 多轮对话、加密历史、一键故障取证、结构化运行手册、配置漂移和更严格的变更闭环。
 
 接下来的重点包括：真实设备兼容矩阵、更多厂商命令、可复现演示、截图与使用视频。详见 [ROADMAP.md](ROADMAP.md)。
 
 ## 文档
 
-- [V0.8.0 中文使用说明](Version/V0.8.0/README.md)
+- [V0.9.0 中文使用说明](Version/V0.9.0/README.md)
 - [English README](README_EN.md)
-- [架构说明](Version/V0.8.0/docs/ARCHITECTURE.md)
-- [安全边界](Version/V0.8.0/docs/SECURITY.md)
-- [测试报告](Version/V0.8.0/docs/TEST_REPORT.md)
+- [架构说明](Version/V0.9.0/docs/ARCHITECTURE.md)
+- [安全边界](Version/V0.9.0/docs/SECURITY.md)
+- [测试报告](Version/V0.9.0/docs/TEST_REPORT.md)
 - [版本历史](VERSION_HISTORY.md)
 - [贡献指南](CONTRIBUTING.md)
 - [安全问题报告](SECURITY.md)

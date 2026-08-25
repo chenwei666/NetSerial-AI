@@ -15,6 +15,7 @@ This document records the complete public evolution, release status, artifact tr
 | V0.6.0 | [Release](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.6.0) · [Source](Version/V0.6.0/) | Historical stable release | Production-signed APK | Vendor detection, Web wizard, update checks, AI diagnosis, operations center, sessions, snapshots, XMODEM |
 | V0.7.0 | [Latest](https://github.com/chenwei666/NetSerial-AI/releases/latest) · [Source](Version/V0.7.0/) | Latest stable release | Production-signed APK | Five-area navigation, AI failover, diagnostics, secure transfer, signed runbooks, guarded batch |
 | V0.8.0 | [Source](Version/V0.8.0/) | Development candidate, not published | No formal APK | Modern task cards, 18 AI entries, upstream model catalogs, direct network toolbox |
+| V0.9.0 | [Source](Version/V0.9.0/) | Development candidate, not published | No formal APK | Full AI chat, encrypted history, incident evidence, guided runbooks, drift and change closure |
 
 ## V0.1.0 — Trusted baseline
 
@@ -91,9 +92,17 @@ This document records the complete public evolution, release status, artifact tr
 - Adds bounded multi-port checks, address summaries, and copy/share actions.
 - This is a source development candidate; a formal signed APK and field acceptance are pending.
 
+## V0.9.0 — AI chat and field operations closure
+
+- The single-turn command copilot becomes an in-app multi-turn assistant with encrypted history, selection, rename, cancellation, retry, copy, and redacted sharing.
+- All 18 providers, upstream model catalogs, active-profile ordering, and failover remain shared rather than duplicated.
+- One-tap incident evidence, guided read-only runbooks, drift severity, security review, and change-evidence completeness gates are added.
+- Only allow-listed network CLI lines in explicit fenced blocks can be loaded after deterministic local risk classification; R4 remains blocked.
+- versionCode 10 and versionName 0.9.0; formal release and field acceptance are still pending.
+
 ## Installation and upgrade path
 
 - V0.1.0, V0.2.0, and V0.3.0 are Debug or development checkpoints and cannot directly replace production-signed builds.
-- V0.3.1 through V0.7.0 share the same production certificate. V0.8.0 must use it when formally released to preserve in-place upgrades and application-private data.
+- Every formal release from V0.3.1 uses the same production certificate. V0.8.0/V0.9.0 must also use it when published to preserve in-place upgrades and application-private data.
 - Download APKs only from the matching Release and verify SHA-256 before installation.
-- V0.7.0 is the current GitHub `Latest` production release. V0.8.0 is not yet published; field acceptance on authorized phones, USB serial chipsets, and target switches remains required before production-network deployment.
+- V0.7.0 is the current GitHub `Latest` production release. V0.8.0/V0.9.0 are not yet published; field acceptance on authorized phones, USB serial chipsets, target switches, and owned AI accounts remains required before production deployment.
