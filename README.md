@@ -1,7 +1,7 @@
 # NetSerial AI
 
 <p align="center">
-  <img src="Version/V0.9.0/design/app-icon-512.png" width="128" alt="NetSerial AI app icon">
+  <img src="Version/V0.9.1/design/app-icon-512.png" width="128" alt="NetSerial AI app icon">
 </p>
 
 <p align="center">
@@ -30,9 +30,7 @@ NetSerial AI 面向需要在机房、弱电间和现场快速处理网络设备�
 
 > **安全原则：AI 只生成、检查和解释命令，绝不自动执行。最终发送权始终属于工程师。**
 
-> **正式版状态：V0.9.0 已通过自动化门禁、合并到 `main` 并发布为 GitHub Latest；真实手机、交换机和自有 AI 账号兼容性仍需在授权环境现场验收。**
-
-> **开发候选：V0.9.1 已通过 [PR #11](https://github.com/chenwei666/NetSerial-AI/pull/11) 合并到 `main`，实现运维中心一键读取当前 USB/SSH/Telnet 会话并自动识别厂商；尚未创建 V0.9.1 Release，Latest 仍指向 V0.9.0。**
+> **正式版状态：[V0.9.1](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.9.1) 已通过自动化门禁、合并到 `main` 并发布为 GitHub Latest；真实手机、交换机和自有 AI 账号兼容性仍需在授权环境现场验收。**
 
 ## 为什么选择 NetSerial AI？
 
@@ -57,6 +55,7 @@ NetSerial AI 面向需要在机房、弱电间和现场快速处理网络设备�
 | 网络诊断 | IPv4/IPv6、DNS、Ping、Traceroute、受控多端口 TCP、MTU、地址摘要、MAC/OUI |
 | V0.8 AI 与界面 | 18 类 AI 入口、智谱等国内厂商、上游模型同步、现代任务卡片和直达网络工具 |
 | V0.9 运维闭环 | 一键故障取证、结构化运行手册、配置漂移、安全巡检和变更证据门禁 |
+| V0.9.1 当前设备读取 | 一键读取当前 USB/SSH/Telnet 会话、内存脱敏快照和自动厂商选择 |
 
 ## 3 分钟开始使用
 
@@ -66,12 +65,12 @@ NetSerial AI 面向需要在机房、弱电间和现场快速处理网络设备�
 4. 选择设备厂商并使用离线命令库；如需 AI，再在设置中配置自己的 API。
 5. 检查命令与目标设备，确认风险提示后手动发送。
 
-当前稳定版：**V0.9.0**
+当前稳定版：**V0.9.1**
 
 APK SHA-256：
 
 ```text
-b4c4040cfc2f1895404dd0c9b6f8024f3824f4a1baf161621e132e504ee29697
+8890591333b84658539bff9ba80a2367a85ca50825578c065d4d4c1e6884e646
 ```
 
 ## 安全工作流
@@ -94,17 +93,17 @@ AI、收藏命令和命令库均不会自动执行命令。Telnet 无法提供�
 
 ## 已支持与计划
 
-当前 V0.9.0 正式版在 V0.8.0 全功能基础上增加完整应用内 AI 多轮对话、加密历史、一键故障取证、结构化运行手册、配置漂移和更严格的变更闭环。
+当前 V0.9.1 正式版在 V0.9.0 全功能基础上增加当前 USB/SSH/Telnet 会话一键读取、内存脱敏快照和 H3C/Huawei/Cisco/Ruijie 自动厂商选择。
 
 接下来的重点包括：真实设备兼容矩阵、更多厂商命令、可复现演示、截图与使用视频。详见 [ROADMAP.md](ROADMAP.md)。
 
 ## 文档
 
-- [V0.9.0 中文使用说明](Version/V0.9.0/README.md)
+- [V0.9.1 中文使用说明](Version/V0.9.1/README.md)
 - [English README](README_EN.md)
-- [架构说明](Version/V0.9.0/docs/ARCHITECTURE.md)
-- [安全边界](Version/V0.9.0/docs/SECURITY.md)
-- [测试报告](Version/V0.9.0/docs/TEST_REPORT.md)
+- [架构说明](Version/V0.9.1/docs/ARCHITECTURE.md)
+- [安全边界](Version/V0.9.1/docs/SECURITY.md)
+- [测试报告](Version/V0.9.1/docs/TEST_REPORT.md)
 - [版本历史](VERSION_HISTORY.md)
 - [贡献指南](CONTRIBUTING.md)
 - [安全问题报告](SECURITY.md)
@@ -112,10 +111,10 @@ AI、收藏命令和命令库均不会自动执行命令。Telnet 无法提供�
 ## 从源码构建
 
 ```powershell
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\Version\V0.9.0\scripts\build.ps1
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\Version\V0.9.1\scripts\build.ps1
 ```
 
-当前最新源码位于 `Version/V0.9.0`，GitHub Latest 正式版为 V0.9.0；历史版本保留在 `Version/V*`。生产签名材料不会进入仓库。
+当前最新源码位于 `Version/V0.9.1`，GitHub Latest 正式版为 V0.9.1；历史版本保留在 `Version/V*`。生产签名材料不会进入仓库。
 
 ## 参与项目
 

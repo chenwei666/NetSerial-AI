@@ -15,8 +15,8 @@
 | V0.6.0 | [Release](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.6.0) · [源码](Version/V0.6.0/) | 历史稳定版 | 生产签名 APK | 厂商识别、Web 向导、更新检测、AI 诊断、运维中心、多会话、快照与 XMODEM |
 | V0.7.0 | [Release](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.7.0) · [源码](Version/V0.7.0/) | 历史稳定版 | 生产签名 APK | 五区导航、AI 故障转移、高级诊断、安全传输、签名剧本与受控批次 |
 | V0.8.0 | [源码](Version/V0.8.0/) | 开发候选，尚未发布 | 尚无正式 APK | 现代任务卡片、18 类 AI、上游模型目录与直达网络工具 |
-| V0.9.0 | [Latest](https://github.com/chenwei666/NetSerial-AI/releases/latest) · [源码](Version/V0.9.0/) | 最新稳定正式版 | 生产签名 APK | 完整 AI 对话、加密历史、故障取证、运行手册、漂移与变更闭环 |
-| V0.9.1 | [PR #11](https://github.com/chenwei666/NetSerial-AI/pull/11) · [源码](Version/V0.9.1/) | 已合并开发候选，尚未发布 | 本地生产签名候选 APK | 当前终端一键读取、内存脱敏快照与自动厂商选择 |
+| V0.9.0 | [Release](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.9.0) · [源码](Version/V0.9.0/) | 历史稳定版 | 生产签名 APK | 完整 AI 对话、加密历史、故障取证、运行手册、漂移与变更闭环 |
+| V0.9.1 | [Latest](https://github.com/chenwei666/NetSerial-AI/releases/latest) · [源码](Version/V0.9.1/) | 最新稳定正式版 | 生产签名 APK | 当前终端一键读取、内存脱敏快照与自动厂商选择 |
 
 ## V0.9.1 — 当前设备一键读取
 
@@ -24,7 +24,7 @@
 - 点击一次即可读取最近活动会话、填入分析区、识别 H3C/Huawei/Cisco/Ruijie 并切换厂商上下文。
 - 快照最多保留 4 个会话、每个 100,000 字符，仅存于应用进程内并执行 ANSI 清理和敏感字段脱敏。
 - 不打开隐藏连接、不自动发送识别命令、不绕过终端目标与风险门禁。
-- 60 个测试类、186 项测试及 Release Lint/构建/签名门禁通过；PR #11 已合并，GitHub Latest 仍为 V0.9.0。
+- 60 个测试类、186 项测试及 Release Lint/构建/签名门禁通过；V0.9.1 已发布为 GitHub Latest，正式 APK SHA-256 为 `8890591333b84658539bff9ba80a2367a85ca50825578c065d4d4c1e6884e646`。
 
 ## V0.1.0 — 可信基线
 
@@ -112,6 +112,6 @@
 ## 安装与升级关系
 
 - V0.1.0、V0.2.0、V0.3.0 属于 Debug/开发检查点，不能直接覆盖生产签名版本。
-- 从 V0.3.1 开始，所有正式版本使用同一生产证书；V0.9.0 已沿用该证书，可覆盖升级并保留应用私有数据。
+- 从 V0.3.1 开始，所有正式版本使用同一生产证书；V0.9.1 已沿用该证书，可覆盖升级并保留应用私有数据。
 - 安装前必须从对应 Release 下载附件并核对 SHA-256；不要安装来源不明或哈希不一致的 APK。
-- V0.9.0 是当前 GitHub `Latest` 正式版；V0.8.0 保留为未单独发布的源码检查点。部署到生产网络前仍须在授权手机、USB 串口芯片、目标交换机和自有 AI 账号上完成现场验收。
+- V0.9.1 是当前 GitHub `Latest` 正式版；V0.8.0 保留为未单独发布的源码检查点。部署到生产网络前仍须在授权手机、USB 串口芯片、目标交换机和自有 AI 账号上完成现场验收。

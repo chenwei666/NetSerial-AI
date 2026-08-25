@@ -6,6 +6,10 @@ NetSerial AI is an Android terminal for network engineers. It combines USB Conso
 
 Developer: chenwei666
 
+Production release: [GitHub Release V0.9.1](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.9.1) (GitHub Latest)
+
+Production APK SHA-256: `8890591333b84658539bff9ba80a2367a85ca50825578c065d4d4c1e6884e646`
+
 ## New in V0.9.1
 
 - After USB, SSH, or Telnet connects, Operations Center shows the active terminal and can read and identify it with one tap.

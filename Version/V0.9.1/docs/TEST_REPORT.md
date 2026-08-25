@@ -8,7 +8,7 @@
 
 ## 结论 / Result
 
-V0.9.1 候选版本通过 JVM 单元测试、Release Lint、Release APK 构建、ZIP 对齐、V1/V2/V3 生产签名、证书和包元数据检查，可进入授权实体设备现场验收。本报告不替代 USB/SSH/Telnet 与交换机实机验收。
+V0.9.1 正式版本通过 JVM 单元测试、Release Lint、Release APK 构建、ZIP 对齐、V1/V2/V3 生产签名、证书和包元数据检查，并已发布为 GitHub Latest。远程 APK 重新下载后的大小和 SHA-256 与本地产物一致；本报告不替代 USB/SSH/Telnet 与交换机实机验收。
 
 ## 自动化测试 / Automated tests
 
@@ -48,7 +48,7 @@ V0.9.1 新增 5 项领域测试，覆盖最近活动会话选择、断开会话�
 - Certificate: `CN=chenwei666, O=chenwei666, C=CN`
 - Certificate SHA-256: `6f6d2063a155a9d252eecf4a84df31281b02d86beb2f0cd55ea7c80a2063f5bd`
 - APK: `artifacts/NetSerial-AI-v0.9.1-release.apk`
-- APK SHA-256: `fb105b2e9a4973b3e329defdfb8d5d0aaba70ed499aebe596b4b14e36e1c4780`
+- APK SHA-256: `8890591333b84658539bff9ba80a2367a85ca50825578c065d4d4c1e6884e646`
 
 `apksigner` 对 V1 的未保护 `META-INF` 元数据给出标准警告；完整 APK 同时由 V2/V3 方案保护。V3.1/V4 未启用，不影响既有生产升级链。
 

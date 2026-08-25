@@ -1,1 +1,1 @@
-fb105b2e9a4973b3e329defdfb8d5d0aaba70ed499aebe596b4b14e36e1c4780  artifacts/NetSerial-AI-v0.9.1-release.apk
+8890591333b84658539bff9ba80a2367a85ca50825578c065d4d4c1e6884e646  artifacts/NetSerial-AI-v0.9.1-release.apk

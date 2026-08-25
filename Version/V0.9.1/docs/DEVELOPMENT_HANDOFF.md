@@ -5,7 +5,8 @@
 - 开发人员 / Developer: chenwei666
 - 合并提交 / Merge commit: `a8191fefe0a7daad304fc42b16a9f33d974c9507`
 - Pull Request: `https://github.com/chenwei666/NetSerial-AI/pull/11`
-- 状态 / Status: 功能分支已推送且 PR #11 已合并到 `main`；尚未创建 V0.9.1 GitHub Release。
+- 状态 / Status: PR #11 与发布文档 PR #12 已合并；V0.9.1 已发布为 GitHub Latest 正式版。
+- 正式发布 / Release: `https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.9.1`
 
 ## 已完成
 
@@ -19,11 +20,12 @@
 
 - 隔离构建目录：`C:\tmp\NetSerial-v091-build`
 - Release 构建输出：`C:\tmp\NetSerial-v091-build\app\build\outputs\apk\release\app-release.apk`
-- 本地正式候选：`Version/V0.9.1/artifacts/NetSerial-AI-v0.9.1-release.apk`
-- SHA-256：`fb105b2e9a4973b3e329defdfb8d5d0aaba70ed499aebe596b4b14e36e1c4780`
+- 本地正式产物：`Version/V0.9.1/artifacts/NetSerial-AI-v0.9.1-release.apk`
+- 大小：`6,273,048 bytes`
+- SHA-256：`8890591333b84658539bff9ba80a2367a85ca50825578c065d4d4c1e6884e646`
 - 证书 SHA-256：`6f6d2063a155a9d252eecf4a84df31281b02d86beb2f0cd55ea7c80a2063f5bd`
 
-APK 和 `artifacts/` 按仓库规则不进入 Git。若用户后续授权发布，应从已验证的本地文件上传，并在上传后重新下载核对哈希。
+APK 和 `artifacts/` 按仓库规则不进入 Git。正式 APK 已从验证过的本地文件上传，GitHub 资产摘要和重新下载后的大小、SHA-256 均与本地产物一致。
 
 ## 安全边界
 
@@ -34,5 +36,5 @@ APK 和 `artifacts/` 按仓库规则不进入 Git。若用户后续授权发布�
 ## 后续步骤
 
 1. 在授权真实 Android、USB 适配器和四厂商交换机上执行现场验收。
-2. 用户明确要求发布后，再创建 V0.9.1 GitHub Release 并决定是否更新 Latest。
-3. 发布后校验 GitHub Latest、远程 APK 大小、SHA-256 和证书指纹。
+2. 在后续版本中继续消减既有非阻断 Lint Warning，并维护现场兼容矩阵。
+3. 发布后状态已完成：GitHub Latest 为 V0.9.1，远程 APK 大小、SHA-256 与生产证书指纹均已校验。

@@ -1,6 +1,6 @@
 # NetSerial AI
 
-<img src="Version/V0.9.0/design/app-icon-512.png" width="144" alt="NetSerial AI app icon">
+<img src="Version/V0.9.1/design/app-icon-512.png" width="144" alt="NetSerial AI app icon">
 
 > An Android field terminal for network engineers, bringing USB Console, SSH/SFTP, controlled Telnet, multi-vendor switch commands, AI-assisted command review, and a safety-focused change workflow to one phone.
 
@@ -13,13 +13,11 @@
 
 NetSerial AI is built for engineers operating H3C, Huawei, Cisco, and Ruijie switches. It works as a dependable USB serial terminal and also reaches remote or legacy equipment through SSH/SFTP and explicitly authorized Telnet. Offline commands, Tab completion, network diagnostics, configuration Diff, change evidence, and an AI copilot with built-in or custom compatible providers share the same guarded workflow. AI drafts, checks, and explains; the engineer always controls the final send action.
 
-> Release status: V0.9.0 passed the automated release gates, was merged into `main`, and is now GitHub Latest. Compatibility on physical phones, switches, and owned AI accounts still requires authorized field acceptance.
-
-> Development candidate: V0.9.1 was merged into `main` through [PR #11](https://github.com/chenwei666/NetSerial-AI/pull/11). It adds one-tap reading of the current USB/SSH/Telnet session with automatic vendor identification. A V0.9.1 Release has not been created, so Latest remains V0.9.0.
+> Release status: [V0.9.1](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.9.1) passed the automated release gates, was merged into `main`, and is now GitHub Latest. Compatibility on physical phones, switches, and owned AI accounts still requires authorized field acceptance.
 
 ## Release status and version history
 
-- Current latest stable release: [V0.9.0](https://github.com/chenwei666/NetSerial-AI/releases/latest), with full in-app AI chat, 18 provider entries, encrypted history, incident evidence, guided runbooks, configuration drift, and guarded change closure.
+- Current latest stable release: [V0.9.1](https://github.com/chenwei666/NetSerial-AI/releases/latest), adding one-tap active USB/SSH/Telnet reading, redacted in-memory snapshots, and automatic vendor selection to the full V0.9.0 operations workflow.
 - V0.3.1 was the first long-term production-signed stable release. V0.5.0 uses the same certificate and supports in-place upgrades from V0.3.1 or V0.4.0.
 - V0.2.0 and V0.3.0 are source-only historical checkpoints with no verified APK. V0.4.0 remains a historical candidate; V0.5.0, V0.6.0, and V0.7.0 are historical stable releases.
 - See the complete [version history](VERSION_HISTORY_EN.md) and the repository-level [project changelog](CHANGELOG.md). Every immutable source archive remains under [`Version/`](Version/).
@@ -35,8 +33,8 @@ NetSerial AI is built for engineers operating H3C, Huawei, Cisco, and Ruijie swi
 | V0.6.0 | Local release candidate | Vendor detection, Web wizard, update checks, AI diagnosis, operations center, multi-session, snapshots, completion 2.0, XMODEM |
 | V0.7.0 | Historical stable release | Five-area navigation, AI failover, diagnostics, secure transfer, signed runbooks, guarded batch |
 | V0.8.0 | Development candidate | Modern task cards, 18 AI entries, upstream model catalogs, direct network toolbox |
-| V0.9.0 | Latest stable release | Full in-app AI chat, encrypted history, incident evidence, guided runbooks, drift and change closure |
-| V0.9.1 | Merged development candidate | One-tap active terminal read, redacted in-memory snapshot, and automatic vendor selection |
+| V0.9.0 | Historical stable release | Full in-app AI chat, encrypted history, incident evidence, guided runbooks, drift and change closure |
+| V0.9.1 | Latest stable release | One-tap active terminal read, redacted in-memory snapshot, and automatic vendor selection |
 
 ## V0.5.0 highlights
 
@@ -85,27 +83,27 @@ AI and command-library entries never auto-execute. Telnet should only be used te
 
 Production releases: [GitHub Releases](https://github.com/chenwei666/NetSerial-AI/releases/latest)
 
-V0.7.0 APK SHA-256:
+V0.9.1 APK SHA-256:
 
 ```text
-962e23209f57b24203a917474f90bda44c250c6071178e84a3d9a1b171504b81
+8890591333b84658539bff9ba80a2367a85ca50825578c065d4d4c1e6884e646
 ```
 
-V0.4.0 and V0.5.0 use the same production certificate, so an in-place upgrade can retain app data.
+All formal releases from V0.3.1 through V0.9.1 use the same production certificate, so an in-place upgrade can retain app-private data.
 
 ## Documentation
 
-- [V0.9.0 Chinese guide](Version/V0.9.0/README.md)
-- [V0.9.0 English guide](Version/V0.9.0/README_EN.md)
-- [Architecture](Version/V0.9.0/docs/ARCHITECTURE.md)
-- [Security boundaries](Version/V0.9.0/docs/SECURITY.md)
-- [Test report](Version/V0.9.0/docs/TEST_REPORT.md)
-- [Release and signing](Version/V0.9.0/docs/RELEASE.md)
+- [V0.9.1 Chinese guide](Version/V0.9.1/README.md)
+- [V0.9.1 English guide](Version/V0.9.1/README_EN.md)
+- [Architecture](Version/V0.9.1/docs/ARCHITECTURE.md)
+- [Security boundaries](Version/V0.9.1/docs/SECURITY.md)
+- [Test report](Version/V0.9.1/docs/TEST_REPORT.md)
+- [Release and signing](Version/V0.9.1/docs/RELEASE.md)
 
 ## Build
 
 ```powershell
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\Version\V0.9.0\scripts\build.ps1
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\Version\V0.9.1\scripts\build.ps1
 ```
 
 Complete sources are archived independently under `Version/V*`. Production signing material is never stored in the repository.

@@ -1,14 +1,31 @@
 # Project Changelog
 
-## 2026-08-25 — V0.9.1 一键读取开发候选
+## 2026-08-25 — V0.9.1 一键读取正式发布
 
 - 开发人员：chenwei666
-- 发布状态：PR [#11](https://github.com/chenwei666/NetSerial-AI/pull/11) 已合并到 `main`（`a8191fe`）；尚未创建 V0.9.1 Release，GitHub Latest 仍为 V0.9.0。
+- 发布状态：PR [#11](https://github.com/chenwei666/NetSerial-AI/pull/11) 与发布文档 PR [#12](https://github.com/chenwei666/NetSerial-AI/pull/12) 已合并；[V0.9.1](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.9.1) 已作为非预发布正式版发布并设为 GitHub Latest。
+
+### 新增功能、问题修复与优化
+
 - 运维中心可一键读取当前已连接 USB、SSH 或 Telnet 会话的最近输出，自动填充并识别 H3C、Huawei、Cisco 或 Ruijie。
 - 新增有界、仅内存、脱敏的活动终端会话桥接；断开会话不可读，清屏同步清除，不新增隐藏连接或自动命令执行通道。
 - 增加中英文状态与异常提示；versionCode 11、versionName 0.9.1，数据库、外部 API 和配置格式不变。
+
+### 修改文件与影响模块
+
+- 修改 USB/SSH/Telnet 终端、活动会话 Store、运维中心页面、中英文资源、单元测试、构建脚本与 V0.9.1 完整归档；影响终端只读快照和厂商识别，不改变既有连接协议或命令发送路径。
+- 删除内容：无；V0.9.0 及更早功能、Release 与独立源码归档全部保留。
+
+### 数据、接口、配置、兼容与升级
+
+- 数据库、外部 API、ProviderProfile 和用户配置格式无变更；新增接口仅为应用进程内只读快照，退出后自动消失。
+- 继续使用既有生产证书，可从 V0.3.1–V0.9.0 覆盖升级并保留应用私有数据；安装前应从 V0.9.1 Release 下载并核对 SHA-256。
+
+### 安全、测试与已知限制
+
 - 60 个测试类、186 项测试通过；Release Lint 0 Error、140 Warning；ZIP 对齐、V1/V2/V3 生产签名和包元数据通过。
-- 候选 APK SHA-256：`fb105b2e9a4973b3e329defdfb8d5d0aaba70ed499aebe596b4b14e36e1c4780`；真实设备现场验收待执行。
+- 正式 APK 大小为 6,273,048 bytes，SHA-256：`8890591333b84658539bff9ba80a2367a85ca50825578c065d4d4c1e6884e646`；GitHub 远程资产摘要与重新下载校验一致，真实设备现场验收待执行。
+- 已知限制：自动化门禁不能替代授权 Android、USB 转串口芯片、SSH/Telnet 服务与四厂商交换机型号/固件的现场兼容性验收。
 
 ## 2026-08-25 — V0.9.0 正式发布
 
