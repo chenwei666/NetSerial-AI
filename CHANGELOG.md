@@ -1,5 +1,15 @@
 # Project Changelog
 
+## 2026-08-25 — V0.9.1 一键读取开发候选
+
+- 开发人员：chenwei666
+- 发布状态：独立完整源码归档与生产签名候选 APK 已生成；尚未推送、合并或发布，GitHub Latest 仍为 V0.9.0。
+- 运维中心可一键读取当前已连接 USB、SSH 或 Telnet 会话的最近输出，自动填充并识别 H3C、Huawei、Cisco 或 Ruijie。
+- 新增有界、仅内存、脱敏的活动终端会话桥接；断开会话不可读，清屏同步清除，不新增隐藏连接或自动命令执行通道。
+- 增加中英文状态与异常提示；versionCode 11、versionName 0.9.1，数据库、外部 API 和配置格式不变。
+- 60 个测试类、186 项测试通过；Release Lint 0 Error、140 Warning；ZIP 对齐、V1/V2/V3 生产签名和包元数据通过。
+- 候选 APK SHA-256：`fb105b2e9a4973b3e329defdfb8d5d0aaba70ed499aebe596b4b14e36e1c4780`；真实设备现场验收待执行。
+
 ## 2026-08-25 — V0.9.0 正式发布
 
 - 开发人员：chenwei666

@@ -16,6 +16,15 @@ This document records the complete public evolution, release status, artifact tr
 | V0.7.0 | [Release](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.7.0) · [Source](Version/V0.7.0/) | Historical stable release | Production-signed APK | Five-area navigation, AI failover, diagnostics, secure transfer, signed runbooks, guarded batch |
 | V0.8.0 | [Source](Version/V0.8.0/) | Development candidate, not published | No formal APK | Modern task cards, 18 AI entries, upstream model catalogs, direct network toolbox |
 | V0.9.0 | [Latest](https://github.com/chenwei666/NetSerial-AI/releases/latest) · [Source](Version/V0.9.0/) | Latest stable release | Production-signed APK | Full AI chat, encrypted history, incident evidence, guided runbooks, drift and change closure |
+| V0.9.1 | [Source](Version/V0.9.1/) | Development candidate, not released | Local production-signed candidate APK | One-tap active terminal read, redacted memory snapshot, and automatic vendor selection |
+
+## V0.9.1 — One-tap current device reading
+
+- Connected USB, SSH, and Telnet terminals expose recent output through a unified read-only session bridge, with current status in Operations Center.
+- One tap reads the most recently active session, fills the analysis input, identifies H3C/Huawei/Cisco/Ruijie, and selects its vendor context.
+- At most four sessions and 100,000 characters per session are kept in process memory after ANSI cleanup and sensitive-field redaction.
+- The bridge never opens a hidden connection, silently sends an identification command, or bypasses terminal target and risk gates.
+- 60 test classes, 186 tests, Release Lint, build, alignment, and signing gates passed. GitHub Latest remains V0.9.0.
 
 ## V0.1.0 — Trusted baseline
 

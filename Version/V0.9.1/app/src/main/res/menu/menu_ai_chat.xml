@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/ai_chat_new" android:title="@string/ai_chat_new" app:showAsAction="never" />
+    <item android:id="@+id/ai_chat_history" android:title="@string/ai_chat_history" app:showAsAction="never" />
+    <item android:id="@+id/ai_chat_rename" android:title="@string/ai_chat_rename" app:showAsAction="never" />
+    <item android:id="@+id/ai_chat_retry" android:title="@string/ai_chat_retry" app:showAsAction="never" />
+    <item android:id="@+id/ai_chat_share" android:title="@string/ai_chat_share" app:showAsAction="never" />
+    <item android:id="@+id/ai_chat_delete" android:title="@string/ai_chat_delete" app:showAsAction="never" />
+    <item android:id="@+id/ai_chat_settings" android:title="@string/ai_settings_menu" app:showAsAction="never" />
+</menu>
