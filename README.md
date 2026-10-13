@@ -1,133 +1,151 @@
 # NetSerial AI
 
 <p align="center">
-  <img src="Version/V0.9.1/design/app-icon-512.png" width="128" alt="NetSerial AI app icon">
+  <img src="Version/V0.10.0/design/app-icon-512.png" width="112" alt="NetSerial AI 应用图标">
 </p>
 
 <p align="center">
-  <strong>把 USB Console、SSH/SFTP、多厂商命令库与安全 AI 助手装进一部 Android 手机。</strong>
+  <strong>网络出问题，先选症状，再查原因。</strong><br>
+  给新手一条排障路径，给工程师一套随身工具。<br>
+  Android · USB Console · SSH/SFTP · 网络诊断 · 多厂商命令 · AI 助手
 </p>
 
 <p align="center">
-  An open-source Android field terminal for network engineers.
-</p>
-
-<p align="center">
-  <a href="https://github.com/chenwei666/NetSerial-AI/releases/latest"><strong>下载最新版 APK</strong></a>
+  <a href="https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.10.0"><strong>下载 V0.10.0</strong></a>
+  · <a href="#三步开始">快速上手</a>
   · <a href="README_EN.md">English</a>
-  · <a href="ROADMAP.md">Roadmap</a>
-  · <a href="https://github.com/chenwei666/NetSerial-AI/issues">反馈问题</a>
+  · <a href="https://github.com/chenwei666/NetSerial-AI/issues">反馈问题 / 提建议</a>
 </p>
 
 <p align="center">
-  <a href="https://github.com/chenwei666/NetSerial-AI/releases/latest"><img src="https://img.shields.io/github/v/release/chenwei666/NetSerial-AI?label=release" alt="Release"></a>
-  <img src="https://img.shields.io/badge/Android-5.0%2B-3DDC84?logo=android&logoColor=white" alt="Android 5+">
-  <img src="https://img.shields.io/badge/UI-Material%203-6750A4" alt="Material 3">
+  <a href="https://github.com/chenwei666/NetSerial-AI/releases/latest"><img src="https://img.shields.io/github/v/release/chenwei666/NetSerial-AI?label=release" alt="GitHub Release"></a>
+  <img src="https://img.shields.io/badge/Android-5.0%2B-3DDC84?logo=android&logoColor=white" alt="最低 Android 5.0">
+  <img src="https://img.shields.io/badge/languages-Chinese%20%2F%20English-006C93" alt="中文和英文">
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="MIT License"></a>
 </p>
 
-NetSerial AI 面向需要在机房、弱电间和现场快速处理网络设备的工程师。它支持 H3C、华为、Cisco 与锐捷设备，通过 Android OTG USB 串口、SSH/SFTP 或受控 Telnet 建立连接，并提供离线命令库、配置 Diff、网络诊断和可插拔 AI Copilot。
+不用先记住一串命令，也不用在一堆菜单里找工具。**NetSerial AI 是一个开源 Android 网络运维工具箱**：从“上不了网”“交换机登不上”“端口不通”出发，逐步收集信息、解释结果，再告诉你下一步查什么。
 
-> **安全原则：AI 只生成、检查和解释命令，绝不自动执行。最终发送权始终属于工程师。**
+熟悉命令行？USB 串口、SSH、SFTP、真实 Tab 键、多厂商命令库和配置对比仍然都在。需要帮手？把排障报告核对后交给自己配置的 AI，继续讨论原因和命令草稿。
 
-> **正式版状态：[V0.9.1](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.9.1) 已通过自动化门禁、合并到 `main` 并发布为 GitHub Latest；真实手机、交换机和自有 AI 账号兼容性仍需在授权环境现场验收。**
+> **AI 不替你操作交换机。** AI 回复和新手向导命令都是待审核草稿，不会自动下发；真正发送仍需你核对目标、命令和风险。
 
-## 为什么选择 NetSerial AI？
+## 遇到这些问题，可以从这里开始
 
-- **真正面向网络工程师**：不是普通聊天机器人，而是串口、远程终端、命令库和变更工作流的一体化工具。
-- **一部手机完成现场运维**：使用 OTG 连接 Console 线，或通过 SSH/SFTP 管理远程设备。
-- **支持主流网络厂商**：覆盖 H3C Comware、Huawei VRP、Cisco IOS 和 Ruijie RGOS 常用命令。
-- **AI 可插拔**：覆盖 18 类国内外厂商和兼容接口，支持从上游 API 获取模型、缓存筛选和手工回退。
-- **默认防误操作**：生产设备保护、目标精确匹配、维护窗口、R3/R4 风险门禁和脱敏变更证据。
-- **隐私优先**：API Key 使用 Android Keystore + AES-GCM 加密，不进入源码、配置导出、终端记录或设备记忆。
-
-## 核心能力
-
-| 场景 | 能力 |
+| 你遇到的问题 | 工具箱帮你做什么 |
 |---|---|
-| 现场 Console | Android OTG USB 串口、波特率、流控、控制线、HEX、后台接收 |
-| 远程管理 | SSH、SFTP、跳板机、Keepalive、主机密钥变更阻断 |
-| 旧设备兼容 | 默认关闭的受控 Telnet，每次连接均提示明文风险 |
-| 命令输入 | 真实 TAB、ESC、Ctrl+C、方向键、删除、问号补全 |
-| 多厂商运维 | H3C、华为、Cisco、锐捷命令库、收藏与最近使用 |
-| AI 运维助手 | 18 类厂商、多轮对话、加密历史、设备记忆、停止/重试/分享和安全命令装载 |
-| 变更安全 | 配置 Diff、回滚草稿、目标校验、风险分级与人工确认 |
-| 网络诊断 | IPv4/IPv6、DNS、Ping、Traceroute、受控多端口 TCP、MTU、地址摘要、MAC/OUI |
-| V0.8 AI 与界面 | 18 类 AI 入口、智谱等国内厂商、上游模型同步、现代任务卡片和直达网络工具 |
-| V0.9 运维闭环 | 一键故障取证、结构化运行手册、配置漂移、安全巡检和变更证据门禁 |
-| V0.9.1 当前设备读取 | 一键读取当前 USB/SSH/Telnet 会话、内存脱敏快照和自动厂商选择 |
+| 上不了网 | 对填写的单个目标做 DNS、Ping、TCP 检查，给出解释与下一步 |
+| 网络慢、偶尔掉线 | 观察短时连通性与延迟，区分已知现象和仍需排查的原因 |
+| 域名打不开 | 检查域名解析，结合连通结果缩小排查范围 |
+| 交换机登不上 | 检查指定管理端口，提示继续核对协议、地址与认证 |
+| 交换机端口不通 | 提供厂商对应的只读检查命令，解释粘贴或读取的端口回显 |
+| VLAN / 网关有问题 | 引导核对 VLAN、接口和三层信息，查看证据与检查建议 |
+| 不知道设备是什么品牌 | 读取当前终端已有输出，识别 H3C、华为、Cisco、锐捷特征 |
+| 想给交换机做体检 | 查看只读检查步骤，分析回显中的健康线索 |
+| 想保存配置记录 | 收集回显、检查内容，再到快照中心显式保存与对比 |
+| 看不懂输出、记不住命令 | 预览排障报告并带入新的 AI 对话草稿，确认后再发送 |
 
-## 3 分钟开始使用
+**检测有边界：** 网络检查从手机发起，不是电脑网卡诊断，也不是带宽测速；Ping 不通不等于设备离线，TCP 连通不等于账号能登录。读取设备只读取当前会话已有回显，不会偷偷发送新命令。截断或缺页的配置不能当作完整恢复备份。
 
-1. 从 [GitHub Releases](https://github.com/chenwei666/NetSerial-AI/releases/latest) 下载最新 APK。
-2. 在 Android 5.0 及以上设备安装应用。
-3. 使用 USB OTG Console 线连接交换机，或新建 SSH 连接。
-4. 选择设备厂商并使用离线命令库；如需 AI，再在设置中配置自己的 API。
-5. 检查命令与目标设备，确认风险提示后手动发送。
+## 看看实际界面
 
-当前稳定版：**V0.9.1**
+### 中文 · 浅色
 
-APK SHA-256：
+![V0.10.0 中文浅色新手工具箱首页](Version/V0.10.0/docs/images/home-chinese-light.png)
 
-```text
-8890591333b84658539bff9ba80a2367a85ca50825578c065d4d4c1e6884e646
-```
+### English · Dark
 
-## 安全工作流
+![V0.10.0 English dark guided toolbox home](Version/V0.10.0/docs/images/home-english-dark.png)
 
-```text
-自然语言目标 / 手工命令
-        ↓
-AI 或离线命令库生成草稿
-        ↓
-本地规则重新评估风险
-        ↓
-工程师检查并主动发送
-        ↓
-R3 二次确认 / R4 输入 EXECUTE
-        ↓
-USB、SSH 或受控 Telnet 终端
-```
+以上是 **Android API 34、1600×900 平板测试环境中预览包的真实截图**，不是效果图，也不代表物理手机或真实交换机已完成兼容验收。应用支持中英文、跟随系统 / 浅色 / 深色以及四套主题。
 
-AI、收藏命令和命令库均不会自动执行命令。Telnet 无法提供传输加密，只应在隔离且可信的管理网络中临时使用。
+## V0.10.0：从“工具列表”到“按问题排障”
 
-## 已支持与计划
+- **十个问题入口 + 症状搜索**：先选你遇到的问题，不要求先知道该用哪个工具。
+- **结果旁边就是解释**：明确检查了什么、没有证明什么，以及下一步该看哪里。
+- **回到终端，再继续排障**：在连接页和向导之间保留本次输入；草稿仅保留在当前进程，不承诺退出应用后恢复。
+- **报告先预览，AI 后发送**：可以分享排障记录，或将报告带入新的 AI 草稿；不会自动提交给 AI。
+- **专业工具保留、入口分组**：仍可直达终端、命令库、网络诊断和运维中心，收藏与最近使用默认折叠。
 
-当前 V0.9.1 正式版在 V0.9.0 全功能基础上增加当前 USB/SSH/Telnet 会话一键读取、内存脱敏快照和 H3C/Huawei/Cisco/Ruijie 自动厂商选择。
+完整记录见 [CHANGELOG](CHANGELOG.md) · [版本历史](VERSION_HISTORY.md) · [V0.10.0 使用说明](Version/V0.10.0/README.md)。
 
-接下来的重点包括：真实设备兼容矩阵、更多厂商命令、可复现演示、截图与使用视频。详见 [ROADMAP.md](ROADMAP.md)。
+## 工程师常用的能力，也都保留
 
-## 文档
+| 能力 | 适合的现场工作 |
+|---|---|
+| USB Console | OTG 串口、波特率、流控、控制线、HEX 与后台接收 |
+| SSH / SFTP | 远程终端、跳板机、Keepalive、文件传输与主机密钥变更阻断 |
+| 受控 Telnet | 兼容旧设备；默认关闭，每次连接提示明文风险 |
+| 命令辅助 | 真实 Tab、问号、Ctrl+C、方向键；H3C / Huawei / Cisco / Ruijie 分类命令 |
+| AI 对话与记忆 | 多轮会话、停止 / 重试、设备记忆、命令解释与审核 |
+| 网络工具 | DNS、Ping、Traceroute、受控 TCP 检查、MTU、IPv4/IPv6 CIDR、MAC/OUI |
+| 配置与变更 | 脱敏快照、配置 Diff、回滚草稿、目标校验、风险门禁与变更证据 |
+| 运维中心 | 故障取证计划、运行手册、安全巡检、拓扑回显解析与设备识别 |
 
-- [V0.9.1 中文使用说明](Version/V0.9.1/README.md)
-- [English README](README_EN.md)
-- [架构说明](Version/V0.9.1/docs/ARCHITECTURE.md)
-- [安全边界](Version/V0.9.1/docs/SECURITY.md)
-- [测试报告](Version/V0.9.1/docs/TEST_REPORT.md)
-- [版本历史](VERSION_HISTORY.md)
-- [贡献指南](CONTRIBUTING.md)
-- [安全问题报告](SECURITY.md)
+命令与识别覆盖相应厂商的常见平台和规则，**不表示所有型号、系统版本都已实测**。真实 Tab 补全结果取决于设备终端本身。
 
-## 从源码构建
+## AI：你选服务商，你控制发送
+
+内置 **18 类接入入口**：OpenAI、Anthropic、Gemini、DeepSeek、智谱 GLM、通义千问、豆包、腾讯混元 / TokenHub、百度千帆、Kimi、MiniMax、硅基流动、Groq、Mistral、xAI、OpenRouter、自定义兼容接口和 HTTPS Ollama。
+
+- 使用自己的 API Key；可按接入能力从上游同步模型，支持缓存、筛选和手动填写模型名。
+- 自定义入口面向 **OpenAI-compatible** 接口，不等于任意厂商的任意协议都能直接接入；模型清单与可用性取决于服务商及账号权限。
+- 本地诊断、离线命令和终端操作不需要 AI 账号。使用在线 AI 时，确认发送的内容会交给所选服务商，费用和数据处理规则以该服务商为准。
+- API Key、持久化 AI 历史等安全存储能力需要 Android 6.0+，使用 Android Keystore 加密保护。发送与分享前尽力脱敏，但仍请检查内部地址、设备名和业务信息。
+
+**不要上传密码、私钥或完整敏感配置。AI 可能给出不适用的命令，必须结合设备型号、版本和现场权限复核。**
+
+## 三步开始
+
+1. **安装**：打开 [V0.10.0 发布页](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.10.0)，在 Assets 中下载正式 APK；校验值见同页 `SHA256SUMS.txt`。最低安装版本为 Android 5.0，推荐 Android 6.0+ 使用凭据加密相关功能。
+2. **选问题**：从首页选择“上不了网”等场景并按提示填写目标。排查交换机时，先通过 USB OTG 或 SSH 连接设备，再手动运行向导给出的只读命令。
+3. **看结果、做下一步**：返回“继续排障”读取回显、查看解释。需要 AI 时再配置自己的服务商，并在报告预览后确认发送。
+
+请只检测你拥有或获授权管理的目标。生产设备操作前，确认设备、权限、维护窗口和回退方案。
+
+## 常见问题
+
+**不懂命令，可以用吗？**
+
+可以从新手场景入手，先做手机侧检查，再按解释逐步排查。它帮助缩小范围，不保证一键修好所有网络问题。
+
+**不接 AI 能用吗？**
+
+能。终端、离线命令库、本地诊断和回显解释不依赖 AI。AI 是可选助手。
+
+**连上交换机，就能自动读取完整配置吗？**
+
+不会。当前设备读取取自已有终端输出；需要新信息时，先人工核对并执行只读命令。保存前还需检查分页、截断和内容完整性。
+
+**为什么有些高级操作还要确认？**
+
+因为改错目标或命令可能影响生产网络。AI 页面阻断 R4 命令，其余可装载命令也需人工审核；终端另有本地风险门禁。新手入口不会关闭这些保护。
+
+**能替代现场验收吗？**
+
+不能。本版本已通过 246 项单元测试、资源检查、正式包签名与对齐检查；Release Lint 为 0 错误、158 项告警。API 34 测试环境已验证新手流程，以及 V0.9.1 正式包覆盖升级到 V0.10.0 后的首页冷启动。物理手机、实际 USB 芯片、真实交换机与自有 AI 账号仍需现场验证。详见 [验证记录与未覆盖范围](Version/V0.10.0/docs/BEGINNER_VALIDATION.md)。
+
+## 文档与源码
+
+- [中文使用说明](Version/V0.10.0/README.md) · [English guide](Version/V0.10.0/README_EN.md)
+- [安全边界](Version/V0.10.0/docs/SECURITY.md) · [安全问题报告](SECURITY.md)
+- [构建与签名说明](Version/V0.10.0/docs/RELEASE.md) · [架构](Version/V0.10.0/docs/ARCHITECTURE.md)
+- [开发路线](ROADMAP.md) · [贡献指南](CONTRIBUTING.md) · [历史版本](VERSION_HISTORY.md)
+
+从源码构建预览包：
 
 ```powershell
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\Version\V0.9.1\scripts\build.ps1
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\Version\V0.10.0\scripts\build.ps1
 ```
 
-当前最新源码位于 `Version/V0.9.1`，GitHub Latest 正式版为 V0.9.1；历史版本保留在 `Version/V*`。生产签名材料不会进入仓库。
+完整版本源码保留在 `Version/V*`，生产签名材料不进入仓库。自行构建的预览包与正式版使用不同包名，不会自动迁移正式版数据。
 
-## 参与项目
+## 一起把现场经验变成好用的工具
 
-欢迎网络工程师、Android 开发者和真实设备用户参与：
+最欢迎三类反馈：**“我用什么设备遇到了什么问题”**、**“这段命令在我的版本不适用”**、**“这个结果我看不懂”**。提交 [Issue](https://github.com/chenwei666/NetSerial-AI/issues) 时附上机型、Android 版本、设备厂商 / 系统版本和脱敏后的复现步骤；不要附带密码或 API Key。
 
-- 提交设备兼容性结果或故障日志
-- 补充 H3C、华为、Cisco、锐捷命令
-- 改进中英文文档
-- 提交安全边界清晰、可测试的 Pull Request
-- 如果这个工具对你有帮助，请点一个 **Star**，让更多现场工程师找到它
+也欢迎补充命令、贡献中英文说明、测试真实设备或提交小而可验证的 PR。如果它在现场帮到了你，欢迎点一个 **Star**，方便以后找到，也让更多同行发现它。
 
 ## 来源与许可证
 
-项目基于 Kai Morich 的 [SimpleUsbTerminal](https://github.com/kai-morich/SimpleUsbTerminal) 扩展，并保留上游 MIT 许可证与来源记录。新增功能与维护者：[chenwei666](https://github.com/chenwei666)。
-
-详见 [LICENSE](LICENSE) 和版本目录中的 `UPSTREAM.md`。
+基于 Kai Morich 的 [SimpleUsbTerminal](https://github.com/kai-morich/SimpleUsbTerminal) 扩展，保留上游 MIT 许可证和来源记录。新增功能与维护者：[chenwei666](https://github.com/chenwei666)。详见 [LICENSE](LICENSE) 与 [UPSTREAM.md](Version/V0.10.0/UPSTREAM.md)。

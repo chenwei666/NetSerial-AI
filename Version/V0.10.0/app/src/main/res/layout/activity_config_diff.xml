@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical">
+    <androidx.appcompat.widget.Toolbar android:id="@+id/config_diff_toolbar"
+        android:layout_width="match_parent" android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary" android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        android:title="@string/config_diff_title" />
+    <ScrollView android:layout_width="match_parent" android:layout_height="match_parent">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="vertical" android:padding="16dp">
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:text="@string/config_diff_note" />
+            <EditText android:id="@+id/config_before" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:fontFamily="monospace"
+                android:hint="@string/config_before" android:importantForAutofill="no" android:inputType="textMultiLine" android:maxLength="1000000" android:minLines="6" />
+            <Button android:id="@+id/config_use_before" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:text="@string/config_use_capture_before" />
+            <EditText android:id="@+id/config_after" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:fontFamily="monospace"
+                android:hint="@string/config_after" android:importantForAutofill="no" android:inputType="textMultiLine" android:maxLength="1000000" android:minLines="6" />
+            <Button android:id="@+id/config_use_after" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:text="@string/config_use_capture_after" />
+            <Button android:id="@+id/config_compare" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:text="@string/config_compare" />
+            <TextView android:id="@+id/config_result" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:background="#101010" android:fontFamily="monospace"
+                android:minHeight="180dp" android:padding="12dp" android:textColor="#E8E8E8"
+                android:textIsSelectable="true" />
+            <Button android:id="@+id/config_export" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:text="@string/config_export" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

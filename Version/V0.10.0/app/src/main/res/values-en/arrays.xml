@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="app_languages"><item>System</item><item>简体中文</item><item>English</item></string-array>
+    <string-array name="appearance_modes"><item>Follow system</item><item>Light</item><item>Dark</item></string-array>
+    <string-array name="accent_themes"><item>Ocean blue</item><item>Emerald green</item><item>Tech violet</item><item>Sunset orange</item></string-array>
+    <string-array name="terminal_text_sizes"><item>Small</item><item>Standard</item><item>Large</item><item>Extra large</item></string-array>
+    <string-array name="command_scopes"><item>All commands</item><item>Favorites</item><item>Recent</item></string-array>
+</resources>
