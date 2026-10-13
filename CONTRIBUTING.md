@@ -14,10 +14,10 @@
 ## 构建与测试
 
 ```powershell
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\Version\V0.3.1\scripts\build.ps1
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\Version\V0.10.0\scripts\build.ps1
 ```
 
-提交前请确保单元测试、Android Lint 和 Debug 构建通过。涉及真实硬件或厂商 API 的改动，请说明设备、系统版本、测试范围和未覆盖项，但不要提交凭据或现场敏感数据。
+提交前请确保单元测试、Android Lint 和 Debug 构建通过。V0.10.0 默认生成独立的 `com.chenwei666.netserial.preview` 包，不覆盖正式版，也不迁移正式版凭据。脚本适用于既有 Windows 工具链；其他环境可在 `Version/V0.10.0` 配置自己的 Android SDK 后运行 Gradle 的 `testDebugUnitTest lintDebug assembleDebug`。贡献者不需要生产签名密钥。涉及真实硬件或厂商 API 的改动，请说明设备、系统版本、测试范围和未覆盖项，但不要提交凭据或现场敏感数据。
 
 ## 提交与 Pull Request
 

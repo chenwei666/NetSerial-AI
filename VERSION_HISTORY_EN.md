@@ -17,6 +17,17 @@ This document records the complete public evolution, release status, artifact tr
 | V0.8.0 | [Source](Version/V0.8.0/) | Development candidate, not published | No formal APK | Modern task cards, 18 AI entries, upstream model catalogs, direct network toolbox |
 | V0.9.0 | [Release](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.9.0) · [Source](Version/V0.9.0/) | Historical stable release | Production-signed APK | Full AI chat, encrypted history, incident evidence, guided runbooks, drift and change closure |
 | V0.9.1 | [Latest](https://github.com/chenwei666/NetSerial-AI/releases/latest) · [Source](Version/V0.9.1/) | Latest stable release | Production-signed APK | One-tap active terminal read, redacted memory snapshot, and automatic vendor selection |
+| V0.10.0 | [Source](Version/V0.10.0/) | Stable release preparation | Production-signed APK, local gates passed | Ten guided scenarios, phone-side probes, read-only switch guidance and report/AI drafts |
+
+## V0.10.0 — Start with a problem, not a command
+
+- Problem-first home, ten searchable scenarios, collapsible shortcuts and purpose-based professional tools.
+- Single-target DNS, three Ping samples and one TCP-port check with cancellation, timeouts, cautious explanations and next steps.
+- Read-only switch command drafts, existing terminal output and resumable USB/remote handoff; preview reports before sharing or opening a fresh AI draft, with no automatic commands or AI requests.
+- 65 test classes / 246 tests passed; Release Lint: 0 errors / 158 warnings; V1/V2/V3 signing, ZIP alignment and package metadata verified.
+- An API 34 clean test environment passed an in-place v0.9.1 → v0.10.0 upgrade, cold start and new-home check. This does not prove real-user data migration or field compatibility.
+- APK: `NetSerial-AI-0.10.0.apk`, 6,384,466 bytes; SHA-256: `1a081ef60a5208c881d737b389e2289addb36397f1f1f803f1f95c8d679afb16`.
+- Production identity/certificate and minSdk 21/targetSdk 36 remain. The isolated Preview does not migrate production credentials. Real USB/SSH/Telnet, switches and AI accounts still require authorized field acceptance.
 
 ## V0.9.1 — One-tap current device reading
 
