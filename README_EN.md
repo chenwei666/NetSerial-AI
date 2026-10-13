@@ -30,6 +30,8 @@ Already comfortable with a terminal? USB serial, SSH, SFTP, real Tab input, mult
 
 > **AI does not operate your switch for you.** AI replies and guided commands are reviewable drafts, not automatic actions. You remain responsible for the target, command, risk, and final send.
 
+**Current stable release: [V0.10.0 · GitHub Latest](https://github.com/chenwei666/NetSerial-AI/releases/latest).** The production-signed APK is published and its downloaded checksum has been verified. Install it as an update; do not uninstall the previous production app first.
+
 ## Start with what is going wrong
 
 | Your problem | How the toolkit helps |

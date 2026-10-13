@@ -3,7 +3,7 @@
 ## V0.10.0 — 2026-10-13 · 新手排障工具箱
 
 - 开发人员：chenwei666。完整独立源码归档：`Version/V0.10.0`；旧版本目录保持不变。
-- 发布准备：生产签名正式安装包已完成本地发布门禁；GitHub 发布状态以 Releases 为准。
+- 发布状态：PR [#14](https://github.com/chenwei666/NetSerial-AI/pull/14) 已合并；[V0.10.0](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.10.0) 已作为非预发布正式版发布并设为 GitHub Latest。线上 APK 与 SHA256SUMS.txt 已重新下载，大小和 SHA-256 与本地产物一致。
 
 ### 新增与优化
 
