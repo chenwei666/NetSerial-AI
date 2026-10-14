@@ -4,7 +4,7 @@
 
 - 新增与当前 USB/SSH/Telnet 会话绑定的 AI 自动任务入口：必要参数追问、任务范围内常规操作自动执行、高风险/未知风险确认、逐条回显、分项复核和取消。
 - 新增本地 Web 管理模板与专用密码输入；口令不进入 AI 请求，敏感配置后的回显屏蔽至重连，不能把 CLI 返回当作 Web 访问/登录成功。
-- 保留确认式记忆，增加自动任务页记忆开关和管理入口。用户已授权正式发布，生产包构建与原签名核验完成；GitHub 发布及下载验证状态由本轮发布记录补齐。
+- 保留确认式记忆，增加自动任务页记忆开关和管理入口。[PR #18](https://github.com/chenwei666/NetSerial-AI/pull/18) 已合并；v0.13.0 标签指向 `eff52f6d8960ebf5847f32cac0eedf34a3e3515e`。[正式 Release](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.13.0) 已发布并核验为 Latest，非草稿、非预发布。线上 APK 与 SHA256SUMS 重新下载后核对一致：6,560,459 bytes，SHA-256 `c1fadf90e9a2045eedb2aca715f6b2bd32a69e65f6433bd1807a80dc32ffb85d`，原证书 V1/V2/V3 有效。
 - 435 项 JVM 测试通过，Release Lint 0 错误 / 222 警告；正式包 V1/V2/V3 签名有效，V0.12.0→V0.13.0 覆盖升级保留 firstInstallTime，冷启动通过。真实 AI 服务、物理交换机及 OEM 环境未联调，自动任务仍为受限新功能。
 
 ## V0.12.0 — 2026-10-14 · 免 Root 工具箱与确认式 AI 记忆

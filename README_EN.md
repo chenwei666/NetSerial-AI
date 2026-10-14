@@ -28,7 +28,7 @@
 
 V0.13.0 adds explicit autonomous tasks to the **16-tool root-free toolkit** and confirmed AI memory. Start from the current device terminal, describe a goal, then let AI inspect state, request missing details and execute sequentially; high risks still require your approval.
 
-> **V0.13.0 production release is authorized and being prepared.** Local production build, signing and in-place upgrade are verified; remote publication checks remain pending. This page does not prove assets are uploaded. [Planned release](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.13.0) · [Planned formal APK](https://github.com/chenwei666/NetSerial-AI/releases/download/v0.13.0/NetSerial-AI-0.13.0.apk) (may be unavailable until publication). The published [V0.12.0](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.12.0) remains available; the actual [GitHub Latest](https://github.com/chenwei666/NetSerial-AI/releases/latest) target is determined remotely.
+> **V0.13.0 is published as the production release and GitHub Latest.** [Download the formal APK](https://github.com/chenwei666/NetSerial-AI/releases/download/v0.13.0/NetSerial-AI-0.13.0.apk) · [Release notes](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.13.0) · [Checksums](https://github.com/chenwei666/NetSerial-AI/releases/download/v0.13.0/SHA256SUMS.txt). [PR #18](https://github.com/chenwei666/NetSerial-AI/pull/18) is merged and the tag matches its merge commit. Draft/prerelease flags are false; the public APK and checksum file were downloaded again and verified. [V0.12.0](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.12.0) remains a historical formal release.
 
 > **Ordinary chat remains draft-only; autonomous tasks require an explicit start.** Tasks bind the current connection, never a guessed latest device. Exact allowlisted queries and narrowly scoped VLAN/description changes can run automatically. High/unknown risk requires the full typed target; protected devices still require a matching change task and maintenance window.
 
@@ -108,7 +108,7 @@ Tab completion depends on the connected terminal. Vendor rules are not a claim o
 
 ## Get started in three steps
 
-1. **Install and check the version:** obtain a published APK and matching `SHA256SUMS.txt` from [GitHub Latest](https://github.com/chenwei666/NetSerial-AI/releases/latest). While V0.13.0 is being prepared, planned links are not proof of downloadable artifacts. Verify the original certificate before upgrading without uninstalling. An isolated Preview is not a production update.
+1. **Install and check the version:** download the [V0.13.0 formal APK](https://github.com/chenwei666/NetSerial-AI/releases/download/v0.13.0/NetSerial-AI-0.13.0.apk) and verify [SHA256SUMS.txt](https://github.com/chenwei666/NetSerial-AI/releases/download/v0.13.0/SHA256SUMS.txt). It retains the original production certificate; the V0.12.0 in-place upgrade was verified. Back up important data and do not uninstall first. An isolated Preview is not a production update.
 2. **Choose a problem or tool:** use the guided home scenarios or search the toolbox directly. Only assess authorized targets; review discovery and WOL confirmations carefully.
 3. **Choose chat or a task:** configure AI for ordinary questions, or explicitly open a task from the connected terminal, describe the goal and start. Review the target and impact before high-risk approval.
 
@@ -120,7 +120,7 @@ The local V0.13.0 production build passed **435 tests; Release Lint: 0 errors / 
 
 The isolated preview built from final source was reinstalled and again passed **eight phone/tablet × Chinese/English × light/dark UI combinations, 42 assertions each**. Emulator reconnection allowed completion of the stricter Chinese task-scope build retest. This is preview UI evidence, not live hardware/provider end-to-end acceptance.
 
-Local formal APK: **6,560,459 bytes**; SHA-256: `c1fadf90e9a2045eedb2aca715f6b2bd32a69e65f6433bd1807a80dc32ffb85d`. GitHub upload and re-download verification are still pending; a local hash does not establish a remote asset.
+Formal APK: **6,560,459 bytes**; SHA-256: `c1fadf90e9a2045eedb2aca715f6b2bd32a69e65f6433bd1807a80dc32ffb85d`. The GitHub APK and checksum file were downloaded again; size/hash match the local artifact and V1/V2/V3 signatures passed again. Tag `v0.13.0` points to PR #18 merge commit `eff52f6d8960ebf5847f32cac0eedf34a3e3515e`; the Latest API confirms this version with draft/prerelease flags false.
 
 Live AI providers, physical/OEM devices, actual switches and real-user migration remain unaccepted. Validate automatic execution and local templates on authorized equipment; compilation, synthetic transcripts and UI checks do not certify all devices. Earlier results remain in [version history](VERSION_HISTORY_EN.md).
 
