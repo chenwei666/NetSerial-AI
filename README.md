@@ -28,7 +28,7 @@
 
 V0.12.0 把常用网络工具重新整理为 **16 个清晰入口**：可搜索、按用途分类，结果先显示数值和结论。AI 对话也换成更易读的排版，设置固定在右上角；重要信息由你确认后再记住。
 
-> **发布状态：V0.12.0 正式版发布说明准备中。** [目标发布页](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.12.0) 将提供正式安装包；未完成上传及远程核验前，不代表安装包已可下载。V0.10.0 保留为[历史稳定版](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.10.0)。
+> **当前正式版：[V0.12.0 · GitHub Latest](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.12.0)。** [PR #16](https://github.com/chenwei666/NetSerial-AI/pull/16) 已合并，正式 Release 已发布（非草稿、非预发布）；线上 APK 与 `SHA256SUMS.txt` 重新下载核验一致。V0.10.0 保留为[历史稳定版](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.10.0)。
 
 > **AI 不替你操作交换机。** 回复与命令都是待审核草稿，不会自动下发；真正发送仍由你核对设备、命令和风险。
 
@@ -100,7 +100,7 @@ Tab 补全依赖设备终端本身。厂商命令与识别规则不表示全部�
 
 ## 三步开始
 
-1. **安装并核对版本**：从 [GitHub 最新正式版](https://github.com/chenwei666/NetSerial-AI/releases/latest) 获取 APK 与同页 `SHA256SUMS.txt`。V0.12.0 发布完成后将在[对应页面](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.12.0)提供；不要将独立 Preview 当作正式版覆盖升级包。
+1. **安装并核对版本**：从 [V0.12.0 正式发布页](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.12.0) 获取 APK 与同页 `SHA256SUMS.txt`。旧正式版可使用同证书正式包覆盖安装，不要先卸载；独立 Preview 不是正式版覆盖升级包。
 2. **选问题或工具**：新手从首页场景开始，熟悉操作可直达工具箱搜索。只有获授权的目标才应被检测；私网发现与 WOL 需核对后确认。
 3. **看结果，再决定下一步**：需要交换机回显时先连接 USB/SSH 并手动执行检查命令；需要 AI 时再配置服务商，预览上下文后手动发送。
 
@@ -110,7 +110,9 @@ Tab 补全依赖设备终端本身。厂商命令与识别规则不表示全部�
 
 本地发布验收已通过：**338 项 JVM 测试**，Debug/Release Lint **0 错误 / 218 警告**，手机/平板 × 中英文 × 深浅色 **8 组界面检查，每组 138 项断言**，以及 **64 项 AI 回归断言**。正式 APK 的 V1/V2/V3 签名与 ZIP 对齐通过，证书与重新下载的 V0.10.0 正式 APK 一致；API 34 干净测试环境已完成 V0.10.0 → V0.12.0 覆盖安装、首次安装时间保持与冷启动检查。
 
-这不证明真实用户凭据/历史迁移，也不代替实体手机、USB 芯片、交换机、公网服务或自有 AI 账号验收。**V0.12.0 远程发布及下载校验尚待完成**，详见 [测试报告](Version/V0.12.0/docs/TEST_REPORT.md)。
+V0.12.0 已发布为 GitHub Latest，远程重新下载的 APK 为 **6,506,868 bytes**，SHA-256 为 `fce9f7d5a4a60fe16d72ab357dabfbd769347767549b22075a6b8d6325f19cf8`，与本地产物和线上校验文件一致。
+
+上述验证不证明真实用户凭据/历史迁移，也不代替实体手机、USB 芯片、交换机、公网服务或自有 AI 账号验收。另一次正式包 Ping 界面附加复测因模拟器 `system_server` 退出而未完成，未计为通过；详见 [测试报告](Version/V0.12.0/docs/TEST_REPORT.md)。
 
 - [中文使用说明](Version/V0.12.0/README.md) · [English guide](Version/V0.12.0/README_EN.md)
 - [安全边界](Version/V0.12.0/docs/SECURITY.md) · [安全问题报告](SECURITY.md)

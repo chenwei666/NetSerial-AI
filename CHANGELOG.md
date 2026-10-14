@@ -3,7 +3,7 @@
 ## V0.12.0 — 2026-10-14 · 免 Root 工具箱与确认式 AI 记忆
 
 - 维护者：chenwei666。独立源码归档：`Version/V0.12.0`；生产 versionCode 14 / versionName 0.12.0，保留正式包名、既有生产证书、minSdk 21、targetSdk/compileSdk 36。
-- 发布状态：本地正式构建与发布验收通过；[v0.12.0 目标发布页](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.12.0) 准备中，远程发布和下载校验尚未完成。未提前宣称 GitHub Latest 已切换。
+- 发布状态：[PR #16](https://github.com/chenwei666/NetSerial-AI/pull/16) 已合并，提交为 `185f995e0ef3c667a1a7421f11cf33b671d5db96`；`v0.12.0` 标签精确指向同一提交。[V0.12.0 Release](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.12.0) 已发布，GitHub Latest API 返回 v0.12.0，draft/prerelease 均为 false。线上 APK 与 `SHA256SUMS.txt` 已重新下载核验一致。
 
 ### 功能与修复
 
@@ -20,9 +20,10 @@
 - 338 项 JVM 测试通过；Debug/Release Lint 0 错误 / 218 警告；8 组手机/平板、语言、深浅色 UI 各 138 项断言通过；AI 回归 64 项断言通过。
 - 正式 APK `NetSerial-AI-0.12.0.apk`：6,506,868 bytes；SHA-256：`fce9f7d5a4a60fe16d72ab357dabfbd769347767549b22075a6b8d6325f19cf8`。V1/V2/V3 签名、ZIP 对齐通过；证书与重新下载的 V0.10.0 正式包一致。
 - API 34 干净模拟器中，真实 V0.10.0 code 12 → V0.12.0 code 14 覆盖安装、首次安装时间不变及冷启动通过。不证明真实用户密钥/历史迁移。
-- 无全部 Android/OEM、物理交换机、真实公网服务或付费 AI 验收声明。DNSSEC、全部 TLS 协议/吊销扫描、完整资产发现和 WOL 实际开机不在保证范围。远程发布结果待核验后记录。
+- 远程重新下载 APK 为 6,506,868 bytes，SHA-256 与上述本地产物及线上 `SHA256SUMS.txt` 一致。
+- 无全部 Android/OEM、物理交换机、真实公网服务或付费 AI 验收声明。DNSSEC、全部 TLS 协议/吊销扫描、完整资产发现和 WOL 实际开机不在保证范围。正式包 Ping 界面附加复测因模拟器 `system_server` 退出而未完成，未计为通过。
 
-English: Sixteen root-free, bounded network tools with adaptive layouts and honest measurement states; readable AI chat, fixed settings and explicitly confirmed memory. Local production checks pass, including signing and a clean test upgrade. Remote publication/download verification is still pending; physical-device and real-network coverage is not implied.
+English: Sixteen root-free, bounded network tools with adaptive layouts and honest measurement states; readable AI chat, fixed settings and explicitly confirmed memory. PR #16 is merged, tag v0.12.0 matches its merge commit, and the non-draft/non-prerelease Release is GitHub Latest. The downloaded APK and checksum file match the local artifact. Physical-device and real-network coverage is not implied; an additional production Ping UI retest was interrupted by emulator system_server exit and is not counted as passed.
 
 ## V0.11.0 — 2026-10-14 · 开发记录，未单独发布
 

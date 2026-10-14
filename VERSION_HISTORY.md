@@ -19,11 +19,11 @@
 | V0.9.1 | [Release](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.9.1) · [源码](Version/V0.9.1/) | 历史稳定版 | 生产签名 APK | 当前终端一键读取、内存脱敏快照与自动厂商选择 |
 | V0.10.0 | [Release](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.10.0) · [源码](Version/V0.10.0/) | 历史稳定版 | 生产签名 APK，远程下载校验通过 | 十场景新手工具箱、手机检测、只读交换机向导与报告/AI 草稿 |
 | V0.11.0 | [源码](Version/V0.11.0/) | 开发检查点，未单独发布 | 独立 Debug 预览 | AI 可读排版、固定设置和确认式长期记忆；并入 V0.12.0 |
-| V0.12.0 | [目标发布页](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.12.0) · [源码](Version/V0.12.0/) | 本地正式验收通过，远程发布准备中 | 生产签名 APK，远程核验待完成 | 16 项免 Root 网络工具、手机/平板布局、确认式 AI 记忆 |
+| V0.12.0 | [Release / Latest](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.12.0) · [源码](Version/V0.12.0/) | 最新稳定正式版 | 生产签名 APK，远程下载校验通过 | 16 项免 Root 网络工具、手机/平板布局、确认式 AI 记忆 |
 
 ## V0.12.0 — 免 Root 工具箱与确认式 AI 记忆
 
-- 2026-10-14：正式构建及本地发布验收通过，GitHub 发布和远程下载核验待完成；此条目不表示 Latest 已切换。
+- 2026-10-14：[PR #16](https://github.com/chenwei666/NetSerial-AI/pull/16) 已合并，`v0.12.0` 标签与合并提交 `185f995e0ef3c667a1a7421f11cf33b671d5db96` 一致；正式 Release 已发布，Latest API 返回 v0.12.0，draft/prerelease 均为 false。线上 APK 与校验文件重新下载核验通过。
 - 工具箱包含基础体检、Ping、TCP、Trace、MTU、地址摘要、DNS、HTTP/HTTPS、TLS、本机网络、局域网发现、WOL、CIDR、MAC/OUI、端口速查与标识提取 16 个入口；搜索、分类和按需参数适配手机与平板。
 - Ping 展示真实 RTT/统计及趋势；错误、未知、部分完成和不支持单独呈现。Trace 免 Root 但仍受系统/路由器能力限制；IPv4 DF/MTU 超时不被当作上界，1500 字节成功只表示已验证下界。
 - DNS 常用记录与有界解析、无凭据 HEAD 和验证式 TLS；私网发现限定 RFC1918 `/26`–`/32`、64 地址/4 端口/40 秒预算，发现与 WOL 均需确认。WOL 发送不证明已开机。
@@ -31,6 +31,7 @@
 - 338 项 JVM 测试、Debug/Release Lint 0 错误 / 218 警告；8 组 UI 各 138 项断言和 AI 回归 64 项断言通过。V1/V2/V3 签名与 ZIP 对齐通过，证书匹配重新下载的 V0.10.0 正式包。
 - API 34 干净测试环境通过真实 V0.10.0 code 12 → V0.12.0 code 14 覆盖安装、首次安装时间保持与冷启动；不证明真实用户凭据/历史迁移。
 - APK：`NetSerial-AI-0.12.0.apk`，6,506,868 bytes；SHA-256：`fce9f7d5a4a60fe16d72ab357dabfbd769347767549b22075a6b8d6325f19cf8`。
+- 远程下载实物的大小、SHA-256 与本地产物及线上 `SHA256SUMS.txt` 一致。正式包 Ping 界面附加复测因模拟器 `system_server` 退出未完成，未计入通过项。
 - 生产身份/证书保持；独立 Debug 为 `.preview012`。新增普通 `ACCESS_NETWORK_STATE`，无 Root、数据库或凭据迁移。物理手机、实际网络设备、公网服务及付费 AI 仍需授权现场验收。
 
 ## V0.11.0 — AI 对话与确认记忆开发记录
@@ -147,4 +148,4 @@
 - V0.1.0、V0.2.0、V0.3.0 属于 Debug/开发检查点，不能直接覆盖生产签名版本。
 - 从 V0.3.1 开始，正式版本沿用同一生产证书。V0.12.0 本地正式包已与重新下载的 V0.10.0 证书比对，并完成干净测试环境覆盖升级；不等同真实用户数据迁移验收。
 - 安装前必须从对应 Release 下载附件并核对 SHA-256；不要安装来源不明或哈希不一致的 APK。
-- V0.9.1、V0.10.0 均为历史正式版记录；不要把本页历史条目中的“发布时 Latest”当作当前版本。V0.12.0 远程发布完成前，以 [GitHub Latest](https://github.com/chenwei666/NetSerial-AI/releases/latest) 实际显示为准。V0.8.0、V0.11.0 保留为未单独发布的开发检查点；Preview 不覆盖正式版。生产使用前仍须在授权手机、USB 芯片、交换机与自有 AI 账号上验收。
+- V0.12.0 已核验为当前 [GitHub Latest](https://github.com/chenwei666/NetSerial-AI/releases/latest) 正式版；V0.9.1、V0.10.0 为历史正式版，历史条目中的“发布时 Latest”不代表当前版本。V0.8.0、V0.11.0 保留为未单独发布的开发检查点；Preview 不覆盖正式版。生产使用前仍须在授权手机、USB 芯片、交换机与自有 AI 账号上验收。
