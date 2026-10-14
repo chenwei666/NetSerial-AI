@@ -1,17 +1,17 @@
 # NetSerial AI
 
 <p align="center">
-  <img src="Version/V0.10.0/design/app-icon-512.png" width="112" alt="NetSerial AI app icon">
+  <img src="Version/V0.12.0/design/app-icon-512.png" width="112" alt="NetSerial AI app icon">
 </p>
 
 <p align="center">
-  <strong>Start with the network problem, not a command to memorize.</strong><br>
-  Guided troubleshooting for beginners. A field toolkit for network engineers.<br>
-  Android · USB Console · SSH/SFTP · Network diagnostics · Switch commands · AI
+  <strong>Your phone or tablet, your field network toolkit.</strong><br>
+  Start with a symptom, or jump straight to a professional tool.<br>
+  Root-free diagnostics · USB Console · SSH/SFTP · Vendor commands · AI chat
 </p>
 
 <p align="center">
-  <a href="https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.10.0"><strong>Download V0.10.0</strong></a>
+  <a href="https://github.com/chenwei666/NetSerial-AI/releases/latest"><strong>Download the latest stable release</strong></a>
   · <a href="#get-started-in-three-steps">Quick start</a>
   · <a href="README.md">简体中文</a>
   · <a href="https://github.com/chenwei666/NetSerial-AI/issues">Report a problem / Suggest a feature</a>
@@ -24,130 +24,113 @@
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="MIT License"></a>
 </p>
 
-**NetSerial AI is an open-source Android toolkit for network troubleshooting.** Choose a symptom—no internet, an unreachable switch, or a port that is down—and follow a path to collect evidence, understand the results, and decide what to check next.
+**NetSerial AI is an open-source Android network operations toolkit.** Start with no Internet access, an unreachable switch or a port problem; collect evidence, understand the result and decide what to check next. Experienced users can open Ping, DNS, TCP or TLS directly.
 
-Already comfortable with a terminal? USB serial, SSH, SFTP, real Tab input, multi-vendor commands, and configuration comparisons are still available. Need another perspective? Review a troubleshooting report and take it to an AI provider you configure yourself.
+V0.12.0 organizes everyday diagnostics into **16 searchable tool entries** with clear inputs and numerical results. AI conversations gain readable formatting, a permanent settings button and long-term memory saved only after your confirmation.
 
-> **AI does not operate your switch for you.** AI replies and guided commands are reviewable drafts, not automatic actions. You remain responsible for the target, command, risk, and final send.
+> **Release status: V0.12.0 production release notes are being prepared.** The [target release page](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.12.0) is reserved for the formal APK; availability and remote verification are not yet claimed. V0.10.0 remains a [historical stable release](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.10.0).
 
-**Current stable release: [V0.10.0 · GitHub Latest](https://github.com/chenwei666/NetSerial-AI/releases/latest).** The production-signed APK is published and its downloaded checksum has been verified. Install it as an update; do not uninstall the previous production app first.
+> **AI does not operate your switch for you.** Replies and commands remain reviewable drafts, not automatic actions. You decide the target, command, risk and final send.
 
-## Start with what is going wrong
+## Pick the problem, find the tool
 
-| Your problem | How the toolkit helps |
+| What you need | Open this |
 |---|---|
-| No internet access | Run bounded DNS, Ping, and TCP checks against one target and get explanations and next steps |
-| Slow or intermittent network | Observe short-term reachability and latency, with clear limits on what the results prove |
-| A domain will not open | Check name resolution and use connectivity evidence to narrow the investigation |
-| Cannot log into a switch | Check a specified management port, then review protocol, address, and authentication |
-| A switch port is down | Prepare vendor-specific read-only checks and interpret pasted or captured port output |
-| VLAN or gateway trouble | Work through VLAN, interface, and Layer 3 evidence with suggested checks |
-| Unknown switch vendor | Read existing terminal output and identify H3C, Huawei, Cisco, or Ruijie fingerprints |
-| Need a switch health check | Follow read-only checks and inspect health indicators in the output |
-| Need a configuration record | Collect and inspect output, then explicitly save and compare it in the snapshot center |
-| Unclear output or unfamiliar commands | Preview the report, open a fresh AI draft, and choose whether to send it |
+| Not sure why a target is unreachable | Basic health check: single-target DNS, Ping and TCP with evidence and next steps |
+| Investigate intermittent latency | Ping: per-reply RTT, sent/received counts, loss, min/average/max and a trend |
+| Check a switch or service port | TCP: specified ports with refusal, timeout and connection outcomes |
+| Understand a domain or website failure | DNS records, HTTP/HTTPS HEAD checks and TLS certificate inspection |
+| Investigate path or packet-size issues | Root-free trace and IPv4 DF/MTU, with unknown/unsupported results stated clearly |
+| Inspect the current network or authorized private LAN | Network information, address summary and bounded LAN discovery |
+| Wake a WOL-capable device | Confirm the IPv4 destination and MAC, then send one magic packet |
+| Calculate or look up network values | IPv4/IPv6 CIDR, MAC/OUI, port reference and identifier extraction |
+| Explain switch output or unfamiliar commands | Guided checks, vendor command references, report preview and AI chat |
 
-**Know the limits:** checks originate from the phone, not a PC's network adapter, and are not bandwidth tests. No Ping reply does not prove a device is offline; an open TCP port does not prove login works. Device capture reads existing session output without silently sending new commands. Truncated or paginated configuration output is not a complete recovery backup.
+## Built for both phones and tablets
 
-## See the interface
+### Tablet · Light
 
-### Chinese · Light
+![V0.12.0 tablet light network toolbox](Version/V0.12.0/docs/images/toolbox-tablet-light.png)
 
-![V0.10.0 Chinese light guided toolbox home](Version/V0.10.0/docs/images/home-chinese-light.png)
+### Narrow phone layout · Dark
 
-### English · Dark
+<img src="Version/V0.12.0/docs/images/toolbox-phone-dark.png" width="380" alt="V0.12.0 narrow phone dark network toolbox">
 
-![V0.10.0 English dark guided toolbox home](Version/V0.10.0/docs/images/home-english-dark.png)
+These are actual app captures from an Android API 34 test environment, not mockups or proof of compatibility with every physical device. Chinese/English, system/light/dark appearance and the existing four accent themes are supported.
 
-These are **real preview-app screenshots from an Android API 34 test environment at 1600×900**, not mockups or evidence of physical-device or switch compatibility. The app supports Chinese and English, system/light/dark appearance, and four accent themes.
+- Search and categories; only the selected tool's parameters are shown.
+- Numerical facts, progress and detail rows first; raw output remains available in a collapsed section.
+- Stop active work; distinguish failure, partial completion, unsupported capability and cancellation.
+- Redact and preview reports before copying, sharing or opening an editable AI draft. No automatic AI submission.
 
-## V0.10.0: choose a problem, follow the evidence
+## AI that is easier to read—and remembers with permission
 
-- **Ten starting points and symptom search:** find a workflow without knowing the name of the tool first.
-- **Explanations next to results:** see what was tested, what remains uncertain, and what to check next.
-- **Return to the terminal, then resume:** retain this session's inputs while moving between connections and guides. Drafts live in the current process, not guaranteed across app restarts.
-- **Preview before sharing or asking AI:** inspect a report before sharing it or opening a fresh AI draft. Sending to AI is never automatic.
-- **Professional tools remain:** grouped tools preserve direct access to terminals, commands, diagnostics, and the operations center. Favorites and recents are collapsed by default.
+Headings, bold text, lists, quotes, inline code and code blocks use native formatting instead of displaying raw `**` markers. Actual command symbols and line endings remain intact. Copy a code block or the original answer, then review any command before loading it.
 
-See the [changelog](CHANGELOG.md), [version history](VERSION_HISTORY_EN.md), and [V0.10.0 guide](Version/V0.10.0/README_EN.md).
+**Confirmed memory:** choose Remember → edit the content → select personal or named-device scope → confirm saving. View, edit, delete or disable memories independently of chat history. Deleting a conversation does not delete long-term memories, and ordinary replies are not automatically remembered.
 
-## A toolkit for experienced engineers, too
+- Android 6.0+ encrypted storage; 180-day expiry; at most five applicable records per request, with a receipt showing the selected entries.
+- Device scope uses a profile name, not verified hardware identity. Legacy automatic memories are not imported implicitly.
+- Multi-turn chat, stop/retry, conversation management and existing command risk gates remain.
+
+There are **18 AI provider entry types**: OpenAI, Anthropic, Gemini, DeepSeek, Zhipu GLM, Qwen, Doubao, Tencent Hunyuan / TokenHub, Baidu Qianfan, Kimi, MiniMax, SiliconFlow, Groq, Mistral, xAI, OpenRouter, a custom compatible endpoint and HTTPS Ollama. Bring your own API key; supported integrations load upstream models with caching, filtering and manual fallback.
+
+Custom endpoints target **OpenAI-compatible** APIs, not every provider's arbitrary protocol. Your chosen provider receives the context and enabled memories you decide to send; its fees and data policies apply. **Do not submit passwords, private keys or unreviewed sensitive configurations.** Local deletion cannot retract upstream data.
+
+## Your existing field tools remain
 
 | Capability | Field use |
 |---|---|
-| USB Console | OTG serial, baud rate, flow control, control lines, HEX, and background receive |
-| SSH / SFTP | Remote terminal, jump hosts, keepalive, file transfer, and changed-host-key blocking |
-| Controlled Telnet | Legacy compatibility; disabled by default with a plaintext warning before each connection |
-| Command assistance | Real Tab, `?`, Ctrl+C, and arrow keys; categorized H3C / Huawei / Cisco / Ruijie commands |
-| AI chat and memory | Multi-turn conversations, stop/retry, device memory, command explanation and review |
-| Network tools | DNS, Ping, Traceroute, bounded TCP checks, MTU, IPv4/IPv6 CIDR, and MAC/OUI |
-| Configuration and changes | Redacted snapshots, configuration Diff, rollback drafts, target checks, risk gates, and change evidence |
-| Operations center | Incident evidence plans, runbooks, security checks, topology-output parsing, and vendor detection |
+| USB Console | OTG serial, baud rate, flow control, control lines, HEX and background receive |
+| SSH / SFTP | Remote terminals, jump hosts, keepalive, file transfer and changed-host-key blocking |
+| Controlled Telnet | Legacy compatibility; disabled by default with a plaintext warning for each connection |
+| Command assistance | Real Tab, `?`, Ctrl+C and arrow keys; categorized H3C / Huawei / Cisco / Ruijie commands |
+| Configuration and changes | Redacted snapshots, Diff, rollback drafts, target checks, maintenance windows and evidence |
+| Operations center | Incident evidence plans, runbooks, security checks, topology-output parsing and vendor detection |
+| Guided troubleshooting | Ten problem scenarios, existing terminal-output capture, explanations and resumable handoff |
 
-Command and detection rules cover common vendor platforms; **they are not a claim that every model or firmware version has been tested**. Actual Tab completion depends on the connected device's terminal.
+Tab completion depends on the connected terminal. Vendor rules are not a claim of testing every model or firmware. Capturing a device reads existing terminal output without silently sending commands; incomplete or paginated configuration is not a full recovery backup.
 
-## Your AI provider, your decision to send
+## Honest diagnostic boundaries
 
-There are **18 provider entry types**: OpenAI, Anthropic, Gemini, DeepSeek, Zhipu GLM, Qwen, Doubao, Tencent Hunyuan / TokenHub, Baidu Qianfan, Kimi, MiniMax, SiliconFlow, Groq, Mistral, xAI, OpenRouter, a custom compatible endpoint, and HTTPS Ollama.
-
-- Bring your own API key. Supported integrations can load upstream model catalogs, with caching, filtering, and manual model-name fallback.
-- Custom endpoints target **OpenAI-compatible** APIs, not every provider's arbitrary protocol. Model catalogs and availability depend on the provider and account permissions.
-- Local diagnostics, offline commands, and terminal use do not require an AI account. When you confirm an online AI request, its content goes to your selected provider; that provider's pricing and data-handling terms apply.
-- Secure credential storage and persisted AI history require Android 6.0+ and use Android Keystore-backed encryption. Redaction is best-effort: inspect internal addresses, device names, and business-sensitive content before sending or sharing.
-
-**Do not upload passwords, private keys, or unreviewed sensitive configurations. AI can suggest unsuitable commands; verify them against the device, firmware, and your authorization.**
+- **No Root or permission bypass.** Trace depends on system TTL support and router replies; unknown hops stay unknown. IPv4 DF/MTU timeout is not an exact upper bound; success at 1500 bytes proves only that size can pass.
+- **Active discovery needs confirmation.** RFC1918 private `/26`–`/32` only, at most 64 addresses and four selected TCP ports, with a 40-second budget. Silence is not proof of offline status, and this is not a full inventory. A sent WOL packet does not prove a device woke up.
+- **Safe protocol checks.** DNS uses system or explicitly selected servers, without hidden public-DNS fallback or DNSSEC validation. HTTP is HEAD-only, with no redirects, body downloads, credentials or cookies. TLS does not bypass trust/hostname failures and is not an exhaustive protocol/revocation scan.
+- **Not bandwidth testing or a one-click cure.** Checks originate from the phone/tablet. Ping failure does not prove a device is offline; TCP success does not prove login works. Bundled OUI data is limited; unknown vendors remain unknown.
 
 ## Get started in three steps
 
-1. **Install:** open the [V0.10.0 release](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.10.0), download the production APK from Assets, and compare it with `SHA256SUMS.txt` on the same page. Minimum installation is Android 5.0; Android 6.0+ is recommended for encrypted credential features.
-2. **Choose the problem:** select a home-screen scenario and enter a target. For switch troubleshooting, connect through USB OTG or SSH first, then review and manually run the guide's read-only commands.
-3. **Read the results and continue:** return to the guide to capture output and inspect the explanation. Configure AI only if needed, preview the report, and decide whether to send it.
+1. **Install and check the version:** download the APK and matching `SHA256SUMS.txt` from the [latest stable release](https://github.com/chenwei666/NetSerial-AI/releases/latest). V0.12.0 will be available on its [release page](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.12.0) after publication. An isolated Preview is not a production in-place update.
+2. **Choose a problem or tool:** use the guided home scenarios or search the toolbox directly. Only assess authorized targets; review discovery and WOL confirmations carefully.
+3. **Read the evidence, then act:** connect USB/SSH and manually run checks when switch output is needed. Configure AI only if you want it, review the context, then send manually.
 
-Only test targets you own or are authorized to manage. Before production changes, check the device, permissions, maintenance window, and rollback plan.
+Minimum Android 5.0. Encrypted credentials, persisted chat/memory and current-default-network details require Android 6.0+. The added normal `ACCESS_NETWORK_STATE` permission reads current network/DNS details; no Root, location or VPN capture permission is requested.
 
-## FAQ
+## Verification and documentation
 
-**Can I use it without knowing switch commands?**
+Local release checks passed: **338 JVM tests**, Debug/Release Lint **0 errors / 218 warnings**, **eight phone/tablet × language × light/dark UI combinations with 138 assertions each**, and **64 AI regression assertions**. The formal APK passed V1/V2/V3 signature and ZIP-alignment verification, with its certificate matching a freshly downloaded V0.10.0 formal APK. A clean API 34 environment passed the V0.10.0 → V0.12.0 in-place install, preserved first-install timestamp and cold start.
 
-Start with guided scenarios and phone-side checks, then follow the explanations. The app helps narrow a problem; it does not promise to fix every network with one tap.
+This does not prove real-user credential/history migration or acceptance of physical phones, USB chipsets, switches, Internet services or owned AI accounts. **V0.12.0 remote publication and download verification remain pending.** See the [test report](Version/V0.12.0/docs/TEST_REPORT.md).
 
-**Does it work without AI?**
+- [English guide](Version/V0.12.0/README_EN.md) · [中文使用说明](Version/V0.12.0/README.md)
+- [Security boundaries](Version/V0.12.0/docs/SECURITY.md) · [Report a security issue](SECURITY.md)
+- [Build and signing](Version/V0.12.0/docs/RELEASE.md) · [Architecture](Version/V0.12.0/docs/ARCHITECTURE.md)
+- [Changelog](CHANGELOG.md) · [Version history](VERSION_HISTORY_EN.md) · [Contributing](CONTRIBUTING.md)
 
-Yes. Terminals, offline commands, local checks, and local output explanations do not depend on AI. AI is optional.
-
-**Does connecting automatically retrieve the full configuration?**
-
-No. Device capture reads existing terminal output. Review and run read-only commands manually when more information is needed, then check pagination, truncation, and completeness before saving.
-
-**Why do advanced operations still require confirmation?**
-
-The wrong command or target can disrupt production. The AI page blocks R4 commands, and other loadable commands still require human review; terminals also apply local risk gates. Guided mode does not disable these protections.
-
-**Has every device and provider been tested?**
-
-No. This version has 246 passing unit tests, resource checks, and production APK signature/alignment checks; Release Lint reports 0 errors and 158 warnings. API 34 checks cover the guided flows and a cold-start home screen after upgrading the V0.9.1 production app to V0.10.0. Physical phones, USB chipsets, real switches, and owned AI accounts still need field validation. Read the [validation record and uncovered scope](Version/V0.10.0/docs/BEGINNER_VALIDATION.md).
-
-## Documentation and source
-
-- [English guide](Version/V0.10.0/README_EN.md) · [中文使用说明](Version/V0.10.0/README.md)
-- [Security boundaries](Version/V0.10.0/docs/SECURITY.md) · [Report a security issue](SECURITY.md)
-- [Build and signing](Version/V0.10.0/docs/RELEASE.md) · [Architecture](Version/V0.10.0/docs/ARCHITECTURE.md)
-- [Roadmap](ROADMAP.md) · [Contributing](CONTRIBUTING.md) · [Version history](VERSION_HISTORY_EN.md)
-
-Build a preview from source:
+Build an isolated preview:
 
 ```powershell
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\Version\V0.10.0\scripts\build.ps1
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\Version\V0.12.0\scripts\build.ps1
 ```
 
-Complete version sources remain under `Version/V*`. Production signing material is never included. Preview builds use a separate application ID and do not automatically migrate production-app data.
+Debug ID: `com.chenwei666.netserial.preview012`. It coexists with production without importing its credentials/history. Historical sources remain under `Version/V*`; V0.11.0 is a development record incorporated into V0.12.0, not a separate Release. Production signing material stays outside the repository.
 
 ## Help turn field experience into better tools
 
-Useful feedback starts with **“this device had this problem,” “this command does not work on my firmware,”** or **“I could not understand this result.”** Open an [issue](https://github.com/chenwei666/NetSerial-AI/issues) with your phone model, Android version, switch vendor/firmware, and redacted reproduction steps. Never include passwords or API keys.
+The best feedback is **“this device had this problem,” “this command fails on my firmware,”** or **“I could not understand this result.”** Open an [issue](https://github.com/chenwei666/NetSerial-AI/issues) with your device, Android version, switch/firmware and redacted steps. Never include passwords or API keys.
 
-Contributions of commands, bilingual documentation, real-device test results, and small, verifiable pull requests are welcome. If the toolkit helps you in the field, consider giving it a **Star** so you can find it again and other engineers can discover it.
+Commands, bilingual documentation, real-device results and small reproducible PRs are welcome. If the app helps in the field, consider a **Star** so you can find it again and other engineers can discover it.
 
 ## Origin and license
 
-Built on Kai Morich's [SimpleUsbTerminal](https://github.com/kai-morich/SimpleUsbTerminal), retaining the upstream MIT license and attribution. New features and maintenance: [chenwei666](https://github.com/chenwei666). See [LICENSE](LICENSE) and [UPSTREAM.md](Version/V0.10.0/UPSTREAM.md).
+Built on Kai Morich's [SimpleUsbTerminal](https://github.com/kai-morich/SimpleUsbTerminal), retaining the MIT license and upstream attribution. New features and maintenance: [chenwei666](https://github.com/chenwei666). See [LICENSE](LICENSE) and [UPSTREAM.md](Version/V0.12.0/UPSTREAM.md).

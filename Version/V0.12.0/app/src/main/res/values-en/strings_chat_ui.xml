@@ -1,0 +1,24 @@
+<resources>
+    <string name="chat_ui_title">AI assistant</string>
+    <string name="chat_ui_context">Device and context</string>
+    <string name="chat_ui_memory_manage">Manage memory</string>
+    <string name="chat_ui_memory_not_sent">No memory used yet</string>
+    <string name="chat_ui_memory_used">Memory · %1$d used</string>
+    <string name="chat_ui_memory_failure">Memory could not be read. Check Manage memory or turn off confirmed memory before sending.</string>
+    <string name="chat_ui_use_terminal">Include this terminal capture</string>
+    <string name="chat_ui_use_memory">Use confirmed preferences and device memory</string>
+    <string name="chat_ui_context_notice">Selected context goes to your chosen AI provider with the message. Memory requires separate confirmation, never automatic extraction. Chat history is encrypted locally and managed separately.</string>
+    <string name="chat_ui_ready">Review advice. Commands never run automatically.</string>
+    <string name="chat_ui_input">Ask or paste device output…</string>
+    <string name="chat_ui_provider_missing">Set up AI with the gear icon</string>
+    <string name="chat_ui_device">Device: %1$s · %2$s · %3$s</string>
+    <string name="chat_ui_generic">Generic device</string>
+    <string name="chat_ui_mode_user">User view</string>
+    <string name="chat_ui_mode_system">Configuration view</string>
+    <string name="chat_ui_mode_interface">Interface view</string>
+    <string name="chat_ui_mode_unknown">Mode unconfirmed</string>
+    <string name="chat_ui_history_scope">This history belongs to another device. Start a new chat before sending to avoid mixing device context.</string>
+    <string name="chat_ui_terminal_empty">No terminal capture was included when opening this chat.</string>
+    <string name="chat_ui_new_title">New conversation</string>
+    <string name="chat_ui_history_memory_separate">Deleting chat does not delete confirmed long-term memory. Delete this conversation?</string>
+</resources>

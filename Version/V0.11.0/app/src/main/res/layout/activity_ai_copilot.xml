@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ai_copilot_root" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:orientation="vertical"
+    android:background="?attr/colorSurface">
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/ai_copilot_toolbar" android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize" android:background="?attr/colorSurface"
+        app:titleTextColor="?attr/colorOnSurface" app:subtitleTextColor="?attr/colorOnSurfaceVariant"
+        app:navigationIconTint="?attr/colorOnSurface" app:title="@string/chat_ui_title" />
+    <HorizontalScrollView android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:scrollbars="none" android:paddingHorizontal="12dp">
+        <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:orientation="horizontal" android:gravity="center_vertical">
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/ai_chat_context_toggle" style="@style/Widget.Material3.Button.TextButton"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="@string/chat_ui_context" />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/ai_chat_memory_manage" style="@style/Widget.Material3.Button.TextButton"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="@string/chat_ui_memory_manage" />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/ai_chat_used_memory" style="@style/Widget.Material3.Button.TextButton"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="@string/chat_ui_memory_not_sent" />
+        </LinearLayout>
+    </HorizontalScrollView>
+    <ScrollView android:id="@+id/ai_chat_context_panel" android:layout_width="match_parent"
+        android:layout_height="140dp" android:visibility="gone" android:paddingHorizontal="16dp">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView android:id="@+id/ai_copilot_context" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:textAppearance="?attr/textAppearanceBodyMedium" />
+            <TextView android:id="@+id/ai_chat_provider" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:textAppearance="?attr/textAppearanceBodySmall" />
+            <CheckBox android:id="@+id/ai_copilot_include_terminal" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:text="@string/chat_ui_use_terminal" />
+            <CheckBox android:id="@+id/ai_chat_use_memory" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:checked="true"
+                android:text="@string/chat_ui_use_memory" />
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:text="@string/chat_ui_context_notice" android:textAppearance="?attr/textAppearanceBodySmall"
+                android:paddingBottom="8dp" />
+        </LinearLayout>
+    </ScrollView>
+    <ScrollView android:id="@+id/ai_chat_scroll" android:layout_width="match_parent"
+        android:layout_height="0dp" android:layout_weight="1" android:fillViewport="true"
+        android:clipToPadding="false" android:paddingHorizontal="12dp" android:paddingVertical="8dp">
+        <LinearLayout android:id="@+id/ai_chat_messages" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:orientation="vertical" android:paddingBottom="8dp" />
+    </ScrollView>
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:gravity="center_vertical" android:orientation="horizontal" android:paddingHorizontal="16dp">
+        <ProgressBar android:id="@+id/ai_copilot_progress" android:layout_width="18dp"
+            android:layout_height="18dp" android:visibility="gone" />
+        <TextView android:id="@+id/ai_copilot_status" android:layout_width="0dp"
+            android:layout_weight="1" android:layout_height="wrap_content" android:paddingVertical="4dp"
+            android:maxLines="3" android:text="@string/chat_ui_ready"
+            android:textAppearance="?attr/textAppearanceBodySmall" />
+    </LinearLayout>
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="horizontal" android:gravity="bottom" android:padding="12dp">
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"
+            android:hint="@string/chat_ui_input" app:boxBackgroundMode="outline"
+            app:boxCornerRadiusBottomEnd="24dp" app:boxCornerRadiusBottomStart="24dp"
+            app:boxCornerRadiusTopEnd="24dp" app:boxCornerRadiusTopStart="24dp">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/ai_copilot_intent" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:gravity="top|start"
+                android:importantForAutofill="no" android:saveEnabled="false"
+                android:inputType="textCapSentences|textMultiLine" android:maxLength="8000"
+                android:maxLines="4" android:minLines="1" />
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/ai_chat_stop" style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_marginStart="8dp" android:visibility="gone" android:text="@string/ai_chat_stop" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/ai_copilot_generate" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:layout_marginStart="8dp"
+            android:text="@string/ai_chat_send" />
+    </LinearLayout>
+</LinearLayout>
