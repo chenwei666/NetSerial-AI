@@ -28,7 +28,7 @@
 
 V0.13.0 在 **16 项免 Root 工具箱**和确认式 AI 记忆基础上增加显式自动任务：从当前设备终端进入，用一句话描述目标，由 AI 读取现状、追问必要信息并逐步执行；高风险操作仍由你确认。
 
-> **V0.13.0 正式发布准备中，用户已授权。** 本地生产构建、签名与覆盖升级已验证，远程发布核验尚待完成；本页不能证明资产已经上传。[计划发布页](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.13.0) · [计划正式 APK](https://github.com/chenwei666/NetSerial-AI/releases/download/v0.13.0/NetSerial-AI-0.13.0.apk)（发布完成前可能不可用）。已发布的 [V0.12.0](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.12.0) 保留；[GitHub Latest](https://github.com/chenwei666/NetSerial-AI/releases/latest) 的实际指向以远程结果为准。
+> **V0.13.0 正式版已发布，GitHub Latest 已指向本版。** [下载正式 APK](https://github.com/chenwei666/NetSerial-AI/releases/download/v0.13.0/NetSerial-AI-0.13.0.apk) · [发布说明](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.13.0) · [校验文件](https://github.com/chenwei666/NetSerial-AI/releases/download/v0.13.0/SHA256SUMS.txt)。[PR #18](https://github.com/chenwei666/NetSerial-AI/pull/18) 已合并，标签与合并提交一致；Release 非草稿、非预发布，线上 APK 与校验文件重新下载核验通过。[V0.12.0](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.12.0) 保留为历史正式版。
 
 > **普通聊天仍然只生成草稿；自动任务需要你显式开始。** 任务绑定当前连接，不选择“最近设备”。精确白名单查询与目标范围内有限 VLAN/描述配置可以自动执行；高风险或未知风险要求输入完整目标名称确认，受保护设备继续校验变更任务与维护窗口。
 
@@ -108,7 +108,7 @@ Tab 补全依赖设备终端本身。厂商命令与识别规则不表示全部�
 
 ## 三步开始
 
-1. **安装并核对版本**：从 [GitHub Latest](https://github.com/chenwei666/NetSerial-AI/releases/latest) 获取已发布 APK 与同页 `SHA256SUMS.txt`。V0.13.0 仍处发布准备时不要将计划链接视为可下载产物；正式升级须核对原证书，不要先卸载。独立 Preview 不是正式版覆盖升级包。
+1. **安装并核对版本**：下载 [V0.13.0 正式 APK](https://github.com/chenwei666/NetSerial-AI/releases/download/v0.13.0/NetSerial-AI-0.13.0.apk)，并核对 [SHA256SUMS.txt](https://github.com/chenwei666/NetSerial-AI/releases/download/v0.13.0/SHA256SUMS.txt)。沿用原生产证书，已验证 V0.12.0 覆盖升级；先备份重要信息，不要先卸载。独立 Preview 不是正式版覆盖升级包。
 2. **选问题或工具**：新手从首页场景开始，熟悉操作可直达工具箱搜索。只有获授权的目标才应被检测；私网发现与 WOL 需核对后确认。
 3. **选择聊天或自动任务**：配置 AI 后可手动发送普通问题；需要执行任务时，从已连接设备终端显式进入自动任务，明确目标并开始。高风险确认前核对设备和影响。
 
@@ -120,7 +120,7 @@ V0.13.0 本地正式构建通过 **435 项测试，Release Lint 0 错误 / 222 �
 
 最终源码对应的独立预览包已重新安装，并再次通过手机/平板 × 中英文 × 深浅色 **8 组 UI 测试，每组 42 项断言**。模拟器恢复连接后完成了收紧中文任务范围校验后的复测；这些是预览包 UI 证据，不等同真实设备或服务商端到端验证。
 
-本地正式 APK：**6,560,459 bytes**；SHA-256：`c1fadf90e9a2045eedb2aca715f6b2bd32a69e65f6433bd1807a80dc32ffb85d`。GitHub 上传及重新下载核验仍待完成，不以本地哈希推断远程资产已存在。
+正式 APK：**6,560,459 bytes**；SHA-256：`c1fadf90e9a2045eedb2aca715f6b2bd32a69e65f6433bd1807a80dc32ffb85d`。GitHub APK 与校验文件已重新下载，大小/哈希与本地产物一致，下载实物的 V1/V2/V3 签名再次核验通过。标签 `v0.13.0` 指向 PR #18 合并提交 `eff52f6d8960ebf5847f32cac0eedf34a3e3515e`；Latest API 已确认本版，draft/prerelease 均为 false。
 
 尚未完成真实 AI 服务商、实体手机/OEM、物理交换机及真实用户数据迁移验收。自动执行与 Web 模板必须在获授权环境核对兼容性，不能仅凭编译、模拟回显或 UI 测试声称所有设备可用。历史版结果保留在 [版本历史](VERSION_HISTORY.md)。
 
