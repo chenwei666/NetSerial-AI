@@ -19,11 +19,11 @@ This document records the complete public evolution, release status, artifact tr
 | V0.9.1 | [Release](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.9.1) · [Source](Version/V0.9.1/) | Historical stable release | Production-signed APK | One-tap active terminal read, redacted memory snapshot, and automatic vendor selection |
 | V0.10.0 | [Release](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.10.0) · [Source](Version/V0.10.0/) | Historical stable release | Production-signed APK, downloaded and verified | Ten guided scenarios, phone-side probes, read-only switch guidance and report/AI drafts |
 | V0.11.0 | [Source](Version/V0.11.0/) | Development checkpoint, no separate Release | Isolated Debug preview | Readable AI chat, fixed settings and confirmed memory; incorporated into V0.12.0 |
-| V0.12.0 | [Target release](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.12.0) · [Source](Version/V0.12.0/) | Local release checks pass; publication pending | Production-signed APK; remote verification pending | Sixteen root-free tools, adaptive phone/tablet layouts and confirmed AI memory |
+| V0.12.0 | [Release / Latest](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.12.0) · [Source](Version/V0.12.0/) | Latest stable production release | Production-signed APK, downloaded and verified | Sixteen root-free tools, adaptive phone/tablet layouts and confirmed AI memory |
 
 ## V0.12.0 — Root-free toolkit and confirmed AI memory
 
-- 2026-10-14: production build and local release checks passed. GitHub publication and remote download verification are pending; this entry does not claim Latest has changed.
+- 2026-10-14: [PR #16](https://github.com/chenwei666/NetSerial-AI/pull/16) is merged; tag `v0.12.0` points to its exact merge commit `185f995e0ef3c667a1a7421f11cf33b671d5db96`. The production Release is published; the Latest API returns v0.12.0 with draft/prerelease flags false. The APK and checksum file were downloaded again and verified.
 - Sixteen entries: health check, Ping, TCP, Trace, MTU, address summary, DNS, HTTP/HTTPS, TLS, local network information, LAN discovery, WOL, CIDR, MAC/OUI, port reference and identifier extraction. Search, categories and focused inputs adapt to phones and tablets.
 - Ping displays actual RTT/statistics and a trend. Failures, unknowns, partial outcomes and unsupported capabilities remain distinct. Trace is root-free but system/router-dependent; IPv4 DF/MTU timeouts do not establish an upper bound, and a successful 1500-byte probe establishes only that lower bound.
 - Bounded DNS records, credential-free HTTP HEAD and verified TLS; discovery limited to RFC1918 `/26`–`/32`, 64 addresses, four TCP ports and a 40-second budget. Discovery/WOL require confirmation; sending a packet does not prove a device woke up.
@@ -31,6 +31,7 @@ This document records the complete public evolution, release status, artifact tr
 - 338 JVM tests; Debug/Release Lint 0 errors / 218 warnings; eight UI combinations with 138 assertions each and 64 AI regression assertions passed. V1/V2/V3 signing and ZIP alignment passed; the certificate matches a freshly downloaded V0.10.0 formal APK.
 - A clean API 34 environment passed an actual V0.10.0 code 12 → V0.12.0 code 14 in-place install, preserved first-install timestamp and cold start. This is not proof of real-user credential/history migration.
 - APK: `NetSerial-AI-0.12.0.apk`, 6,506,868 bytes; SHA-256: `fce9f7d5a4a60fe16d72ab357dabfbd769347767549b22075a6b8d6325f19cf8`.
+- The downloaded APK size/hash match the local artifact and published `SHA256SUMS.txt`. An additional production-APK Ping UI retest did not finish because the emulator's `system_server` exited; it is not counted as passed.
 - Production identity/certificate remain; isolated Debug ID ends in `.preview012`. Adds normal `ACCESS_NETWORK_STATE`; no Root, database or credential migration. Physical devices, live network equipment, Internet services and paid AI still need authorized field acceptance.
 
 ## V0.11.0 — AI chat and confirmed-memory development record
@@ -147,4 +148,4 @@ This document records the complete public evolution, release status, artifact tr
 - V0.1.0, V0.2.0, and V0.3.0 are Debug or development checkpoints and cannot directly replace production-signed builds.
 - Formal releases retain the production certificate established at V0.3.1. The V0.12.0 local formal APK matches a freshly downloaded V0.10.0 certificate and passed an isolated in-place upgrade; this does not prove real-user data migration.
 - Download APKs only from the matching Release and verify SHA-256 before installation.
-- V0.9.1 and V0.10.0 are historical release records; “Latest at publication” is not a current-version claim. Until V0.12.0 remote publication is verified, use the actual [GitHub Latest](https://github.com/chenwei666/NetSerial-AI/releases/latest) page. V0.8.0 and V0.11.0 remain unpublished development checkpoints; Preview packages do not replace production. Authorized phone, USB-chipset, switch and owned-AI field acceptance is still required.
+- V0.12.0 is verified as the current [GitHub Latest](https://github.com/chenwei666/NetSerial-AI/releases/latest) production release. V0.9.1 and V0.10.0 are historical releases; “Latest at publication” is not a current-version claim. V0.8.0 and V0.11.0 remain unpublished development checkpoints; Preview packages do not replace production. Authorized phone, USB-chipset, switch and owned-AI field acceptance is still required.

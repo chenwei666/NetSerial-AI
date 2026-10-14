@@ -28,7 +28,7 @@
 
 V0.12.0 organizes everyday diagnostics into **16 searchable tool entries** with clear inputs and numerical results. AI conversations gain readable formatting, a permanent settings button and long-term memory saved only after your confirmation.
 
-> **Release status: V0.12.0 production release notes are being prepared.** The [target release page](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.12.0) is reserved for the formal APK; availability and remote verification are not yet claimed. V0.10.0 remains a [historical stable release](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.10.0).
+> **Current stable release: [V0.12.0 · GitHub Latest](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.12.0).** [PR #16](https://github.com/chenwei666/NetSerial-AI/pull/16) is merged, the production Release is published with draft/prerelease flags false, and the APK and `SHA256SUMS.txt` were downloaded again and verified. V0.10.0 remains a [historical stable release](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.10.0).
 
 > **AI does not operate your switch for you.** Replies and commands remain reviewable drafts, not automatic actions. You decide the target, command, risk and final send.
 
@@ -100,7 +100,7 @@ Tab completion depends on the connected terminal. Vendor rules are not a claim o
 
 ## Get started in three steps
 
-1. **Install and check the version:** download the APK and matching `SHA256SUMS.txt` from the [latest stable release](https://github.com/chenwei666/NetSerial-AI/releases/latest). V0.12.0 will be available on its [release page](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.12.0) after publication. An isolated Preview is not a production in-place update.
+1. **Install and check the version:** download the APK and matching `SHA256SUMS.txt` from the [V0.12.0 production release](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.12.0). Update the older production app using the same-certificate formal APK without uninstalling first. An isolated Preview is not a production in-place update.
 2. **Choose a problem or tool:** use the guided home scenarios or search the toolbox directly. Only assess authorized targets; review discovery and WOL confirmations carefully.
 3. **Read the evidence, then act:** connect USB/SSH and manually run checks when switch output is needed. Configure AI only if you want it, review the context, then send manually.
 
@@ -110,7 +110,9 @@ Minimum Android 5.0. Encrypted credentials, persisted chat/memory and current-de
 
 Local release checks passed: **338 JVM tests**, Debug/Release Lint **0 errors / 218 warnings**, **eight phone/tablet × language × light/dark UI combinations with 138 assertions each**, and **64 AI regression assertions**. The formal APK passed V1/V2/V3 signature and ZIP-alignment verification, with its certificate matching a freshly downloaded V0.10.0 formal APK. A clean API 34 environment passed the V0.10.0 → V0.12.0 in-place install, preserved first-install timestamp and cold start.
 
-This does not prove real-user credential/history migration or acceptance of physical phones, USB chipsets, switches, Internet services or owned AI accounts. **V0.12.0 remote publication and download verification remain pending.** See the [test report](Version/V0.12.0/docs/TEST_REPORT.md).
+V0.12.0 is published as GitHub Latest. The downloaded APK is **6,506,868 bytes**, with SHA-256 `fce9f7d5a4a60fe16d72ab357dabfbd769347767549b22075a6b8d6325f19cf8`, matching the local artifact and published checksum file.
+
+These checks do not prove real-user credential/history migration or acceptance of physical phones, USB chipsets, switches, Internet services or owned AI accounts. A separate additional production-APK Ping UI retest did not complete because the emulator's `system_server` exited; it is not counted as a pass. See the [test report](Version/V0.12.0/docs/TEST_REPORT.md).
 
 - [English guide](Version/V0.12.0/README_EN.md) · [中文使用说明](Version/V0.12.0/README.md)
 - [Security boundaries](Version/V0.12.0/docs/SECURITY.md) · [Report a security issue](SECURITY.md)
