@@ -19,7 +19,20 @@
 | V0.9.1 | [Release](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.9.1) · [源码](Version/V0.9.1/) | 历史稳定版 | 生产签名 APK | 当前终端一键读取、内存脱敏快照与自动厂商选择 |
 | V0.10.0 | [Release](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.10.0) · [源码](Version/V0.10.0/) | 历史稳定版 | 生产签名 APK，远程下载校验通过 | 十场景新手工具箱、手机检测、只读交换机向导与报告/AI 草稿 |
 | V0.11.0 | [源码](Version/V0.11.0/) | 开发检查点，未单独发布 | 独立 Debug 预览 | AI 可读排版、固定设置和确认式长期记忆；并入 V0.12.0 |
-| V0.12.0 | [Release / Latest](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.12.0) · [源码](Version/V0.12.0/) | 最新稳定正式版 | 生产签名 APK，远程下载校验通过 | 16 项免 Root 网络工具、手机/平板布局、确认式 AI 记忆 |
+| V0.12.0 | [Release](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.12.0) · [源码](Version/V0.12.0/) | 已发布稳定正式版 | 生产签名 APK，远程下载校验通过 | 16 项免 Root 网络工具、手机/平板布局、确认式 AI 记忆 |
+| V0.13.0 | [计划 Release](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.13.0) · [源码](Version/V0.13.0/) | 已授权正式发布，准备中；远程核验待完成 | 本地生产包、签名与升级已验证，未声明上传 | 当前连接 AI 自动任务、风险确认、本地 Web 凭据与确认记忆 |
+
+## V0.13.0 — 当前连接 AI 自动任务（正式发布准备中）
+
+- 用户已明确授权更新 GitHub 并发布正式版；本地正式构建、签名、升级已验证，合并提交/标签、资产上传与重新下载校验尚待记录。计划资产 `NetSerial-AI-0.13.0.apk`，不得把计划路径当作已上传证明；[Latest](https://github.com/chenwei666/NetSerial-AI/releases/latest) 以远程返回为准。
+- 普通聊天继续生成草稿；新增显式任务入口绑定当前 USB/SSH/Telnet 连接令牌，只使用选定 provider/model，不静默 failover。严格 COMMAND/ASK/FINISH/WEB_ACCESS JSON，设备识别、相关现状与任务范围校验后，精确查询及有限 VLAN/描述配置自动执行。
+- 高风险/未知分类输入完整目标名称确认，受保护设备要求有效变更任务和维护窗口。32 步/10 分钟，错误、分页/交互、超时、断线、取消或离页停止；无自动重试/恢复/保存/回退。
+- 任务记忆开关/管理沿用聊天偏好，每次最多 5 条已确认记忆，任务不自动写入。WEB_ACCESS 通过专用本地密码框和厂商模板执行，整份模板高风险确认；口令不入模型/聊天/记忆，敏感输出隐藏至重新连接，不能当作 Web 可达/登录成功证据。不承诺完全擦除 JVM String/系统副本。
+- 最终源码预览包已重新安装并再次通过手机/平板 × 中英文 × 深浅色 8 组 UI 测试，每组 42 断言；模拟器恢复连接后，收紧中文任务范围校验后的复测已完成。未人为重启模拟器，不把预览 UI 结果扩大为真实服务商/交换机端到端验收。
+- 正式构建 435 项测试通过，Release Lint 0 错误 / 222 警告。正式包 V1/V2/V3 签名通过，证书匹配 GitHub V0.12.0。API 34 正式 V0.12.0 code 14 → V0.13.0 code 15 覆盖升级保留 firstInstallTime `2026-10-14 12:06:14`，冷启动 Status ok；未读取真实用户凭据或历史。
+- 本地正式 APK `NetSerial-AI-0.13.0.apk`：6,560,459 bytes；SHA-256 `c1fadf90e9a2045eedb2aca715f6b2bd32a69e65f6433bd1807a80dc32ffb85d`。远程上传/下载核验待完成。
+- 版本配置 `0.13.0` / code `15`，Debug `.preview013`；生产 applicationId 保持 `com.chenwei666.netserial`。实际验证范围见 [本版测试报告](Version/V0.13.0/docs/TEST_REPORT.md)，PR/标签及远程状态待实际发布后填写。
+- 尚未完成真实 AI 服务商、实体 Android/OEM、物理交换机、真实用户历史/凭据迁移验收。模板对应 H3C Comware 5/7、Huawei VRP、Cisco IOS/IOS XE、Ruijie RGOS，不代表所有型号/固件可用。
 
 ## V0.12.0 — 免 Root 工具箱与确认式 AI 记忆
 

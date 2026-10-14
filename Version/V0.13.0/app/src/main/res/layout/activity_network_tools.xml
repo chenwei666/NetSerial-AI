@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/toolbox_root" android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical" android:background="?attr/colorSurface">
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/network_tools_toolbar" android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize" android:background="?attr/colorSurface"
+        app:title="@string/tb_title" app:titleTextColor="?attr/colorOnSurface"
+        app:navigationIconTint="?attr/colorOnSurface" />
+    <ScrollView android:id="@+id/toolbox_scroll" android:layout_width="match_parent"
+        android:layout_height="0dp" android:layout_weight="1" android:fillViewport="true">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="vertical" android:padding="16dp">
+            <LinearLayout android:id="@+id/toolbox_catalog" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:orientation="vertical">
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="@string/tb_subtitle" android:textAppearance="?attr/textAppearanceTitleMedium"
+                    android:paddingBottom="12dp" />
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:hint="@string/tb_search">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/toolbox_search" android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:singleLine="true"
+                        android:inputType="text" android:importantForAutofill="no" android:maxLength="64" />
+                </com.google.android.material.textfield.TextInputLayout>
+                <LinearLayout android:id="@+id/toolbox_catalog_items" android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:orientation="vertical" />
+            </LinearLayout>
+            <LinearLayout android:id="@+id/toolbox_detail" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:orientation="vertical" android:visibility="gone"
+                android:baselineAligned="false">
+                <LinearLayout android:id="@+id/toolbox_parameters" android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:orientation="vertical">
+                <TextView android:id="@+id/toolbox_description" android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:textAppearance="?attr/textAppearanceBodyMedium"
+                    android:paddingBottom="12dp" />
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/toolbox_target_layout" style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="@string/tb_target">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/network_target" android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:singleLine="true" android:saveEnabled="false"
+                        android:importantForAutofill="no" android:inputType="textUri" android:maxLength="20000" />
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/toolbox_option_layout" style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp" android:hint="@string/tb_option">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/network_port" android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:singleLine="true" android:saveEnabled="false" android:importantForAutofill="no"
+                        android:inputType="text" android:maxLength="256" />
+                </com.google.android.material.textfield.TextInputLayout>
+                <LinearLayout android:id="@+id/toolbox_limits" android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginTop="8dp">
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/toolbox_timeout_layout" style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                        android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"
+                        android:hint="@string/tb_timeout">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/toolbox_timeout" android:layout_width="match_parent" android:layout_height="wrap_content"
+                            android:inputType="number" android:maxLength="2" android:singleLine="true" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/toolbox_count_layout" style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                        android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp" android:hint="@string/tb_count">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/toolbox_count" android:layout_width="match_parent" android:layout_height="wrap_content"
+                            android:inputType="number" android:maxLength="2" android:singleLine="true" android:text="4" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+                <com.google.android.material.button.MaterialButton android:id="@+id/toolbox_start"
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp" android:text="@string/tb_start" />
+                <com.google.android.material.button.MaterialButton android:id="@+id/toolbox_stop"
+                    style="@style/Widget.Material3.Button.OutlinedButton"
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="@string/tb_stop" android:visibility="gone" />
+                <ProgressBar android:id="@+id/toolbox_progress" style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent" android:layout_height="4dp"
+                    android:indeterminate="true" android:visibility="gone" />
+                <TextView android:id="@+id/toolbox_state" android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:text="@string/tb_ready"
+                    android:paddingTop="8dp" android:paddingBottom="12dp" android:accessibilityLiveRegion="polite" />
+                </LinearLayout>
+                <LinearLayout android:id="@+id/toolbox_results_container" android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:orientation="vertical">
+                <com.google.android.material.card.MaterialCardView android:id="@+id/toolbox_result_card"
+                    style="@style/Widget.NetSerial.Card" android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:visibility="gone">
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:padding="16dp" android:orientation="vertical">
+                        <TextView android:id="@+id/toolbox_result_title" android:layout_width="match_parent"
+                            android:layout_height="wrap_content" android:textAppearance="?attr/textAppearanceTitleLarge" />
+                        <TextView android:id="@+id/network_result" android:layout_width="match_parent"
+                            android:layout_height="wrap_content" android:layout_marginTop="8dp" android:textIsSelectable="true" />
+                        <LinearLayout android:id="@+id/toolbox_result_rows" android:layout_width="match_parent"
+                            android:layout_height="wrap_content" android:layout_marginTop="12dp" android:orientation="vertical" />
+                        <TextView android:id="@+id/toolbox_trend_label" android:layout_width="match_parent"
+                            android:layout_height="wrap_content" android:text="@string/tb_trend" android:visibility="gone" />
+                        <de.kai_morich.simple_usb_terminal.ToolboxTrendView android:id="@+id/toolbox_trend"
+                            android:layout_width="match_parent" android:layout_height="120dp" android:visibility="gone" />
+                        <com.google.android.material.button.MaterialButton android:id="@+id/toolbox_trace_device"
+                            style="@style/Widget.Material3.Button.OutlinedButton" android:layout_width="match_parent"
+                            android:layout_height="wrap_content" android:text="@string/tb_trace_device" android:visibility="gone" />
+                        <com.google.android.material.button.MaterialButton android:id="@+id/toolbox_raw_toggle"
+                            style="@style/Widget.Material3.Button.TextButton" android:layout_width="match_parent"
+                            android:layout_height="wrap_content" android:text="@string/tb_raw" android:visibility="gone" />
+                        <TextView android:id="@+id/toolbox_raw" android:layout_width="match_parent"
+                            android:layout_height="wrap_content" android:fontFamily="monospace" android:textSize="12sp"
+                            android:textIsSelectable="true" android:visibility="gone" />
+                        <com.google.android.material.button.MaterialButton android:id="@+id/toolbox_report"
+                            style="@style/Widget.Material3.Button.TonalButton" android:layout_width="match_parent"
+                            android:layout_height="wrap_content" android:text="@string/tb_report" />
+                        <com.google.android.material.button.MaterialButton android:id="@+id/toolbox_ai"
+                            style="@style/Widget.Material3.Button.TextButton" android:layout_width="match_parent"
+                            android:layout_height="wrap_content" android:text="@string/tb_ai" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

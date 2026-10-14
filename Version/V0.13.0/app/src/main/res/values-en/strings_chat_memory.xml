@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="chat_memory_title">Manage memory</string>
+    <string name="chat_memory_add">Add memory</string>
+    <string name="chat_memory_empty">No confirmed memories apply to this conversation. Your preferences and current-device notes appear here after you confirm them. Legacy automatic memories are not imported.</string>
+    <string name="chat_memory_global">My preferences · All devices</string>
+    <string name="chat_memory_device">This device only</string>
+    <string name="chat_memory_confirm">Review and remember</string>
+    <string name="chat_memory_edit">Edit memory</string>
+    <string name="chat_memory_save">Confirm and save</string>
+    <string name="chat_memory_saved">Saved encrypted; expires in 180 days</string>
+    <string name="chat_memory_content_hint">For example: I am a beginner; explain step by step</string>
+    <string name="chat_memory_confirmation_hint">Review the content and scope before saving. Maximum 1024 characters; expires in 180 days. Do not enter passwords, API keys or private keys. When memory is enabled, relevant notes are sent with your question to your selected AI provider.</string>
+    <string name="chat_memory_length_error">Enter 1–1024 characters. Content is never silently shortened.</string>
+    <string name="chat_memory_rejected">Not saved: the content may contain credentials, or memory capacity is full. Edit the content or remove unused memories.</string>
+    <string name="chat_memory_delete">Delete</string>
+    <string name="chat_memory_delete_title">Delete this memory?</string>
+    <string name="chat_memory_delete_hint">It will no longer be used in future questions. Content already sent to AI and chat history will not be recalled or erased.</string>
+    <string name="chat_memory_expiry">Expires %1$s</string>
+    <string name="chat_memory_used">Memory used for this request</string>
+    <string name="chat_memory_used_hint">These memories were selected for the latest request; delivery is not guaranteed. Later edits or deletions do not change that request.</string>
+    <string name="chat_memory_used_empty">No long-term memory was used.</string>
+    <string name="chat_memory_unsupported">Encrypted memory requires Android 6.0 or newer. This device will not save memory in plaintext.</string>
+    <string name="chat_memory_failure">Could not read or save memory. Memory will not be automatically reset and legacy records will not be used as a fallback. Do not clear app data; try again later.</string>
+</resources>

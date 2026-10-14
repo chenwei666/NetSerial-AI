@@ -1,13 +1,13 @@
-# NetSerial AI
+# NetSerial AI · V0.13.0 autonomous AI tasks
 
 <p align="center">
-  <img src="Version/V0.12.0/design/app-icon-512.png" width="112" alt="NetSerial AI app icon">
+  <img src="Version/V0.13.0/design/app-icon-512.png" width="112" alt="NetSerial AI app icon">
 </p>
 
 <p align="center">
   <strong>Your phone or tablet, your field network toolkit.</strong><br>
   Start with a symptom, or jump straight to a professional tool.<br>
-  Root-free diagnostics · USB Console · SSH/SFTP · Vendor commands · AI chat
+  Root-free diagnostics · USB Console · SSH/SFTP · AI chat and controlled tasks
 </p>
 
 <p align="center">
@@ -26,11 +26,19 @@
 
 **NetSerial AI is an open-source Android network operations toolkit.** Start with no Internet access, an unreachable switch or a port problem; collect evidence, understand the result and decide what to check next. Experienced users can open Ping, DNS, TCP or TLS directly.
 
-V0.12.0 organizes everyday diagnostics into **16 searchable tool entries** with clear inputs and numerical results. AI conversations gain readable formatting, a permanent settings button and long-term memory saved only after your confirmation.
+V0.13.0 adds explicit autonomous tasks to the **16-tool root-free toolkit** and confirmed AI memory. Start from the current device terminal, describe a goal, then let AI inspect state, request missing details and execute sequentially; high risks still require your approval.
 
-> **Current stable release: [V0.12.0 · GitHub Latest](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.12.0).** [PR #16](https://github.com/chenwei666/NetSerial-AI/pull/16) is merged, the production Release is published with draft/prerelease flags false, and the APK and `SHA256SUMS.txt` were downloaded again and verified. V0.10.0 remains a [historical stable release](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.10.0).
+> **V0.13.0 production release is authorized and being prepared.** Local production build, signing and in-place upgrade are verified; remote publication checks remain pending. This page does not prove assets are uploaded. [Planned release](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.13.0) · [Planned formal APK](https://github.com/chenwei666/NetSerial-AI/releases/download/v0.13.0/NetSerial-AI-0.13.0.apk) (may be unavailable until publication). The published [V0.12.0](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.12.0) remains available; the actual [GitHub Latest](https://github.com/chenwei666/NetSerial-AI/releases/latest) target is determined remotely.
 
-> **AI does not operate your switch for you.** Replies and commands remain reviewable drafts, not automatic actions. You decide the target, command, risk and final send.
+> **Ordinary chat remains draft-only; autonomous tasks require an explicit start.** Tasks bind the current connection, never a guessed latest device. Exact allowlisted queries and narrowly scoped VLAN/description changes can run automatically. High/unknown risk requires the full typed target; protected devices still require a matching change task and maintenance window.
+
+## Autonomous tasks start from one connected device
+
+- Connect USB Console / SSH / Telnet, complete login and reach a ready CLI prompt. Open AI from that terminal → **AI auto-execute**. Only the selected provider/model is used, without silent failover.
+- Strict single-action JSON, local risk rules, identification, state prechecks and read-back checks—not unrestricted command execution. Maximum 32 steps/10 minutes; missing parameters prompt a question. Errors, paging/interaction, timeout, disconnect, cancellation or leaving the page stop execution, without automatic retry/resume.
+- Receipts distinguish actual steps and uncertainty. Sent commands may have taken effect; no automatic startup-config save or rollback. A model summary is not proof of success.
+- Task-page memory controls share the ordinary-chat preference and select at most five confirmed memories; tasks never automatically save new memories or treat them as execution authority.
+- **Web accounts and HTTPS:** WEB_ACCESS uses local H3C Comware 5/7, Huawei VRP, Cisco IOS/IOS XE and Ruijie RGOS templates. Enter passwords only in the secure local dialog, not AI/chat/memory. One high-risk approval covers the template, including possible account/privilege replacement and HTTP exposure. Sensitive output stays suppressed until reconnect; CLI completion is not proof of reachability or login. Arrays are wiped, but complete JVM String/system-copy erasure is not promised.
 
 ## Pick the problem, find the tool
 
@@ -56,7 +64,7 @@ V0.12.0 organizes everyday diagnostics into **16 searchable tool entries** with 
 
 <img src="Version/V0.12.0/docs/images/toolbox-phone-dark.png" width="380" alt="V0.12.0 narrow phone dark network toolbox">
 
-These are actual app captures from an Android API 34 test environment, not mockups or proof of compatibility with every physical device. Chinese/English, system/light/dark appearance and the existing four accent themes are supported.
+These are **V0.12.0 baseline toolkit captures** from an Android API 34 app, not V0.13.0 task-page acceptance screenshots or proof of compatibility with every physical device. Chinese/English, system/light/dark appearance and the existing four accent themes are supported.
 
 - Search and categories; only the selected tool's parameters are shown.
 - Numerical facts, progress and detail rows first; raw output remains available in a collapsed section.
@@ -89,7 +97,7 @@ Custom endpoints target **OpenAI-compatible** APIs, not every provider's arbitra
 | Operations center | Incident evidence plans, runbooks, security checks, topology-output parsing and vendor detection |
 | Guided troubleshooting | Ten problem scenarios, existing terminal-output capture, explanations and resumable handoff |
 
-Tab completion depends on the connected terminal. Vendor rules are not a claim of testing every model or firmware. Capturing a device reads existing terminal output without silently sending commands; incomplete or paginated configuration is not a full recovery backup.
+Tab completion depends on the connected terminal. Vendor rules are not a claim of testing every model or firmware. The operations-center capture entry reads existing output; explicit AI tasks actively send commands under the rules above. Incomplete or paginated configuration is not a full recovery backup.
 
 ## Honest diagnostic boundaries
 
@@ -100,32 +108,34 @@ Tab completion depends on the connected terminal. Vendor rules are not a claim o
 
 ## Get started in three steps
 
-1. **Install and check the version:** download the APK and matching `SHA256SUMS.txt` from the [V0.12.0 production release](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.12.0). Update the older production app using the same-certificate formal APK without uninstalling first. An isolated Preview is not a production in-place update.
+1. **Install and check the version:** obtain a published APK and matching `SHA256SUMS.txt` from [GitHub Latest](https://github.com/chenwei666/NetSerial-AI/releases/latest). While V0.13.0 is being prepared, planned links are not proof of downloadable artifacts. Verify the original certificate before upgrading without uninstalling. An isolated Preview is not a production update.
 2. **Choose a problem or tool:** use the guided home scenarios or search the toolbox directly. Only assess authorized targets; review discovery and WOL confirmations carefully.
-3. **Read the evidence, then act:** connect USB/SSH and manually run checks when switch output is needed. Configure AI only if you want it, review the context, then send manually.
+3. **Choose chat or a task:** configure AI for ordinary questions, or explicitly open a task from the connected terminal, describe the goal and start. Review the target and impact before high-risk approval.
 
 Minimum Android 5.0. Encrypted credentials, persisted chat/memory and current-default-network details require Android 6.0+. The added normal `ACCESS_NETWORK_STATE` permission reads current network/DNS details; no Root, location or VPN capture permission is requested.
 
 ## Verification and documentation
 
-Local release checks passed: **338 JVM tests**, Debug/Release Lint **0 errors / 218 warnings**, **eight phone/tablet × language × light/dark UI combinations with 138 assertions each**, and **64 AI regression assertions**. The formal APK passed V1/V2/V3 signature and ZIP-alignment verification, with its certificate matching a freshly downloaded V0.10.0 formal APK. A clean API 34 environment passed the V0.10.0 → V0.12.0 in-place install, preserved first-install timestamp and cold start.
+The local V0.13.0 production build passed **435 tests; Release Lint: 0 errors / 222 warnings**. V1/V2/V3 signature verification passed, the production application ID is unchanged, and the certificate matches the GitHub V0.12.0 formal APK. API 34 passed a formal V0.12.0 code 14 → V0.13.0 code 15 in-place upgrade, preserved first-install time and cold-start Status ok. See the [current test report](Version/V0.13.0/docs/TEST_REPORT.md).
 
-V0.12.0 is published as GitHub Latest. The downloaded APK is **6,506,868 bytes**, with SHA-256 `fce9f7d5a4a60fe16d72ab357dabfbd769347767549b22075a6b8d6325f19cf8`, matching the local artifact and published checksum file.
+The isolated preview built from final source was reinstalled and again passed **eight phone/tablet × Chinese/English × light/dark UI combinations, 42 assertions each**. Emulator reconnection allowed completion of the stricter Chinese task-scope build retest. This is preview UI evidence, not live hardware/provider end-to-end acceptance.
 
-These checks do not prove real-user credential/history migration or acceptance of physical phones, USB chipsets, switches, Internet services or owned AI accounts. A separate additional production-APK Ping UI retest did not complete because the emulator's `system_server` exited; it is not counted as a pass. See the [test report](Version/V0.12.0/docs/TEST_REPORT.md).
+Local formal APK: **6,560,459 bytes**; SHA-256: `c1fadf90e9a2045eedb2aca715f6b2bd32a69e65f6433bd1807a80dc32ffb85d`. GitHub upload and re-download verification are still pending; a local hash does not establish a remote asset.
 
-- [English guide](Version/V0.12.0/README_EN.md) · [中文使用说明](Version/V0.12.0/README.md)
-- [Security boundaries](Version/V0.12.0/docs/SECURITY.md) · [Report a security issue](SECURITY.md)
-- [Build and signing](Version/V0.12.0/docs/RELEASE.md) · [Architecture](Version/V0.12.0/docs/ARCHITECTURE.md)
+Live AI providers, physical/OEM devices, actual switches and real-user migration remain unaccepted. Validate automatic execution and local templates on authorized equipment; compilation, synthetic transcripts and UI checks do not certify all devices. Earlier results remain in [version history](VERSION_HISTORY_EN.md).
+
+- [English guide](Version/V0.13.0/README_EN.md) · [中文使用说明](Version/V0.13.0/README.md)
+- [Security boundaries](Version/V0.13.0/docs/SECURITY.md) · [Report a security issue](SECURITY.md)
+- [Build and signing](Version/V0.13.0/docs/RELEASE.md) · [Architecture](Version/V0.13.0/docs/ARCHITECTURE.md)
 - [Changelog](CHANGELOG.md) · [Version history](VERSION_HISTORY_EN.md) · [Contributing](CONTRIBUTING.md)
 
 Build an isolated preview:
 
 ```powershell
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\Version\V0.12.0\scripts\build.ps1
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\Version\V0.13.0\scripts\build.ps1
 ```
 
-Debug ID: `com.chenwei666.netserial.preview012`. It coexists with production without importing its credentials/history. Historical sources remain under `Version/V*`; V0.11.0 is a development record incorporated into V0.12.0, not a separate Release. Production signing material stays outside the repository.
+Debug ID: `com.chenwei666.netserial.preview013`. It coexists with production without importing its credentials/history. Historical sources remain under `Version/V*`; V0.11.0 is a development record incorporated into V0.12.0, not a separate Release. Production signing material stays outside the repository.
 
 ## Help turn field experience into better tools
 
@@ -135,4 +145,4 @@ Commands, bilingual documentation, real-device results and small reproducible PR
 
 ## Origin and license
 
-Built on Kai Morich's [SimpleUsbTerminal](https://github.com/kai-morich/SimpleUsbTerminal), retaining the MIT license and upstream attribution. New features and maintenance: [chenwei666](https://github.com/chenwei666). See [LICENSE](LICENSE) and [UPSTREAM.md](Version/V0.12.0/UPSTREAM.md).
+Built on Kai Morich's [SimpleUsbTerminal](https://github.com/kai-morich/SimpleUsbTerminal), retaining the MIT license and upstream attribution. New features and maintenance: [chenwei666](https://github.com/chenwei666). See [LICENSE](LICENSE) and [UPSTREAM.md](Version/V0.13.0/UPSTREAM.md).

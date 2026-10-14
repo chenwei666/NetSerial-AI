@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical">
+    <androidx.appcompat.widget.Toolbar android:id="@+id/change_toolbar"
+        android:layout_width="match_parent" android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary" android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        android:title="@string/change_title" />
+    <ScrollView android:layout_width="match_parent" android:layout_height="match_parent">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="vertical" android:padding="16dp">
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:text="@string/change_security_note" />
+            <EditText android:id="@+id/change_ticket" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="@string/change_ticket" android:importantForAutofill="no" android:inputType="text" android:maxLength="128" />
+            <EditText android:id="@+id/change_site" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="@string/change_site" android:importantForAutofill="no" android:inputType="text" android:maxLength="256" />
+            <EditText android:id="@+id/change_device" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="@string/change_device" android:importantForAutofill="no" android:inputType="text" android:maxLength="128" />
+            <EditText android:id="@+id/change_operator" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="@string/change_operator" android:importantForAutofill="no" android:inputType="text" android:maxLength="128" />
+            <EditText android:id="@+id/change_duration" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="@string/change_duration" android:importantForAutofill="no" android:inputType="number" android:maxLength="4" />
+            <EditText android:id="@+id/change_goal" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="@string/change_goal" android:importantForAutofill="no" android:inputType="textMultiLine" android:maxLength="2000" android:minLines="2" />
+            <EditText android:id="@+id/change_precheck" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="@string/change_precheck" android:fontFamily="monospace" android:importantForAutofill="no" android:inputType="textMultiLine" android:maxLength="8000" android:minLines="2" />
+            <EditText android:id="@+id/change_commands" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="@string/change_commands" android:fontFamily="monospace" android:importantForAutofill="no" android:inputType="textMultiLine" android:maxLength="12000" android:minLines="3" />
+            <EditText android:id="@+id/change_verification" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="@string/change_verification" android:fontFamily="monospace" android:importantForAutofill="no" android:inputType="textMultiLine" android:maxLength="8000" android:minLines="2" />
+            <EditText android:id="@+id/change_rollback" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="@string/change_rollback" android:fontFamily="monospace" android:importantForAutofill="no" android:inputType="textMultiLine" android:maxLength="8000" android:minLines="2" />
+            <Button android:id="@+id/change_start" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/change_start" />
+            <LinearLayout style="?android:attr/buttonBarStyle" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
+                <Button android:id="@+id/change_complete" style="?android:attr/buttonBarButtonStyle" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="@string/change_complete" />
+                <Button android:id="@+id/change_cancel" style="?android:attr/buttonBarButtonStyle" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="@string/change_cancel" />
+            </LinearLayout>
+            <Button android:id="@+id/change_export" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/change_export" />
+            <Button android:id="@+id/change_export_pdf" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/change_export_pdf" />
+            <TextView android:id="@+id/change_status" android:layout_width="match_parent" android:layout_height="wrap_content" android:paddingTop="8dp" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -1,0 +1,2 @@
+c1fadf90e9a2045eedb2aca715f6b2bd32a69e65f6433bd1807a80dc32ffb85d  NetSerial-AI-0.13.0.apk
+a806d323f4f0037aee099b762e5c21e6c98cd6b21fb3dda56105f9623008c345  NetSerial-AI-0.13.0-preview.apk
