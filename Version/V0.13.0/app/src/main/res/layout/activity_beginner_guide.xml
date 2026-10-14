@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/guide_root" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:orientation="vertical"
+    android:background="?attr/colorSurface">
+    <com.google.android.material.appbar.MaterialToolbar android:id="@+id/guide_toolbar"
+        android:layout_width="match_parent" android:layout_height="?attr/actionBarSize" />
+    <androidx.core.widget.NestedScrollView android:id="@+id/guide_scroll"
+        android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1"
+        android:fillViewport="true">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="vertical" android:padding="20dp">
+            <TextView android:id="@+id/guide_description" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:textAppearance="?attr/textAppearanceTitleLarge" />
+            <TextView android:id="@+id/guide_scope" android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginTop="12dp" android:textAppearance="?attr/textAppearanceBodyMedium" />
+            <TextView android:id="@+id/guide_step" android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginTop="24dp" android:textStyle="bold" android:textAppearance="?attr/textAppearanceTitleMedium" />
+            <LinearLayout android:id="@+id/guide_network_fields" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:orientation="vertical">
+                <com.google.android.material.textfield.TextInputLayout android:id="@+id/guide_target_layout"
+                    android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="12dp"
+                    android:hint="@string/guide_target" app:helperText="@string/guide_target_help">
+                    <com.google.android.material.textfield.TextInputEditText android:id="@+id/guide_target"
+                        android:layout_width="match_parent" android:layout_height="wrap_content" android:singleLine="true"
+                        android:maxLength="253" android:inputType="textUri" android:saveEnabled="false" />
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:layout_marginTop="12dp"
+                    android:hint="@string/guide_port" app:helperText="@string/guide_port_help">
+                    <com.google.android.material.textfield.TextInputEditText android:id="@+id/guide_port"
+                        android:layout_width="match_parent" android:layout_height="wrap_content" android:singleLine="true"
+                        android:maxLength="5" android:inputType="number" android:saveEnabled="false" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+            <LinearLayout android:id="@+id/guide_switch_fields" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:orientation="vertical">
+                <TextView android:id="@+id/guide_session" android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp" android:accessibilityLiveRegion="polite" />
+                <com.google.android.material.button.MaterialButton android:id="@+id/guide_capture"
+                    style="@style/Widget.Material3.Button.TonalButton" android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:text="@string/guide_capture" />
+                <com.google.android.material.button.MaterialButton android:id="@+id/guide_connect"
+                    style="@style/Widget.Material3.Button.TextButton" android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:text="@string/guide_connect" />
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="@string/guide_vendor" android:labelFor="@id/guide_vendor" />
+                <Spinner android:id="@+id/guide_vendor" android:layout_width="match_parent"
+                    android:layout_height="48dp" android:saveEnabled="false" />
+                <com.google.android.material.textfield.TextInputLayout android:id="@+id/guide_parameter_layout"
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:hint="@string/guide_parameter" app:helperText="@string/guide_parameter_help">
+                    <com.google.android.material.textfield.TextInputEditText android:id="@+id/guide_parameter"
+                        android:layout_width="match_parent" android:layout_height="wrap_content" android:maxLength="64"
+                        android:singleLine="true" android:inputType="textVisiblePassword" android:saveEnabled="false" />
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.button.MaterialButton android:id="@+id/guide_prepare"
+                    style="@style/Widget.Material3.Button.OutlinedButton" android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:text="@string/guide_prepare" />
+                <LinearLayout android:id="@+id/guide_commands" android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:orientation="vertical" />
+            </LinearLayout>
+            <com.google.android.material.textfield.TextInputLayout android:id="@+id/guide_evidence_layout"
+                android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="12dp"
+                android:hint="@string/guide_evidence" app:helperText="@string/guide_evidence_help">
+                <com.google.android.material.textfield.TextInputEditText android:id="@+id/guide_evidence"
+                    android:layout_width="match_parent" android:layout_height="wrap_content" android:minLines="4" android:maxLines="8"
+                    android:maxLength="32000" android:gravity="top|start" android:inputType="textMultiLine|textNoSuggestions"
+                    android:saveEnabled="false" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.button.MaterialButton android:id="@+id/guide_start"
+                android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="16dp"
+                android:text="@string/guide_start" />
+            <ProgressBar android:id="@+id/guide_progress" style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent" android:layout_height="4dp" android:visibility="gone" />
+            <TextView android:id="@+id/guide_progress_text" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:accessibilityLiveRegion="polite" android:visibility="gone" />
+            <com.google.android.material.button.MaterialButton android:id="@+id/guide_cancel"
+                style="@style/Widget.Material3.Button.TextButton" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:text="@string/guide_cancel" android:visibility="gone" />
+            <TextView android:id="@+id/guide_summary" android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginTop="20dp" android:textAppearance="?attr/textAppearanceTitleMedium"
+                android:accessibilityLiveRegion="polite" android:visibility="gone" />
+            <LinearLayout android:id="@+id/guide_results" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:orientation="vertical" />
+            <LinearLayout android:id="@+id/guide_report_actions" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:orientation="vertical" android:visibility="gone">
+                <com.google.android.material.button.MaterialButton android:id="@+id/guide_ai"
+                    style="@style/Widget.Material3.Button.TonalButton" android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:text="@string/guide_ai" />
+                <com.google.android.material.button.MaterialButton android:id="@+id/guide_share"
+                    style="@style/Widget.Material3.Button.OutlinedButton" android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:text="@string/guide_share" />
+            </LinearLayout>
+            <com.google.android.material.button.MaterialButton android:id="@+id/guide_backup"
+                style="@style/Widget.Material3.Button.OutlinedButton" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:text="@string/guide_backup" android:visibility="gone" />
+            <com.google.android.material.button.MaterialButton android:id="@+id/guide_professional"
+                style="@style/Widget.Material3.Button.TextButton" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:text="@string/guide_professional" />
+            <com.google.android.material.button.MaterialButton android:id="@+id/guide_finish"
+                style="@style/Widget.Material3.Button.TextButton" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:text="@string/guide_finish" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>

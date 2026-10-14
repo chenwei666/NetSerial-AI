@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="chat_render_copy_original">Copy original</string>
+    <string name="chat_render_remember">Remember</string>
+    <string name="chat_render_code">Code / commands</string>
+    <string name="chat_render_copy_code">Copy code</string>
+    <string name="chat_render_truncated">Display shortened for a long answer. Use Copy original for the full text.</string>
+    <string name="chat_render_review_commands">Review commands (%1$d)</string>
+    <string name="chat_render_commands_title">Choose a command to review</string>
+    <string name="chat_render_command_review">Open safety check and command preview</string>
+    <string name="chat_render_command_blocked">Critical-risk command. Terminal handoff is blocked.</string>
+</resources>

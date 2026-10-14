@@ -1,0 +1,24 @@
+<resources>
+    <string name="chat_ui_title">AI 助手</string>
+    <string name="chat_ui_context">设备与上下文</string>
+    <string name="chat_ui_memory_manage">记忆管理</string>
+    <string name="chat_ui_memory_not_sent">尚未使用记忆</string>
+    <string name="chat_ui_memory_used">本次记忆 · %1$d 条</string>
+    <string name="chat_ui_memory_failure">记忆暂时无法读取，请检查记忆管理或关闭“使用已确认记忆”后再发送。</string>
+    <string name="chat_ui_use_terminal">带入本次终端回显</string>
+    <string name="chat_ui_use_memory">使用已确认的个人偏好与设备记忆</string>
+    <string name="chat_ui_context_notice">勾选的内容会随消息发给所选 AI 服务商。记忆需单独确认保存，不会自动提取；聊天历史独立加密保存在本机。</string>
+    <string name="chat_ui_ready">回答仅供参考，命令不会自动执行。</string>
+    <string name="chat_ui_input">输入问题或设备输出…</string>
+    <string name="chat_ui_provider_missing">点右上角齿轮配置 AI</string>
+    <string name="chat_ui_device">当前设备：%1$s · %2$s · %3$s</string>
+    <string name="chat_ui_generic">通用设备</string>
+    <string name="chat_ui_mode_user">用户视图</string>
+    <string name="chat_ui_mode_system">配置视图</string>
+    <string name="chat_ui_mode_interface">接口视图</string>
+    <string name="chat_ui_mode_unknown">模式待确认</string>
+    <string name="chat_ui_history_scope">这段历史属于另一设备。请新建对话后再发送，避免混用设备信息。</string>
+    <string name="chat_ui_terminal_empty">这次进入对话时没有带入终端回显。</string>
+    <string name="chat_ui_new_title">新对话</string>
+    <string name="chat_ui_history_memory_separate">删除聊天不会删除已确认的长期记忆。是否删除这段聊天？</string>
+</resources>

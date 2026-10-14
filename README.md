@@ -1,13 +1,13 @@
-# NetSerial AI
+# NetSerial AI · V0.13.0 AI 自动任务
 
 <p align="center">
-  <img src="Version/V0.12.0/design/app-icon-512.png" width="112" alt="NetSerial AI 应用图标">
+  <img src="Version/V0.13.0/design/app-icon-512.png" width="112" alt="NetSerial AI 应用图标">
 </p>
 
 <p align="center">
   <strong>手机和平板，就是你的随身网络运维工具箱。</strong><br>
   不懂命令，按问题排查；熟悉现场，直达专业工具。<br>
-  免 Root 网络诊断 · USB Console · SSH/SFTP · 多厂商命令 · AI 对话
+  免 Root 网络诊断 · USB Console · SSH/SFTP · AI 对话与受控自动任务
 </p>
 
 <p align="center">
@@ -26,11 +26,19 @@
 
 **NetSerial AI 是一个开源 Android 网络运维工具箱。** 从“上不了网”“交换机登不上”“端口不通”出发，收集证据、读懂结果，再决定下一步；也可以直接打开 Ping、DNS、TCP、TLS 等工具做专业检查。
 
-V0.12.0 把常用网络工具重新整理为 **16 个清晰入口**：可搜索、按用途分类，结果先显示数值和结论。AI 对话也换成更易读的排版，设置固定在右上角；重要信息由你确认后再记住。
+V0.13.0 在 **16 项免 Root 工具箱**和确认式 AI 记忆基础上增加显式自动任务：从当前设备终端进入，用一句话描述目标，由 AI 读取现状、追问必要信息并逐步执行；高风险操作仍由你确认。
 
-> **当前正式版：[V0.12.0 · GitHub Latest](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.12.0)。** [PR #16](https://github.com/chenwei666/NetSerial-AI/pull/16) 已合并，正式 Release 已发布（非草稿、非预发布）；线上 APK 与 `SHA256SUMS.txt` 重新下载核验一致。V0.10.0 保留为[历史稳定版](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.10.0)。
+> **V0.13.0 正式发布准备中，用户已授权。** 本地生产构建、签名与覆盖升级已验证，远程发布核验尚待完成；本页不能证明资产已经上传。[计划发布页](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.13.0) · [计划正式 APK](https://github.com/chenwei666/NetSerial-AI/releases/download/v0.13.0/NetSerial-AI-0.13.0.apk)（发布完成前可能不可用）。已发布的 [V0.12.0](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.12.0) 保留；[GitHub Latest](https://github.com/chenwei666/NetSerial-AI/releases/latest) 的实际指向以远程结果为准。
 
-> **AI 不替你操作交换机。** 回复与命令都是待审核草稿，不会自动下发；真正发送仍由你核对设备、命令和风险。
+> **普通聊天仍然只生成草稿；自动任务需要你显式开始。** 任务绑定当前连接，不选择“最近设备”。精确白名单查询与目标范围内有限 VLAN/描述配置可以自动执行；高风险或未知风险要求输入完整目标名称确认，受保护设备继续校验变更任务与维护窗口。
+
+## AI 自动任务：从当前设备开始
+
+- 先连接 USB Console / SSH / Telnet、完成登录并停在正常 CLI 提示符，再从该终端进入 AI → **AI 自动执行**。只使用当前选定的厂商和模型，不静默切换服务商。
+- 单动作严格 JSON、本地风险门禁、设备识别、现状读取与回读检查；不是任意命令自由执行。每次最多 32 步/10 分钟，缺参数时追问；出错、分页/交互、超时、断线、取消或离页停止，无自动重试/恢复。
+- 显示本次执行回执，已发送的配置可能已生效；不会自动保存启动配置或回退。查询不等于完整业务验收，模型总结不是成功证据。
+- 任务页可控制是否使用已确认记忆并进入记忆管理，沿用普通聊天偏好，每次最多 5 条；不自动写新记忆，也不把记忆当执行授权。
+- **开通 Web 与账号：** WEB_ACCESS 使用本地 H3C Comware 5/7、Huawei VRP、Cisco IOS/IOS XE、Ruijie RGOS 模板；密码只填专用本地安全框，不进入模型/聊天/记忆。模板整体一次高风险确认，提示创建/覆盖账号、权限和 HTTP 风险。敏感回显隐藏至重新连接，不证明网页可达或登录成功。口令数组会清零，但不承诺清除全部 JVM String / 系统副本。
 
 ## 遇到问题，直接找到工具
 
@@ -56,7 +64,7 @@ V0.12.0 把常用网络工具重新整理为 **16 个清晰入口**：可搜索�
 
 <img src="Version/V0.12.0/docs/images/toolbox-phone-dark.png" width="380" alt="V0.12.0 手机窄屏深色网络工具箱">
 
-截图来自 Android API 34 测试环境的实际应用，不是效果图，也不代表所有实体手机、平板或交换机已经完成兼容验收。支持中英文、跟随系统 / 浅色 / 深色及既有四套主题。
+以上为 **V0.12.0 工具箱基线截图**，来自 Android API 34 实际应用，不是 V0.13.0 自动任务页面的验收截图，也不代表所有实体手机、平板或交换机兼容。支持中英文、跟随系统 / 浅色 / 深色及既有四套主题。
 
 - 工具搜索与用途分类，选中后只显示相关参数，不再堆满按钮。
 - 数值、结果明细与进度优先；原始输出折叠保留，便于专业排查。
@@ -89,7 +97,7 @@ V0.12.0 把常用网络工具重新整理为 **16 个清晰入口**：可搜索�
 | 运维中心 | 故障取证计划、运行手册、安全巡检、拓扑回显解析与厂商识别 |
 | 新手排障 | 十个问题场景，当前终端已有回显读取、解释与继续排障 |
 
-Tab 补全依赖设备终端本身。厂商命令与识别规则不表示全部型号或固件已实测。读取当前设备只利用已有终端输出，不偷偷发送命令；缺页/截断配置不是完整恢复备份。
+Tab 补全依赖设备终端本身。厂商命令与识别规则不表示全部型号或固件已实测。运维中心的“读取当前设备”入口只利用已有终端输出；新增 AI 自动任务则按上文授权规则主动下发。缺页/截断配置不是完整恢复备份。
 
 ## 检测有边界，结果不夸大
 
@@ -100,32 +108,34 @@ Tab 补全依赖设备终端本身。厂商命令与识别规则不表示全部�
 
 ## 三步开始
 
-1. **安装并核对版本**：从 [V0.12.0 正式发布页](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.12.0) 获取 APK 与同页 `SHA256SUMS.txt`。旧正式版可使用同证书正式包覆盖安装，不要先卸载；独立 Preview 不是正式版覆盖升级包。
+1. **安装并核对版本**：从 [GitHub Latest](https://github.com/chenwei666/NetSerial-AI/releases/latest) 获取已发布 APK 与同页 `SHA256SUMS.txt`。V0.13.0 仍处发布准备时不要将计划链接视为可下载产物；正式升级须核对原证书，不要先卸载。独立 Preview 不是正式版覆盖升级包。
 2. **选问题或工具**：新手从首页场景开始，熟悉操作可直达工具箱搜索。只有获授权的目标才应被检测；私网发现与 WOL 需核对后确认。
-3. **看结果，再决定下一步**：需要交换机回显时先连接 USB/SSH 并手动执行检查命令；需要 AI 时再配置服务商，预览上下文后手动发送。
+3. **选择聊天或自动任务**：配置 AI 后可手动发送普通问题；需要执行任务时，从已连接设备终端显式进入自动任务，明确目标并开始。高风险确认前核对设备和影响。
 
 最低 Android 5.0；加密凭据、持久化聊天/记忆及当前默认网络详情需要 Android 6.0+。新增普通 `ACCESS_NETWORK_STATE` 权限用于读取当前网络/DNS；不申请 Root、定位或 VPN 抓包权限。
 
 ## 验证与文档
 
-本地发布验收已通过：**338 项 JVM 测试**，Debug/Release Lint **0 错误 / 218 警告**，手机/平板 × 中英文 × 深浅色 **8 组界面检查，每组 138 项断言**，以及 **64 项 AI 回归断言**。正式 APK 的 V1/V2/V3 签名与 ZIP 对齐通过，证书与重新下载的 V0.10.0 正式 APK 一致；API 34 干净测试环境已完成 V0.10.0 → V0.12.0 覆盖安装、首次安装时间保持与冷启动检查。
+V0.13.0 本地正式构建通过 **435 项测试，Release Lint 0 错误 / 222 警告**。正式 APK 的 V1/V2/V3 签名通过，生产应用身份保持不变，证书与 GitHub V0.12.0 正式包一致。API 34 环境完成正式 V0.12.0 code 14 → V0.13.0 code 15 覆盖安装，首次安装时间保持，冷启动 Status 为 ok。详见 [本版测试报告](Version/V0.13.0/docs/TEST_REPORT.md)。
 
-V0.12.0 已发布为 GitHub Latest，远程重新下载的 APK 为 **6,506,868 bytes**，SHA-256 为 `fce9f7d5a4a60fe16d72ab357dabfbd769347767549b22075a6b8d6325f19cf8`，与本地产物和线上校验文件一致。
+最终源码对应的独立预览包已重新安装，并再次通过手机/平板 × 中英文 × 深浅色 **8 组 UI 测试，每组 42 项断言**。模拟器恢复连接后完成了收紧中文任务范围校验后的复测；这些是预览包 UI 证据，不等同真实设备或服务商端到端验证。
 
-上述验证不证明真实用户凭据/历史迁移，也不代替实体手机、USB 芯片、交换机、公网服务或自有 AI 账号验收。另一次正式包 Ping 界面附加复测因模拟器 `system_server` 退出而未完成，未计为通过；详见 [测试报告](Version/V0.12.0/docs/TEST_REPORT.md)。
+本地正式 APK：**6,560,459 bytes**；SHA-256：`c1fadf90e9a2045eedb2aca715f6b2bd32a69e65f6433bd1807a80dc32ffb85d`。GitHub 上传及重新下载核验仍待完成，不以本地哈希推断远程资产已存在。
 
-- [中文使用说明](Version/V0.12.0/README.md) · [English guide](Version/V0.12.0/README_EN.md)
-- [安全边界](Version/V0.12.0/docs/SECURITY.md) · [安全问题报告](SECURITY.md)
-- [构建与签名](Version/V0.12.0/docs/RELEASE.md) · [架构](Version/V0.12.0/docs/ARCHITECTURE.md)
+尚未完成真实 AI 服务商、实体手机/OEM、物理交换机及真实用户数据迁移验收。自动执行与 Web 模板必须在获授权环境核对兼容性，不能仅凭编译、模拟回显或 UI 测试声称所有设备可用。历史版结果保留在 [版本历史](VERSION_HISTORY.md)。
+
+- [中文使用说明](Version/V0.13.0/README.md) · [English guide](Version/V0.13.0/README_EN.md)
+- [安全边界](Version/V0.13.0/docs/SECURITY.md) · [安全问题报告](SECURITY.md)
+- [构建与签名](Version/V0.13.0/docs/RELEASE.md) · [架构](Version/V0.13.0/docs/ARCHITECTURE.md)
 - [变更记录](CHANGELOG.md) · [历史版本](VERSION_HISTORY.md) · [贡献指南](CONTRIBUTING.md)
 
 从源码构建独立预览：
 
 ```powershell
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\Version\V0.12.0\scripts\build.ps1
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\Version\V0.13.0\scripts\build.ps1
 ```
 
-Debug 包名 `com.chenwei666.netserial.preview012`，与正式版共存，不自动导入其凭据和历史。完整历史源码保存在 `Version/V*`；V0.11.0 是并入 V0.12.0 的开发记录，不单独发布 Release。生产签名材料不进入仓库。
+Debug 包名 `com.chenwei666.netserial.preview013`，与正式版共存，不自动导入其凭据和历史。完整历史源码保存在 `Version/V*`；V0.11.0 是并入 V0.12.0 的开发记录，不单独发布 Release。生产签名材料不进入仓库。
 
 ## 一起把现场经验变成好用的工具
 
@@ -135,4 +145,4 @@ Debug 包名 `com.chenwei666.netserial.preview012`，与正式版共存，不自
 
 ## 来源与许可证
 
-基于 Kai Morich 的 [SimpleUsbTerminal](https://github.com/kai-morich/SimpleUsbTerminal) 扩展，保留 MIT 许可证与上游署名。新增功能与维护者：[chenwei666](https://github.com/chenwei666)。详见 [LICENSE](LICENSE) 与 [UPSTREAM.md](Version/V0.12.0/UPSTREAM.md)。
+基于 Kai Morich 的 [SimpleUsbTerminal](https://github.com/kai-morich/SimpleUsbTerminal) 扩展，保留 MIT 许可证与上游署名。新增功能与维护者：[chenwei666](https://github.com/chenwei666)。详见 [LICENSE](LICENSE) 与 [UPSTREAM.md](Version/V0.13.0/UPSTREAM.md)。
