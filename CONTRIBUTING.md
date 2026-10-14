@@ -14,10 +14,12 @@
 ## 构建与测试
 
 ```powershell
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\Version\V0.10.0\scripts\build.ps1
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\Version\V0.12.0\scripts\build.ps1
 ```
 
-提交前请确保单元测试、Android Lint 和 Debug 构建通过。V0.10.0 默认生成独立的 `com.chenwei666.netserial.preview` 包，不覆盖正式版，也不迁移正式版凭据。脚本适用于既有 Windows 工具链；其他环境可在 `Version/V0.10.0` 配置自己的 Android SDK 后运行 Gradle 的 `testDebugUnitTest lintDebug assembleDebug`。贡献者不需要生产签名密钥。涉及真实硬件或厂商 API 的改动，请说明设备、系统版本、测试范围和未覆盖项，但不要提交凭据或现场敏感数据。
+提交前请确保单元测试、Android Lint 和 Debug 构建通过。V0.12.0 默认生成独立的 `com.chenwei666.netserial.preview012` 包，不覆盖正式版，也不迁移正式版凭据。脚本适用于既有 Windows 工具链；其他环境可在 `Version/V0.12.0` 配置自己的 Android SDK 后运行 Gradle 的 `testDebugUnitTest lintDebug assembleDebug`。贡献者不需要生产签名密钥。涉及真实硬件或厂商 API 的改动，请说明设备、系统版本、测试范围和未覆盖项，但不要提交凭据或现场敏感数据。
+
+网络工具改动需保留免 Root、参数化调用、可取消/有界资源与真实数值语义；没有回包不能写作零延迟，未知/受限不能写作成功。测试优先使用合成数据和本机回环，不默认扫描真实网络。私网发现与 WOL 需显式确认，TLS 不得绕过证书或域名验证，HTTP 不自动跟随跳转或发送凭据。新增记忆必须保留用户确认、范围隔离和加密边界。
 
 ## 提交与 Pull Request
 

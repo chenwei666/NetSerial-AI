@@ -1,9 +1,39 @@
 # Project Changelog
 
+## V0.12.0 — 2026-10-14 · 免 Root 工具箱与确认式 AI 记忆
+
+- 维护者：chenwei666。独立源码归档：`Version/V0.12.0`；生产 versionCode 14 / versionName 0.12.0，保留正式包名、既有生产证书、minSdk 21、targetSdk/compileSdk 36。
+- 发布状态：本地正式构建与发布验收通过；[v0.12.0 目标发布页](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.12.0) 准备中，远程发布和下载校验尚未完成。未提前宣称 GitHub Latest 已切换。
+
+### 功能与修复
+
+- 16 个常用工具：基础体检、Ping、TCP、Trace、MTU、地址摘要、DNS、HTTP/HTTPS、TLS、本机网络、受限局域网发现、WOL、CIDR、MAC/OUI、端口速查与标识提取。
+- 手机/平板自适应布局、用途分类与搜索、按需输入、数值优先、Ping 趋势、折叠原始输出和取消。Ping 改用实际 RTT/统计；Trace 权限错误不再作为正常结果展示。
+- 免 Root TTL 路径探测和 IPv4 DF/MTU 明确未知/受限状态；超时不推断准确 MTU 上限，1500 成功只报告已验证下界。
+- DNS 常用记录与显式服务器、边界校验/截断 TCP 回退；HTTP 只发无凭据 HEAD、不跟随跳转，TLS 保留信任链和域名验证；报告隐藏 Cookie 与 URL 路径/查询。
+- 发现仅接受 RFC1918 `/26`–`/32`、最多 64 地址/4 TCP 端口/40 秒预算，需明确确认；WOL 需确认且“发送”不代表已唤醒。新增普通 `ACCESS_NETWORK_STATE`，无 Root 或凭据格式迁移。
+- 并入 V0.11.0 AI 对话布局、常驻设置、原生 Markdown 子集与独立代码复制；确认式长期记忆支持编辑、范围、加密保存、管理和最近请求记录，与聊天历史分离。旧自动记忆不导入。
+- 脱敏报告先预览再复制、分享或转为可编辑 AI 草稿，不自动提交 AI、不改变交换机；旧终端和命令风险门禁保留。
+
+### 本地验收与限制
+
+- 338 项 JVM 测试通过；Debug/Release Lint 0 错误 / 218 警告；8 组手机/平板、语言、深浅色 UI 各 138 项断言通过；AI 回归 64 项断言通过。
+- 正式 APK `NetSerial-AI-0.12.0.apk`：6,506,868 bytes；SHA-256：`fce9f7d5a4a60fe16d72ab357dabfbd769347767549b22075a6b8d6325f19cf8`。V1/V2/V3 签名、ZIP 对齐通过；证书与重新下载的 V0.10.0 正式包一致。
+- API 34 干净模拟器中，真实 V0.10.0 code 12 → V0.12.0 code 14 覆盖安装、首次安装时间不变及冷启动通过。不证明真实用户密钥/历史迁移。
+- 无全部 Android/OEM、物理交换机、真实公网服务或付费 AI 验收声明。DNSSEC、全部 TLS 协议/吊销扫描、完整资产发现和 WOL 实际开机不在保证范围。远程发布结果待核验后记录。
+
+English: Sixteen root-free, bounded network tools with adaptive layouts and honest measurement states; readable AI chat, fixed settings and explicitly confirmed memory. Local production checks pass, including signing and a clean test upgrade. Remote publication/download verification is still pending; physical-device and real-network coverage is not implied.
+
+## V0.11.0 — 2026-10-14 · 开发记录，未单独发布
+
+- 本地独立 AI 预览 `.preview011` / code 13：对话优先排版、常驻设置、Markdown 子集、原始命令保留与代码复制。
+- 新增“确认后记住”，加密长期记忆与聊天历史分离，管理/删除、180 天有效期、每次最多选用 5 条；不自动保存每次问答、不导入旧自动记忆。
+- 源码见 `Version/V0.11.0`。这是并入 V0.12.0 的开发检查点，**没有独立 GitHub Release 或生产发布**；不以 V0.11.0 Debug 包覆盖正式版。
+
 ## V0.10.0 — 2026-10-13 · 新手排障工具箱
 
 - 开发人员：chenwei666。完整独立源码归档：`Version/V0.10.0`；旧版本目录保持不变。
-- 发布状态：PR [#14](https://github.com/chenwei666/NetSerial-AI/pull/14) 已合并；[V0.10.0](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.10.0) 已作为非预发布正式版发布并设为 GitHub Latest。线上 APK 与 SHA256SUMS.txt 已重新下载，大小和 SHA-256 与本地产物一致。
+- 历史发布状态：PR [#14](https://github.com/chenwei666/NetSerial-AI/pull/14) 已合并；[V0.10.0](https://github.com/chenwei666/NetSerial-AI/releases/tag/v0.10.0) 发布时为非预发布正式版并设为 GitHub Latest，现作为历史稳定版本记录保留。该版本线上 APK 与 SHA256SUMS.txt 已重新下载，大小和 SHA-256 与本地产物一致。
 
 ### 新增与优化
 

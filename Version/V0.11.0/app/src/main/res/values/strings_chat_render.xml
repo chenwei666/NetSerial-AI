@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="chat_render_copy_original">复制原文</string>
+    <string name="chat_render_remember">记住这条</string>
+    <string name="chat_render_code">代码 / 命令</string>
+    <string name="chat_render_copy_code">复制代码</string>
+    <string name="chat_render_truncated">内容较长，后续未显示。点“复制原文”获取完整内容。</string>
+    <string name="chat_render_review_commands">查看命令（%1$d）</string>
+    <string name="chat_render_commands_title">选择命令，确认后再使用</string>
+    <string name="chat_render_command_review">查看安全检查与命令预览</string>
+    <string name="chat_render_command_blocked">高风险命令，已禁止带入终端</string>
+</resources>

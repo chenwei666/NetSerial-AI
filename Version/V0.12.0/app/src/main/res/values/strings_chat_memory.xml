@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="chat_memory_title">记忆管理</string>
+    <string name="chat_memory_add">添加记忆</string>
+    <string name="chat_memory_empty">还没有适用于当前对话的记忆。你确认后保存的个人偏好和当前设备信息会显示在这里。旧版自动记忆不会导入。</string>
+    <string name="chat_memory_global">我的偏好 · 所有设备</string>
+    <string name="chat_memory_device">仅当前设备</string>
+    <string name="chat_memory_confirm">确认后记住</string>
+    <string name="chat_memory_edit">编辑记忆</string>
+    <string name="chat_memory_save">确认保存</string>
+    <string name="chat_memory_saved">已加密保存，180 天后过期</string>
+    <string name="chat_memory_content_hint">例如：我是新手，请分步骤解释</string>
+    <string name="chat_memory_confirmation_hint">请核对内容和适用范围，再确认保存。最长 1024 字符，有效期 180 天；请勿填写密码、密钥或私钥。开启记忆后，相关内容会随提问发送给所选 AI 厂商。</string>
+    <string name="chat_memory_length_error">请填写 1–1024 个字符，不会自动截断。</string>
+    <string name="chat_memory_rejected">未保存：内容疑似含有密码或密钥，或已达到容量上限。请修改内容或删除不再需要的记忆。</string>
+    <string name="chat_memory_delete">删除</string>
+    <string name="chat_memory_delete_title">删除这条记忆？</string>
+    <string name="chat_memory_delete_hint">删除后不再用于以后的提问。已经发给 AI 的内容和聊天历史不会因此撤回。</string>
+    <string name="chat_memory_expiry">%1$s 到期</string>
+    <string name="chat_memory_used">本次使用的记忆</string>
+    <string name="chat_memory_used_hint">以下是最近一次请求选用的记忆快照，不代表请求已成功送达。随后编辑或删除不会改变该次请求的内容。</string>
+    <string name="chat_memory_used_empty">本次未使用长期记忆。</string>
+    <string name="chat_memory_unsupported">加密记忆需要 Android 6.0 或更高版本。此设备不会以明文保存记忆。</string>
+    <string name="chat_memory_failure">记忆无法读取或保存。不会自动重置记忆或改用旧版记录；请勿清除应用数据，稍后重试。</string>
+</resources>
